@@ -1,0 +1,325 @@
+BROKER SCHEMA HL7RestAPI
+
+
+CREATE COMPUTE MODULE patientDetails_MapToXMLModel
+CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		CALL CopyMessageHeaders();
+		--CALL CopyEntireMessage();
+
+		DECLARE patientId CHARACTER;
+		SET patientId = InputLocalEnvironment.REST.Input.Parameters.patientId;
+		DECLARE nosologicId CHARACTER;
+		SET nosologicId = InputLocalEnvironment.REST.Input.Parameters.nosologicId;
+		
+		DECLARE outputMessage REFERENCE TO OutputRoot; 
+		DECLARE outPatientKey REFERENCE TO OutputRoot;
+		DECLARE outParameters REFERENCE TO OutputRoot;
+		 
+		CREATE LASTCHILD OF OutputRoot AS outputMessage DOMAIN('XMLNSC') NAME 'XMLNSC';
+		CREATE FIRSTCHILD OF outputMessage as outputMessage NAMESPACE ns NAME 'senderRequest';
+		-- MessageId is create randomly by HL7Sender
+		--sarebbe perfetto. In attesa verifica MEDArchiver (stefano)
+		DECLARE msgId CHARACTER InputLocalEnvironment.Destination.HTTP.RequestIdentifier;
+		SET msgId = REPLACE(msgId,'''','');
+		SET outputMessage.messageId = 'B' || msgId;
+		
+		--DECLARE msgId CHARACTER 'B' || CAST (CURRENT_TIMESTAMP AS CHARACTER FORMAT 'YYYYMMddHHmmss');
+		--SET outputMessage.messageId = msgId;
+		
+		SET outputMessage.action = InputLocalEnvironment.REST.Input.Operation;
+		CREATE LASTCHILD OF outputMessage AS outputMessage NAME 'patientDetailsRequest';
+		CREATE LASTCHILD OF outputMessage AS outPatientKey NAME 'patientKey';
+		SET outPatientKey.patientId = patientId;
+		SET outPatientKey.nosologicId = nosologicId;
+		--lista parametri
+		CREATE FIRSTCHILD OF outputMessage AS outParameters NAME 'paramsId';
+		SET outParameters = 'PAZ';
+
+		IF nosologicId IS NULL THEN 
+			PROPAGATE TO TERMINAL 'out1';
+		ELSE 
+			PROPAGATE TO TERMINAL 'out';
+		END IF;
+		--RETURN TRUE;
+		RETURN FALSE;
+	END;
+
+	CREATE PROCEDURE CopyMessageHeaders() BEGIN
+		DECLARE I INTEGER 1;
+		DECLARE J INTEGER;
+		SET J = CARDINALITY(InputRoot.*[]);
+		WHILE I < J DO
+			SET OutputRoot.*[I] = InputRoot.*[I];
+			SET I = I + 1;
+		END WHILE;
+	END;
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		SET OutputRoot = InputRoot;
+	END;
+END MODULE;
+
+CREATE COMPUTE MODULE patientDetails_MapToJSONModel
+CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		CALL CopyMessageHeaders();
+		--CALL CopyEntireMessage();
+
+		DECLARE response REFERENCE TO InputRoot.XMLNSC.ns:senderResponse;
+		DECLARE parameter REFERENCE TO InputRoot.XMLNSC.ns:senderResponse;
+		DECLARE errorResponse REFERENCE TO InputRoot.XMLNSC.ns:senderResponse;
+		--GESTIONE ERRORE
+		MOVE errorResponse FIRSTCHILD NAME 'error';
+		IF LASTMOVE(errorResponse) THEN
+			SET OutputLocalEnvironment.Destination.HTTP.ReplyStatusCode = 400;
+			SET OutputRoot.JSON.Data.errorCode = errorResponse.errorCode;
+			SET OutputRoot.JSON.Data.errorMessage = errorResponse.errorMessage;
+			RETURN TRUE;
+		END IF; 
+
+		SET OutputLocalEnvironment.Destination.HTTP.ReplyStatusCode = 200;
+
+		--MAP MODEL TO JSON
+		MOVE response FIRSTCHILD;
+		
+		IF LASTMOVE(response) THEN
+			--MOVE response FIRSTCHILD NAMESPACE ns NAME 'parameter';	
+				
+			--MOVE response FIRSTCHILD;		
+			DECLARE refAdmission REFERENCE TO response;
+			MOVE refAdmission FIRSTCHILD NAME 'admission';
+			SET OutputRoot.JSON.Data.id = refAdmission.nosologicId;
+			IF NULLIF(response.name,'') IS NOT NULL THEN
+				SET OutputRoot.JSON.Data.name = response.name;
+			ELSE
+				SET OutputRoot.JSON.Data.name = '';
+			END IF;
+			
+			IF NULLIF(response.surname,'') IS NOT NULL THEN
+				SET OutputRoot.JSON.Data.surname = response.surname;
+			ELSE
+				SET OutputRoot.JSON.Data.surname = '';
+			END IF;
+			IF NULLIF(refAdmission.dischargeDate,'') IS NOT NULL THEN
+				SET OutputRoot.JSON.Data.dischargeDate = refAdmission.dischargeDate;
+			ELSE
+				SET OutputRoot.JSON.Data.dischargeDate = '';
+			END IF;
+--			IF NULLIF(response.diagnosis,'') IS NOT NULL THEN
+--				SET OutputRoot.JSON.Data.diagnosis = response.diagnosis;
+--			ELSE
+--				SET OutputRoot.JSON.Data.diagnosis = '';
+--			END IF;
+			SET OutputRoot.JSON.Data.diagnosis = '';
+			IF NULLIF(response.diagnosis,'') IS NOT NULL THEN
+				SET OutputRoot.JSON.Data.pathway = response.diagnosis;
+			ELSE
+				SET OutputRoot.JSON.Data.pathway = '';
+			END IF;
+			
+			IF NULLIF(refAdmission.bedNumber,'') IS NOT NULL THEN
+				SET OutputRoot.JSON.Data.bedNumber = refAdmission.bedNumber;
+			ELSE
+				SET OutputRoot.JSON.Data.bedNumber = '';
+			END IF;
+			
+			IF NULLIF(refAdmission.division,'') IS NOT NULL THEN
+				SET OutputRoot.JSON.Data.division = refAdmission.division;
+			ELSE
+				SET OutputRoot.JSON.Data.division = '';
+			END IF;
+			
+			IF NULLIF(refAdmission.class,'') IS NOT NULL THEN
+				SET OutputRoot.JSON.Data.class = refAdmission.class;
+			ELSE
+				SET OutputRoot.JSON.Data.class = '';
+			END IF;
+			
+			IF NULLIF(response.birthdate,'') IS NOT NULL THEN
+				SET OutputRoot.JSON.Data.birthdate = response.birthdate;
+			ELSE
+				SET OutputRoot.JSON.Data.birthdate = '';
+			END IF;
+			
+			IF NULLIF(response.sex,'') IS NOT NULL THEN
+				SET OutputRoot.JSON.Data.sex = response.sex;
+			ELSE
+				SET OutputRoot.JSON.Data.sex = '';
+			END IF;
+			
+			IF NULLIF(response.race,'') IS NOT NULL THEN
+				SET OutputRoot.JSON.Data.race = response.race;
+			ELSE
+				SET OutputRoot.JSON.Data.race = '';
+			END IF;			
+			
+			IF NULLIF(response.address,'') IS NOT NULL THEN
+				SET OutputRoot.JSON.Data.address = response.address;
+			ELSE
+				SET OutputRoot.JSON.Data.address = '';
+			END IF;
+			
+			IF NULLIF(response.fiscalcode,'') IS NOT NULL THEN
+				SET OutputRoot.JSON.Data.fiscalcode = response.fiscalcode;
+			ELSE
+				SET OutputRoot.JSON.Data.fiscalcode = '';
+			END IF;
+			
+			IF NULLIF(refAdmission.admissionDate,'') IS NOT NULL THEN
+				SET OutputRoot.JSON.Data.admissionDate = refAdmission.admissionDate;
+			ELSE
+				SET OutputRoot.JSON.Data.admissionDate = '';
+			END IF;
+			
+			IF NULLIF(refAdmission.admissionTime,'') IS NOT NULL THEN
+				SET OutputRoot.JSON.Data.admissionTime = refAdmission.admissionTime;
+			ELSE
+				SET OutputRoot.JSON.Data.admissionTime = '';
+			END IF;
+			
+			IF NULLIF(refAdmission.surgeryExpectedDate,'') IS NOT NULL THEN
+				SET OutputRoot.JSON.Data.surgeryExpectedDate = refAdmission.surgeryExpectedDate;
+			ELSE
+				SET OutputRoot.JSON.Data.surgeryExpectedDate = '';
+			END IF;
+			
+			IF NULLIF(refAdmission.surgeryExpectedTime,'') IS NOT NULL THEN
+				SET OutputRoot.JSON.Data.surgeryExpectedTime = refAdmission.surgeryExpectedTime;
+			ELSE
+				SET OutputRoot.JSON.Data.surgeryExpectedTime = '';
+			END IF;
+			
+			IF NULLIF(refAdmission.surgeryEndDate,'') IS NOT NULL THEN
+				SET OutputRoot.JSON.Data.surgeryEndDate = refAdmission.surgeryEndDate;
+			ELSE
+				SET OutputRoot.JSON.Data.surgeryEndDate = '';
+			END IF;
+			
+			IF NULLIF(refAdmission.surgeryEndTime,'') IS NOT NULL THEN
+				SET OutputRoot.JSON.Data.surgeryEndTime = refAdmission.surgeryEndTime;
+			ELSE
+				SET OutputRoot.JSON.Data.surgeryEndTime = '';
+			END IF;
+			
+			IF NULLIF(response.patientIdentifierList,'') IS NOT NULL THEN
+				SET OutputRoot.JSON.Data.pid = response.patientIdentifierList;
+			ELSE
+				SET OutputRoot.JSON.Data.pid = '';
+			END IF;
+			
+			IF NULLIF(refAdmission.type,'') IS NOT NULL THEN
+				SET OutputRoot.JSON.Data.type = refAdmission.type;
+			ELSE
+				SET OutputRoot.JSON.Data.type = '';
+			END IF;
+			
+			MOVE response FIRSTCHILD NAMESPACE ns NAME 'parameter';
+			DECLARE refOutJSON REFERENCE TO OutputRoot;
+			DECLARE refMeasures REFERENCE TO OutputRoot;
+
+			RETURN TRUE;
+		END IF;
+		
+
+
+		SET OutputLocalEnvironment.Destination.HTTP.ReplyStatusCode = 200;
+		--CREATE LASTCHILD OF OutputRoot Domain('JSON');
+		--SET OutputRoot.JSON.Data.ns:senderResponse.error.errorCode = 1;
+		RETURN TRUE;
+	END;
+
+	CREATE PROCEDURE CopyMessageHeaders() BEGIN
+		DECLARE I INTEGER 1;
+		DECLARE J INTEGER;
+		SET J = CARDINALITY(InputRoot.*[]);
+		WHILE I < J DO
+			SET OutputRoot.*[I] = InputRoot.*[I];
+			SET I = I + 1;
+		END WHILE;
+	END;
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		SET OutputRoot = InputRoot;
+	END;
+END MODULE;
+
+--GetLastAdmission
+CREATE COMPUTE MODULE patientDetails_GetLastAdmission
+CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		CALL CopyMessageHeaders();
+		--CALL CopyEntireMessage();
+
+		DECLARE response REFERENCE TO InputRoot.XMLNSC.ns:senderResponse;
+		DECLARE parameter REFERENCE TO InputRoot.XMLNSC.ns:senderResponse;
+		DECLARE errorResponse REFERENCE TO InputRoot.XMLNSC.ns:senderResponse;
+		--GESTIONE ERRORE
+		MOVE errorResponse FIRSTCHILD NAME 'error';
+		IF LASTMOVE(errorResponse) THEN
+			SET OutputLocalEnvironment.Destination.HTTP.ReplyStatusCode = 400;
+			SET OutputRoot.JSON.Data.errorCode = errorResponse.errorCode;
+			SET OutputRoot.JSON.Data.errorMessage = errorResponse.errorMessage;
+			PROPAGATE TO TERMINAL 'out1';
+			RETURN TRUE;
+		END IF; 
+
+		--MAP MODEL TO JSON
+		MOVE response FIRSTCHILD;
+		DECLARE patientId CHARACTER;
+		DECLARE nosologicId CHARACTER '';
+		
+		IF LASTMOVE(response) THEN
+			DECLARE refAdmission REFERENCE TO response;
+			MOVE refAdmission FIRSTCHILD NAME 'admission';
+			DECLARE admissionDate CHARACTER '';
+			WHILE LASTMOVE(refAdmission) DO
+				IF admissionDate < refAdmission.admissionDate THEN
+					SET admissionDate = refAdmission.admissionDate;
+					SET nosologicId = refAdmission.nosologicId;
+				END IF;
+				MOVE refAdmission NEXTSIBLING REPEAT NAME;
+			END WHILE;			
+		END IF;
+		
+		SET patientId = response.patientIdentifierList;
+		
+		DECLARE outputMessage REFERENCE TO OutputRoot; 
+		DECLARE outPatientKey REFERENCE TO OutputRoot;
+		DECLARE outParameters REFERENCE TO OutputRoot;
+		 
+		CREATE LASTCHILD OF OutputRoot AS outputMessage DOMAIN('XMLNSC') NAME 'XMLNSC';
+		--sarebbe perfetto. In attesa verifica MEDArchiver (stefano)
+		DECLARE msgId CHARACTER InputLocalEnvironment.Destination.HTTP.RequestIdentifier;
+		SET msgId = REPLACE(msgId,'''','');
+		SET msgId = 'B' || msgId;
+		
+		CREATE FIRSTCHILD OF outputMessage as outputMessage NAMESPACE ns NAME 'senderRequest';
+				
+		SET outputMessage.messageId = msgId;
+		SET outputMessage.action = InputLocalEnvironment.REST.Input.Operation;
+		CREATE LASTCHILD OF outputMessage AS outputMessage NAME 'patientDetailsRequest';
+		CREATE LASTCHILD OF outputMessage AS outPatientKey NAME 'patientKey';
+		SET outPatientKey.patientId = patientId;
+		SET outPatientKey.nosologicId = nosologicId;
+		--lista parametri
+		CREATE FIRSTCHILD OF outputMessage AS outParameters NAME 'paramsId';
+		SET outParameters = 'PAZ';
+
+		RETURN TRUE;
+	END;
+
+	CREATE PROCEDURE CopyMessageHeaders() BEGIN
+		DECLARE I INTEGER 1;
+		DECLARE J INTEGER;
+		SET J = CARDINALITY(InputRoot.*[]);
+		WHILE I < J DO
+			SET OutputRoot.*[I] = InputRoot.*[I];
+			SET I = I + 1;
+		END WHILE;
+	END;
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		SET OutputRoot = InputRoot;
+	END;
+END MODULE;

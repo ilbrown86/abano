@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?><wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" name="HL7IntegrationService" targetNamespace="http://HL7IntegrationService" xmlns:bons1="http://w3.ibm.com/it/hl7" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="http://HL7IntegrationService" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:documentation>
+    <wsdl:appinfo source="WMQI_APPINFO">
+      <MRWSDLAppInfo imported="true">
+        <binding hasEncoding="false" imported="true" name="HL7IntegrationServiceHttpBinding" originalBindingStyle="document"/>
+        <generatedXSD location="HL7IntegrationService_InlineSchema1.xsd"/>
+      </MRWSDLAppInfo>
+    </wsdl:appinfo>
+  </wsdl:documentation>
+  
+  
+  
+  <wsdl:types>
+    
+        <xsd:schema targetNamespace="http://HL7IntegrationService" xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions">
+            <xsd:import namespace="http://w3.ibm.com/it/hl7" schemaLocation="../HL7CommonLibrary/HL7Model.xsd"/>
+            <xsd:include schemaLocation="HL7IntegrationService_InlineSchema1.xsd"/>
+    </xsd:schema>
+    </wsdl:types>
+  <wsdl:message name="callHL7RequestMsg">
+    <wsdl:part element="tns:callHL7" name="callHL7Parameters"/>
+  </wsdl:message>
+  <wsdl:message name="callHL7ResponseMsg">
+    <wsdl:part element="tns:callHL7Response" name="callHL7Result"/>
+  </wsdl:message>
+    <wsdl:message name="writeQueueRequestMsg">
+    <wsdl:part element="tns:writeQueue" name="writeQueueParameters"/>
+  </wsdl:message>
+    <wsdl:message name="writeQueueResponseMsg">
+    <wsdl:part element="tns:writeQueueResponse" name="writeQueueResult"/>
+  </wsdl:message>
+    <wsdl:portType name="HL7IntegrationService">
+    <wsdl:operation name="callHL7">
+      <wsdl:input message="tns:callHL7RequestMsg" name="callHL7Request"/>
+      <wsdl:output message="tns:callHL7ResponseMsg" name="callHL7Response"/>
+    </wsdl:operation>
+        <wsdl:operation name="writeQueue">
+      <wsdl:input message="tns:writeQueueRequestMsg" name="writeQueueRequest"/>
+      <wsdl:output message="tns:writeQueueResponseMsg" name="writeQueueResponse"/>
+    </wsdl:operation>
+    </wsdl:portType>
+  <wsdl:binding name="HL7IntegrationServiceHttpBinding" type="tns:HL7IntegrationService">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="callHL7">
+            <soap:operation soapAction="http://HL7IntegrationService/callHL7"/>
+            <wsdl:input name="callHL7Request">
+                <soap:body use="literal"/>
+            </wsdl:input>
+      <wsdl:output name="callHL7Response">
+                <soap:body use="literal"/>
+            </wsdl:output>
+    </wsdl:operation>
+        <wsdl:operation name="writeQueue">
+      <soap:operation soapAction="http://HL7IntegrationService/writeQueue"/>
+      <wsdl:input name="writeQueueRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="writeQueueResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    </wsdl:binding>
+  <wsdl:service name="HL7IntegrationServiceHttpService">
+    <wsdl:port binding="tns:HL7IntegrationServiceHttpBinding" name="HL7IntegrationServiceHttpPort">
+      <soap:address location="http://localhost:7800/HL7IntegrationService"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

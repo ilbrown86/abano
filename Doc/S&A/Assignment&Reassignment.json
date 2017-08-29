@@ -1,0 +1,132 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "HL7 Integration Services",
+    "version": "2.0.0",
+    "title": "HL7 IBM Integration services",
+    "contact": {}
+  },
+  "host": "localhost:7800",
+  "basePath": "/HL7Rest",
+  "schemes": [
+    "http"
+  ],
+  "security": [
+    {
+      "Technical User": []
+    }
+  ],
+  "paths": {
+    "/reassignment": {
+      "put": {
+        "operationId": "Reassignment",
+        "responses": {
+          "200": {
+            "description": "The operation was successful.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          "400": {
+            "description": "Error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        },
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "description": "call for reassgniment",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/ParamentriReassign"
+            },
+            "description": "The request body for the operation",
+            "required": true
+          }
+        ]
+      }
+    }
+  },
+  "securityDefinitions": {
+    "Technical User": {
+      "type": "basic"
+    }
+  },
+  "definitions": {
+    "ParamentriReassign": {
+      "type": "object",
+      "properties": {
+        "dateFrom": {
+          "type": "string",
+          "format": "date"
+        },
+        "dateTo": {
+          "type": "string",
+          "format": "date"
+        },
+        "nurseId": {
+          "type": "string",
+          "description": "nurseId"
+        },
+        "patientId": {
+          "type": "string",
+          "description": "patientId"
+        },
+        "taskType": {
+          "type": "string",
+          "description": "task type"
+        },
+        "pathwayPhase": {
+          "type": "string",
+          "description": "pathway phase"
+        },
+        "typology": {
+          "type": "string",
+          "description": "patient typology"
+        },
+        "activeScheduled": {
+          "type": "string",
+          "description": "one for active, two for scheduled, three for both"
+        },
+        "nurseList": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "nurseId": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "nurseId"
+            ]
+          }
+        }
+      }
+    },
+    "Error": {
+      "type": "object",
+      "required": [
+        "errorCode",
+        "errorMessage"
+      ],
+      "properties": {
+        "errorCode": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "errorMessage": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?><xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://EmployeeService" xmlns:Q1="http://hrdb/iibadmin" xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions" xmlns:tns="http://EmployeeService">
+    <xsd:import namespace="http://hrdb/iibadmin" schemaLocation="hrdb/iibadmin/HRDB.xsd"/>
+    <xsd:element ibmSchExtn:docRoot="true" name="updEmployee">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element ref="Q1:EMPLOYEE"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+    <xsd:element ibmSchExtn:docRoot="true" name="updEmployeeResponse">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element ref="Q1:EmployeeResponse"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+    <xsd:element ibmSchExtn:docRoot="true" name="insEmployee">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element ref="Q1:EMPLOYEE"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+    <xsd:element ibmSchExtn:docRoot="true" name="insEmployeeResponse">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element ref="Q1:EmployeeResponse"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+    <xsd:element ibmSchExtn:docRoot="true" name="loadCache">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="Request" nillable="true" type="xsd:string"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+    <xsd:element ibmSchExtn:docRoot="true" name="loadCacheResponse">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="Response" nillable="true" type="Q1:EmployeeResponseType"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+    <xsd:element ibmSchExtn:docRoot="true" name="getEmployeeCache">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="cacheRequest" nillable="true" type="Q1:EMPLOYEEType"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+    <xsd:element ibmSchExtn:docRoot="true" name="getEmployeeCacheResponse">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="cacheResponse" nillable="true" type="Q1:EmployeeResponseType"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+</xsd:schema>

@@ -1,0 +1,453 @@
+<?xml version="1.0" encoding="UTF-8"?><!--
+ * The schemas contained in this document are reproduced with the express permission of 
+ * Health Level Seven (R) International. ALL RIGHTS RESERVED. 
+ *  
+ * The schemas contain material derived from HL7 standards. 
+ * HL7 standards can be obtained from the HL7 website: www.HL7.org 
+ * 
+ * Health Level Seven International and IBM hereby grant permission, to those obtaining 
+ * a copy of these materials, to use, copy and modify the materials solely for use with DFDL processors. 
+ * THESE MATERIALS ARE PROVIDED AS IS WITH NO WARRANTIES OF ANY KIND. 
+ * 
+ * Copyright (C) 1999-2011, Health Level Seven. 
+ * 
+ * (C) Copyright International Business Machines Corporation, 2014. 
+--><xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="urn:hl7-org:v2xml" xmlns="urn:hl7-org:v2xml" xmlns:dfdl="http://www.ogf.org/dfdl/dfdl-1.0/" xmlns:fn="http://www.w3.org/2005/xpath-functions" xmlns:hl7="urn:hl7-org:v2xml" xmlns:ibmDfdlExtn="http://www.ibm.com/dfdl/extensions" xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions" xmlns:ibmhl7="http://www.ibm.com/dfdl/HL7Format">
+    <xsd:include schemaLocation="segments.xsd"/>
+    <xsd:import namespace="http://www.ibm.com/dfdl/HL7Format" schemaLocation="IBMdefined/HL7Format.xsd"/>
+    <xsd:annotation>
+				<xsd:appinfo source="http://www.ogf.org/dfdl/">
+					<dfdl:format ref="ibmhl7:HL7Format"/>
+				</xsd:appinfo>
+			</xsd:annotation>
+    <xsd:complexType name="MFK_M01.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MSH"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="SFT"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MSA"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="ERR"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MFI"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="MFA"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element ibmSchExtn:docRoot="true" name="MFK_M01" type="MFK_M01.CONTENT"/>
+<xsd:complexType name="MFN_M01.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MSH"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="SFT"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MFI"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="1" ref="MFN_M01.MF"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element ibmSchExtn:docRoot="true" name="MFN_M01" type="MFN_M01.CONTENT"/>
+    <xsd:complexType name="MFN_M01.MF.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MFE"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="anyHL7Segment"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="MFN_M01.MF" type="MFN_M01.MF.CONTENT"/>
+    <xsd:complexType name="MFN_M02.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MSH"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="SFT"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MFI"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="1" ref="MFN_M02.MF_STAFF"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element ibmSchExtn:docRoot="true" name="MFN_M02" type="MFN_M02.CONTENT"/>
+    <xsd:complexType name="MFN_M02.MF_STAFF.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MFE"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="STF"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="PRA"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="ORG"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="AFF"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="LAN"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="EDU"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="CER"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="NTE"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="MFN_M02.MF_STAFF" type="MFN_M02.MF_STAFF.CONTENT"/>
+    <xsd:complexType name="MFN_M03.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MSH"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="SFT"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MFI"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="1" ref="MFN_M03.MF_TEST"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element ibmSchExtn:docRoot="true" name="MFN_M03" type="MFN_M03.CONTENT"/>
+    <xsd:complexType name="MFN_M03.MF_TEST.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MFE"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="OM1"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="anyHL7Segment"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="MFN_M03.MF_TEST" type="MFN_M03.MF_TEST.CONTENT"/>
+    <xsd:complexType name="MFN_M04.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MSH"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="SFT"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MFI"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="1" ref="MFN_M04.MF_CDM"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element ibmSchExtn:docRoot="true" name="MFN_M04" type="MFN_M04.CONTENT"/>
+    <xsd:complexType name="MFN_M04.MF_CDM.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MFE"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="CDM"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="PRC"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="MFN_M04.MF_CDM" type="MFN_M04.MF_CDM.CONTENT"/>
+    <xsd:complexType name="MFN_M05.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MSH"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="SFT"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MFI"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="1" ref="MFN_M05.MF_LOCATION"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element ibmSchExtn:docRoot="true" name="MFN_M05" type="MFN_M05.CONTENT"/>
+    <xsd:complexType name="MFN_M05.MF_LOCATION.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MFE"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="LOC"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="LCH"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="LRL"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="1" ref="MFN_M05.MF_LOC_DEPT"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="MFN_M05.MF_LOCATION" type="MFN_M05.MF_LOCATION.CONTENT"/>
+    <xsd:complexType name="MFN_M05.MF_LOC_DEPT.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="LDP"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="LCH"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="LCC"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="MFN_M05.MF_LOC_DEPT" type="MFN_M05.MF_LOC_DEPT.CONTENT"/>
+    <xsd:complexType name="MFN_M06.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MSH"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="SFT"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MFI"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="1" ref="MFN_M06.MF_CLIN_STUDY"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element ibmSchExtn:docRoot="true" name="MFN_M06" type="MFN_M06.CONTENT"/>
+    <xsd:complexType name="MFN_M06.MF_CLIN_STUDY.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MFE"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="CM0"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="MFN_M06.MF_PHASE_SCHED_DETAIL"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="MFN_M06.MF_CLIN_STUDY" type="MFN_M06.MF_CLIN_STUDY.CONTENT"/>
+    <xsd:complexType name="MFN_M06.MF_PHASE_SCHED_DETAIL.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="CM1"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="CM2"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="MFN_M06.MF_PHASE_SCHED_DETAIL" type="MFN_M06.MF_PHASE_SCHED_DETAIL.CONTENT"/>
+    <xsd:complexType name="MFN_M07.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MSH"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="SFT"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MFI"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="1" ref="MFN_M07.MF_CLIN_STUDY_SCHED"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element ibmSchExtn:docRoot="true" name="MFN_M07" type="MFN_M07.CONTENT"/>
+    <xsd:complexType name="MFN_M07.MF_CLIN_STUDY_SCHED.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MFE"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="CM0"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="CM2"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="MFN_M07.MF_CLIN_STUDY_SCHED" type="MFN_M07.MF_CLIN_STUDY_SCHED.CONTENT"/>
+    <xsd:complexType name="MFN_M08.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MSH"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="SFT"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MFI"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="1" ref="MFN_M08.MF_TEST_NUMERIC"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element ibmSchExtn:docRoot="true" name="MFN_M08" type="MFN_M08.CONTENT"/>
+    <xsd:complexType name="MFN_M08.MF_TEST_NUMERIC.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MFE"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="OM1"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="OM2"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="OM3"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="OM4"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="MFN_M08.MF_TEST_NUMERIC" type="MFN_M08.MF_TEST_NUMERIC.CONTENT"/>
+    <xsd:complexType name="MFN_M09.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MSH"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="SFT"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MFI"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="1" ref="MFN_M09.MF_TEST_CATEGORICAL"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element ibmSchExtn:docRoot="true" name="MFN_M09" type="MFN_M09.CONTENT"/>
+    <xsd:complexType name="MFN_M09.MF_TEST_CATEGORICAL.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MFE"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="OM1"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="MFN_M09.MF_TEST_CAT_DETAIL"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="MFN_M09.MF_TEST_CATEGORICAL" type="MFN_M09.MF_TEST_CATEGORICAL.CONTENT"/>
+    <xsd:complexType name="MFN_M09.MF_TEST_CAT_DETAIL.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="OM3"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="OM4"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="MFN_M09.MF_TEST_CAT_DETAIL" type="MFN_M09.MF_TEST_CAT_DETAIL.CONTENT"/>
+    <xsd:complexType name="MFN_M10.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MSH"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="SFT"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MFI"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="1" ref="MFN_M10.MF_TEST_BATTERIES"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element ibmSchExtn:docRoot="true" name="MFN_M10" type="MFN_M10.CONTENT"/>
+    <xsd:complexType name="MFN_M10.MF_TEST_BATTERIES.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MFE"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="OM1"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="MFN_M10.MF_TEST_BATT_DETAIL"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="MFN_M10.MF_TEST_BATTERIES" type="MFN_M10.MF_TEST_BATTERIES.CONTENT"/>
+    <xsd:complexType name="MFN_M10.MF_TEST_BATT_DETAIL.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="OM5"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="OM4"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="MFN_M10.MF_TEST_BATT_DETAIL" type="MFN_M10.MF_TEST_BATT_DETAIL.CONTENT"/>
+    <xsd:complexType name="MFN_M11.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MSH"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="SFT"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MFI"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="1" ref="MFN_M11.MF_TEST_CALCULATED"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element ibmSchExtn:docRoot="true" name="MFN_M11" type="MFN_M11.CONTENT"/>
+    <xsd:complexType name="MFN_M11.MF_TEST_CALCULATED.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MFE"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="OM1"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="MFN_M11.MF_TEST_CALC_DETAIL"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="MFN_M11.MF_TEST_CALCULATED" type="MFN_M11.MF_TEST_CALCULATED.CONTENT"/>
+    <xsd:complexType name="MFN_M11.MF_TEST_CALC_DETAIL.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="OM6"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="OM2"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="MFN_M11.MF_TEST_CALC_DETAIL" type="MFN_M11.MF_TEST_CALC_DETAIL.CONTENT"/>
+    <xsd:complexType name="MFN_M12.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MSH"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="SFT"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MFI"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="1" ref="MFN_M12.MF_OBS_ATTRIBUTES"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element ibmSchExtn:docRoot="true" name="MFN_M12" type="MFN_M12.CONTENT"/>
+    <xsd:complexType name="MFN_M12.MF_OBS_ATTRIBUTES.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MFE"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="OM1"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="OM7"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="MFN_M12.MF_OBS_ATTRIBUTES" type="MFN_M12.MF_OBS_ATTRIBUTES.CONTENT"/>
+    <xsd:complexType name="MFN_M13.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MSH"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="SFT"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MFI"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="1" ref="MFE"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element ibmSchExtn:docRoot="true" name="MFN_M13" type="MFN_M13.CONTENT"/>
+    <xsd:complexType name="MFN_M15.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MSH"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="SFT"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MFI"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="1" ref="MFN_M15.MF_INV_ITEM"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element ibmSchExtn:docRoot="true" name="MFN_M15" type="MFN_M15.CONTENT"/>
+    <xsd:complexType name="MFN_M15.MF_INV_ITEM.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MFE"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="IIM"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="MFN_M15.MF_INV_ITEM" type="MFN_M15.MF_INV_ITEM.CONTENT"/>
+    <xsd:complexType name="MFN_Znn.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MSH"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="SFT"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MFI"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="1" ref="MFN_Znn.MF_SITE_DEFINED"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element ibmSchExtn:docRoot="true" name="MFN_Znn" type="MFN_Znn.CONTENT"/>
+    <xsd:complexType name="MFN_Znn.MF_SITE_DEFINED.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MFE"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="anyHL7Segment"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="MFN_Znn.MF_SITE_DEFINED" type="MFN_Znn.MF_SITE_DEFINED.CONTENT"/>
+    <xsd:complexType name="MFQ_M01.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MSH"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="SFT"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="QRD"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="QRF"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="DSC"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element ibmSchExtn:docRoot="true" name="MFQ_M01" type="MFQ_M01.CONTENT"/>
+    <xsd:complexType name="MFR_M01.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MSH"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="SFT"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MSA"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="ERR"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="QAK"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="QRD"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="QRF"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MFI"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="1" ref="MFR_M01.MF_QUERY"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="DSC"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element ibmSchExtn:docRoot="true" name="MFR_M01" type="MFR_M01.CONTENT"/>
+    <xsd:complexType name="MFR_M01.MF_QUERY.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MFE"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="anyHL7Segment"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="MFR_M01.MF_QUERY" type="MFR_M01.MF_QUERY.CONTENT"/>
+    <xsd:complexType name="MFR_M04.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MSH"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="SFT"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MSA"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="ERR"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="QAK"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="QRD"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="QRF"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MFI"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="1" ref="MFR_M04.MF_QUERY"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="DSC"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element ibmSchExtn:docRoot="true" name="MFR_M04" type="MFR_M04.CONTENT"/>
+    <xsd:complexType name="MFR_M04.MF_QUERY.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MFE"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="CDM"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="PRC"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="MFR_M04.MF_QUERY" type="MFR_M04.MF_QUERY.CONTENT"/>
+    <xsd:complexType name="MFR_M05.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MSH"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="SFT"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MSA"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="ERR"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="QAK"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="QRD"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="QRF"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MFI"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="1" ref="MFR_M05.MF_QUERY"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="DSC"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element ibmSchExtn:docRoot="true" name="MFR_M05" type="MFR_M05.CONTENT"/>
+    <xsd:complexType name="MFR_M05.MF_QUERY.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MFE"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="LOC"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="LCH"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="LRL"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="1" ref="LDP"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="LCH"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="LCC"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="MFR_M05.MF_QUERY" type="MFR_M05.MF_QUERY.CONTENT"/>
+    <xsd:complexType name="MFR_M06.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MSH"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="SFT"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MSA"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="ERR"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="QAK"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="QRD"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="QRF"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MFI"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="1" ref="MFR_M06.MF_QUERY"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="DSC"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element ibmSchExtn:docRoot="true" name="MFR_M06" type="MFR_M06.CONTENT"/>
+    <xsd:complexType name="MFR_M06.MF_QUERY.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MFE"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="CM0"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="CM1"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="CM2"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="MFR_M06.MF_QUERY" type="MFR_M06.MF_QUERY.CONTENT"/>
+    <xsd:complexType name="MFR_M07.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MSH"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="SFT"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MSA"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="ERR"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="QAK"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="QRD"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="QRF"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MFI"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="1" ref="MFR_M07.MF_QUERY"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="DSC"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element ibmSchExtn:docRoot="true" name="MFR_M07" type="MFR_M07.CONTENT"/>
+    <xsd:complexType name="MFR_M07.MF_QUERY.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MFE"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="CM0"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="CM2"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="MFR_M07.MF_QUERY" type="MFR_M07.MF_QUERY.CONTENT"/>
+</xsd:schema>

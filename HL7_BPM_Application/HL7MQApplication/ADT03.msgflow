@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ComIbmCallableFlowInput.msgnode="ComIbmCallableFlowInput.msgnode" xmlns:ComIbmCallableFlowReply.msgnode="ComIbmCallableFlowReply.msgnode" xmlns:ComIbmCompute.msgnode="ComIbmCompute.msgnode" xmlns:ComIbmHTTPHeader.msgnode="ComIbmHTTPHeader.msgnode" xmlns:ComIbmTrace.msgnode="ComIbmTrace.msgnode" xmlns:ComIbmWSRequest.msgnode="ComIbmWSRequest.msgnode" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:eflow="http://www.ibm.com/wbi/2005/eflow"
+    xmlns:utility="http://www.ibm.com/wbi/2005/eflow_utility" nsURI="HL7MQApplication/ADT03.msgflow" nsPrefix="HL7MQApplication_ADT03.msgflow">
+  <eClassifiers xmi:type="eflow:FCMComposite" name="FCMComposite_1">
+    <eSuperTypes href="http://www.ibm.com/wbi/2005/eflow#//FCMBlock"/>
+    <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.PatientDischargeURL" name="PatientDischargeURL" lowerBound="1" defaultValueLiteral="https://10.4.2.204:443/rest/bpm/wle/v1/service/ABANO@cpPatientDischarge">
+      <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.allowedCiphers" name="allowedCiphers">
+      <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.enableCRLCheck" name="enableCRLCheck" defaultValueLiteral="false">
+      <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.hostnameChecking" name="hostnameChecking" defaultValueLiteral="false">
+      <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.protocol" name="protocol" lowerBound="1" eType="//@eClassifiers.1" defaultValueLiteral="SSL_TLS"/>
+    <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.keyAlias" name="keyAlias" defaultValueLiteral="bpmtestwas">
+      <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+    <translation xmi:type="utility:TranslatableString" key="ADT03" bundleName="HL7MQApplication/ADT03" pluginId="HL7_BPM_Application"/>
+    <colorGraphic16 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/HL7_BPM_Application/icons/full/obj16/ADT03.gif"/>
+    <colorGraphic32 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/HL7_BPM_Application/icons/full/obj30/ADT03.gif"/>
+    <composition>
+      <nodes xmi:type="ComIbmHTTPHeader.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_1" location="363,79" httpRequestHeader="Add">
+        <translation xmi:type="utility:ConstantString" string="HTTP Header"/>
+        <nameValue4RequestHeader name="Authorization" value="Basic aWJtLnJuZXpoYTpTdmlsdXBwbzA9"/>
+      </nodes>
+      <nodes xmi:type="ComIbmWSRequest.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_2" location="549,83" URLSpecifier="https://10.4.2.204:443/rest/bpm/wle/v1/service/ABANO@cpPatientDischarge" httpVersion="1.1" protocol="SSL_TLS" keyAlias="bpmtestwas" useWholeInputMsgAsRequest="false" requestMsgLocationInTree="InputLocalEnvironment">
+        <translation xmi:type="utility:ConstantString" string="HTTP Request"/>
+      </nodes>
+      <nodes xmi:type="ComIbmCallableFlowInput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_3" location="13,80" callableInputEndpoint="ADT03Discharge">
+        <translation xmi:type="utility:ConstantString" string="CallableInput"/>
+      </nodes>
+      <nodes xmi:type="ComIbmCallableFlowReply.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_4" location="666,84">
+        <translation xmi:type="utility:ConstantString" string="CallableReply"/>
+      </nodes>
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_5" location="225,78" computeExpression="esql://routine/HL7MQApplication#adt03_MapToJSON.Main">
+        <translation xmi:type="utility:ConstantString" string="Compute"/>
+      </nodes>
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_6" location="451,83" computeExpression="esql://routine/HL7MQApplication#ADT03_Compute.Main" computeMode="all">
+        <translation xmi:type="utility:ConstantString" string="Compute1"/>
+      </nodes>
+      <nodes xmi:type="ComIbmTrace.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_7" location="123,151" destination="file" filePath="/var/mqsi/components/IIB10ABANO_PROD/stdout" pattern="${Root}">
+        <translation xmi:type="utility:ConstantString" string="Trace"/>
+      </nodes>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_2" targetNode="FCMComposite_1_1" sourceNode="FCMComposite_1_5" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_3" targetNode="FCMComposite_1_6" sourceNode="FCMComposite_1_1" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_4" targetNode="FCMComposite_1_2" sourceNode="FCMComposite_1_6" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_5" targetNode="FCMComposite_1_4" sourceNode="FCMComposite_1_2" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_1" targetNode="FCMComposite_1_7" sourceNode="FCMComposite_1_3" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_6" targetNode="FCMComposite_1_5" sourceNode="FCMComposite_1_7" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+    </composition>
+    <propertyOrganizer>
+      <propertyDescriptor groupName="Group.BPM" propertyEditor="com.ibm.etools.mft.ibmnodes.editors.URLPropertyEditor" configurable="true" describedAttribute="Property.PatientDischargeURL">
+        <propertyName xmi:type="utility:TranslatableString" key="Property.PatientDischargeURL" bundleName="HL7MQApplication/ADT03" pluginId="HL7_BPM_Application"/>
+        <propertyDescriptor groupName="Group.BPM" configurable="true" describedAttribute="Property.allowedCiphers">
+          <propertyName xmi:type="utility:TranslatableString" key="Property.allowedCiphers" bundleName="ComIbmWSRequest" pluginId="com.ibm.etools.mft.ibmnodes.definitions"/>
+          <propertyDescriptor groupName="Group.BPM" configurable="true" describedAttribute="Property.enableCRLCheck">
+            <propertyName xmi:type="utility:TranslatableString" key="Property.enableCRLCheck" bundleName="ComIbmWSRequest" pluginId="com.ibm.etools.mft.ibmnodes.definitions"/>
+            <propertyDescriptor groupName="Group.BPM" configurable="true" describedAttribute="Property.hostnameChecking">
+              <propertyName xmi:type="utility:TranslatableString" key="Property.hostnameChecking" bundleName="ComIbmWSRequest" pluginId="com.ibm.etools.mft.ibmnodes.definitions"/>
+              <propertyDescriptor groupName="Group.BPM" configurable="true" describedAttribute="Property.protocol">
+                <propertyName xmi:type="utility:TranslatableString" key="Property.protocol" bundleName="ComIbmWSRequest" pluginId="com.ibm.etools.mft.ibmnodes.definitions"/>
+                <propertyDescriptor groupName="Group.BPM" configurable="true" describedAttribute="Property.keyAlias">
+                  <propertyName xmi:type="utility:TranslatableString" key="Property.keyAlias" bundleName="ComIbmWSRequest" pluginId="com.ibm.etools.mft.ibmnodes.definitions"/>
+                </propertyDescriptor>
+              </propertyDescriptor>
+            </propertyDescriptor>
+          </propertyDescriptor>
+        </propertyDescriptor>
+      </propertyDescriptor>
+    </propertyOrganizer>
+    <attributeLinks promotedAttribute="Property.PatientDischargeURL" overriddenNodes="FCMComposite_1_2">
+      <overriddenAttribute href="ComIbmWSRequest.msgnode#Property.URLSpecifier"/>
+    </attributeLinks>
+    <attributeLinks promotedAttribute="Property.allowedCiphers" overriddenNodes="FCMComposite_1_2">
+      <overriddenAttribute href="ComIbmWSRequest.msgnode#Property.allowedCiphers"/>
+    </attributeLinks>
+    <attributeLinks promotedAttribute="Property.enableCRLCheck" overriddenNodes="FCMComposite_1_2">
+      <overriddenAttribute href="ComIbmWSRequest.msgnode#Property.enableCRLCheck"/>
+    </attributeLinks>
+    <attributeLinks promotedAttribute="Property.hostnameChecking" overriddenNodes="FCMComposite_1_2">
+      <overriddenAttribute href="ComIbmWSRequest.msgnode#Property.hostnameChecking"/>
+    </attributeLinks>
+    <attributeLinks promotedAttribute="Property.protocol" overriddenNodes="FCMComposite_1_2">
+      <overriddenAttribute href="ComIbmWSRequest.msgnode#Property.protocol"/>
+    </attributeLinks>
+    <attributeLinks promotedAttribute="Property.keyAlias" overriddenNodes="FCMComposite_1_2">
+      <overriddenAttribute href="ComIbmWSRequest.msgnode#Property.keyAlias"/>
+    </attributeLinks>
+    <stickyBoard/>
+  </eClassifiers>
+  <eClassifiers xmi:type="ecore:EEnum">
+    <eLiterals xmi:id="protocol.SSL" name="SSL"/>
+    <eLiterals xmi:id="protocol.SSLv3" name="SSLv3" value="1"/>
+    <eLiterals xmi:id="protocol.TLS" name="TLS" value="2"/>
+    <eLiterals xmi:id="protocol.TLSv1" name="TLSv1" value="3"/>
+    <eLiterals xmi:id="protocol.TLSv1.1" name="TLSv1.1" value="4"/>
+    <eLiterals xmi:id="protocol.TLSv1.2" name="TLSv1.2" value="5"/>
+    <eLiterals xmi:id="protocol.SSL_TLS" name="SSL_TLS" value="6"/>
+    <eLiterals xmi:id="protocol.SSL_TLSv2" name="SSL_TLSv2" value="7"/>
+  </eClassifiers>
+</ecore:EPackage>

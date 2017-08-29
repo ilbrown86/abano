@@ -1,0 +1,83 @@
+MEDArhiver Open Points
+
+Buongiorno, 
+vorrei chiarire alcuni punti nella comunicazione HL7 con la vostra applicazione MEDArchiver:
+- QRY.R02
+	Il messaggio viene utilizzato per richiedere:
+		- dettaglio Paziente;
+		- Parametri Paziente;
+			- Note;
+			- Issues;
+			- Measurement. 
+	Domande:
+	1. I dati necessari per l'identificazione del Paziente.
+		- Nel segmento QRD sono richiesti:
+			- ID Paziente (QRD.8)
+			- Nosologico aziente (QRD.10)
+		è possibile specificare SOLO un Identificativo?
+	2. Richiesta parametri
+		la richiesta parametri viene specificata nel segmento QRF posizione 5
+		 - Specificando "ALL" vengono estratti tutti i parametri?
+		 - Specificando una lista di parametri viene restituita la lista dei soli parametri richiesti?
+		 - Esiste un flag che identifica l'importanza di questi parametri? Ossia Importante/Normale
+	3. Scrittura parametri
+		In caso si invii un messaggio con lo stesso ID task dovrebbe essere possibile aggionare il parametro.
+		Attualmente il messaggio ORU.R01 viene scartato in caso di ID task già presente. 
+		E' fattibile avere un'update sul parametro nel caso di ID task uguale? 	 
+	4. E' possibile identificare un paziente con il numero del letto?
+		in ammissione, modifica, cancellazione di un paziente (messaggi ADT*) viene specificata la posizione nel segmento PVT.3.
+		La posizione, come da esempi e documentazione, contiene l'identificativo del letto.
+		Sarebbe possibile, generando il segmento PV1 nel messaggio QRY.R02, ottenere le informazioni del paziente occupante il letto?
+	5. E' possibile ottenere una lista di pazienti ed i relativi parametri?
+		valorizzando il segmento QRD.8 con una lista di ID paziente è possibile ottenere una lista?
+		E' necessario specificare anche gli ID nosologico?
+	6. Gestione Attachment
+		Nelle Note è possibile associare degli attachements, questi saranno inviati in bytestream Base64. 
+		Non è chiara la gestione
+			- WRITE ATTACH
+			- READ ATTACH
+		gli attachements saranno restituiti nella query per Paziente?
+	7. In fase di analisi sono stati identificati 3 Identificativi:
+		- ID Paziente;
+		- ID Nosologico;
+		- ID ricovero
+		analizzando i vari messaggi e relativi segmenti non compare l'ID ricovero. A cosa si riferisce?
+	8. Ammissione (ADT)
+		La posizione (letto) nel segmento PV1.3 come è formattato?
+		Per ulteriori analisi è possibile avere esempi per i seguenti messaggi?
+		- ADT.02
+		- ADT.A40
+		- ADT.A08
+		- ADT.A12
+	    
+- Query Patient
+	- Patient Details
+	- Mesurement
+	- Issues
+	- Notes
+	- query per numero letti
+	- Identificare note importanti
+	- query con solo ID patient
+	- query con solo nosologico
+	- get patients per numero letti
+	- send attachement
+	- get attachment
+	
+- Sbloccare update patient ossia write parms con stesso task ID
+
+- verifica ID:
+	- ID PAtient
+	- Nosologico
+	- Ricovero (non sembra esserci)
+	
+- Admission
+	- ID Paziente (PID.3)
+	- Posizione letto (PV1.3) come è formattato?
+	- Visit Nr. (PV1.19) è il numero nosologico?
+	
+- Richiedere dettagli ADT
+	- ADT.02
+	- ADT.A40
+	- ADT.A08
+	- ADT.A12
+	

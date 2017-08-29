@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="a083986d-6643-4388-ab07-43ac0e43b758" activeEnvironment="Default" name="C:\workspaces\iib\medarchiver_bpm_test_20170223\SampleHL7Lib\SampleService.wsdl" resourceRoot="" soapui-version="5.2.1" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" id="8a78ac45-4253-4bd5-bfde-f5ccb63ee6e2" wsaVersion="NONE" name="SampleServiceHttpBinding" type="wsdl" bindingName="{http://SampleService}SampleServiceHttpBinding" soapVersion="1_1" anonymous="optional" definition="file:/C:/workspaces/iib/medarchiver_bpm_test_20170223/SampleHL7Lib/SampleService.wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="file:\C:\workspaces\iib\medarchiver_bpm_test_20170223\SampleHL7Lib\SampleService.wsdl"><con:part><con:url>file:\C:\workspaces\iib\medarchiver_bpm_test_20170223\SampleHL7Lib\SampleService.wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="SampleService" targetNamespace="http://SampleService" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:bons1="http:///www.policlinicoabano.it/bpm" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="http://SampleService" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:documentation>
+    <wsdl:appinfo source="WMQI_APPINFO">
+      <MRWSDLAppInfo imported="true">
+        <binding hasEncoding="false" imported="true" name="SampleServiceHttpBinding" originalBindingStyle="document"/>
+        <generatedXSD location="SampleService_InlineSchema1.xsd"/>
+      </MRWSDLAppInfo>
+    </wsdl:appinfo>
+  </wsdl:documentation>
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://SampleService" xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions">
+      <xsd:include schemaLocation="SampleService_InlineSchema1.xsd"/>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="operation1RequestMsg">
+    <wsdl:part element="tns:operation1" name="operation1Parameters"/>
+  </wsdl:message>
+  <wsdl:message name="operation1ResponseMsg">
+    <wsdl:part element="tns:operation1Response" name="operation1Result"/>
+  </wsdl:message>
+  <wsdl:portType name="SampleService">
+    <wsdl:operation name="operation1">
+      <wsdl:input message="tns:operation1RequestMsg" name="operation1Request"/>
+      <wsdl:output message="tns:operation1ResponseMsg" name="operation1Response"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="SampleServiceHttpBinding" type="tns:SampleService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="operation1">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="operation1Request">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="operation1Response">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="SampleServiceHttpService">
+    <wsdl:port binding="tns:SampleServiceHttpBinding" name="SampleServiceHttpPort">
+      <soap:address location="http://localhost:7800/SampleService"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part><con:part><con:url>file:\C:\workspaces\iib\medarchiver_bpm_test_20170223\SampleHL7Lib\SampleService_InlineSchema1.xsd</con:url><con:content><![CDATA[<xsd:schema targetNamespace="http://SampleService" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:Q1="http:///www.policlinicoabano.it/bpm" xmlns:tns="http://SampleService">
+  <xsd:import namespace="http:///www.policlinicoabano.it/bpm" schemaLocation="bpmModel.xsd"/>
+  <xsd:element ibmSchExtn:docRoot="true" name="operation1" xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element ref="Q1:patient"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element ibmSchExtn:docRoot="true" name="operation1Response" xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="results" nillable="true" type="xsd:string"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+</xsd:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>file:\C:\workspaces\iib\medarchiver_bpm_test_20170223\SampleHL7Lib\bpmModel.xsd</con:url><con:content><![CDATA[<xsd:schema targetNamespace="http:///www.policlinicoabano.it/bpm" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:bpm="http:///www.policlinicoabano.it/bpm">
+  <xsd:complexType name="patient">
+    <xsd:sequence>
+      <xsd:element name="patientId" type="xsd:string"/>
+      <xsd:element name="nosologicId" type="xsd:string"/>
+      <xsd:element name="parameters" type="bpm:parameters"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="parameters">
+    <xsd:sequence>
+      <xsd:element name="parmeter" type="bpm:parameter" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="parameter">
+    <xsd:sequence>
+      <xsd:element name="id" type="xsd:string"/>
+      <xsd:element name="name" type="xsd:string"/>
+      <xsd:element name="type" type="xsd:string"/>
+      <xsd:element name="value" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="patient" type="bpm:patient"/>
+</xsd:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:7800/SampleService</con:endpoint></con:endpoints><con:operation id="2faa1ba4-437e-421c-945a-0422e0783440" isOneWay="false" action="" name="operation1" bindingOperationName="operation1" type="Request-Response" outputName="operation1Response" inputName="operation1Request" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="24562010-90e7-4b56-a6fb-1b879f404e0e" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:7800/SampleService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:sam="http://SampleService" xmlns:bpm="http:///www.policlinicoabano.it/bpm">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <sam:operation1>\r
+         <bpm:patient>\r
+            <patientId>131175600</patientId>\r
+            <nosologicId>17/000004</nosologicId>\r
+            <parameters>\r
+               <!--Zero or more repetitions:-->\r
+               <parmeter>\r
+                  <id>SC001</id>\r
+                  <name>pharmacologicallySedated</name>\r
+                  <type></type>\r
+                  <value>1</value>\r
+               </parmeter>\r
+               <parmeter>
+                  <id>SC002</id>
+                  <name>gcsEye</name>
+                  <type></type>
+                  <value>1</value>
+               </parmeter>
+               <parmeter>
+                  <id>SC004</id>
+                  <name>gcsVerbal</name>
+                  <type></type>
+                  <value>1</value>
+               </parmeter>
+               <parmeter>
+                  <id>SC006</id>
+                  <name>gcsMotor</name>
+                  <type></type>
+                  <value>1</value>
+               </parmeter>
+            </parameters>\r
+         </bpm:patient>\r
+      </sam:operation1>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://SampleService/SampleService/operation1Request"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/></con:soapui-project>

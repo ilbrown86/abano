@@ -1,0 +1,23 @@
+BROKER SCHEMA HL7CoreApplication
+
+
+
+CREATE PROCEDURE CreateErrorModel(/*Modello HL7 Input*/IN hl7InRef REFERENCE, /*Modello XML Output*/INOUT xmlModel REFERENCE) BEGIN
+
+	DECLARE refError REFERENCE to xmlModel;
+
+	CREATE LASTCHILD OF refError AS refError NAME 'error';
+	--set default
+	SET refError.errorCode = '1';
+	SET refError.errorMessage = 'errore chiamata Medarchiver';
+
+	DECLARE refMSH REFERENCE TO hl7InRef;
+	MOVE refMSH FIRSTCHILD;
+	IF refMSH.ns6:"MSH.9.MessageType".ns6:"MSG.1" = 'ACK' AND refMSH.ns6:"MSH.9.MessageType".ns6:"MSG.2" = 'ACK' THEN
+		CALL CreateModelFromACK(hl7InRef, refError);
+		SET refError.result=LEFT(refError.result,LENGTH(refError.result)-1);
+		SET refError.errorCode = SUBSTRING(refError.result BEFORE ':');
+		SET refError.errorMessage = refError.errorMessage || '. ' || refError.result;
+	END IF;
+			
+END;

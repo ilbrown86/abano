@@ -1,0 +1,103 @@
+INSTALLAZIONE APPLICAZIONE IIB ABANO
+sudo -i 
+su - iibadmin
+
+mqsireportproperties TESTNODE -o BrokerRegistry -a
+
+mqsichangeproperties TESTNODE -o BrokerRegistry -n brokerKeystoreFile -v /var/mqsi/abanoIIB_keystore.jks
+mqsichangeproperties TESTNODE -o BrokerRegistry -n brokerTruststoreFile -v /var/mqsi/abanoIIB_truststore.jks
+
+mqsisetdbparms TESTNODE -n brokerKeystore::password -u temp -p password
+mqsisetdbparms TESTNODE -n brokerTruststore::password -u temp -p password
+
+mqsichangeproperties TESTNODE -o BrokerRegistry -n  brokerKeystorePass -v brokerKeystore::password
+mqsichangeproperties TESTNODE -o BrokerRegistry -n  brokerTruststorePass -v brokerKeystore::password
+
+mqsireportproperties TESTNODE -o BrokerRegistry -a
+
+
+mqsireportproperties TESTNODE -b httplistener -o HTTPListener -a
+
+mqsichangeproperties TESTNODE -b httplistener -o HTTPListener -n enableSSLConnector -v true
+
+mqsichangeproperties TESTNODE -b httplistener -o HTTPListener -n startListener -v true
+
+
+mqsireportproperties TESTNODE -b httplistener -o HTTPConnector -a
+mqsireportproperties TESTNODE -b httplistener -o HTTPSConnector -a
+
+mqsichangeproperties TESTNODE -b httplistener -o HTTPConnector -n port -v 7090
+mqsichangeproperties TESTNODE -b httplistener -o HTTPSConnector -n port -v 7093
+
+mqsichangeproperties TESTNODE -b httplistener -o HTTPConnector -n corsEnabled -v false
+mqsichangeproperties TESTNODE -b httplistener -o HTTPSConnector -n corsEnabled -v true
+
+mqsireportproperties TESTNODE -b httplistener -o HTTPListener -a
+mqsireportproperties TESTNODE -b httplistener -o HTTPConnector -a
+mqsireportproperties TESTNODE -b httplistener -o HTTPSConnector -a
+
+exec group
+
+mqsicreateexecutiongroup TESTNODE -e patientServer
+mqsicreateexecutiongroup TESTNODE -e teamServer
+mqsicreateexecutiongroup TESTNODE -e hl7Server
+
+mqsireportproperties TESTNODE -e patientServer -o ExecutionGroup  -r
+mqsireportproperties TESTNODE -e teamServer -o ExecutionGroup  -r
+
+mqsichangeproperties TESTNODE -e patientServer -o ExecutionGroup -n httpNodesUseEmbeddedListener -v false
+mqsichangeproperties TESTNODE -e teamServer -o ExecutionGroup -n httpNodesUseEmbeddedListener -v false
+
+mqsireportproperties TESTNODE -e patientServer -o HTTPConnector -r
+mqsireportproperties TESTNODE -e teamServer -o HTTPConnector -r
+mqsireportproperties TESTNODE -e patientServer -o HTTPSConnector -r
+mqsireportproperties TESTNODE -e teamServer -o HTTPSConnector -r
+
+mqsichangeproperties TESTNODE -e patientServer -o HTTPConnector -n port -v 7800
+mqsichangeproperties TESTNODE -e teamServer -o HTTPConnector -n port -v 7900
+mqsichangeproperties TESTNODE -e patientServer -o HTTPConnector -n explicitlySetPortNumber -v 7800
+mqsichangeproperties TESTNODE -e teamServer -o HTTPConnector -n explicitlySetPortNumber -v 7900
+
+mqsichangeproperties TESTNODE -e patientServer -o HTTPSConnector -n port -v 7883
+mqsichangeproperties TESTNODE -e teamServer -o HTTPSConnector -n port -v 7983
+mqsichangeproperties TESTNODE -e patientServer -o HTTPSConnector -n explicitlySetPortNumber -v 7883
+mqsichangeproperties TESTNODE -e teamServer -o HTTPSConnector -n explicitlySetPortNumber -v 7983
+
+mqsichangeproperties TESTNODE -e patientServer -o HTTPSConnector -n corsEnabled -v true
+mqsichangeproperties TESTNODE -e teamServer -o HTTPSConnector -n corsEnabled -v true
+mqsichangeproperties TESTNODE -e patientServer -o HTTPSConnector -n clientAuth -v true
+mqsichangeproperties TESTNODE -e teamServer -o HTTPSConnector -n clientAuth -v true
+
+
+mqsireportproperties TESTNODE -e patientServer -o ExecutionGroup  -r
+mqsireportproperties TESTNODE -e teamServer -o ExecutionGroup  -r
+mqsireportproperties TESTNODE -e patientServer -o HTTPConnector -r
+mqsireportproperties TESTNODE -e teamServer -o HTTPConnector -r
+mqsireportproperties TESTNODE -e patientServer -o HTTPSConnector -r
+mqsireportproperties TESTNODE -e teamServer -o HTTPSConnector -r
+
+
+ASSOCIARE WMQ CON IIB
+
+code
+BPM.INPUT
+ASSIGNREQUEST
+BPMQUEUE
+
+
+DEPLOY
+mqsideploy TESTNODE -e hl7Server -a HL7Core.bar
+mqsideploy TESTNODE -e hl7Server -a BPMServices.bar
+
+mqsideploy TESTNODE -e patientServer -a HL7RestAPI.bar
+mqsideploy TESTNODE -e patientServer -a IAMServices.bar
+mqsideploy TESTNODE -e patientServer -a S&AServices.bar
+
+mqsideploy TESTNODE -e teamServer -a TeamAssignement.bar
+
+
+
+http://10.4.2.112:9001 per S&A
+
+
+

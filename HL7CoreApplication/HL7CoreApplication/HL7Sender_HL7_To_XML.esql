@@ -1,0 +1,227 @@
+BROKER SCHEMA HL7CoreApplication
+
+
+CREATE COMPUTE MODULE HL7Sender_HL7_To_XML
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		CALL CopyMessageHeaders();
+		-- CALL CopyEntireMessage();
+		DECLARE trace CHARACTER;
+		-- create Output XML Model
+		DECLARE outputMessage REFERENCE TO OutputRoot;
+		
+		CREATE LASTCHILD OF outputMessage AS outputMessage DOMAIN('XMLNSC') NAME 'XMLNSC';
+				
+		-- dispatcher HL7 response
+		DECLARE action CHARACTER Environment.HL7.action;
+		DECLARE response REFERENCE TO InputRoot.DFDL;
+		-- SPOSTO SU MESSAGGIO HL7
+		MOVE response FIRSTCHILD;
+		-- refMSH punta su testata mSH
+		DECLARE refMSH REFERENCE TO response;
+		MOVE refMSH FIRSTCHILD;
+		--action is NULL if arrive from Receiver
+		CREATE LASTCHILD OF outputMessage AS outputMessage NAMESPACE ns NAME 'senderResponse';
+
+		CASE action
+		WHEN 'getPatientClinicalHistory' THEN
+			SET trace = action;
+			IF refMSH.ns6:"MSH.9.MessageType".ns6:"MSG.1" = 'RSP' AND refMSH.ns6:"MSH.9.MessageType".ns6:"MSG.2" = 'Z82' THEN
+--				CREATE LASTCHILD OF outputMessage AS outputMessage NAMESPACE ns NAME 'patientDetailsResponse';
+--				CREATE LASTCHILD OF outputMessage AS outputMessage NAMESPACE ns NAME 'patient';
+				CREATE LASTCHILD OF outputMessage AS outputMessage NAMESPACE ns NAME 'patientDetailsResponse';
+				CALL CreateModelParametersFromRSP_Z82(response, outputMessage);
+				--CALL CreateModelFromRSP_Z82(response, outputMessage);
+			ELSE
+				CALL CreateErrorModel(response, outputMessage);
+			END IF;
+		WHEN 'getPatientDetails' THEN
+			SET trace = action;
+			IF refMSH.ns6:"MSH.9.MessageType".ns6:"MSG.1" = 'RSP' AND refMSH.ns6:"MSH.9.MessageType".ns6:"MSG.2" = 'Z82' THEN
+--				CREATE LASTCHILD OF outputMessage AS outputMessage NAMESPACE ns NAME 'patientDetailsResponse';
+--				CREATE LASTCHILD OF outputMessage AS outputMessage NAMESPACE ns NAME 'patient';
+				CREATE LASTCHILD OF outputMessage AS outputMessage NAMESPACE ns NAME 'readParametersResponse';
+				CALL CreateModelParametersFromRSP_Z82(response, outputMessage);
+				--CALL CreateModelFromRSP_Z82(response, outputMessage);
+			ELSE
+				CALL CreateErrorModel(response, outputMessage);
+			END IF;
+		WHEN 'patientListFromKeys' THEN
+			SET trace = action;
+			IF refMSH.ns6:"MSH.9.MessageType".ns6:"MSG.1" = 'RSP' AND refMSH.ns6:"MSH.9.MessageType".ns6:"MSG.2" = 'Z82' THEN
+--				CREATE LASTCHILD OF outputMessage AS outputMessage NAMESPACE ns NAME 'patientDetailsResponse';
+--				CREATE LASTCHILD OF outputMessage AS outputMessage NAMESPACE ns NAME 'patient';
+				CREATE LASTCHILD OF outputMessage AS outputMessage NAMESPACE ns NAME 'patientDetailsResponse';
+				CALL CreateModelParametersFromRSP_Z82(response, outputMessage);
+				--CALL CreateModelFromRSP_Z82(response, outputMessage);
+			ELSE
+				CALL CreateErrorModel(response, outputMessage);
+			END IF;
+		WHEN 'patientDetails' THEN
+			SET trace = action;
+			IF refMSH.ns6:"MSH.9.MessageType".ns6:"MSG.1" = 'RSP' AND refMSH.ns6:"MSH.9.MessageType".ns6:"MSG.2" = 'Z82' THEN
+				CREATE LASTCHILD OF outputMessage AS outputMessage NAMESPACE ns NAME 'patientDetailsResponse';
+				CREATE LASTCHILD OF outputMessage AS outputMessage NAMESPACE ns NAME 'patient';
+				CALL CreateModelFromRSP_Z82(response, outputMessage);
+			ELSE
+				CALL CreateErrorModel(response, outputMessage);
+			END IF;
+		WHEN 'patientList' THEN
+			SET trace = action;
+			IF refMSH.ns6:"MSH.9.MessageType".ns6:"MSG.1" = 'RSP' AND refMSH.ns6:"MSH.9.MessageType".ns6:"MSG.2" = 'Z82' THEN
+				CREATE LASTCHILD OF outputMessage AS outputMessage NAMESPACE ns NAME 'patientDetailsResponse';
+				CREATE LASTCHILD OF outputMessage AS outputMessage NAMESPACE ns NAME 'patient';
+				CALL CreateModelParametersFromRSP_Z82(response, outputMessage);
+			ELSE
+				CALL CreateErrorModel(response, outputMessage);
+			END IF;
+
+		WHEN 'issueList' THEN
+			SET trace = action;
+			IF refMSH.ns6:"MSH.9.MessageType".ns6:"MSG.1" = 'RSP' AND refMSH.ns6:"MSH.9.MessageType".ns6:"MSG.2" = 'Z82' THEN
+				CREATE LASTCHILD OF outputMessage AS outputMessage NAMESPACE ns NAME 'readParametersResponse';
+				--CREATE LASTCHILD OF outputMessage AS outputMessage NAMESPACE ns NAME 'measurements';
+				CALL CreateParametersModelFromRSP_Z82(response, outputMessage);
+			ELSE
+				CALL CreateErrorModel(response, outputMessage);
+			END IF;
+		WHEN 'noteList' THEN
+			SET trace = action;
+			IF refMSH.ns6:"MSH.9.MessageType".ns6:"MSG.1" = 'RSP' AND refMSH.ns6:"MSH.9.MessageType".ns6:"MSG.2" = 'Z82' THEN
+				CREATE LASTCHILD OF outputMessage AS outputMessage NAMESPACE ns NAME 'readParametersResponse';
+				--CREATE LASTCHILD OF outputMessage AS outputMessage NAMESPACE ns NAME 'measurements';
+				CALL CreateParametersModelFromRSP_Z82(response, outputMessage);
+			ELSE
+				CALL CreateErrorModel(response, outputMessage);
+			END IF;
+		WHEN 'getPatientNotes' THEN
+			SET trace = action;
+			IF refMSH.ns6:"MSH.9.MessageType".ns6:"MSG.1" = 'RSP' AND refMSH.ns6:"MSH.9.MessageType".ns6:"MSG.2" = 'Z82' THEN
+				CREATE LASTCHILD OF outputMessage AS outputMessage NAMESPACE ns NAME 'readParametersResponse';
+				--CREATE LASTCHILD OF outputMessage AS outputMessage NAMESPACE ns NAME 'measurements';
+				CALL CreateParametersModelFromRSP_Z82(response, outputMessage);
+			ELSE
+				CALL CreateErrorModel(response, outputMessage);
+			END IF;
+		WHEN 'measurementsHistory' THEN
+			SET trace = action;
+			IF refMSH.ns6:"MSH.9.MessageType".ns6:"MSG.1" = 'RSP' AND refMSH.ns6:"MSH.9.MessageType".ns6:"MSG.2" = 'Z82' THEN
+				CREATE LASTCHILD OF outputMessage AS outputMessage NAMESPACE ns NAME 'readParametersResponse';
+				--CREATE LASTCHILD OF outputMessage AS outputMessage NAMESPACE ns NAME 'measurements';
+				CALL CreateParametersModelFromRSP_Z82(response, outputMessage);
+			ELSE
+				CALL CreateErrorModel(response, outputMessage);
+			END IF;
+		WHEN 'getPatientMeasurementHistoryMultiline' THEN
+			SET trace = action;
+			IF refMSH.ns6:"MSH.9.MessageType".ns6:"MSG.1" = 'RSP' AND refMSH.ns6:"MSH.9.MessageType".ns6:"MSG.2" = 'Z82' THEN
+				CREATE LASTCHILD OF outputMessage AS outputMessage NAMESPACE ns NAME 'readParametersResponse';
+				--CREATE LASTCHILD OF outputMessage AS outputMessage NAMESPACE ns NAME 'measurements';
+				CALL CreateParametersModelFromRSP_Z82(response, outputMessage);
+			ELSE
+				CALL CreateErrorModel(response, outputMessage);
+			END IF;
+		
+		WHEN 'getPatientMeasurementLastMultiline' THEN
+			SET trace = action;
+			IF refMSH.ns6:"MSH.9.MessageType".ns6:"MSG.1" = 'RSP' AND refMSH.ns6:"MSH.9.MessageType".ns6:"MSG.2" = 'Z82' THEN
+				CREATE LASTCHILD OF outputMessage AS outputMessage NAMESPACE ns NAME 'readParametersResponse';
+				--CREATE LASTCHILD OF outputMessage AS outputMessage NAMESPACE ns NAME 'measurements';
+				CALL CreateParametersModelFromRSP_Z82(response, outputMessage);
+			ELSE
+				CALL CreateErrorModel(response, outputMessage);
+			END IF;
+		
+		WHEN 'measurementsLast' THEN
+			SET trace = action;
+			IF refMSH.ns6:"MSH.9.MessageType".ns6:"MSG.1" = 'RSP' AND refMSH.ns6:"MSH.9.MessageType".ns6:"MSG.2" = 'Z82' THEN
+				CREATE LASTCHILD OF outputMessage AS outputMessage NAMESPACE ns NAME 'readParametersResponse';
+				--CREATE LASTCHILD OF outputMessage AS outputMessage NAMESPACE ns NAME 'measurements';
+				CALL CreateParametersModelFromRSP_Z82(response, outputMessage);
+			ELSE
+				CALL CreateErrorModel(response, outputMessage);
+			END IF;
+
+		WHEN 'getPatientMeasurementHistory' THEN
+			SET trace = action;
+			IF refMSH.ns6:"MSH.9.MessageType".ns6:"MSG.1" = 'RSP' AND refMSH.ns6:"MSH.9.MessageType".ns6:"MSG.2" = 'Z82' THEN
+				CREATE LASTCHILD OF outputMessage AS outputMessage NAMESPACE ns NAME 'readParametersResponse';
+				--CREATE LASTCHILD OF outputMessage AS outputMessage NAMESPACE ns NAME 'measurements';
+				CALL CreateParametersModelFromRSP_Z82(response, outputMessage);
+			ELSE
+				CALL CreateErrorModel(response, outputMessage);
+			END IF;
+		
+		WHEN 'getPatientMeasurementLast' THEN
+			SET trace = action;
+			IF refMSH.ns6:"MSH.9.MessageType".ns6:"MSG.1" = 'RSP' AND refMSH.ns6:"MSH.9.MessageType".ns6:"MSG.2" = 'Z82' THEN
+				CREATE LASTCHILD OF outputMessage AS outputMessage NAMESPACE ns NAME 'readParametersResponse';
+				--CREATE LASTCHILD OF outputMessage AS outputMessage NAMESPACE ns NAME 'measurements';
+				CALL CreateParametersModelFromRSP_Z82(response, outputMessage);
+			ELSE
+				CALL CreateErrorModel(response, outputMessage);
+			END IF;
+
+		WHEN 'issuesAdd' THEN
+			SET trace = action;
+			IF refMSH.ns6:"MSH.9.MessageType".ns6:"MSG.1" = 'ACK' AND refMSH.ns6:"MSH.9.MessageType".ns6:"MSG.2" = 'ACK' THEN
+				CREATE LASTCHILD OF outputMessage AS outputMessage NAMESPACE ns NAME 'writeParametersResponse';
+				CALL CreateModelFromACK(response, outputMessage);
+			ELSE
+				CALL CreateErrorModel(response, outputMessage);
+			END IF;
+		WHEN 'putPatientIssue' THEN
+			SET trace = action;
+			IF refMSH.ns6:"MSH.9.MessageType".ns6:"MSG.1" = 'ACK' AND refMSH.ns6:"MSH.9.MessageType".ns6:"MSG.2" = 'ACK' THEN
+				CREATE LASTCHILD OF outputMessage AS outputMessage NAMESPACE ns NAME 'writeParametersResponse';
+				CALL CreateModelFromACK(response, outputMessage);
+			ELSE
+				CALL CreateErrorModel(response, outputMessage);
+			END IF;
+
+		WHEN 'notesAdd' THEN
+			SET trace = action;
+			IF refMSH.ns6:"MSH.9.MessageType".ns6:"MSG.1" = 'ACK' AND refMSH.ns6:"MSH.9.MessageType".ns6:"MSG.2" = 'ACK' THEN
+				CREATE LASTCHILD OF outputMessage AS outputMessage NAMESPACE ns NAME 'writeParametersResponse';
+				CALL CreateModelFromACK(response, outputMessage);
+			ELSE
+				CALL CreateErrorModel(response, outputMessage);
+			END IF;
+		WHEN 'putPatientNote' THEN
+			SET trace = action;
+			IF refMSH.ns6:"MSH.9.MessageType".ns6:"MSG.1" = 'ACK' AND refMSH.ns6:"MSH.9.MessageType".ns6:"MSG.2" = 'ACK' THEN
+				CREATE LASTCHILD OF outputMessage AS outputMessage NAMESPACE ns NAME 'writeParametersResponse';
+				CALL CreateModelFromACK(response, outputMessage);
+			ELSE
+				CALL CreateErrorModel(response, outputMessage);
+			END IF;
+
+		WHEN 'writeParameters' THEN
+			SET trace = action;
+			IF refMSH.ns6:"MSH.9.MessageType".ns6:"MSG.1" = 'ACK' AND refMSH.ns6:"MSH.9.MessageType".ns6:"MSG.2" = 'ACK' THEN
+				CREATE LASTCHILD OF outputMessage AS outputMessage NAMESPACE ns NAME 'writeParametersResponse';
+				CALL CreateModelFromACK(response, outputMessage);
+			ELSE
+				CALL CreateErrorModel(response, outputMessage);
+			END IF;
+		ELSE
+			SET trace = 'actionUnrecognized'||action;
+		END CASE;
+
+		RETURN TRUE;
+	END;
+
+	CREATE PROCEDURE CopyMessageHeaders() BEGIN
+		DECLARE I INTEGER 1;
+		DECLARE J INTEGER;
+		SET J = CARDINALITY(InputRoot.*[]);
+		WHILE I < J DO
+			SET OutputRoot.*[I] = InputRoot.*[I];
+			SET I = I + 1;
+		END WHILE;
+	END;
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		SET OutputRoot = InputRoot;
+	END;
+END MODULE;

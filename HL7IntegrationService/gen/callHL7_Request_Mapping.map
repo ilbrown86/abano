@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?><mappingRoot xmlns="http://www.ibm.com/2008/ccl/Mapping" domainID="com.ibm.msl.mapping.xml" domainIDExtension="mb" mainMap="true" targetNamespace="gen" version="8.0.5.0" xmlns:map="gen">
+    <input path="/HL7IntegrationService_InlineSchema1.xsd"/>
+    <output path="/HL7Model.xsd"/>
+    <namespaces>
+        <namespace kind="supplement" prefix="in" uri="http://HL7IntegrationService"/>
+        <namespace kind="supplement" prefix="io" uri="http://w3.ibm.com/it/hl7"/>
+    </namespaces>
+    <generation engine="xquery"/>
+    <mappingDeclaration name="callHL7_Request_Mapping">
+        <input namespace="http://HL7IntegrationService" path="mb:msg(callHL7,assembly,XMLNSC,Properties)" var="ComIbmMessageAssembly_callHL7"/>
+        <output namespace="http://w3.ibm.com/it/hl7" path="mb:msg(senderRequest,assembly,XMLNSC,Properties)" var="ComIbmMessageAssembly_senderRequest"/>
+        <move>
+            <input path="$ComIbmMessageAssembly_callHL7/Properties"/>
+            <output path="$ComIbmMessageAssembly_senderRequest/Properties"/>
+        </move>
+        <move>
+            <input path="$ComIbmMessageAssembly_callHL7/callHL7/senderRequest"/>
+            <output path="$ComIbmMessageAssembly_senderRequest/senderRequest"/>
+        </move>
+    </mappingDeclaration>
+</mappingRoot>

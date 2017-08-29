@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema elementFormDefault="qualified" targetNamespace="urn:hl7-org:v2xml" xmlns="urn:hl7-org:v2xml" xmlns:dfdl="http://www.ogf.org/dfdl/dfdl-1.0/" xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions" xmlns:ibmhl7="http://www.ibm.com/dfdl/HL7Format" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:fn="http://www.w3.org/2005/xpath-functions">
+   <xsd:include schemaLocation="fields.xsd"/>
+   <xsd:import namespace="http://www.ibm.com/dfdl/HL7Format" schemaLocation="IBMdefined/HL7Format.xsd"/>
+   	<xsd:annotation>
+		<xsd:appinfo source="http://www.ogf.org/dfdl/">
+			<dfdl:format ref="ibmhl7:HL7Format"/>
+		</xsd:appinfo>
+	</xsd:annotation>
+
+	<xsd:group name="Z_Group">
+		<xsd:choice>
+			<!-- Add user-defined segments in front of catch-all segment Zxx --> 
+			<xsd:element maxOccurs="1" minOccurs="1" ref="Zxx"/>
+		</xsd:choice>
+	</xsd:group>
+  
+	<xsd:complexType name="Zxx.CONTENT">
+		<xsd:sequence dfdl:ref="ibmhl7:HL7Segment" dfdl:separatorPosition="infix">
+			<xsd:element maxOccurs="unbounded" minOccurs="0" name="Remainder" type="xsd:string"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	
+	<xsd:element dfdl:initiator="" dfdl:ref="ibmhl7:HL7SegmentTerminator" name="Zxx" type="Zxx.CONTENT"/>
+</xsd:schema>

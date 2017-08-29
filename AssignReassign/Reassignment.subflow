@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ComIbmCallableFlowInvoke.msgnode="ComIbmCallableFlowInvoke.msgnode" xmlns:ComIbmCompute.msgnode="ComIbmCompute.msgnode" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:eflow="http://www.ibm.com/wbi/2005/eflow" xmlns:utility="http://www.ibm.com/wbi/2005/eflow_utility" nsURI="Reassignment.subflow" nsPrefix="Reassignment.subflow">
+  <eClassifiers xmi:type="eflow:FCMComposite" name="FCMComposite_1">
+    <eSuperTypes href="http://www.ibm.com/wbi/2005/eflow#//FCMBlock"/>
+    <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.callPreference" name="callPreference" eType="//@eClassifiers.1" defaultValueLiteral="PreferLocalCalls"/>
+    <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.requestTimeout" name="requestTimeout" defaultValueLiteral="20">
+      <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.targetApplication" name="targetApplication" lowerBound="1" defaultValueLiteral="HL7_BPM_Application">
+      <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.targetEndpointName" name="targetEndpointName" lowerBound="1" defaultValueLiteral="Reassign">
+      <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+    <translation xmi:type="utility:TranslatableString" key="Reassignment" bundleName="Reassignment" pluginId="AssignReassign"/>
+    <colorGraphic16 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/AssignReassign/icons/full/obj16/Reassignment.gif"/>
+    <colorGraphic32 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/AssignReassign/icons/full/obj30/Reassignment.gif"/>
+    <composition>
+      <nodes xmi:type="eflow:FCMSource" xmi:id="InTerminal.Input_1" location="25,25">
+        <translation xmi:type="utility:TranslatableString" key="Input" bundleName="Reassignment" pluginId="AssignReassign"/>
+      </nodes>
+      <nodes xmi:type="eflow:FCMSink" xmi:id="OutTerminal.Output_1" location="564,36">
+        <translation xmi:type="utility:TranslatableString" key="Output" bundleName="Reassignment" pluginId="AssignReassign"/>
+      </nodes>
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_1" location="145,35" computeExpression="esql://routine/#Reassignment_Compute.Main">
+        <translation xmi:type="utility:ConstantString" string="Compute"/>
+      </nodes>
+      <nodes xmi:type="ComIbmCallableFlowInvoke.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_5" location="258,37" targetApplication="HL7_BPM_Application" targetEndpointName="Reassign">
+        <translation xmi:type="utility:ConstantString" string="getReassign"/>
+      </nodes>
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_9" location="413,37" computeExpression="esql://routine/#BlobToJSON.Main">
+        <translation xmi:type="utility:ConstantString" string="Compute4"/>
+      </nodes>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_1" targetNode="FCMComposite_1_1" sourceNode="InTerminal.Input_1" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_3" targetNode="FCMComposite_1_5" sourceNode="FCMComposite_1_1" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_2" targetNode="FCMComposite_1_9" sourceNode="FCMComposite_1_5" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_4" targetNode="OutTerminal.Output_1" sourceNode="FCMComposite_1_9" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+    </composition>
+    <propertyOrganizer>
+      <propertyDescriptor groupName="Group.BPMReassignCall" propertyEditor="com.ibm.etools.mft.flow.properties.EnumPropertyEditor" describedAttribute="Property.callPreference">
+        <propertyName xmi:type="utility:TranslatableString" key="Property.callPreference" bundleName="ComIbmCallableFlowInvoke" pluginId="com.ibm.etools.mft.ibmnodes.definitions"/>
+        <propertyDescriptor groupName="Group.BPMReassignCall" propertyEditor="com.ibm.etools.mft.flow.properties.IntegerPropertyEditor" configurable="true" describedAttribute="Property.requestTimeout">
+          <propertyName xmi:type="utility:TranslatableString" key="Property.requestTimeout" bundleName="ComIbmCallableFlowInvoke" pluginId="com.ibm.etools.mft.ibmnodes.definitions"/>
+          <propertyDescriptor groupName="Group.BPMReassignCall" propertyEditor="com.ibm.etools.mft.ibmnodes.editors.callable.InvokeNodeApplicationNameEditor" configurable="true" describedAttribute="Property.targetApplication">
+            <propertyName xmi:type="utility:TranslatableString" key="Property.targetApplication" bundleName="ComIbmCallableFlowInvoke" pluginId="com.ibm.etools.mft.ibmnodes.definitions"/>
+            <propertyDescriptor groupName="Group.BPMReassignCall" propertyEditor="com.ibm.etools.mft.ibmnodes.editors.callable.InvokeNodeEndpointNameEditor" configurable="true" describedAttribute="Property.targetEndpointName">
+              <propertyName xmi:type="utility:TranslatableString" key="Property.targetEndpointName" bundleName="ComIbmCallableFlowInvoke" pluginId="com.ibm.etools.mft.ibmnodes.definitions"/>
+            </propertyDescriptor>
+          </propertyDescriptor>
+        </propertyDescriptor>
+      </propertyDescriptor>
+    </propertyOrganizer>
+    <attributeLinks promotedAttribute="Property.callPreference" overriddenNodes="FCMComposite_1_5">
+      <overriddenAttribute href="ComIbmCallableFlowInvoke.msgnode#Property.callPreference"/>
+    </attributeLinks>
+    <attributeLinks promotedAttribute="Property.requestTimeout" overriddenNodes="FCMComposite_1_5">
+      <overriddenAttribute href="ComIbmCallableFlowInvoke.msgnode#Property.requestTimeout"/>
+    </attributeLinks>
+    <attributeLinks promotedAttribute="Property.targetApplication" overriddenNodes="FCMComposite_1_5">
+      <overriddenAttribute href="ComIbmCallableFlowInvoke.msgnode#Property.targetApplication"/>
+    </attributeLinks>
+    <attributeLinks promotedAttribute="Property.targetEndpointName" overriddenNodes="FCMComposite_1_5">
+      <overriddenAttribute href="ComIbmCallableFlowInvoke.msgnode#Property.targetEndpointName"/>
+    </attributeLinks>
+    <stickyBoard/>
+  </eClassifiers>
+  <eClassifiers xmi:type="ecore:EEnum">
+    <eLiterals xmi:id="callPreference.PreferLocalCalls" name="PreferLocalCalls"/>
+    <eLiterals xmi:id="callPreference.RemoteOnly" name="RemoteOnly" value="1"/>
+  </eClassifiers>
+</ecore:EPackage>

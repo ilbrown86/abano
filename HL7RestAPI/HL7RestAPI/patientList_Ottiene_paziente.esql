@@ -1,0 +1,56 @@
+BROKER SCHEMA HL7RestAPI
+
+
+CREATE COMPUTE MODULE patientList_Ottiene_paziente
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		 CALL CopyMessageHeaders();
+		-- CALL CopyEntireMessage();
+		DECLARE patientId  REFERENCE TO Environment;
+		DECLARE patientRef REFERENCE TO Environment;
+		DECLARE nosologicId REFERENCE TO Environment;
+		
+		
+		DECLARE i INTEGER 1;
+		--loop over patientKey array
+		DECLARE refInPatientKey REFERENCE TO InputRoot.JSON.Data;
+		--move ref to first item in JSON message
+		MOVE refInPatientKey FIRSTCHILD;
+		WHILE LASTMOVE(refInPatientKey) DO
+			
+			SET OutputRoot.XMLNSC.sequence =  i;
+			SET OutputRoot.XMLNSC.patientId =  refInPatientKey.patientId;
+			SET OutputRoot.XMLNSC.nosologicId =  refInPatientKey.nosologicId;
+
+			--for each patient create an environment entry
+			CREATE LASTCHILD OF Environment.Variables.HL7RestAPI.patientRef AS patientRef NAME 'Item';
+			SET patientRef.patientId = refInPatientKey.patientId;
+			SET patientRef.nosologicId = refInPatientKey.nosologicId;
+
+			SET i = i + 1;
+			PROPAGATE TO TERMINAL 'out' FINALIZE NONE DELETE NONE;
+			
+			--move ref to next patientKey Item
+			MOVE refInPatientKey NEXTSIBLING REPEAT NAME;
+		END WHILE;
+		
+		--end patients, 
+		PROPAGATE TO TERMINAL 'out1' FINALIZE NONE;
+		RETURN FALSE;
+
+	END;
+
+	CREATE PROCEDURE CopyMessageHeaders() BEGIN
+		DECLARE I INTEGER 1;
+		DECLARE J INTEGER;
+		SET J = CARDINALITY(InputRoot.*[]);
+		WHILE I < J DO
+			SET OutputRoot.*[I] = InputRoot.*[I];
+			SET I = I + 1;
+		END WHILE;
+	END;
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		SET OutputRoot = InputRoot;
+	END;
+END MODULE;

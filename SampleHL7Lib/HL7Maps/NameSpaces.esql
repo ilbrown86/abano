@@ -1,0 +1,8 @@
+BROKER SCHEMA HL7Maps
+
+--SOAP
+DECLARE ns3 NAMESPACE 'http://SampleService';
+--HL7
+DECLARE ns6 NAMESPACE 'urn:hl7-org:v2xml';
+--BPM
+DECLARE ns NAMESPACE 'http:///www.policlinicoabano.it/bpm';

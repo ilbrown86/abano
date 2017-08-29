@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<application xmlns="http://wadl.dev.java.net/2009/02"
+	xmlns:param="http://www.ibm.com/rules/decisionservice/ODMEmployeeBonus/EmployeeBonus/param"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://wadl.dev.java.net/2009/02 wadl.xsd">
+	<doc title="EmployeeBonus" />
+	<grammars>
+		<xsd:schema elementFormDefault="qualified"
+			targetNamespace="http://www.ibm.com/rules/decisionservice/ODMEmployeeBonus/EmployeeBonus"
+			xmlns="http://www.ibm.com/rules/decisionservice/ODMEmployeeBonus/EmployeeBonus"
+			xmlns:xom1="http://hrdb/iibadmin">
+			<xsd:import namespace="http://hrdb/iibadmin" />
+			<xsd:complexType name="DBRespType">
+				<xsd:sequence>
+					<xsd:element name="UserReturnCode" nillable="true"
+						type="xsd:int" />
+					<xsd:element name="RowsRetrieved" nillable="true" type="xsd:int" />
+					<xsd:element name="RowsAdded" nillable="true" type="xsd:int" />
+					<xsd:element name="RowsUpdated" nillable="true" type="xsd:int" />
+					<xsd:element name="RowsDeleted" nillable="true" type="xsd:int" />
+					<xsd:element name="SQLCode_ErrorCode" nillable="true"
+						type="xsd:int" />
+					<xsd:element name="SQLState_SQLState" nillable="true"
+						type="xsd:string">
+					</xsd:element>
+					<xsd:element name="SQL_Error_Message" nillable="true"
+						type="xsd:string" />
+				</xsd:sequence>
+			</xsd:complexType>
+
+			<xsd:element name="DBResp" type="DBRespType" />
+
+
+			<xsd:simpleType name="employeeNumberType">
+				<xsd:restriction base="xsd:string" />
+			</xsd:simpleType>
+
+			<xsd:element name="employeeNumber" type="employeeNumberType" />
+			<xsd:element name="Request">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element maxOccurs="1" minOccurs="0" name="DecisionID"
+							type="xsd:string" />
+						<!-- employee parameter -->
+						<xsd:element ref="xom1:EMPLOYEE" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="Response">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="DecisionID" type="xsd:string" />
+						<!-- employee parameter -->
+						<xsd:element ref="xom1:EMPLOYEE" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+		</xsd:schema>
+		<xsd:schema targetNamespace="http://hrdb/iibadmin"
+			xmlns:hrdbiibadmin="http://hrdb/iibadmin" xmlns:hrdbresponse="http://hrdb/response"
+			xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions">
+			<xsd:import />
+			<xsd:import />
+			<!-- Message definition generated from E:\workspaces\iib\tutorial\HRDB\HRDB.dbm -->
+
+			<!-- Complex type for HRDB.IIBADMIN.DEPARTMENT -->
+
+
+			<xsd:complexType name="DEPARTMENTType">
+				<xsd:sequence>
+					<xsd:element name="DEPTNO">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="3" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="DEPTNAME">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="36" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element minOccurs="0" name="MGRNO" nillable="true">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="6" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="ADMRDEPT">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="3" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element minOccurs="0" name="LOCATION" nillable="true">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="16" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+
+			<!-- Global element for HRDB.IIBADMIN.DEPARTMENT -->
+			<xsd:element ibmSchExtn:docRoot="true" name="DEPARTMENT"
+				type="hrdbiibadmin:DEPARTMENTType" />
+
+			<!-- Complex type for HRDB.IIBADMIN.EMPLOYEE -->
+			<xsd:complexType name="EMPLOYEEType">
+				<xsd:sequence>
+					<xsd:element name="EMPNO">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="6" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="FIRSTNME">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="12" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element minOccurs="0" name="MIDINIT" nillable="true">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="1" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="LASTNAME">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="15" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element minOccurs="0" name="WORKDEPT" nillable="true">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="3" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element minOccurs="0" name="PHONENO" nillable="true">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="4" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element minOccurs="0" name="HIREDATE" nillable="true"
+						type="xsd:date" />
+					<xsd:element minOccurs="0" name="JOB" nillable="true">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="8" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="EDLEVEL" type="xsd:short" />
+					<xsd:element minOccurs="0" name="SEX" nillable="true">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="1" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element minOccurs="0" name="BIRTHDATE" nillable="true"
+						type="xsd:date" />
+					<xsd:element minOccurs="0" name="SALARY" nillable="true"
+						type="xsd:decimal" />
+					<xsd:element minOccurs="0" name="BONUS" nillable="true"
+						type="xsd:decimal" />
+					<xsd:element minOccurs="0" name="COMM" nillable="true"
+						type="xsd:decimal" />
+				</xsd:sequence>
+			</xsd:complexType>
+
+			<!-- Global element for HRDB.IIBADMIN.EMPLOYEE -->
+			<xsd:element ibmSchExtn:docRoot="true" name="EMPLOYEE"
+				type="hrdbiibadmin:EMPLOYEEType" />
+
+			<xsd:complexType name="EmployeeResponseType">
+				<xsd:sequence>
+					<xsd:element ref="DBResp" />
+					<xsd:element maxOccurs="unbounded" minOccurs="0"
+						ref="hrdbiibadmin:EMPLOYEE" />
+				</xsd:sequence>
+			</xsd:complexType>
+
+			<xsd:element name="EmployeeResponse" type="hrdbiibadmin:EmployeeResponseType">
+			</xsd:element>
+
+		</xsd:schema>
+	</grammars>
+	<resources
+		base="http://base-win2k8x64:9080/DecisionService/rest/v1/ODMEmployeeBonus/1.0/EmployeeBonus/1.0">
+		<resource path="">
+			<method name="POST">
+				<doc title="execute" />
+				<request>
+					<param default="application/xml" name="Accept" repeating="false"
+						required="false" style="header">
+						<option value="application/xml" />
+					</param>
+					<param default="application/xml" name="accept" repeating="false"
+						required="false" style="query">
+						<option value="application/xml" />
+					</param>
+					<param default="en" name="Accept-Language" repeating="false"
+						required="false" style="header">
+						<option value="de" />
+						<option value="en" />
+						<option value="es" />
+						<option value="fr" />
+						<option value="it" />
+						<option value="ja" />
+						<option value="ko" />
+						<option value="nl" />
+						<option value="pl" />
+						<option value="pt_BR" />
+						<option value="ru" />
+						<option value="zh_TW" />
+						<option value="zh" />
+					</param>
+					<param default="en" name="accept-language" repeating="false"
+						required="false" style="query">
+						<option value="de" />
+						<option value="en" />
+						<option value="es" />
+						<option value="fr" />
+						<option value="it" />
+						<option value="ja" />
+						<option value="ko" />
+						<option value="nl" />
+						<option value="pl" />
+						<option value="pt_BR" />
+						<option value="ru" />
+						<option value="zh_TW" />
+						<option value="zh" />
+					</param>
+					<param name="Content-Type" repeating="false" required="false"
+						style="header">
+						<option value="application/xml" />
+					</param>
+					<representation element="param:Request" mediaType="application/xml" />
+				</request>
+				<response>
+					<representation element="param:Response" mediaType="application/xml" />
+				</response>
+			</method>
+		</resource>
+		<resource path="/xml">
+			<method name="GET">
+				<doc title="XML generation" />
+				<response>
+					<representation element="param:Request" mediaType="application/xml" />
+				</response>
+			</method>
+		</resource>
+		<resource path="/validate">
+			<method name="POST">
+				<doc title="Payload preemptive validation" />
+				<request>
+					<param default="application/xml" name="Accept" repeating="false"
+						required="false" style="header">
+						<option value="application/xml" />
+					</param>
+					<param default="application/xml" name="accept" repeating="false"
+						required="false" style="query">
+						<option value="application/xml" />
+					</param>
+					<param default="en" name="Accept-Language" repeating="false"
+						required="false" style="header">
+						<option value="de" />
+						<option value="en" />
+						<option value="es" />
+						<option value="fr" />
+						<option value="it" />
+						<option value="ja" />
+						<option value="ko" />
+						<option value="nl" />
+						<option value="pl" />
+						<option value="pt_BR" />
+						<option value="ru" />
+						<option value="zh_TW" />
+						<option value="zh" />
+					</param>
+					<param default="en" name="accept-language" repeating="false"
+						required="false" style="query">
+						<option value="de" />
+						<option value="en" />
+						<option value="es" />
+						<option value="fr" />
+						<option value="it" />
+						<option value="ja" />
+						<option value="ko" />
+						<option value="nl" />
+						<option value="pl" />
+						<option value="pt_BR" />
+						<option value="ru" />
+						<option value="zh_TW" />
+						<option value="zh" />
+					</param>
+					<param name="Content-Type" repeating="false" required="false"
+						style="header">
+						<option value="application/xml" />
+					</param>
+					<representation element="param:Request" mediaType="application/xml" />
+				</request>
+				<response>
+					<representation mediaType="application/json" />
+				</response>
+			</method>
+		</resource>
+	</resources>
+</application>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ComIbmCompute.msgnode="ComIbmCompute.msgnode" xmlns:ComIbmSOAPInput.msgnode="ComIbmSOAPInput.msgnode" xmlns:ComIbmSOAPReply.msgnode="ComIbmSOAPReply.msgnode" xmlns:ComIbmTrace.msgnode="ComIbmTrace.msgnode" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:eflow="http://www.ibm.com/wbi/2005/eflow" xmlns:hl7dfdlout_HL7DFDLOutput.msgflow="hl7dfdlout/HL7DFDLOutput.msgflow" xmlns:utility="http://www.ibm.com/wbi/2005/eflow_utility"
+    nsURI="SampleSOAPCall.msgflow" nsPrefix="SampleSOAPCall.msgflow">
+  <eClassifiers xmi:type="eflow:FCMComposite" name="FCMComposite_1">
+    <eSuperTypes href="http://www.ibm.com/wbi/2005/eflow#//FCMBlock"/>
+    <translation xmi:type="utility:TranslatableString" key="SampleSOAPCall" bundleName="SampleSOAPCall" pluginId="SampleHL7"/>
+    <colorGraphic16 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/SampleHL7/icons/full/obj16/SampleSOAPCall.gif"/>
+    <colorGraphic32 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/SampleHL7/icons/full/obj30/SampleSOAPCall.gif"/>
+    <composition>
+      <nodes xmi:type="hl7dfdlout_HL7DFDLOutput.msgflow:FCMComposite_1" xmi:id="FCMComposite_1_3" location="389,114" connectionDetails="localhost:1234">
+        <translation xmi:type="utility:ConstantString" string="HL7DFDLOutput"/>
+      </nodes>
+      <nodes xmi:type="ComIbmTrace.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_6" location="608,31" filePath="C:\temp\medarchiver\failure.log" pattern="&#xD;&#xA;START TRACE Send Message&#xD;&#xA;Body:&#xD;&#xA;${Body}&#xD;&#xA;END TRACE&#xD;&#xA;Traced at: ${EXTRACT(HOUR FROM CURRENT_TIMESTAMP)}:${EXTRACT(MINUTE FROM CURRENT_TIMESTAMP)}:${EXTRACT(SECOND FROM CURRENT_TIMESTAMP)}&#xD;&#xA;">
+        <translation xmi:type="utility:ConstantString" string="Trace"/>
+      </nodes>
+      <nodes xmi:type="ComIbmTrace.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_7" location="606,119" filePath="C:\temp\medarchiver\out.log" pattern="&#xD;&#xA;START TRACE Send Message&#xD;&#xA;Body:&#xD;&#xA;${Body}&#xD;&#xA;END TRACE&#xD;&#xA;Traced at: ${EXTRACT(HOUR FROM CURRENT_TIMESTAMP)}:${EXTRACT(MINUTE FROM CURRENT_TIMESTAMP)}:${EXTRACT(SECOND FROM CURRENT_TIMESTAMP)}&#xD;&#xA;">
+        <translation xmi:type="utility:ConstantString" string="Trace1"/>
+      </nodes>
+      <nodes xmi:type="ComIbmTrace.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_8" location="575,198" filePath="C:\temp\medarchiver\retry.log" pattern="&#xD;&#xA;START TRACE Send Message&#xD;&#xA;Body:&#xD;&#xA;${Body}&#xD;&#xA;END TRACE&#xD;&#xA;Traced at: ${EXTRACT(HOUR FROM CURRENT_TIMESTAMP)}:${EXTRACT(MINUTE FROM CURRENT_TIMESTAMP)}:${EXTRACT(SECOND FROM CURRENT_TIMESTAMP)}&#xD;&#xA;">
+        <translation xmi:type="utility:ConstantString" string="Trace2"/>
+      </nodes>
+      <nodes xmi:type="ComIbmSOAPInput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_2" location="11,141" wsdlFileName="SampleService.wsdl" selectedPortType="SampleService" selectedBinding="SampleServiceHttpBinding" selectedPort="SampleServiceHttpPort" targetNamespace="http://SampleService" useHTTPTransport="true" urlSelector="/SampleService">
+        <translation xmi:type="utility:ConstantString" string="SOAP Input"/>
+      </nodes>
+      <nodes xmi:type="ComIbmSOAPReply.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_4" location="841,221">
+        <translation xmi:type="utility:ConstantString" string="SOAP Reply"/>
+      </nodes>
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_1" location="204,132" computeExpression="esql://routine/#SampleCall_XML2HL7.Main">
+        <translation xmi:type="utility:ConstantString" string="Compute"/>
+      </nodes>
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_5" location="507,109" computeExpression="esql://routine/#SampleCall_HL72XML.Main">
+        <translation xmi:type="utility:ConstantString" string="Compute1"/>
+      </nodes>
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_10" location="504,29" computeExpression="esql://routine/#SampleSOAPCall_Compute2.Main">
+        <translation xmi:type="utility:ConstantString" string="Compute2"/>
+      </nodes>
+      <nodes xmi:type="ComIbmTrace.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_11" location="311,181" destination="file" filePath="C:\temp\medarchiver\in2.log" pattern="&#xD;&#xA;START TRACE Send Message&#xD;&#xA;Body:&#xD;&#xA;${Root}&#xD;&#xA;END TRACE&#xD;&#xA;Traced at: ${EXTRACT(HOUR FROM CURRENT_TIMESTAMP)}:${EXTRACT(MINUTE FROM CURRENT_TIMESTAMP)}:${EXTRACT(SECOND FROM CURRENT_TIMESTAMP)}&#xD;&#xA;">
+        <translation xmi:type="utility:ConstantString" string="Trace4"/>
+      </nodes>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_13" targetNode="FCMComposite_1_8" sourceNode="FCMComposite_1_3" sourceTerminalName="OutTerminal.Log%20Retry" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_2" targetNode="FCMComposite_1_4" sourceNode="FCMComposite_1_6" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_3" targetNode="FCMComposite_1_4" sourceNode="FCMComposite_1_7" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_4" targetNode="FCMComposite_1_4" sourceNode="FCMComposite_1_8" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_7" targetNode="FCMComposite_1_5" sourceNode="FCMComposite_1_3" sourceTerminalName="OutTerminal.Out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_8" targetNode="FCMComposite_1_7" sourceNode="FCMComposite_1_5" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_9" targetNode="FCMComposite_1_10" sourceNode="FCMComposite_1_3" sourceTerminalName="OutTerminal.Failure" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_10" targetNode="FCMComposite_1_6" sourceNode="FCMComposite_1_10" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_11" targetNode="FCMComposite_1_1" sourceNode="FCMComposite_1_2" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_12" targetNode="FCMComposite_1_11" sourceNode="FCMComposite_1_1" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_14" targetNode="FCMComposite_1_3" sourceNode="FCMComposite_1_11" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.In"/>
+    </composition>
+    <propertyOrganizer/>
+    <stickyBoard/>
+  </eClassifiers>
+</ecore:EPackage>

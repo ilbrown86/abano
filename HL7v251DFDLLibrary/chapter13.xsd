@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?><!--
+ * The schemas contained in this document are reproduced with the express permission of 
+ * Health Level Seven (R) International. ALL RIGHTS RESERVED. 
+ *  
+ * The schemas contain material derived from HL7 standards. 
+ * HL7 standards can be obtained from the HL7 website: www.HL7.org 
+ * 
+ * Health Level Seven International and IBM hereby grant permission, to those obtaining 
+ * a copy of these materials, to use, copy and modify the materials solely for use with DFDL processors. 
+ * THESE MATERIALS ARE PROVIDED AS IS WITH NO WARRANTIES OF ANY KIND. 
+ * 
+ * Copyright (C) 1999-2011, Health Level Seven. 
+ * 
+ * (C) Copyright International Business Machines Corporation, 2014. 
+--><xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="urn:hl7-org:v2xml" xmlns="urn:hl7-org:v2xml" xmlns:dfdl="http://www.ogf.org/dfdl/dfdl-1.0/" xmlns:fn="http://www.w3.org/2005/xpath-functions" xmlns:hl7="urn:hl7-org:v2xml" xmlns:ibmDfdlExtn="http://www.ibm.com/dfdl/extensions" xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions" xmlns:ibmhl7="http://www.ibm.com/dfdl/HL7Format">
+    <xsd:include schemaLocation="segments.xsd"/>
+    <xsd:import namespace="http://www.ibm.com/dfdl/HL7Format" schemaLocation="IBMdefined/HL7Format.xsd"/>
+    <xsd:annotation>
+				<xsd:appinfo source="http://www.ogf.org/dfdl/">
+					<dfdl:format ref="ibmhl7:HL7Format"/>
+				</xsd:appinfo>
+			</xsd:annotation>
+    <xsd:complexType name="EAC_U07.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MSH"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="SFT"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="EQU"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="1" ref="EAC_U07.COMMAND"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="ROL"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element ibmSchExtn:docRoot="true" name="EAC_U07" type="EAC_U07.CONTENT"/>
+    <xsd:complexType name="EAC_U07.COMMAND.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="ECD"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="TQ1"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="EAC_U07.SPECIMEN_CONTAINER"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="CNS"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="EAC_U07.COMMAND" type="EAC_U07.COMMAND.CONTENT"/>
+    <xsd:complexType name="EAC_U07.SPECIMEN_CONTAINER.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="SAC"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="SPM"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="EAC_U07.SPECIMEN_CONTAINER" type="EAC_U07.SPECIMEN_CONTAINER.CONTENT"/>
+<xsd:complexType name="EAN_U09.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MSH"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="SFT"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="EQU"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="1" ref="EAN_U09.NOTIFICATION"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="ROL"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element ibmSchExtn:docRoot="true" name="EAN_U09" type="EAN_U09.CONTENT"/>
+    <xsd:complexType name="EAN_U09.NOTIFICATION.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="NDS"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="NTE"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="EAN_U09.NOTIFICATION" type="EAN_U09.NOTIFICATION.CONTENT"/>
+    <xsd:complexType name="EAR_U08.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MSH"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="SFT"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="EQU"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="1" ref="EAR_U08.COMMAND_RESPONSE"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="ROL"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element ibmSchExtn:docRoot="true" name="EAR_U08" type="EAR_U08.CONTENT"/>
+    <xsd:complexType name="EAR_U08.COMMAND_RESPONSE.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="ECD"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="EAR_U08.SPECIMEN_CONTAINER"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="ECR"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="EAR_U08.COMMAND_RESPONSE" type="EAR_U08.COMMAND_RESPONSE.CONTENT"/>
+    <xsd:complexType name="EAR_U08.SPECIMEN_CONTAINER.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="SAC"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="SPM"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="EAR_U08.SPECIMEN_CONTAINER" type="EAR_U08.SPECIMEN_CONTAINER.CONTENT"/>
+    <xsd:complexType name="ESR_U02.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MSH"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="SFT"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="EQU"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="ROL"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element ibmSchExtn:docRoot="true" name="ESR_U02" type="ESR_U02.CONTENT"/>
+    <xsd:complexType name="ESU_U01.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MSH"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="SFT"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="EQU"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="ISD"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="ROL"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element ibmSchExtn:docRoot="true" name="ESU_U01" type="ESU_U01.CONTENT"/>
+    <xsd:complexType name="INR_U06.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MSH"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="SFT"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="EQU"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="1" ref="INV"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="ROL"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element ibmSchExtn:docRoot="true" name="INR_U06" type="INR_U06.CONTENT"/>
+    <xsd:complexType name="INU_U05.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MSH"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="SFT"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="EQU"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="1" ref="INV"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="ROL"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element ibmSchExtn:docRoot="true" name="INU_U05" type="INU_U05.CONTENT"/>
+    <xsd:complexType name="LSU_U12.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MSH"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="SFT"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="EQU"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="1" ref="EQP"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="ROL"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element ibmSchExtn:docRoot="true" name="LSU_U12" type="LSU_U12.CONTENT"/>
+    <xsd:complexType name="SSR_U04.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MSH"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="SFT"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="EQU"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="1" ref="SSR_U04.SPECIMEN_CONTAINER"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="ROL"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element ibmSchExtn:docRoot="true" name="SSR_U04" type="SSR_U04.CONTENT"/>
+    <xsd:complexType name="SSR_U04.SPECIMEN_CONTAINER.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="SAC"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="SPM"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="SSR_U04.SPECIMEN_CONTAINER" type="SSR_U04.SPECIMEN_CONTAINER.CONTENT"/>
+    <xsd:complexType name="SSU_U03.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MSH"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="SFT"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="EQU"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="1" ref="SSU_U03.SPECIMEN_CONTAINER"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="ROL"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element ibmSchExtn:docRoot="true" name="SSU_U03" type="SSU_U03.CONTENT"/>
+    <xsd:complexType name="SSU_U03.SPECIMEN_CONTAINER.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="SAC"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="OBX"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="SSU_U03.SPECIMEN"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="SSU_U03.SPECIMEN_CONTAINER" type="SSU_U03.SPECIMEN_CONTAINER.CONTENT"/>
+    <xsd:complexType name="SSU_U03.SPECIMEN.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="SPM"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="OBX"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="SSU_U03.SPECIMEN" type="SSU_U03.SPECIMEN.CONTENT"/>
+    <xsd:complexType name="TCU_U10.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MSH"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="SFT"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="EQU"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="1" ref="TCU_U10.TEST_CONFIGURATION"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="ROL"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element ibmSchExtn:docRoot="true" name="TCU_U10" type="TCU_U10.CONTENT"/>
+    <xsd:complexType name="TCU_U10.TEST_CONFIGURATION.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="SPM"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="1" ref="TCC"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="TCU_U10.TEST_CONFIGURATION" type="TCU_U10.TEST_CONFIGURATION.CONTENT"/>
+</xsd:schema>

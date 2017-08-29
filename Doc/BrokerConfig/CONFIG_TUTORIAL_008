@@ -1,0 +1,17 @@
+set node=TUTORIAL_broker
+set serv=server1
+
+rem TUTORIAL 008 -> configure decision server repository 
+
+rem mqsicreateconfigurableservice %node% -c JDBCProviders -o ODMDS -n type4DatasourceClassName,type4DriverClassName,databaseType,jdbcProviderXASupport,portNumber,connectionUrlFormatAttr5,connectionUrlFormatAttr4,serverName,connectionUrlFormatAttr3,connectionUrlFormatAttr2,connectionUrlFormatAttr1,environmentParms,maxConnectionPoolSize,description,jarsURL,databaseName,databaseVersion,securityIdentity,connectionUrlFormat -v "com.ibm.db2.jcc.DB2XADataSource","com.ibm.db2.jcc.DB2Driver","DB2 Universal Database","true","50000","","","localhost","","","","default_none","0","default_Description","C:\programs\SQLLIB\java","ODMDS","10.1","ODMRESSecurityId","jdbc:db2://[serverName]:[portNumber]/[databaseName]:user=[user];password=[password];"
+mqsicreateconfigurableservice %node% -c JDBCProviders -o ODMDS -n databaseSchemaNames,type4DatasourceClassName,type4DriverClassName,databaseType,jdbcProviderXASupport,portNumber,connectionUrlFormatAttr5,connectionUrlFormatAttr4,serverName,connectionUrlFormatAttr3,connectionUrlFormatAttr2,connectionUrlFormatAttr1,environmentParms,maxConnectionPoolSize,description,jarsURL,databaseName,databaseVersion,securityIdentity,connectionUrlFormat -v "org.apache.derby.jdbc.ClientXADataSource","org.apache.derby.jdbc.ClientDriver","Derby","true","1527","","","localhost","","","","default_none","0","default_Description","E:\repository\ortoweb\derby\lib","rtsdb","10.2","ODMRESSecurityId","jdbc:derby://[serverName]:[portNumber]/[databaseName]"
+mqsicreateconfigurableservice %node% -c DecisionServiceRepository -o Default -n JDBCProviderName,resManagementHost,resManagementPort,resManagementProfiling  -v "ODMDS","","","false"
+
+mqsisetdbparms %node% -n jdbc::ODMRESSecurityId -u ilog -p ilog
+
+rem Before you deploy message flows that contain a DecisionService node, you must enable the mode extension by using the mqsimode command: 
+mqsimode -x DecisionServices
+
+mqsichangeproperties %node% -c JDBCProviders -o ODMDS -n databaseSchemaNames,type4DatasourceClassName,type4DriverClassName,databaseType,jdbcProviderXASupport,portNumber,connectionUrlFormatAttr5,connectionUrlFormatAttr4,serverName,connectionUrlFormatAttr3,connectionUrlFormatAttr2,connectionUrlFormatAttr1,environmentParms,maxConnectionPoolSize,description,jarsURL,databaseName,databaseVersion,securityIdentity,connectionUrlFormat -v ILOG;,"org.apache.derby.jdbc.ClientXADataSource","org.apache.derby.jdbc.ClientDriver","Derby","true","1527","","","localhost","","","","default_none","0","default_Description","C:\workspaces\iib\tutorial\Doc\derby","rtsdb","10.2","ODMRESSecurityId","jdbc:derby://[serverName]:[portNumber]/[databaseName]"
+mqsichangeproperties %node% -c JDBCProviders -o ODMDS -n databaseSchemaNames,type4DatasourceClassName,type4DriverClassName,databaseType,jdbcProviderXASupport,portNumber,connectionUrlFormatAttr5,connectionUrlFormatAttr4,serverName,connectionUrlFormatAttr3,connectionUrlFormatAttr2,connectionUrlFormatAttr1,environmentParms,maxConnectionPoolSize,description,jarsURL,databaseName,databaseVersion,securityIdentity,connectionUrlFormat -v ILOG;,"org.apache.derby.jdbc.ClientXADataSource","org.apache.derby.jdbc.ClientDriver","Derby","true","1527","","","localhost","","","","default_none","0","default_Description","C:\workspaces\iib\tutorial\Doc\derby","resdb","10.2","ODMRESSecurityId","jdbc:derby://[serverName]:[portNumber]/[databaseName]"
+

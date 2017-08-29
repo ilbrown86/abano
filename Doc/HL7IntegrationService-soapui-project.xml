@@ -1,0 +1,506 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="6373879c-2ff7-411b-b1c1-16c491cfe76b" activeEnvironment="Default" name="HL7IntegrationService" resourceRoot="" soapui-version="5.3.0" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" id="badbb4b0-29d3-46a3-94ce-078cb55fa81d" wsaVersion="NONE" name="HL7IntegrationServiceHttpBinding" type="wsdl" bindingName="{http://HL7IntegrationService}HL7IntegrationServiceHttpBinding" soapVersion="1_1" anonymous="optional" definition="C:/Users/IBM_ADMIN/IBM/IIBT10/workspacePoliclinico/HL7IntegrationService/HL7IntegrationService.wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="file:/C:/Users/IBM_ADMIN/IBM/IIBT10/workspacePoliclinico/HL7IntegrationService/HL7IntegrationService.wsdl"><con:part><con:url>file:/C:/Users/IBM_ADMIN/IBM/IIBT10/workspacePoliclinico/HL7IntegrationService/HL7IntegrationService.wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="HL7IntegrationService" targetNamespace="http://HL7IntegrationService" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:bons1="http://w3.ibm.com/it/hl7" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="http://HL7IntegrationService" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:documentation>
+    <wsdl:appinfo source="WMQI_APPINFO">
+      <MRWSDLAppInfo imported="true">
+        <binding hasEncoding="false" imported="true" name="HL7IntegrationServiceHttpBinding" originalBindingStyle="document"/>
+        <generatedXSD location="HL7IntegrationService_InlineSchema1.xsd"/>
+      </MRWSDLAppInfo>
+    </wsdl:appinfo>
+  </wsdl:documentation>
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://HL7IntegrationService" xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions">
+      <xsd:import namespace="http://w3.ibm.com/it/hl7" schemaLocation="../HL7CommonLibrary/HL7Model.xsd"/>
+      <xsd:include schemaLocation="HL7IntegrationService_InlineSchema1.xsd"/>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="callHL7RequestMsg">
+    <wsdl:part element="tns:callHL7" name="callHL7Parameters"/>
+  </wsdl:message>
+  <wsdl:message name="callHL7ResponseMsg">
+    <wsdl:part element="tns:callHL7Response" name="callHL7Result"/>
+  </wsdl:message>
+  <wsdl:message name="writeQueueRequestMsg">
+    <wsdl:part element="tns:writeQueue" name="writeQueueParameters"/>
+  </wsdl:message>
+  <wsdl:message name="writeQueueResponseMsg">
+    <wsdl:part element="tns:writeQueueResponse" name="writeQueueResult"/>
+  </wsdl:message>
+  <wsdl:portType name="HL7IntegrationService">
+    <wsdl:operation name="callHL7">
+      <wsdl:input message="tns:callHL7RequestMsg" name="callHL7Request"/>
+      <wsdl:output message="tns:callHL7ResponseMsg" name="callHL7Response"/>
+    </wsdl:operation>
+    <wsdl:operation name="writeQueue">
+      <wsdl:input message="tns:writeQueueRequestMsg" name="writeQueueRequest"/>
+      <wsdl:output message="tns:writeQueueResponseMsg" name="writeQueueResponse"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="HL7IntegrationServiceHttpBinding" type="tns:HL7IntegrationService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="callHL7">
+      <soap:operation soapAction="http://HL7IntegrationService/callHL7"/>
+      <wsdl:input name="callHL7Request">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="callHL7Response">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="writeQueue">
+      <soap:operation soapAction="http://HL7IntegrationService/writeQueue"/>
+      <wsdl:input name="writeQueueRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="writeQueueResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="HL7IntegrationServiceHttpService">
+    <wsdl:port binding="tns:HL7IntegrationServiceHttpBinding" name="HL7IntegrationServiceHttpPort">
+      <soap:address location="http://localhost:7800/HL7IntegrationService"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part><con:part><con:url>file:\C:\Users\IBM_ADMIN\IBM\IIBT10\workspacePoliclinico\HL7CommonLibrary\HL7Model.xsd</con:url><con:content><![CDATA[<xsd:schema targetNamespace="http://w3.ibm.com/it/hl7" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:hl7="http://w3.ibm.com/it/hl7">
+  <xsd:complexType name="Patient">
+    <xsd:sequence>
+      <xsd:element name="nosologicId" type="xsd:string"/>
+      <xsd:element name="name" type="xsd:string"/>
+      <xsd:element name="surname" type="xsd:string"/>
+      <xsd:element name="dischargeDate" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="diagnosis" type="xsd:string"/>
+      <xsd:element name="bedNumber" type="xsd:string"/>
+      <xsd:element name="division" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="class" type="xsd:string"/>
+      <xsd:element name="birthdate" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="sex" type="xsd:string"/>
+      <xsd:element name="race" type="xsd:string"/>
+      <xsd:element name="address" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="fiscalcode" type="xsd:string"/>
+      <xsd:element name="admissionDate" type="xsd:string"/>
+      <xsd:element name="surgeryDate" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="patientIdentifierList" type="xsd:string"/>
+      <xsd:element name="notes" type="hl7:Note" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element name="type" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="Note">
+    <xsd:sequence>
+      <xsd:element name="id" type="xsd:string"/>
+      <xsd:element name="title" type="xsd:string"/>
+      <xsd:element name="description" type="xsd:string"/>
+      <xsd:element name="userId" type="xsd:string"/>
+      <xsd:element name="date" type="xsd:string"/>
+      <xsd:element name="important" type="xsd:boolean"/>
+      <xsd:element name="attachments" type="hl7:Attachments" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="Attachments">
+    <xsd:sequence>
+      <xsd:element name="base64" type="xsd:string"/>
+      <xsd:element name="type" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="Measurement">
+    <xsd:sequence>
+      <!--taskId BPM-->
+      <xsd:element name="id" type="xsd:string"/>
+      <!--infermiere-->
+      <xsd:element name="userId" type="xsd:string"/>
+      <!--"description": "Nosologic number: e.g. "17/001324"-->
+      <xsd:element name="nosologicId" type="xsd:string"/>
+      <xsd:element name="firstname" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="lastname" type="xsd:string" minOccurs="0"/>
+      <!--"description": "Patient Identifier List."-->
+      <xsd:element name="patientIdentifierList" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="patientClass" type="xsd:string" default="I"/>
+      <xsd:element name="date" type="xsd:string"/>
+      <xsd:element name="values" type="hl7:Value" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="Value">
+    <xsd:sequence>
+      <xsd:element name="measureId" type="xsd:string"/>
+      <xsd:element name="measureName" type="xsd:string"/>
+      <xsd:element name="value" type="xsd:string"/>
+      <xsd:element name="units" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="type" type="xsd:string" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="Issue">
+    <xsd:sequence>
+      <xsd:element name="id" type="xsd:string"/>
+      <xsd:element name="title" type="xsd:string"/>
+      <xsd:element name="description" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="Error">
+    <xsd:sequence>
+      <xsd:element name="errorCode" type="xsd:integer"/>
+      <xsd:element name="errorMessage" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="senderRequest">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="action" type="xsd:string"/>
+        <xsd:choice minOccurs="0">
+          <!--Patient details Model. Chiamato da MFP via servizio ReST-->
+          <xsd:element name="patientDetailsRequest">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="patientId" type="xsd:string"/>
+              </xsd:sequence>
+            </xsd:complexType>
+          </xsd:element>
+          <!--Patient list Model. Chiamato da MFP via servizio ReST-->
+          <xsd:element name="patientListRequest">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="division" type="xsd:string"/>
+              </xsd:sequence>
+            </xsd:complexType>
+          </xsd:element>
+          <!--Read issues Model. Chiamato da MFP via servizio ReST-->
+          <xsd:element name="readIssuesRequest">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="division" type="xsd:string"/>
+              </xsd:sequence>
+            </xsd:complexType>
+          </xsd:element>
+          <!--Read notes Model. Chiamato da MFP via servizio ReST-->
+          <xsd:element name="readNotesRequest">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="patientId" type="xsd:string"/>
+              </xsd:sequence>
+            </xsd:complexType>
+          </xsd:element>
+          <!--Read parameters Model. Chiamato da MFP via servizio ReST-->
+          <xsd:element name="readParametersRequest">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="patientId" type="xsd:string"/>
+              </xsd:sequence>
+            </xsd:complexType>
+          </xsd:element>
+          <!--Write issue Model. Chiamato da MFP via servizio ReST-->
+          <xsd:element name="writeIssueRequest">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="issue" type="hl7:Issue"/>
+              </xsd:sequence>
+            </xsd:complexType>
+          </xsd:element>
+          <!--Write note Model. Chiamato da MFP via servizio ReST-->
+          <xsd:element name="writeNoteRequest">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="note" type="hl7:Note"/>
+              </xsd:sequence>
+            </xsd:complexType>
+          </xsd:element>
+          <!--Write parameters Model. Chiamato da BPM via MQ-->
+          <xsd:element name="writeParametersRequest">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="measurement" type="hl7:Measurement"/>
+              </xsd:sequence>
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="senderResponse">
+    <xsd:complexType>
+      <xsd:choice>
+        <!--Patient details Model. Chiamato da MFP via servizio ReST-->
+        <xsd:element name="patientDetailsResponse">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name="patient" type="hl7:Patient"/>
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+        <!--Patient list Model. Chiamato da MFP via servizio ReST-->
+        <xsd:element name="patientListResponse">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name="patients">
+                <xsd:complexType>
+                  <xsd:sequence>
+                    <xsd:element name="patient" type="hl7:Patient" minOccurs="0" maxOccurs="unbounded"/>
+                  </xsd:sequence>
+                </xsd:complexType>
+              </xsd:element>
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+        <!--Read issues Model. Chiamato da MFP via servizio ReST-->
+        <xsd:element name="readIssuesResponse">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name="issues">
+                <xsd:complexType>
+                  <xsd:sequence>
+                    <xsd:element name="issue" type="hl7:Issue" minOccurs="0" maxOccurs="unbounded"/>
+                  </xsd:sequence>
+                </xsd:complexType>
+              </xsd:element>
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+        <!--Read notes Model. Chiamato da MFP via servizio ReST-->
+        <xsd:element name="readNotesResponse">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name="notes">
+                <xsd:complexType>
+                  <xsd:sequence>
+                    <xsd:element name="note" type="hl7:Note" minOccurs="0" maxOccurs="unbounded"/>
+                  </xsd:sequence>
+                </xsd:complexType>
+              </xsd:element>
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+        <!--Read parameters Model. Chiamato da MFP via servizio ReST-->
+        <xsd:element name="readParametersResponse">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name="measurements">
+                <xsd:complexType>
+                  <xsd:sequence>
+                    <xsd:element name="measurement" type="hl7:Measurement" minOccurs="0" maxOccurs="unbounded"/>
+                  </xsd:sequence>
+                </xsd:complexType>
+              </xsd:element>
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+        <!--Write issue Model. Chiamato da MFP via servizio ReST-->
+        <xsd:element name="writeIssueResponse">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name="result" type="xsd:string"/>
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+        <!--Write note Model. Chiamato da MFP via servizio ReST-->
+        <xsd:element name="writeNoteResponse">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name="result" type="xsd:string"/>
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+        <!--Write parameters Model. Chiamato da BPM via MQ-->
+        <xsd:element name="writeParametersResponse">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name="result" type="xsd:string"/>
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element name="error" type="hl7:Error"/>
+      </xsd:choice>
+    </xsd:complexType>
+  </xsd:element>
+</xsd:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>file:\C:\Users\IBM_ADMIN\IBM\IIBT10\workspacePoliclinico\HL7IntegrationService\HL7IntegrationService_InlineSchema1.xsd</con:url><con:content><![CDATA[<xsd:schema targetNamespace="http://HL7IntegrationService" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:Q1="http://w3.ibm.com/it/hl7" xmlns:tns="http://HL7IntegrationService">
+  <xsd:import namespace="http://w3.ibm.com/it/hl7" schemaLocation="../HL7CommonLibrary/HL7Model.xsd"/>
+  <xsd:element ibmSchExtn:docRoot="true" name="callHL7" xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element ref="Q1:senderRequest"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element ibmSchExtn:docRoot="true" name="callHL7Response" xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element ref="Q1:senderResponse"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element ibmSchExtn:docRoot="true" name="writeQueue" xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element ref="Q1:senderRequest"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element ibmSchExtn:docRoot="true" name="writeQueueResponse" xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element ref="Q1:senderResponse"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+</xsd:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:7800/HL7IntegrationService</con:endpoint></con:endpoints><con:operation id="e6008bc3-c311-4c01-85ac-fd5c65fc1a4c" isOneWay="false" action="http://HL7IntegrationService/callHL7" name="callHL7" bindingOperationName="callHL7" type="Request-Response" outputName="callHL7Response" inputName="callHL7Request" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="4d59da3e-fbd6-44ed-8c8e-d8443011e07c" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:7800/HL7IntegrationService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:hl7="http://HL7IntegrationService" xmlns:hl71="http://w3.ibm.com/it/hl7">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <hl7:callHL7>
+         <hl71:senderRequest>
+            <action>writeParameters</action>
+            <!--You have a CHOICE of the next 8 items at this level-->
+            <writeParametersRequest>
+               <measurement>
+                  <id>666</id>
+                  <userId>CPORTELLI</userId>
+                  <nosologicId>17/00004</nosologicId>
+                  <!--Optional fields - INIZIO-->
+                  <firstname></firstname>
+                  <lastname></lastname>
+                  <patientIdentifierList></patientIdentifierList>
+                  <!--Optional fields - FINE-->
+                  <patientClass>I</patientClass>
+                  <date>2017216132159</date>
+                  <!--Zero or more repetitions:-->
+                  <values>
+                    <measureId>0</measureId>
+                    <measureName>pharmacologicallySedated</measureName>
+                    <value>0</value>
+                    <units />
+                    <type>Integer</type>
+                  </values>
+                  <values>
+                    <measureId>1</measureId>
+                    <measureName>gcsEye</measureName>
+                    <value>3.0</value>
+                    <units />
+                    <type>Decimal</type>
+                  </values>
+                  <values>
+                    <measureId>2</measureId>
+                    <measureName>gcsVerbal</measureName>
+                    <value>2.0</value>
+                    <units />
+                    <type>Decimal</type>
+                  </values>
+                  <values>
+                    <measureId>3</measureId>
+                    <measureName>gcsMotor</measureName>
+                    <value>1.0</value>
+                    <units />
+                    <type>Decimal</type>
+                  </values>
+               </measurement>
+            </writeParametersRequest>
+         </hl71:senderRequest>
+      </hl7:callHL7>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://HL7IntegrationService/callHL7"/><con:wsrmConfig version="1.2"/></con:call><con:call id="d742e4d2-e1e0-4280-a332-530cc0e8ddb1" name="Request 2"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:7800/HL7IntegrationService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:hl7="http://HL7IntegrationService" xmlns:hl71="http://w3.ibm.com/it/hl7">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <hl7:callHL7>
+         <hl71:senderRequest>
+<!--<hl7:senderRequest xmlns:hl7="http://w3.ibm.com/it/hl7" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">-->
+ 	
+
+
+  <action>writeParameters</action>
+  <messageId>20170407132160</messageId>
+  <writeParametersRequest>
+    <patient>
+      <nosologicId>17/000004</nosologicId>
+      <patientIdentifierList>131175600</patientIdentifierList>
+      <class>I</class>
+    </patient>
+    <parameter>
+      <taskId>61</taskId>
+      <id>1</id>
+      <userId>CPORTELLI</userId>
+      <date>20170407132130</date>
+      <values>
+        <measureId>SC001</measureId>
+        <measureName>pharmacologicallySedated</measureName>
+        <value>4</value>
+        <units />
+        <type>Integer</type>
+      </values>
+      <values>
+        <measureId>SC002</measureId>
+        <measureName>gcsEye</measureName>
+        <value>5</value>
+        <units />
+        <type>Integer</type>
+      </values>
+      <values>
+        <measureId>SC003</measureId>
+        <measureName>gcsVerbal</measureName>
+        <value>6</value>
+        <units />
+        <type>Integer</type>
+      </values>
+      <values>
+        <measureId>SC004</measureId>
+        <measureName>gcsMotor</measureName>
+        <value>7</value>
+        <units />
+        <type>Integer</type>
+      </values>
+    </parameter>
+  </writeParametersRequest>
+
+
+
+<!--</hl7:senderRequest>-->
+         </hl71:senderRequest>
+      </hl7:callHL7>
+   </soapenv:Body>
+</soapenv:Envelope>
+]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://HL7IntegrationService/callHL7"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="19de122c-2604-4c37-b844-535618c1b86f" isOneWay="false" action="http://HL7IntegrationService/writeQueue" name="writeQueue" bindingOperationName="writeQueue" type="Request-Response" outputName="writeQueueResponse" inputName="writeQueueRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="f64bb255-058b-46ac-be04-2f2aef4255e1" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:7800/HL7IntegrationService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:hl7="http://HL7IntegrationService" xmlns:hl71="http://w3.ibm.com/it/hl7">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <hl7:writeQueue>\r
+        <hl71:senderRequest>
+           <action>writeParameters</action>
+  <messageId>20170407110103051</messageId>
+  <writeParametersRequest>
+    <patient>
+      <nosologicId>17/00004</nosologicId>
+      <patientIdentifierList>131175600</patientIdentifierList>
+      <class>I</class>
+    </patient>
+    <parameter>
+      <taskId>51</taskId>
+      <id>1</id>
+      <userId>CPORTELLI</userId>
+      <date>201704071101030</date>
+      <values>
+        <measureId>SC001</measureId>
+        <measureName>pharmacologicallySedated</measureName>
+        <value>0</value>
+        <units />
+        <type>Integer</type>
+      </values>
+      <values>
+        <measureId>SC002</measureId>
+        <measureName>gcsEye</measureName>
+        <value>3</value>
+        <units />
+        <type>Integer</type>
+      </values>
+      <values>
+        <measureId>SC003</measureId>
+        <measureName>gcsVerbal</measureName>
+        <value>2</value>
+        <units />
+        <type>Integer</type>
+      </values>
+      <values>
+        <measureId>SC004</measureId>
+        <measureName>gcsMotor</measureName>
+        <value>1</value>
+        <units />
+        <type>Integer</type>
+      </values>
+    </parameter>
+  </writeParametersRequest>
+         </hl71:senderRequest>
+      </hl7:writeQueue>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://HL7IntegrationService/writeQueue"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/></con:soapui-project>

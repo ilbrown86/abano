@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ComIbmCallableFlowInvoke.msgnode="ComIbmCallableFlowInvoke.msgnode" xmlns:ComIbmCompute.msgnode="ComIbmCompute.msgnode" xmlns:ComIbmMQHeader.msgnode="ComIbmMQHeader.msgnode" xmlns:ComIbmMQInput.msgnode="ComIbmMQInput.msgnode" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:eflow="http://www.ibm.com/wbi/2005/eflow" xmlns:utility="http://www.ibm.com/wbi/2005/eflow_utility" nsURI="HL7MQApplication/WriteParameters.msgflow" nsPrefix="HL7MQApplication_WriteParameters.msgflow">
+  <eClassifiers xmi:type="eflow:FCMComposite" name="FCMComposite_1">
+    <eSuperTypes href="http://www.ibm.com/wbi/2005/eflow#//FCMBlock"/>
+    <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.queueName" name="queueName" lowerBound="1" defaultValueLiteral="BPMQUEUE">
+      <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.targetApplication" name="targetApplication" lowerBound="1" defaultValueLiteral="HL7CoreApplication">
+      <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.targetEndpointName" name="targetEndpointName" lowerBound="1" defaultValueLiteral="HL7Sender">
+      <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.channelName" name="channelName" defaultValueLiteral="MQEXPLORER.CHANNEL">
+      <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.destinationQueueManagerName" name="destinationQueueManagerName">
+      <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.listenerPortNumber" name="listenerPortNumber" defaultValueLiteral="1415">
+      <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.queueManagerHostname" name="queueManagerHostname" defaultValueLiteral="10.4.2.212">
+      <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+    <translation xmi:type="utility:TranslatableString" key="WriteParameters" bundleName="HL7MQApplication/WriteParameters" pluginId="HL7_BPM_Application"/>
+    <colorGraphic16 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/HL7_BPM_Application/icons/full/obj16/WriteParameters.gif"/>
+    <colorGraphic32 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/HL7_BPM_Application/icons/full/obj30/WriteParameters.gif"/>
+    <composition>
+      <nodes xmi:type="ComIbmMQInput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_1" location="97,90" queueName="BPMQUEUE" queueManagerHostname="10.4.2.212" listenerPortNumber="1415" channelName="MQEXPLORER.CHANNEL" messageDomainProperty="XMLNSC">
+        <translation xmi:type="utility:ConstantString" string="MQ Input"/>
+      </nodes>
+      <nodes xmi:type="ComIbmCallableFlowInvoke.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_2" location="463,89" targetApplication="HL7CoreApplication" targetEndpointName="HL7Sender">
+        <translation xmi:type="utility:ConstantString" string="SenderInvoke"/>
+      </nodes>
+      <nodes xmi:type="ComIbmMQHeader.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_4" location="282,91" mqmdAAAOptions="Delete header" mqmdCodedCharSetId="MQCCSI_Q_MGR" mqmdFormat="MQFMT_NONE" mqmdVersion="MQMD_VERSION_1" mqmdMsgType="MQMT_DATAGRAM" mqmdExpiry="MQEI_UNLIMITED" mqmdFeedback="MQFB_NONE" mqmdPriority="MQPRI_PRIORITY_AS_Q_DEF" mqmdPersistence="MQPER_PERSISTENCE_AS_Q_DEF" mqmdMsgId="MQMI_NONE" mqmdCorrelId="MQCI_NONE">
+        <translation xmi:type="utility:ConstantString" string="MQ Header"/>
+      </nodes>
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_3" location="632,96" computeExpression="esql://routine/HL7MQApplication#WriteParameters_Compute.Main">
+        <translation xmi:type="utility:ConstantString" string="Compute"/>
+      </nodes>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_5" targetNode="FCMComposite_1_4" sourceNode="FCMComposite_1_1" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_6" targetNode="FCMComposite_1_2" sourceNode="FCMComposite_1_4" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_1" targetNode="FCMComposite_1_3" sourceNode="FCMComposite_1_2" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+    </composition>
+    <propertyOrganizer>
+      <propertyDescriptor groupName="Group.Basic" propertyEditor="com.ibm.etools.mft.ibmnodes.editors.mq.MQQueueNameEditor" configurable="true" describedAttribute="Property.queueName">
+        <propertyName xmi:type="utility:TranslatableString" key="Property.queueName" bundleName="ComIbmMQInput" pluginId="com.ibm.etools.mft.ibmnodes.definitions"/>
+        <propertyDescriptor groupName="Group.SenderCallable" propertyEditor="com.ibm.etools.mft.ibmnodes.editors.callable.InvokeNodeApplicationNameEditor" configurable="true" describedAttribute="Property.targetApplication">
+          <propertyName xmi:type="utility:TranslatableString" key="Property.targetApplication" bundleName="ComIbmCallableFlowInvoke" pluginId="com.ibm.etools.mft.ibmnodes.definitions"/>
+          <propertyDescriptor groupName="Group.SenderCallable" propertyEditor="com.ibm.etools.mft.ibmnodes.editors.callable.InvokeNodeEndpointNameEditor" configurable="true" describedAttribute="Property.targetEndpointName">
+            <propertyName xmi:type="utility:TranslatableString" key="Property.targetEndpointName" bundleName="ComIbmCallableFlowInvoke" pluginId="com.ibm.etools.mft.ibmnodes.definitions"/>
+            <propertyDescriptor groupName="Group.Group1" propertyEditor="com.ibm.etools.mft.ibmnodes.editors.mq.ChannelNameEditor" configurable="true" describedAttribute="Property.channelName">
+              <propertyName xmi:type="utility:TranslatableString" key="Property.channelName" bundleName="ComIbmMQInput" pluginId="com.ibm.etools.mft.ibmnodes.definitions"/>
+              <propertyDescriptor groupName="Group.Group2" propertyEditor="com.ibm.etools.mft.ibmnodes.editors.mq.RemoteQueueManagerNameEditor" configurable="true" describedAttribute="Property.destinationQueueManagerName">
+                <propertyName xmi:type="utility:TranslatableString" key="Property.destinationQueueManagerName" bundleName="ComIbmMQInput" pluginId="com.ibm.etools.mft.ibmnodes.definitions"/>
+                <propertyDescriptor groupName="Group.Group3" propertyEditor="com.ibm.etools.mft.ibmnodes.editors.mq.PortPropertyEditor" configurable="true" describedAttribute="Property.listenerPortNumber">
+                  <propertyName xmi:type="utility:TranslatableString" key="Property.listenerPortNumber" bundleName="ComIbmMQInput" pluginId="com.ibm.etools.mft.ibmnodes.definitions"/>
+                  <propertyDescriptor groupName="Group.Group4" propertyEditor="com.ibm.etools.mft.ibmnodes.editors.mq.HostnamePropertyEditor" configurable="true" describedAttribute="Property.queueManagerHostname">
+                    <propertyName xmi:type="utility:TranslatableString" key="Property.queueManagerHostname" bundleName="ComIbmMQInput" pluginId="com.ibm.etools.mft.ibmnodes.definitions"/>
+                  </propertyDescriptor>
+                </propertyDescriptor>
+              </propertyDescriptor>
+            </propertyDescriptor>
+          </propertyDescriptor>
+        </propertyDescriptor>
+      </propertyDescriptor>
+    </propertyOrganizer>
+    <attributeLinks promotedAttribute="Property.queueName" overriddenNodes="FCMComposite_1_1">
+      <overriddenAttribute href="ComIbmMQInput.msgnode#Property.queueName"/>
+    </attributeLinks>
+    <attributeLinks promotedAttribute="Property.targetApplication" overriddenNodes="FCMComposite_1_2">
+      <overriddenAttribute href="ComIbmCallableFlowInvoke.msgnode#Property.targetApplication"/>
+    </attributeLinks>
+    <attributeLinks promotedAttribute="Property.targetEndpointName" overriddenNodes="FCMComposite_1_2">
+      <overriddenAttribute href="ComIbmCallableFlowInvoke.msgnode#Property.targetEndpointName"/>
+    </attributeLinks>
+    <attributeLinks promotedAttribute="Property.channelName" overriddenNodes="FCMComposite_1_1">
+      <overriddenAttribute href="ComIbmMQInput.msgnode#Property.channelName"/>
+    </attributeLinks>
+    <attributeLinks promotedAttribute="Property.destinationQueueManagerName" overriddenNodes="FCMComposite_1_1">
+      <overriddenAttribute href="ComIbmMQInput.msgnode#Property.destinationQueueManagerName"/>
+    </attributeLinks>
+    <attributeLinks promotedAttribute="Property.listenerPortNumber" overriddenNodes="FCMComposite_1_1">
+      <overriddenAttribute href="ComIbmMQInput.msgnode#Property.listenerPortNumber"/>
+    </attributeLinks>
+    <attributeLinks promotedAttribute="Property.queueManagerHostname" overriddenNodes="FCMComposite_1_1">
+      <overriddenAttribute href="ComIbmMQInput.msgnode#Property.queueManagerHostname"/>
+    </attributeLinks>
+    <stickyBoard/>
+  </eClassifiers>
+</ecore:EPackage>

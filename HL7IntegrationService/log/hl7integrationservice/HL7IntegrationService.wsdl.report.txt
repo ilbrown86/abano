@@ -1,0 +1,16 @@
+
+
+Importing file: C:\workspaces\iib\abano\HL7IntegrationService\HL7IntegrationService.wsdl
+
+The WSDL import will proceed with bindings HL7IntegrationServiceHttpBinding.
+Creating wsdl schema document for platform:/resource/HL7IntegrationService/HL7IntegrationService.wsdl.
+Parsing wsdl binding {http://HL7IntegrationService}HL7IntegrationServiceHttpBinding.
+Parsing wsdl binding input callHL7.
+Parsing wsdl binding output callHL7.
+Parsing wsdl binding input writeQueue.
+Parsing wsdl binding output writeQueue.
+Processing doc style for operation callHL7.
+Processing doc style for operation writeQueue.
+Populating WSDL schema HL7IntegrationService.xsd.
+Creating file HL7IntegrationService.xsd in the workspace.
+Copying source WSDL HL7IntegrationService.wsdl to HL7IntegrationService.wsdl.

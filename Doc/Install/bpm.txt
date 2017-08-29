@@ -1,0 +1,6 @@
+solo porta 443
+bpmweb01:443
+172.16.254.197:443
+CA di chi ha firmato il certificato
+Basic aWJtLnJuZXpoYTpTdmlsdXBwbzA9
+bpmtestwas

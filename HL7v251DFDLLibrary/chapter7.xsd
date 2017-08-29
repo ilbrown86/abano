@@ -1,0 +1,690 @@
+<?xml version="1.0" encoding="UTF-8"?><!--
+ * The schemas contained in this document are reproduced with the express permission of 
+ * Health Level Seven (R) International. ALL RIGHTS RESERVED. 
+ *  
+ * The schemas contain material derived from HL7 standards. 
+ * HL7 standards can be obtained from the HL7 website: www.HL7.org 
+ * 
+ * Health Level Seven International and IBM hereby grant permission, to those obtaining 
+ * a copy of these materials, to use, copy and modify the materials solely for use with DFDL processors. 
+ * THESE MATERIALS ARE PROVIDED AS IS WITH NO WARRANTIES OF ANY KIND. 
+ * 
+ * Copyright (C) 1999-2011, Health Level Seven. 
+ * 
+ * (C) Copyright International Business Machines Corporation, 2014. 
+--><xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="urn:hl7-org:v2xml" xmlns="urn:hl7-org:v2xml" xmlns:dfdl="http://www.ogf.org/dfdl/dfdl-1.0/" xmlns:fn="http://www.w3.org/2005/xpath-functions" xmlns:hl7="urn:hl7-org:v2xml" xmlns:ibmDfdlExtn="http://www.ibm.com/dfdl/extensions" xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions" xmlns:ibmhl7="http://www.ibm.com/dfdl/HL7Format">
+    <xsd:include schemaLocation="segments.xsd"/>
+    <xsd:import namespace="http://www.ibm.com/dfdl/HL7Format" schemaLocation="IBMdefined/HL7Format.xsd"/>
+    <xsd:annotation>
+				<xsd:appinfo source="http://www.ogf.org/dfdl/">
+					<dfdl:format ref="ibmhl7:HL7Format"/>
+				</xsd:appinfo>
+			</xsd:annotation>
+    <xsd:complexType name="CRM_C01.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MSH"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="SFT"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="1" ref="CRM_C01.PATIENT"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element ibmSchExtn:docRoot="true" name="CRM_C01" type="CRM_C01.CONTENT"/>
+    <xsd:complexType name="CRM_C01.PATIENT.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="PID"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="PV1"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="CSR"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="CSP"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="CRM_C01.PATIENT" type="CRM_C01.PATIENT.CONTENT"/>
+<xsd:complexType name="CSU_C09.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MSH"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="SFT"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="1" ref="CSU_C09.PATIENT"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element ibmSchExtn:docRoot="true" name="CSU_C09" type="CSU_C09.CONTENT"/>
+    <xsd:complexType name="CSU_C09.PATIENT.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="PID"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="PD1"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="NTE"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="CSU_C09.VISIT"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="CSR"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="1" ref="CSU_C09.STUDY_PHASE"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="CSU_C09.PATIENT" type="CSU_C09.PATIENT.CONTENT"/>
+    <xsd:complexType name="CSU_C09.VISIT.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="PV1"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="PV2"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="CSU_C09.VISIT" type="CSU_C09.VISIT.CONTENT"/>
+    <xsd:complexType name="CSU_C09.STUDY_PHASE.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="CSP"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="1" ref="CSU_C09.STUDY_SCHEDULE"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="CSU_C09.STUDY_PHASE" type="CSU_C09.STUDY_PHASE.CONTENT"/>
+    <xsd:complexType name="CSU_C09.STUDY_SCHEDULE.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="CSS"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="1" ref="CSU_C09.STUDY_OBSERVATION"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="1" ref="CSU_C09.STUDY_PHARM"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="CSU_C09.STUDY_SCHEDULE" type="CSU_C09.STUDY_SCHEDULE.CONTENT"/>
+    <xsd:complexType name="CSU_C09.STUDY_OBSERVATION.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="ORC"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="OBR"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="CSU_C09.TIMING_QTY"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="1" ref="OBX"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="CSU_C09.STUDY_OBSERVATION" type="CSU_C09.STUDY_OBSERVATION.CONTENT"/>
+    <xsd:complexType name="CSU_C09.TIMING_QTY.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="TQ1"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="TQ2"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="CSU_C09.TIMING_QTY" type="CSU_C09.TIMING_QTY.CONTENT"/>
+    <xsd:complexType name="CSU_C09.STUDY_PHARM.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="ORC"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="1" ref="CSU_C09.RX_ADMIN"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="CSU_C09.STUDY_PHARM" type="CSU_C09.STUDY_PHARM.CONTENT"/>
+    <xsd:complexType name="CSU_C09.RX_ADMIN.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="RXA"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="RXR"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="CSU_C09.RX_ADMIN" type="CSU_C09.RX_ADMIN.CONTENT"/>
+    <xsd:complexType name="ORF_R04.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MSH"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="SFT"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MSA"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="QRD"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="QRF"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="1" ref="ORF_R04.QUERY_RESPONSE"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="ERR"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="QAK"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="DSC"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element ibmSchExtn:docRoot="true" name="ORF_R04" type="ORF_R04.CONTENT"/>
+    <xsd:complexType name="ORF_R04.QUERY_RESPONSE.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="ORF_R04.PATIENT"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="1" ref="ORF_R04.ORDER"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="ORF_R04.QUERY_RESPONSE" type="ORF_R04.QUERY_RESPONSE.CONTENT"/>
+    <xsd:complexType name="ORF_R04.PATIENT.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="PID"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="NTE"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="ORF_R04.PATIENT" type="ORF_R04.PATIENT.CONTENT"/>
+    <xsd:complexType name="ORF_R04.ORDER.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="ORC"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="OBR"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="NTE"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="ORF_R04.TIMING_QTY"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="CTD"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="1" ref="ORF_R04.OBSERVATION"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="CTI"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="ORF_R04.ORDER" type="ORF_R04.ORDER.CONTENT"/>
+    <xsd:complexType name="ORF_R04.TIMING_QTY.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="TQ1"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="TQ2"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="ORF_R04.TIMING_QTY" type="ORF_R04.TIMING_QTY.CONTENT"/>
+    <xsd:complexType name="ORF_R04.OBSERVATION.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="OBX"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="NTE"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="ORF_R04.OBSERVATION" type="ORF_R04.OBSERVATION.CONTENT"/>
+    <xsd:complexType name="ORU_R01.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MSH"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="SFT"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="1" ref="ORU_R01.PATIENT_RESULT"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="DSC"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element ibmSchExtn:docRoot="true" name="ORU_R01" type="ORU_R01.CONTENT"/>
+    <xsd:complexType name="ORU_R01.PATIENT_RESULT.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="ORU_R01.PATIENT"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="1" ref="ORU_R01.ORDER_OBSERVATION"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="ORU_R01.PATIENT_RESULT" type="ORU_R01.PATIENT_RESULT.CONTENT"/>
+    <xsd:complexType name="ORU_R01.PATIENT.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="PID"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="PD1"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="NTE"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="NK1"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="ORU_R01.VISIT"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="ORU_R01.PATIENT" type="ORU_R01.PATIENT.CONTENT"/>
+    <xsd:complexType name="ORU_R01.VISIT.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="PV1"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="PV2"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="ORU_R01.VISIT" type="ORU_R01.VISIT.CONTENT"/>
+    <xsd:complexType name="ORU_R01.ORDER_OBSERVATION.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="ORC"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="OBR"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="NTE"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="ORU_R01.TIMING_QTY"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="CTD"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="ORU_R01.OBSERVATION"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="FT1"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="CTI"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="ORU_R01.SPECIMEN"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="ORU_R01.ORDER_OBSERVATION" type="ORU_R01.ORDER_OBSERVATION.CONTENT"/>
+    <xsd:complexType name="ORU_R01.TIMING_QTY.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="TQ1"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="TQ2"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="ORU_R01.TIMING_QTY" type="ORU_R01.TIMING_QTY.CONTENT"/>
+    <xsd:complexType name="ORU_R01.OBSERVATION.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="OBX"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="NTE"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="ORU_R01.OBSERVATION" type="ORU_R01.OBSERVATION.CONTENT"/>
+    <xsd:complexType name="ORU_R01.SPECIMEN.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="SPM"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="OBX"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="ORU_R01.SPECIMEN" type="ORU_R01.SPECIMEN.CONTENT"/>
+    <xsd:complexType name="ORU_R30.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MSH"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="SFT"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="PID"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="PD1"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="ORU_R30.VISIT"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="ORC"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="OBR"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="NTE"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="ORU_R30.TIMING_QTY"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="1" ref="ORU_R30.OBSERVATION"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element ibmSchExtn:docRoot="true" name="ORU_R30" type="ORU_R30.CONTENT"/>
+    <xsd:complexType name="ORU_R30.VISIT.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="PV1"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="PV2"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="ORU_R30.VISIT" type="ORU_R30.VISIT.CONTENT"/>
+    <xsd:complexType name="ORU_R30.TIMING_QTY.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="TQ1"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="TQ2"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="ORU_R30.TIMING_QTY" type="ORU_R30.TIMING_QTY.CONTENT"/>
+    <xsd:complexType name="ORU_R30.OBSERVATION.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="OBX"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="NTE"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="ORU_R30.OBSERVATION" type="ORU_R30.OBSERVATION.CONTENT"/>
+    <xsd:complexType name="OUL_R21.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MSH"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="SFT"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="NTE"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="OUL_R21.PATIENT"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="OUL_R21.VISIT"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="1" ref="OUL_R21.ORDER_OBSERVATION"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="DSC"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element ibmSchExtn:docRoot="true" name="OUL_R21" type="OUL_R21.CONTENT"/>
+    <xsd:complexType name="OUL_R21.PATIENT.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="PID"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="PD1"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="NTE"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="OUL_R21.PATIENT" type="OUL_R21.PATIENT.CONTENT"/>
+    <xsd:complexType name="OUL_R21.VISIT.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="PV1"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="PV2"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="OUL_R21.VISIT" type="OUL_R21.VISIT.CONTENT"/>
+    <xsd:complexType name="OUL_R21.ORDER_OBSERVATION.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="OUL_R21.CONTAINER"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="ORC"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="OBR"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="NTE"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="OUL_R21.TIMING_QTY"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="1" ref="OUL_R21.OBSERVATION"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="CTI"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="OUL_R21.ORDER_OBSERVATION" type="OUL_R21.ORDER_OBSERVATION.CONTENT"/>
+    <xsd:complexType name="OUL_R21.CONTAINER.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="SAC"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="SID"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="OUL_R21.CONTAINER" type="OUL_R21.CONTAINER.CONTENT"/>
+    <xsd:complexType name="OUL_R21.TIMING_QTY.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="TQ1"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="TQ2"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="OUL_R21.TIMING_QTY" type="OUL_R21.TIMING_QTY.CONTENT"/>
+    <xsd:complexType name="OUL_R21.OBSERVATION.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="OBX"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="TCD"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="SID"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="NTE"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="OUL_R21.OBSERVATION" type="OUL_R21.OBSERVATION.CONTENT"/>
+    <xsd:complexType name="OUL_R22.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MSH"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="SFT"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="NTE"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="OUL_R22.PATIENT"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="OUL_R22.VISIT"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="1" ref="OUL_R22.SPECIMEN"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="DSC"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element ibmSchExtn:docRoot="true" name="OUL_R22" type="OUL_R22.CONTENT"/>
+    <xsd:complexType name="OUL_R22.PATIENT.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="PID"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="PD1"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="NTE"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="OUL_R22.PATIENT" type="OUL_R22.PATIENT.CONTENT"/>
+    <xsd:complexType name="OUL_R22.VISIT.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="PV1"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="PV2"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="OUL_R22.VISIT" type="OUL_R22.VISIT.CONTENT"/>
+    <xsd:complexType name="OUL_R22.SPECIMEN.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="SPM"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="OBX"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="OUL_R22.CONTAINER"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="1" ref="OUL_R22.ORDER"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="OUL_R22.SPECIMEN" type="OUL_R22.SPECIMEN.CONTENT"/>
+    <xsd:complexType name="OUL_R22.CONTAINER.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="SAC"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="INV"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="OUL_R22.CONTAINER" type="OUL_R22.CONTAINER.CONTENT"/>
+    <xsd:complexType name="OUL_R22.ORDER.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="OBR"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="ORC"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="NTE"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="OUL_R22.TIMING_QTY"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="OUL_R22.RESULT"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="CTI"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="OUL_R22.ORDER" type="OUL_R22.ORDER.CONTENT"/>
+    <xsd:complexType name="OUL_R22.TIMING_QTY.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="TQ1"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="TQ2"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="OUL_R22.TIMING_QTY" type="OUL_R22.TIMING_QTY.CONTENT"/>
+    <xsd:complexType name="OUL_R22.RESULT.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="OBX"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="TCD"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="SID"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="NTE"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="OUL_R22.RESULT" type="OUL_R22.RESULT.CONTENT"/>
+    <xsd:complexType name="OUL_R23.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MSH"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="SFT"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="NTE"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="OUL_R23.PATIENT"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="OUL_R23.VISIT"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="1" ref="OUL_R23.SPECIMEN"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="DSC"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element ibmSchExtn:docRoot="true" name="OUL_R23" type="OUL_R23.CONTENT"/>
+    <xsd:complexType name="OUL_R23.PATIENT.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="PID"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="PD1"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="NTE"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="OUL_R23.PATIENT" type="OUL_R23.PATIENT.CONTENT"/>
+    <xsd:complexType name="OUL_R23.VISIT.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="PV1"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="PV2"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="OUL_R23.VISIT" type="OUL_R23.VISIT.CONTENT"/>
+    <xsd:complexType name="OUL_R23.SPECIMEN.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="SPM"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="OBX"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="1" ref="OUL_R23.CONTAINER"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="OUL_R23.SPECIMEN" type="OUL_R23.SPECIMEN.CONTENT"/>
+    <xsd:complexType name="OUL_R23.CONTAINER.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="SAC"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="INV"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="1" ref="OUL_R23.ORDER"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="OUL_R23.CONTAINER" type="OUL_R23.CONTAINER.CONTENT"/>
+    <xsd:complexType name="OUL_R23.ORDER.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="OBR"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="ORC"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="NTE"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="OUL_R23.TIMING_QTY"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="OUL_R23.RESULT"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="CTI"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="OUL_R23.ORDER" type="OUL_R23.ORDER.CONTENT"/>
+    <xsd:complexType name="OUL_R23.TIMING_QTY.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="TQ1"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="TQ2"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="OUL_R23.TIMING_QTY" type="OUL_R23.TIMING_QTY.CONTENT"/>
+    <xsd:complexType name="OUL_R23.RESULT.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="OBX"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="TCD"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="SID"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="NTE"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="OUL_R23.RESULT" type="OUL_R23.RESULT.CONTENT"/>
+    <xsd:complexType name="OUL_R24.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MSH"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="SFT"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="NTE"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="OUL_R24.PATIENT"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="OUL_R24.VISIT"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="1" ref="OUL_R24.ORDER"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="DSC"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element ibmSchExtn:docRoot="true" name="OUL_R24" type="OUL_R24.CONTENT"/>
+    <xsd:complexType name="OUL_R24.PATIENT.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="PID"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="PD1"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="NTE"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="OUL_R24.PATIENT" type="OUL_R24.PATIENT.CONTENT"/>
+    <xsd:complexType name="OUL_R24.VISIT.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="PV1"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="PV2"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="OUL_R24.VISIT" type="OUL_R24.VISIT.CONTENT"/>
+    <xsd:complexType name="OUL_R24.ORDER.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="OBR"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="ORC"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="NTE"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="OUL_R24.TIMING_QTY"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="OUL_R24.SPECIMEN"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="OUL_R24.RESULT"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="CTI"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="OUL_R24.ORDER" type="OUL_R24.ORDER.CONTENT"/>
+    <xsd:complexType name="OUL_R24.TIMING_QTY.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="TQ1"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="TQ2"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="OUL_R24.TIMING_QTY" type="OUL_R24.TIMING_QTY.CONTENT"/>
+    <xsd:complexType name="OUL_R24.SPECIMEN.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="SPM"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="OBX"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="OUL_R24.CONTAINER"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="OUL_R24.SPECIMEN" type="OUL_R24.SPECIMEN.CONTENT"/>
+    <xsd:complexType name="OUL_R24.CONTAINER.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="SAC"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="INV"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="OUL_R24.CONTAINER" type="OUL_R24.CONTAINER.CONTENT"/>
+    <xsd:complexType name="OUL_R24.RESULT.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="OBX"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="TCD"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="SID"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="NTE"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="OUL_R24.RESULT" type="OUL_R24.RESULT.CONTENT"/>
+    <xsd:complexType name="PEX_P07.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MSH"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="SFT"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="EVN"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="PID"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="PD1"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="NTE"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="PEX_P07.VISIT"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="1" ref="PEX_P07.EXPERIENCE"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element ibmSchExtn:docRoot="true" name="PEX_P07" type="PEX_P07.CONTENT"/>
+    <xsd:complexType name="PEX_P07.VISIT.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="PV1"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="PV2"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="PEX_P07.VISIT" type="PEX_P07.VISIT.CONTENT"/>
+    <xsd:complexType name="PEX_P07.EXPERIENCE.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="PES"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="1" ref="PEX_P07.PEX_OBSERVATION"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="PEX_P07.EXPERIENCE" type="PEX_P07.EXPERIENCE.CONTENT"/>
+    <xsd:complexType name="PEX_P07.PEX_OBSERVATION.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="PEO"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="1" ref="PEX_P07.PEX_CAUSE"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="PEX_P07.PEX_OBSERVATION" type="PEX_P07.PEX_OBSERVATION.CONTENT"/>
+    <xsd:complexType name="PEX_P07.PEX_CAUSE.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="PCR"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="PEX_P07.RX_ORDER"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="PEX_P07.RX_ADMINISTRATION"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="PRB"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="OBX"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="NTE"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="PEX_P07.ASSOCIATED_PERSON"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="PEX_P07.STUDY"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="PEX_P07.PEX_CAUSE" type="PEX_P07.PEX_CAUSE.CONTENT"/>
+    <xsd:complexType name="PEX_P07.RX_ORDER.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="RXE"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="1" ref="PEX_P07.TIMING_QTY"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="RXR"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="PEX_P07.RX_ORDER" type="PEX_P07.RX_ORDER.CONTENT"/>
+    <xsd:complexType name="PEX_P07.TIMING_QTY.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="TQ1"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="TQ2"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="PEX_P07.TIMING_QTY" type="PEX_P07.TIMING_QTY.CONTENT"/>
+    <xsd:complexType name="PEX_P07.RX_ADMINISTRATION.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="RXA"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="RXR"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="PEX_P07.RX_ADMINISTRATION" type="PEX_P07.RX_ADMINISTRATION.CONTENT"/>
+    <xsd:complexType name="PEX_P07.ASSOCIATED_PERSON.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="NK1"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="PEX_P07.ASSOCIATED_RX_ORDER"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="PEX_P07.ASSOCIATED_RX_ADMIN"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="PRB"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="OBX"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="PEX_P07.ASSOCIATED_PERSON" type="PEX_P07.ASSOCIATED_PERSON.CONTENT"/>
+    <xsd:complexType name="PEX_P07.ASSOCIATED_RX_ORDER.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="RXE"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="1" ref="PEX_P07.NK1_TIMING_QTY"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="RXR"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="PEX_P07.ASSOCIATED_RX_ORDER" type="PEX_P07.ASSOCIATED_RX_ORDER.CONTENT"/>
+    <xsd:complexType name="PEX_P07.NK1_TIMING_QTY.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="TQ1"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="TQ2"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="PEX_P07.NK1_TIMING_QTY" type="PEX_P07.NK1_TIMING_QTY.CONTENT"/>
+    <xsd:complexType name="PEX_P07.ASSOCIATED_RX_ADMIN.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="RXA"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="RXR"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="PEX_P07.ASSOCIATED_RX_ADMIN" type="PEX_P07.ASSOCIATED_RX_ADMIN.CONTENT"/>
+    <xsd:complexType name="PEX_P07.STUDY.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="CSR"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="CSP"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="PEX_P07.STUDY" type="PEX_P07.STUDY.CONTENT"/>
+    <xsd:complexType name="QRY_R02.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MSH"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="SFT"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="QRD"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="QRF"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element ibmSchExtn:docRoot="true" name="QRY_R02" type="QRY_R02.CONTENT"/>
+    <xsd:complexType name="SUR_P09.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MSH"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="1" ref="SUR_P09.FACILITY"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element ibmSchExtn:docRoot="true" name="SUR_P09" type="SUR_P09.CONTENT"/>
+    <xsd:complexType name="SUR_P09.FACILITY.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="FAC"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="1" ref="SUR_P09.PRODUCT"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="PSH"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="1" ref="SUR_P09.FACILITY_DETAIL"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="ED"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="SUR_P09.FACILITY" type="SUR_P09.FACILITY.CONTENT"/>
+    <xsd:complexType name="SUR_P09.PRODUCT.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="PSH"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="PDC"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="SUR_P09.PRODUCT" type="SUR_P09.PRODUCT.CONTENT"/>
+    <xsd:complexType name="SUR_P09.FACILITY_DETAIL.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="FAC"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="PDC"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="NTE"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="SUR_P09.FACILITY_DETAIL" type="SUR_P09.FACILITY_DETAIL.CONTENT"/>
+</xsd:schema>

@@ -1,0 +1,573 @@
+<?xml version="1.0" encoding="UTF-8"?><!--
+ * The schemas contained in this document are reproduced with the express permission of 
+ * Health Level Seven (R) International. ALL RIGHTS RESERVED. 
+ *  
+ * The schemas contain material derived from HL7 standards. 
+ * HL7 standards can be obtained from the HL7 website: www.HL7.org 
+ * 
+ * Health Level Seven International and IBM hereby grant permission, to those obtaining 
+ * a copy of these materials, to use, copy and modify the materials solely for use with DFDL processors. 
+ * THESE MATERIALS ARE PROVIDED AS IS WITH NO WARRANTIES OF ANY KIND. 
+ * 
+ * Copyright (C) 1999-2011, Health Level Seven. 
+ * 
+ * (C) Copyright International Business Machines Corporation, 2014. 
+--><xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="urn:hl7-org:v2xml" xmlns="urn:hl7-org:v2xml" xmlns:dfdl="http://www.ogf.org/dfdl/dfdl-1.0/" xmlns:fn="http://www.w3.org/2005/xpath-functions" xmlns:hl7="urn:hl7-org:v2xml" xmlns:ibmDfdlExtn="http://www.ibm.com/dfdl/extensions" xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions" xmlns:ibmhl7="http://www.ibm.com/dfdl/HL7Format">
+    <xsd:include schemaLocation="segments.xsd"/>
+    <xsd:import namespace="http://www.ibm.com/dfdl/HL7Format" schemaLocation="IBMdefined/HL7Format.xsd"/>
+    <xsd:annotation>
+				<xsd:appinfo source="http://www.ogf.org/dfdl/">
+					<dfdl:format ref="ibmhl7:HL7Format"/>
+				</xsd:appinfo>
+			</xsd:annotation>
+    <xsd:complexType name="RCI_I05.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MSH"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="SFT"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MSA"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="QRD"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="QRF"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="1" ref="RCI_I05.PROVIDER"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="PID"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="DG1"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="DRG"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="AL1"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="RCI_I05.OBSERVATION"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="NTE"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element ibmSchExtn:docRoot="true" name="RCI_I05" type="RCI_I05.CONTENT"/>
+    <xsd:complexType name="RCI_I05.PROVIDER.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="PRD"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="CTD"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="RCI_I05.PROVIDER" type="RCI_I05.PROVIDER.CONTENT"/>
+    <xsd:complexType name="RCI_I05.OBSERVATION.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="OBR"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="NTE"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="RCI_I05.RESULTS"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="RCI_I05.OBSERVATION" type="RCI_I05.OBSERVATION.CONTENT"/>
+    <xsd:complexType name="RCI_I05.RESULTS.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="OBX"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="NTE"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="RCI_I05.RESULTS" type="RCI_I05.RESULTS.CONTENT"/>
+<xsd:complexType name="RCL_I06.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MSH"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="SFT"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MSA"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="QRD"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="QRF"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="1" ref="RCL_I06.PROVIDER"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="PID"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="DG1"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="DRG"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="AL1"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="NTE"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="DSP"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="DSC"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element ibmSchExtn:docRoot="true" name="RCL_I06" type="RCL_I06.CONTENT"/>
+    <xsd:complexType name="RCL_I06.PROVIDER.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="PRD"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="CTD"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="RCL_I06.PROVIDER" type="RCL_I06.PROVIDER.CONTENT"/>
+    <xsd:complexType name="REF_I12.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MSH"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="SFT"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="RF1"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="REF_I12.AUTHORIZATION_CONTACT"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="1" ref="REF_I12.PROVIDER_CONTACT"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="PID"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="NK1"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="GT1"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="REF_I12.INSURANCE"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="ACC"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="DG1"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="DRG"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="AL1"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="REF_I12.PROCEDURE"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="REF_I12.OBSERVATION"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="REF_I12.PATIENTVISIT"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="NTE"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element ibmSchExtn:docRoot="true" name="REF_I12" type="REF_I12.CONTENT"/>
+    
+    
+    <xsd:complexType name="REF_I12.PROVIDER_CONTACT.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="PRD"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="CTD"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="REF_I12.PROVIDER_CONTACT" type="REF_I12.PROVIDER_CONTACT.CONTENT"/>
+    <xsd:complexType name="REF_I12.INSURANCE.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="IN1"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="IN2"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="IN3"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="REF_I12.INSURANCE" type="REF_I12.INSURANCE.CONTENT"/>
+    <xsd:complexType name="REF_I12.PROCEDURE.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="PR1"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="REF_I12.AUTHORIZATION_CONTACT"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="REF_I12.PROCEDURE" type="REF_I12.PROCEDURE.CONTENT"/>
+    
+    
+    <xsd:complexType name="REF_I12.OBSERVATION.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="OBR"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="NTE"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="REF_I12.RESULTS_NOTES"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="REF_I12.OBSERVATION" type="REF_I12.OBSERVATION.CONTENT"/>
+    <xsd:complexType name="REF_I12.RESULTS_NOTES.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="OBX"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="NTE"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="REF_I12.RESULTS_NOTES" type="REF_I12.RESULTS_NOTES.CONTENT"/>
+    <xsd:complexType name="REF_I12.PATIENTVISIT.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="PV1"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="PV2"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="REF_I12.PATIENTVISIT" type="REF_I12.PATIENTVISIT.CONTENT"/>
+    <xsd:complexType name="RPA_I08.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MSH"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="SFT"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MSA"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="RF1"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="RPA_I08.AUTHORIZATION"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="1" ref="RPA_I08.PROVIDER"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="PID"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="NK1"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="GT1"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="RPA_I08.INSURANCE"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="ACC"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="DG1"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="DRG"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="AL1"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="1" ref="RPA_I08.PROCEDURE"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="RPA_I08.OBSERVATION"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="RPA_I08.VISIT"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="NTE"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element ibmSchExtn:docRoot="true" name="RPA_I08" type="RPA_I08.CONTENT"/>
+    
+    
+    <xsd:complexType name="RPA_I08.PROVIDER.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="PRD"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="CTD"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="RPA_I08.PROVIDER" type="RPA_I08.PROVIDER.CONTENT"/>
+    <xsd:complexType name="RPA_I08.INSURANCE.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="IN1"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="IN2"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="IN3"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="RPA_I08.INSURANCE" type="RPA_I08.INSURANCE.CONTENT"/>
+    <xsd:complexType name="RPA_I08.PROCEDURE.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="PR1"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="RPA_I08.AUTHORIZATION"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="RPA_I08.PROCEDURE" type="RPA_I08.PROCEDURE.CONTENT"/>
+    
+    
+    <xsd:complexType name="RPA_I08.OBSERVATION.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="OBR"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="NTE"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="RPA_I08.RESULTS"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="RPA_I08.OBSERVATION" type="RPA_I08.OBSERVATION.CONTENT"/>
+    <xsd:complexType name="RPA_I08.RESULTS.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="OBX"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="NTE"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="RPA_I08.RESULTS" type="RPA_I08.RESULTS.CONTENT"/>
+    <xsd:complexType name="RPA_I08.VISIT.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="PV1"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="PV2"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="RPA_I08.VISIT" type="RPA_I08.VISIT.CONTENT"/>
+    <xsd:complexType name="RPI_I01.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MSH"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="SFT"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MSA"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="1" ref="RPI_I01.PROVIDER"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="PID"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="NK1"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="RPI_I01.GUARANTOR_INSURANCE"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="NTE"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element ibmSchExtn:docRoot="true" name="RPI_I01" type="RPI_I01.CONTENT"/>
+    <xsd:complexType name="RPI_I01.PROVIDER.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="PRD"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="CTD"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="RPI_I01.PROVIDER" type="RPI_I01.PROVIDER.CONTENT"/>
+    <xsd:complexType name="RPI_I01.GUARANTOR_INSURANCE.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="GT1"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="1" ref="RPI_I01.INSURANCE"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="RPI_I01.GUARANTOR_INSURANCE" type="RPI_I01.GUARANTOR_INSURANCE.CONTENT"/>
+    <xsd:complexType name="RPI_I01.INSURANCE.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="IN1"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="IN2"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="IN3"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="RPI_I01.INSURANCE" type="RPI_I01.INSURANCE.CONTENT"/>
+    <xsd:complexType name="RPI_I04.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MSH"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="SFT"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MSA"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="1" ref="RPI_I04.PROVIDER"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="PID"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="NK1"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="RPI_I04.GUARANTOR_INSURANCE"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="NTE"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element ibmSchExtn:docRoot="true" name="RPI_I04" type="RPI_I04.CONTENT"/>
+    <xsd:complexType name="RPI_I04.PROVIDER.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="PRD"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="CTD"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="RPI_I04.PROVIDER" type="RPI_I04.PROVIDER.CONTENT"/>
+    <xsd:complexType name="RPI_I04.GUARANTOR_INSURANCE.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="GT1"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="1" ref="RPI_I04.INSURANCE"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="RPI_I04.GUARANTOR_INSURANCE" type="RPI_I04.GUARANTOR_INSURANCE.CONTENT"/>
+    <xsd:complexType name="RPI_I04.INSURANCE.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="IN1"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="IN2"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="IN3"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="RPI_I04.INSURANCE" type="RPI_I04.INSURANCE.CONTENT"/>
+    <xsd:complexType name="RPL_I02.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MSH"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="SFT"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MSA"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="1" ref="RPL_I02.PROVIDER"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="NTE"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="DSP"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="DSC"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element ibmSchExtn:docRoot="true" name="RPL_I02" type="RPL_I02.CONTENT"/>
+    <xsd:complexType name="RPL_I02.PROVIDER.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="PRD"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="CTD"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="RPL_I02.PROVIDER" type="RPL_I02.PROVIDER.CONTENT"/>
+    <xsd:complexType name="RPR_I03.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MSH"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="SFT"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MSA"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="1" ref="RPR_I03.PROVIDER"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="PID"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="NTE"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element ibmSchExtn:docRoot="true" name="RPR_I03" type="RPR_I03.CONTENT"/>
+    <xsd:complexType name="RPR_I03.PROVIDER.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="PRD"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="CTD"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="RPR_I03.PROVIDER" type="RPR_I03.PROVIDER.CONTENT"/>
+    <xsd:complexType name="RQA_I08.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MSH"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="SFT"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="RF1"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="RQA_I08.AUTHORIZATION"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="1" ref="RQA_I08.PROVIDER"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="PID"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="NK1"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="RQA_I08.GUARANTOR_INSURANCE"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="ACC"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="DG1"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="DRG"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="AL1"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="RQA_I08.PROCEDURE"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="RQA_I08.OBSERVATION"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="RQA_I08.VISIT"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="NTE"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element ibmSchExtn:docRoot="true" name="RQA_I08" type="RQA_I08.CONTENT"/>
+    
+    
+    <xsd:complexType name="RQA_I08.PROVIDER.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="PRD"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="CTD"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="RQA_I08.PROVIDER" type="RQA_I08.PROVIDER.CONTENT"/>
+    <xsd:complexType name="RQA_I08.GUARANTOR_INSURANCE.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="GT1"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="1" ref="RQA_I08.INSURANCE"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="RQA_I08.GUARANTOR_INSURANCE" type="RQA_I08.GUARANTOR_INSURANCE.CONTENT"/>
+    <xsd:complexType name="RQA_I08.INSURANCE.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="IN1"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="IN2"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="IN3"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="RQA_I08.INSURANCE" type="RQA_I08.INSURANCE.CONTENT"/>
+    <xsd:complexType name="RQA_I08.PROCEDURE.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="PR1"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="RQA_I08.AUTHORIZATION"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="RQA_I08.PROCEDURE" type="RQA_I08.PROCEDURE.CONTENT"/>
+    
+    
+    <xsd:complexType name="RQA_I08.OBSERVATION.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="OBR"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="NTE"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="RQA_I08.RESULTS"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="RQA_I08.OBSERVATION" type="RQA_I08.OBSERVATION.CONTENT"/>
+    <xsd:complexType name="RQA_I08.RESULTS.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="OBX"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="NTE"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="RQA_I08.RESULTS" type="RQA_I08.RESULTS.CONTENT"/>
+    <xsd:complexType name="RQA_I08.VISIT.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="PV1"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="PV2"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="RQA_I08.VISIT" type="RQA_I08.VISIT.CONTENT"/>
+    <xsd:complexType name="RQC_I05.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MSH"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="SFT"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="QRD"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="QRF"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="1" ref="RQC_I05.PROVIDER"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="PID"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="NK1"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="GT1"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="NTE"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element ibmSchExtn:docRoot="true" name="RQC_I05" type="RQC_I05.CONTENT"/>
+    <xsd:complexType name="RQC_I05.PROVIDER.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="PRD"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="CTD"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="RQC_I05.PROVIDER" type="RQC_I05.PROVIDER.CONTENT"/>
+    <xsd:complexType name="RQI_I01.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MSH"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="SFT"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="1" ref="RQI_I01.PROVIDER"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="PID"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="NK1"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="RQI_I01.GUARANTOR_INSURANCE"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="NTE"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element ibmSchExtn:docRoot="true" name="RQI_I01" type="RQI_I01.CONTENT"/>
+    <xsd:complexType name="RQI_I01.PROVIDER.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="PRD"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="CTD"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="RQI_I01.PROVIDER" type="RQI_I01.PROVIDER.CONTENT"/>
+    <xsd:complexType name="RQI_I01.GUARANTOR_INSURANCE.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="GT1"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="1" ref="RQI_I01.INSURANCE"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="RQI_I01.GUARANTOR_INSURANCE" type="RQI_I01.GUARANTOR_INSURANCE.CONTENT"/>
+    <xsd:complexType name="RQI_I01.INSURANCE.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="IN1"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="IN2"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="IN3"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="RQI_I01.INSURANCE" type="RQI_I01.INSURANCE.CONTENT"/>
+    <xsd:complexType name="RQP_I04.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MSH"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="SFT"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="1" ref="RQP_I04.PROVIDER"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="PID"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="NK1"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="GT1"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="NTE"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element ibmSchExtn:docRoot="true" name="RQP_I04" type="RQP_I04.CONTENT"/>
+    <xsd:complexType name="RQP_I04.PROVIDER.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="PRD"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="CTD"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="RQP_I04.PROVIDER" type="RQP_I04.PROVIDER.CONTENT"/>
+    <xsd:complexType name="RRI_I12.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MSH"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="SFT"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="MSA"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="RF1"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="RRI_I12.AUTHORIZATION_CONTACT"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="1" ref="RRI_I12.PROVIDER_CONTACT"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="PID"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="ACC"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="DG1"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="DRG"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="AL1"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="RRI_I12.PROCEDURE"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="RRI_I12.OBSERVATION"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="RRI_I12.PATIENTVISIT"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="NTE"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element ibmSchExtn:docRoot="true" name="RRI_I12" type="RRI_I12.CONTENT"/>
+    
+    
+    <xsd:complexType name="RRI_I12.PROVIDER_CONTACT.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="PRD"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="CTD"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="RRI_I12.PROVIDER_CONTACT" type="RRI_I12.PROVIDER_CONTACT.CONTENT"/>
+    <xsd:complexType name="RRI_I12.PROCEDURE.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="PR1"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="RRI_I12.AUTHORIZATION_CONTACT"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="RRI_I12.PROCEDURE" type="RRI_I12.PROCEDURE.CONTENT"/>
+    
+    
+    <xsd:complexType name="RRI_I12.OBSERVATION.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="OBR"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="NTE"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="RRI_I12.RESULTS_NOTES"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="RRI_I12.OBSERVATION" type="RRI_I12.OBSERVATION.CONTENT"/>
+    <xsd:complexType name="RRI_I12.RESULTS_NOTES.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="OBX"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="NTE"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="RRI_I12.RESULTS_NOTES" type="RRI_I12.RESULTS_NOTES.CONTENT"/>
+    <xsd:complexType name="RRI_I12.PATIENTVISIT.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="PV1"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="PV2"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="RRI_I12.PATIENTVISIT" type="RRI_I12.PATIENTVISIT.CONTENT"/>
+<xsd:complexType name="REF_I12.AUTHORIZATION_CONTACT.CONTENT">
+		        <xsd:sequence>
+		            <xsd:element maxOccurs="1" minOccurs="1" ref="AUT"/>
+		            <xsd:element maxOccurs="1" minOccurs="0" ref="CTD"/>
+		        </xsd:sequence>
+		    </xsd:complexType>
+    <xsd:element name="REF_I12.AUTHORIZATION_CONTACT" type="REF_I12.AUTHORIZATION_CONTACT.CONTENT"/>
+    <xsd:complexType name="RPA_I08.AUTHORIZATION.CONTENT">
+		        <xsd:sequence>
+		            <xsd:element maxOccurs="1" minOccurs="1" ref="AUT"/>
+		            <xsd:element maxOccurs="1" minOccurs="0" ref="CTD"/>
+		        </xsd:sequence>
+		    </xsd:complexType>
+    <xsd:element name="RPA_I08.AUTHORIZATION" type="RPA_I08.AUTHORIZATION.CONTENT"/>
+    <xsd:complexType name="RQA_I08.AUTHORIZATION.CONTENT">
+		        <xsd:sequence>
+		            <xsd:element maxOccurs="1" minOccurs="1" ref="AUT"/>
+		            <xsd:element maxOccurs="1" minOccurs="0" ref="CTD"/>
+		        </xsd:sequence>
+		    </xsd:complexType>
+    <xsd:element name="RQA_I08.AUTHORIZATION" type="RQA_I08.AUTHORIZATION.CONTENT"/>
+    <xsd:complexType name="RRI_I12.AUTHORIZATION_CONTACT.CONTENT">
+		        <xsd:sequence>
+		            <xsd:element maxOccurs="1" minOccurs="1" ref="AUT"/>
+		            <xsd:element maxOccurs="1" minOccurs="0" ref="CTD"/>
+		        </xsd:sequence>
+		    </xsd:complexType>
+    <xsd:element name="RRI_I12.AUTHORIZATION_CONTACT" type="RRI_I12.AUTHORIZATION_CONTACT.CONTENT"/>
+</xsd:schema>

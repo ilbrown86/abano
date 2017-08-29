@@ -1,0 +1,814 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "HL7 Integration Services",
+    "version" : "3.0.0",
+    "title" : "HL7 IBM Integration services",
+    "contact" : { }
+  },
+  "host" : "localhost:7800",
+  "basePath" : "/HL7Rest",
+  "schemes" : [ "http" ],
+  "security" : [ {
+    "Technical User" : [ ]
+  } ],
+  "paths" : {
+    "/issues/list" : {
+      "post" : {
+        "operationId" : "issueList",
+        "summary" : "List barriers within a division (comparto)",
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/IssueList"
+              }
+            }
+          },
+          "400" : {
+            "description" : "Status 400",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          }
+        },
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "schema" : {
+            "type" : "array",
+            "items" : {
+              "type" : "object",
+              "required" : [ "patientId", "nosologicId" ],
+              "properties" : {
+                "patientId" : {
+                  "type" : "string"
+                },
+                "nosologicId" : {
+                  "type" : "string"
+                }
+              }
+            }
+          },
+          "description" : "compartments",
+          "required" : true
+        } ]
+      }
+    },
+    "/patients/list" : {
+      "post" : {
+        "operationId" : "patientList",
+        "responses" : {
+          "200" : {
+            "description" : "The operation was successful.",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/bed"
+              }
+            }
+          },
+          "400" : {
+            "description" : "Status 400",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          }
+        },
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "description" : "get compartments patient list",
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "schema" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            }
+          },
+          "description" : "compartments",
+          "required" : true
+        } ]
+      }
+    },
+    "/patients/details" : {
+      "get" : {
+        "operationId" : "getPatientDetails",
+        "responses" : {
+          "201" : {
+            "description" : "The operation was successful.",
+            "schema" : {
+              "$ref" : "#/definitions/Patient"
+            }
+          },
+          "400" : {
+            "description" : "error",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          }
+        },
+        "produces" : [ "application/json" ],
+        "description" : "Retrieve details",
+        "parameters" : [ {
+          "name" : "patientId",
+          "in" : "query",
+          "type" : "string",
+          "required" : true
+        }, {
+          "name" : "nosologicId",
+          "in" : "query",
+          "type" : "string",
+          "required" : false
+        } ]
+      }
+    },
+    "/patients/measurement/history" : {
+      "get" : {
+        "operationId" : "getPatientMeasurementHistory",
+        "responses" : {
+          "200" : {
+            "description" : "The operation was successful.",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/Measurement"
+              }
+            }
+          },
+          "400" : {
+            "description" : "Error",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          }
+        },
+        "produces" : [ "application/json" ],
+        "description" : "Retrieve patient measurement history",
+        "parameters" : [ {
+          "name" : "patientId",
+          "in" : "query",
+          "type" : "string",
+          "required" : true
+        }, {
+          "name" : "nosologicId",
+          "in" : "query",
+          "type" : "string",
+          "required" : true
+        } ]
+      }
+    },
+    "/patients/measurement/last" : {
+      "get" : {
+        "operationId" : "getPatientMeasurementLast",
+        "responses" : {
+          "200" : {
+            "description" : "The operation was successful.",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/Measurement"
+              }
+            }
+          },
+          "400" : {
+            "description" : "Error",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          }
+        },
+        "produces" : [ "application/json" ],
+        "description" : "Retrieve patient last measurement",
+        "parameters" : [ {
+          "name" : "patientId",
+          "in" : "query",
+          "type" : "string",
+          "required" : true
+        }, {
+          "name" : "nosologicId",
+          "in" : "query",
+          "type" : "string",
+          "required" : true
+        } ]
+      }
+    },
+    "/patients/measurement/historyMultiline" : {
+      "get" : {
+        "operationId" : "getPatientMeasurementHistoryMultiline",
+        "responses" : {
+          "200" : {
+            "description" : "The operation was successful.",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/MeasurementMultiline"
+              }
+            }
+          },
+          "400" : {
+            "description" : "Error",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          }
+        },
+        "produces" : [ "application/json" ],
+        "description" : "Retrieve patient measurement history of Drainage",
+        "parameters" : [ {
+          "name" : "patientId",
+          "in" : "query",
+          "type" : "string",
+          "required" : true
+        }, {
+          "name" : "nosologicId",
+          "in" : "query",
+          "type" : "string",
+          "required" : true
+        } ]
+      }
+    },
+    "/patients/measurement/lastMultiline" : {
+      "get" : {
+        "operationId" : "getPatientMeasurementLastMultiline",
+        "responses" : {
+          "200" : {
+            "description" : "The operation was successful.",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/MeasurementMultiline"
+              }
+            }
+          },
+          "400" : {
+            "description" : "Error",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          }
+        },
+        "produces" : [ "application/json" ],
+        "description" : "Retrieve patient measurement history of Drainage",
+        "parameters" : [ {
+          "name" : "patientId",
+          "in" : "query",
+          "type" : "string",
+          "required" : true
+        }, {
+          "name" : "nosologicId",
+          "in" : "query",
+          "type" : "string",
+          "required" : true
+        } ]
+      }
+    },
+    "/patients/notes/add" : {
+      "put" : {
+        "operationId" : "putPatientNote",
+        "responses" : {
+          "200" : {
+            "description" : "The operation was successful.",
+            "schema" : {
+              "type" : "string"
+            }
+          },
+          "400" : {
+            "description" : "Error",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          }
+        },
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "description" : "Add a note for a patient",
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "schema" : {
+            "$ref" : "#/definitions/Note"
+          },
+          "description" : "The request body for the operation",
+          "required" : true
+        }, {
+          "name" : "patientId",
+          "in" : "query",
+          "type" : "string",
+          "required" : true
+        }, {
+          "name" : "nosologicId",
+          "in" : "query",
+          "type" : "string",
+          "required" : true
+        } ]
+      }
+    },
+    "/patients/notes" : {
+      "get" : {
+        "operationId" : "getPatientNotes",
+        "responses" : {
+          "200" : {
+            "description" : "The operation was successful.",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/NoteList"
+              }
+            }
+          },
+          "400" : {
+            "description" : "Error",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          }
+        },
+        "produces" : [ "application/json" ],
+        "description" : "Retrieve patient notes",
+        "parameters" : [ {
+          "name" : "patientId",
+          "in" : "query",
+          "type" : "string",
+          "required" : true
+        }, {
+          "name" : "nosologicId",
+          "in" : "query",
+          "type" : "string",
+          "required" : true
+        }, {
+          "name" : "maxResult",
+          "in" : "query",
+          "type" : "string",
+          "required" : false
+        }, {
+          "name" : "attachment",
+          "in" : "query",
+          "type" : "boolean",
+          "required" : false
+        } ]
+      }
+    },
+    "/patients/issue/add" : {
+      "put" : {
+        "operationId" : "putPatientIssue",
+        "responses" : {
+          "200" : {
+            "description" : "The operation was successful.",
+            "schema" : {
+              "type" : "string"
+            }
+          },
+          "400" : {
+            "description" : "error",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          }
+        },
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "description" : "add an Issue for patient",
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "schema" : {
+            "$ref" : "#/definitions/Issue"
+          },
+          "description" : "issue",
+          "required" : true
+        }, {
+          "name" : "patientId",
+          "in" : "query",
+          "type" : "string",
+          "required" : true
+        }, {
+          "name" : "nosologicId",
+          "in" : "query",
+          "type" : "string",
+          "required" : true
+        } ]
+      }
+    },
+    "/patients/list/keys" : {
+      "post" : {
+        "operationId" : "patientListFromKeys",
+        "responses" : {
+          "200" : {
+            "description" : "The operation was successful.",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/Patient"
+              }
+            }
+          }
+        },
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "description" : "get patients details from an array of patient keys",
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "schema" : {
+            "type" : "array",
+            "items" : {
+              "type" : "object",
+              "required" : [ "patientId", "nosologicId" ],
+              "properties" : {
+                "patientId" : {
+                  "type" : "string"
+                },
+                "nosologicId" : {
+                  "type" : "string"
+                }
+              }
+            }
+          },
+          "description" : "patients",
+          "required" : true
+        } ]
+      }
+    }
+  },
+  "securityDefinitions" : {
+    "Technical User" : {
+      "type" : "basic"
+    }
+  },
+  "definitions" : {
+    "Note" : {
+      "type" : "object",
+      "required" : [ "title", "description", "userId", "date" ],
+      "properties" : {
+        "id" : {
+          "type" : "string"
+        },
+        "title" : {
+          "type" : "string"
+        },
+        "description" : {
+          "type" : "string",
+          "description" : "Text of the note"
+        },
+        "userId" : {
+          "type" : "string",
+          "description" : "User"
+        },
+        "date" : {
+          "type" : "string",
+          "format" : "date"
+        },
+        "important" : {
+          "type" : "boolean",
+          "default" : false
+        },
+        "attachments" : {
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "base64" : {
+                "type" : "string"
+              },
+              "type" : {
+                "type" : "string",
+                "description" : "\"Photo\"|\"Audio\""
+              }
+            },
+            "required" : [ "base64", "type" ]
+          }
+        }
+      }
+    },
+    "NoteList" : {
+      "type" : "object",
+      "required" : [ "id", "title", "description", "userId", "date" ],
+      "properties" : {
+        "id" : {
+          "type" : "string",
+          "description" : "This id needs to be generated by MFP:\n#userdId+timestamp+random"
+        },
+        "title" : {
+          "type" : "string"
+        },
+        "description" : {
+          "type" : "string",
+          "description" : "Text of the note"
+        },
+        "userId" : {
+          "type" : "string",
+          "description" : "User"
+        },
+        "date" : {
+          "type" : "string",
+          "format" : "date"
+        },
+        "important" : {
+          "type" : "boolean",
+          "default" : false
+        },
+        "attachments" : {
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "id" : {
+                "type" : "string"
+              },
+              "base64" : {
+                "type" : "string"
+              },
+              "type" : {
+                "type" : "string",
+                "description" : "\"Photo\"|\"Audio\""
+              }
+            },
+            "required" : [ "base64", "type" ]
+          }
+        }
+      }
+    },
+    "Measurement" : {
+      "type" : "object",
+      "required" : [ "measureId", "measureName" ],
+      "properties" : {
+        "measureId" : {
+          "type" : "string",
+          "description" : "Id of the field (sent by BPM)"
+        },
+        "measureName" : {
+          "type" : "string"
+        },
+        "values" : {
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "required" : [ "taskId", "userId", "date", "value" ],
+            "properties" : {
+              "taskId" : {
+                "type" : "string"
+              },
+              "userId" : {
+                "type" : "string",
+                "description" : "User that performed measurement"
+              },
+              "date" : {
+                "type" : "string",
+                "format" : "date",
+                "description" : "Date and time of measurement"
+              },
+              "value" : {
+                "type" : "string"
+              },
+              "units" : {
+                "type" : "string",
+                "description" : "mm hg"
+              },
+              "type" : {
+                "type" : "string",
+                "description" : "Integer or String"
+              }
+            }
+          }
+        }
+      }
+    },
+    "MeasurementMultiline" : {
+      "type" : "object",
+      "required" : [ "measureId", "measureName" ],
+      "properties" : {
+        "measureId" : {
+          "type" : "string",
+          "description" : "Id of the field (sent by BPM)"
+        },
+        "measureName" : {
+          "type" : "string"
+        },
+        "measurements" : {
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "detectionPointID" : {
+                "type" : "string"
+              },
+              "detectionPointDescription" : {
+                "type" : "string"
+              },
+              "values" : {
+                "type" : "array",
+                "items" : {
+                  "type" : "object",
+                  "required" : [ "taskId", "userId", "date", "value" ],
+                  "properties" : {
+                    "taskId" : {
+                      "type" : "string"
+                    },
+                    "userId" : {
+                      "type" : "string",
+                      "description" : "User that performed measurement"
+                    },
+                    "date" : {
+                      "type" : "string",
+                      "format" : "date",
+                      "description" : "Date and time of measurement"
+                    },
+                    "value" : {
+                      "type" : "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "Error" : {
+      "type" : "object",
+      "required" : [ "errorCode", "errorMessage" ],
+      "properties" : {
+        "errorCode" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "errorMessage" : {
+          "type" : "string"
+        }
+      }
+    },
+    "Patient" : {
+      "type" : "object",
+      "required" : [ "id", "name", "surname", "diagnosis", "bedNumber", "class", "birthdate", "sex", "race", "fiscalcode", "admissionDate", "pid" ],
+      "properties" : {
+        "id" : {
+          "type" : "string",
+          "description" : "Nosologic number: e.g. \"17/001324\""
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "surname" : {
+          "type" : "string"
+        },
+        "dischargeDate" : {
+          "type" : "string",
+          "format" : "date"
+        },
+        "diagnosis" : {
+          "type" : "string"
+        },
+        "pathway" : {
+          "type" : "string"
+        },
+        "bedNumber" : {
+          "type" : "string"
+        },
+        "division" : {
+          "type" : "string",
+          "description" : "\"comparto\""
+        },
+        "class" : {
+          "type" : "string",
+          "description" : "I: internal,\nO: external"
+        },
+        "birthdate" : {
+          "type" : "string",
+          "description" : "yyyy-MM-dd"
+        },
+        "sex" : {
+          "type" : "string",
+          "description" : "M: Male,\nF: Female"
+        },
+        "race" : {
+          "type" : "string"
+        },
+        "address" : {
+          "type" : "string"
+        },
+        "fiscalcode" : {
+          "type" : "string"
+        },
+        "admissionDate" : {
+          "type" : "string",
+          "format" : "date"
+        },
+        "admissionTime" : {
+          "type" : "string",
+          "format" : "date"
+        },
+        "surgeryExpectedDate" : {
+          "type" : "string",
+          "format" : "date"
+        },
+        "surgeryExpectedTime" : {
+          "type" : "string",
+          "format" : "date"
+        },
+        "surgeryEndDate" : {
+          "type" : "string",
+          "format" : "date"
+        },
+        "surgeryEndTime" : {
+          "type" : "string",
+          "format" : "date"
+        },
+        "pid" : {
+          "type" : "string",
+          "description" : "Patient Identifier List."
+        },
+        "type" : {
+          "type" : "string",
+          "description" : "Patient Type: \"Chirurgico\""
+        },
+        "importantNotes" : {
+          "type" : "boolean"
+        },
+        "numberOfImportantNotes" : {
+          "type" : "string"
+        }
+      }
+    },
+    "IssueList" : {
+      "type" : "object",
+      "required" : [ "patientId", "nosologicId" ],
+      "properties" : {
+        "patientId" : {
+          "type" : "string"
+        },
+        "nosologicId" : {
+          "type" : "string"
+        },
+        "values" : {
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "required" : [ "id", "taskId", "userId", "description" ],
+            "properties" : {
+              "id" : {
+                "type" : "string"
+              },
+              "taskId" : {
+                "type" : "string"
+              },
+              "userId" : {
+                "type" : "string"
+              },
+              "date" : {
+                "type" : "string",
+                "format" : "date"
+              },
+              "description" : {
+                "type" : "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "Issue" : {
+      "type" : "object",
+      "required" : [ "description", "userId", "taskId", "idSchedulationHospitalization" ],
+      "properties" : {
+        "taskId" : {
+          "type" : "string"
+        },
+        "userId" : {
+          "type" : "string"
+        },
+        "description" : {
+          "type" : "string"
+        },
+        "idSchedulationHospitalization" : {
+          "type" : "string"
+        }
+      }
+    },
+    "bed" : {
+      "type" : "object",
+      "required" : [ "bedId", "roomId", "compartmentId", "patient" ],
+      "properties" : {
+        "bedId" : {
+          "type" : "string",
+          "description" : "Id of the field (sent by BPM)"
+        },
+        "roomId" : {
+          "type" : "string",
+          "description" : "numero stanza"
+        },
+        "compartmentId" : {
+          "type" : "string",
+          "description" : "compartimento"
+        },
+        "patient" : {
+          "$ref" : "#/definitions/Patient"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,108 @@
+
+rem TUTORIAL 006 -> configure CMQ and PMQ nodes with webadmin security
+
+set node=IB10NODE_SC
+set serv=SSL_CONSUMER
+set webport=4436
+
+echo Creating IIB Node %node% 
+mqsicreatebroker %node% -i LocalSystem
+
+mqsistart %node%
+
+echo Node %node% must be fully started to proceed to the next stage, creating a server. Please wait for the webadmin HTTP listener to start, then click Return to proceed. Use Ctrl-C to terminate.
+PAUSE
+
+call mqsicreateexecutiongroup %node% -e %serv%
+
+echo Creating MySecurityID for %node% for HRDB database.
+mqsisetdbparms %node% -n jdbc::mySecurityId -u Administrator -p passw0rd
+
+echo Creating JDBC connections for %node% for HRDB database 
+mqsicreateconfigurableservice %node% -c JDBCProviders -o HRDB -n connectionUrlFormat,connectionUrlFormatAttr1,connectionUrlFormatAttr2,connectionUrlFormatAttr3,connectionUrlFormatAttr4,connectionUrlFormatAttr5,databaseName,databaseType,databaseVersion,description,environmentParms,jarsURL,jdbcProviderXASupport,maxConnectionPoolSize,portNumber,securityIdentity,serverName,type4DatasourceClassName,type4DriverClassName  -v "jdbc:db2://[serverName]:[portNumber]/[databaseName]:user=[user];password=[password];","","","","","","HRDB","DB2 Universal Database","10.1","default_Description","default_none","C:\programs\SQLLIB\java","true","0","50000","mySecurityId","localhost","com.ibm.db2.jcc.DB2XADataSource","com.ibm.db2.jcc.DB2Driver"
+
+echo Creating DB security for %node% for HRDB database 
+mqsisetdbparms %node% -n jdbc::HRDB -u Administrator -p passw0rd
+
+
+echo Creating ODBC link to allow connection from Database nodes 
+mqsisetdbparms.exe %node% -n odbc::HRDB -u Administrator -p passw0rd
+
+REM  ******  This section defines a HTTP connector for webadmin   ************
+REM Setting web admin http (or https) listener to %webport%
+REM mqsichangeproperties %node% -b webadmin -o HTTPConnector -n port -v %webport%
+REM --- Setting web admin https listener to %webport%
+mqsichangeproperties %node% -b webadmin -o HTTPSConnector -n port -v %webport%
+
+REM --- Setting web admin keystore to IIB.jks
+mqsichangeproperties %node% -b webadmin -o HTTPSConnector -n keystoreFile -v C:\workspaces\iib\tutorial\Doc\keystore\IIB.jks
+
+REM --- Setting keystore password for %node%
+mqsichangeproperties %node% -b webadmin -o HTTPSConnector -n keystorePass -v passw0rd
+
+REM --- Setting web admin listener to use SSL
+mqsichangeproperties %node% -b webadmin -o server -n enabled,enableSSL -v true,true
+
+REM --- Setting protocol to TLS (SSLV3 not available in V10)
+mqsichangeproperties %node% -b webadmin -o HTTPSConnector -n sslProtocol -v TLS
+
+mqsistop %node%
+mqsistart %node%
+
+set node=IB10NODE_SP
+set serv=SSL_PROVIDER
+set webport=4437
+
+echo Creating IIB Node %node% 
+mqsicreatebroker %node% -i LocalSystem
+
+mqsistart %node%
+
+echo Node %node% must be fully started to proceed to the next stage, creating a server. Please wait for the webadmin HTTP listener to start, then click Return to proceed. Use Ctrl-C to terminate.
+PAUSE
+
+call mqsicreateexecutiongroup %node% -e %serv%
+
+echo Creating MySecurityID for %node% for HRDB database.
+mqsisetdbparms %node% -n jdbc::mySecurityId -u Administrator -p passw0rd
+
+echo Creating JDBC connections for %node% for HRDB database 
+mqsicreateconfigurableservice %node% -c JDBCProviders -o HRDB -n connectionUrlFormat,connectionUrlFormatAttr1,connectionUrlFormatAttr2,connectionUrlFormatAttr3,connectionUrlFormatAttr4,connectionUrlFormatAttr5,databaseName,databaseType,databaseVersion,description,environmentParms,jarsURL,jdbcProviderXASupport,maxConnectionPoolSize,portNumber,securityIdentity,serverName,type4DatasourceClassName,type4DriverClassName  -v "jdbc:db2://[serverName]:[portNumber]/[databaseName]:user=[user];password=[password];","","","","","","HRDB","DB2 Universal Database","10.1","default_Description","default_none","C:\programs\SQLLIB\java","true","0","50000","mySecurityId","localhost","com.ibm.db2.jcc.DB2XADataSource","com.ibm.db2.jcc.DB2Driver"
+
+echo Creating DB security for %node% for HRDB database 
+mqsisetdbparms %node% -n jdbc::HRDB -u Administrator -p passw0rd
+
+
+echo Creating ODBC link to allow connection from Database nodes 
+mqsisetdbparms.exe %node% -n odbc::HRDB -u Administrator -p passw0rd
+
+REM  ******  This section defines a HTTP connector for webadmin   ************
+REM Setting web admin http (or https) listener to %webport%
+REM mqsichangeproperties %node% -b webadmin -o HTTPConnector -n port -v %webport%
+REM --- Setting web admin https listener to %webport%
+mqsichangeproperties %node% -b webadmin -o HTTPSConnector -n port -v %webport%
+
+REM --- Setting web admin keystore to IIB.jks
+mqsichangeproperties %node% -b webadmin -o HTTPSConnector -n keystoreFile -v C:\workspaces\iib\tutorial\Doc\keystore\IIB.jks
+
+REM --- Setting keystore password for %node%
+mqsichangeproperties %node% -b webadmin -o HTTPSConnector -n keystorePass -v passw0rd
+
+REM --- Setting web admin listener to use SSL
+mqsichangeproperties %node% -b webadmin -o server -n enabled,enableSSL -v true,true
+
+REM --- Setting protocol to TLS (SSLV3 not available in V10)
+mqsichangeproperties %node% -b webadmin -o HTTPSConnector -n sslProtocol -v TLS
+
+mqsistop %node%
+mqsistart %node%
+
+
+
+rem MQ client configuration workaround
+rem Modify queue manager to avoid requiring password from MQ administrators
+runmqsc QM2
+ALTER AUTHINFO(SYSTEM.DEFAULT.AUTHINFO.IDPWOS) AUTHTYPE(IDPWOS) CHCKCLNT(OPTIONAL)
+REFRESH SECURITY TYPE(CONNAUTH)
+
+

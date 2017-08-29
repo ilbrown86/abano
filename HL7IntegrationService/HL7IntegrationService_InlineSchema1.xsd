@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?><xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://HL7IntegrationService" xmlns:Q1="http://w3.ibm.com/it/hl7" xmlns:tns="http://HL7IntegrationService">
+    <xsd:import namespace="http://w3.ibm.com/it/hl7" schemaLocation="../HL7CommonLibrary/HL7Model.xsd"/>
+    <xsd:element xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions" ibmSchExtn:docRoot="true" name="callHL7">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element ref="Q1:senderRequest"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions" ibmSchExtn:docRoot="true" name="callHL7Response">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element ref="Q1:senderResponse"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    <xsd:element xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions" ibmSchExtn:docRoot="true" name="writeQueue">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element ref="Q1:senderRequest"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+    <xsd:element xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions" ibmSchExtn:docRoot="true" name="writeQueueResponse">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element ref="Q1:senderResponse"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+</xsd:schema>

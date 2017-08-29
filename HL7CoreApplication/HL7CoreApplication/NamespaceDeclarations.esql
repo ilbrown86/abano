@@ -1,0 +1,6 @@
+BROKER SCHEMA HL7CoreApplication
+
+--HL7
+DECLARE ns6 NAMESPACE 'urn:hl7-org:v2xml';
+--model
+DECLARE ns NAMESPACE 'http://w3.ibm.com/it/hl7';

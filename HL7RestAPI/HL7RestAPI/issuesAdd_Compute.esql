@@ -1,0 +1,144 @@
+BROKER SCHEMA HL7RestAPI
+CREATE COMPUTE MODULE issuAdd_MapToXMLModel
+CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		CALL CopyMessageHeaders();
+		--CALL CopyEntireMessage();
+
+		DECLARE patientId CHARACTER;
+		SET patientId = InputLocalEnvironment.REST.Input.Parameters.patientId;
+		DECLARE nosologicId CHARACTER;
+		SET nosologicId = InputLocalEnvironment.REST.Input.Parameters.nosologicId;
+		
+		DECLARE outputMessage REFERENCE TO OutputRoot; 
+		DECLARE outPatientKey REFERENCE TO OutputRoot;
+		DECLARE outParameters REFERENCE TO OutputRoot;
+		DECLARE outValues REFERENCE TO OutputRoot;
+		 
+		CREATE LASTCHILD OF OutputRoot AS outputMessage DOMAIN('XMLNSC') NAME 'XMLNSC';
+		CREATE FIRSTCHILD OF outputMessage as outputMessage NAMESPACE ns NAME 'senderRequest';
+		
+		DECLARE msgId CHARACTER InputLocalEnvironment.Destination.HTTP.RequestIdentifier;
+		SET msgId = REPLACE(msgId,'''','');
+		SET msgId = 'G' || msgId;
+		SET outputMessage.messageId = msgId;
+		
+		SET outputMessage.action = InputLocalEnvironment.REST.Input.Operation;
+		CREATE LASTCHILD OF outputMessage AS outputMessage NAME 'writeParametersRequest';
+		CREATE LASTCHILD OF outputMessage AS outPatientKey NAME 'patient';
+		SET outPatientKey.patientIdentifierList = patientId;
+		SET outPatientKey.nosologicId = nosologicId;
+		--lista parametri
+		CREATE LASTCHILD OF outputMessage AS outParameters NAME 'parameter';
+		SET outParameters.taskId = InputRoot.JSON.Data.taskId;
+		SET outParameters.id = COALESCE(NULLIF(InputRoot.JSON.Data.id,''), CAST (CURRENT_TIMESTAMP AS CHARACTER FORMAT 'YYYYMMddHHmmss'));
+		SET outParameters.userId = InputRoot.JSON.Data.userId;
+		SET outParameters.date = CAST(CURRENT_TIMESTAMP AS CHARACTER FORMAT 'YYYYMMddHHmmss');
+		
+		SET InputLocalEnvironment.REST.Input.Parameters.idSchedulationHospitalization = InputRoot.JSON.Data.idSchedulationHospitalization;
+		SET InputLocalEnvironment.REST.Input.Parameters.raisedIssueMessageNewValue = InputRoot.JSON.Data.description;
+		
+		
+		CREATE LASTCHILD OF outParameters AS outValues NAME 'values';
+		SET outValues.measureId = 'IINF001';				
+		SET outValues.measureName = 'Issue' || InputRoot.JSON.Data.id;				
+		SET outValues.value = InputRoot.JSON.Data.description;
+
+		RETURN TRUE;
+	END;
+
+	CREATE PROCEDURE CopyMessageHeaders() BEGIN
+		DECLARE I INTEGER 1;
+		DECLARE J INTEGER;
+		SET J = CARDINALITY(InputRoot.*[]);
+		WHILE I < J DO
+			SET OutputRoot.*[I] = InputRoot.*[I];
+			SET I = I + 1;
+		END WHILE;
+	END;
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		SET OutputRoot = InputRoot;
+	END;
+END MODULE;
+
+
+CREATE COMPUTE MODULE issueAdd_MapToJSONModel
+CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		CALL CopyMessageHeaders();
+		--CALL CopyEntireMessage();
+
+		DECLARE response REFERENCE TO InputRoot.XMLNSC.ns:senderResponse;
+		DECLARE errorResponse REFERENCE TO InputRoot.XMLNSC.ns:senderResponse;
+		--GESTIONE ERRORE
+		MOVE errorResponse FIRSTCHILD NAME 'error';
+		IF LASTMOVE(errorResponse) THEN
+			SET OutputLocalEnvironment.Destination.HTTP.ReplyStatusCode = 400;
+			SET OutputRoot.JSON.Data.errorCode = errorResponse.errorCode;
+			SET OutputRoot.JSON.Data.errorMessage = errorResponse.errorMessage;
+			RETURN TRUE;
+		END IF; 
+
+		SET OutputLocalEnvironment.Destination.HTTP.ReplyStatusCode = 200;
+
+		--MAP MODEL TO JSON
+		MOVE response FIRSTCHILD;
+
+		IF LASTMOVE(response) THEN
+			MOVE response FIRSTCHILD NAMESPACE ns NAME 'parameter';	
+			--array di misurazioni
+			DECLARE refOutJSON REFERENCE TO OutputRoot;
+			DECLARE refMeasures REFERENCE TO OutputRoot;
+			CREATE FIELD OutputRoot.JSON.Data AS refOutJSON IDENTITY (JSON.Array)Data;
+			DECLARE ind INTEGER 1;
+ 			WHILE LASTMOVE(response) DO
+ 				CREATE LASTCHILD OF refOutJSON AS refMeasures NAME 'Item';
+ 				CREATE LASTCHILD OF refMeasures TYPE NameValue NAME 'id' VALUE response.id;
+ 				CREATE LASTCHILD OF refMeasures TYPE NameValue NAME 'taskId' VALUE response.taskId;
+				--loop over values of a measurement	
+				DECLARE refValues REFERENCE TO response;
+				MOVE refValues FIRSTCHILD NAMESPACE ns NAME 'values';
+				DECLARE ind2 INTEGER 1;
+				DECLARE refOutValues REFERENCE TO OutputRoot;
+				CREATE LASTCHILD OF refMeasures AS refMeasures IDENTITY (JSON.Array)values;	
+	 			WHILE LASTMOVE(refValues) DO
+	 				CREATE LASTCHILD OF refMeasures AS refOutValues NAME 'Item';
+	 								
+					CREATE LASTCHILD OF refOutValues TYPE NameValue NAME 'measureId' VALUE refValues.measureId;
+					CREATE LASTCHILD OF refOutValues TYPE NameValue NAME 'measureName' VALUE refValues.measureName;
+					CREATE LASTCHILD OF refOutValues TYPE NameValue NAME 'value' VALUE refValues.value;
+					
+					
+					SET ind2 = ind2 + 1;
+					MOVE refValues NEXTSIBLING;
+	 			END WHILE;
+				SET ind = ind + 1;
+				MOVE response NEXTSIBLING;
+	 		END WHILE;
+			RETURN TRUE;
+		END IF;
+		
+
+
+		SET OutputLocalEnvironment.Destination.HTTP.ReplyStatusCode = 200;
+		
+		RETURN TRUE;
+	END;
+
+	CREATE PROCEDURE CopyMessageHeaders() BEGIN
+		DECLARE I INTEGER 1;
+		DECLARE J INTEGER;
+		SET J = CARDINALITY(InputRoot.*[]);
+		WHILE I < J DO
+			SET OutputRoot.*[I] = InputRoot.*[I];
+			SET I = I + 1;
+		END WHILE;
+	END;
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		SET OutputRoot = InputRoot;
+	END;
+
+
+END MODULE;

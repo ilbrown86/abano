@@ -1,0 +1,484 @@
+BROKER SCHEMA HL7CoreApplication
+
+
+
+CREATE PROCEDURE CreateModelFromMSH(IN refHL7 REFERENCE, INOUT xmlModel REFERENCE) BEGIN
+--	DECLARE xmlModel REFERENCE TO InputRoot.XMLNSC.ns:senderResponse.patientDetailsResponse;
+--NIENTE DA MAPPARE	
+	DECLARE refSegment REFERENCE TO refHL7;
+--	CREATE LASTCHILD OF refSegment AS refSegment NAMESPACE ns6 NAME 'MSH';
+--	SET refSegment.ns6:"MSH.1.FieldSeparator" = '|';
+--	SET refSegment.ns6:"MSH.2.ServiceString".ns6:ComponentSeparator = '^';
+--	SET refSegment.ns6:"MSH.2.ServiceString".ns6:RepeatSeparator = '~';
+--	SET refSegment.ns6:"MSH.2.ServiceString".ns6:EscapeCharacter = '\';
+--	SET refSegment.ns6:"MSH.2.ServiceString".ns6:SubComponentSeparator = '&';
+--	SET refSegment.ns6:"MSH.3.SendingApplication".ns6:"HD.1" = 'IBM_IIB';
+--	SET refSegment.ns6:"MSH.4.SendingFacility".ns6:"HD.1" = 'IBM';
+--	SET refSegment.ns6:"MSH.5.ReceivingApplication".ns6:"HD.1" = 'EHR_MEDARCHIVER';
+--	SET refSegment.ns6:"MSH.6.ReceivingFacility".ns6:"HD.1" = 'MEDARCHIVER';
+--	SET refSegment.ns6:"MSH.7.DateTimeOfMessage".ns6:"TS.1" = CAST (CURRENT_TIMESTAMP AS CHARACTER FORMAT 'YYYYMMddHHmmss');
+--	--SET refSegment.ns6:"MSH.8.Security". = ;
+--	SET refSegment.ns6:"MSH.9.MessageType".ns6:"MSG.1" = msg01;
+--	SET refSegment.ns6:"MSH.9.MessageType".ns6:"MSG.2" = msg02;
+--	SET refSegment.ns6:"MSH.10.MessageControlID" = msgId;
+--	-- SET refSegment.ns6:"MSH.9.MessageType".ns6:"MSG.1" = 'ORU';
+--	-- SET refSegment.ns6:"MSH.9.MessageType".ns6:"MSG.2" = 'R01';
+--	--SET refSegment.ns6:"MSH.10.MessageControlID" = '25233631';
+--	SET refSegment.ns6:"MSH.11.ProcessingID".ns6:"PT.1" = 'P';
+--	SET refSegment.ns6:"MSH.12.VersionID".ns6:"VID.1" = '2.5.1';
+
+END;
+
+CREATE PROCEDURE CreateModelFromEVN(IN refHL7 REFERENCE, INOUT refPatient REFERENCE) BEGIN
+	--NIENTE DA MAPPARE
+	--DECLARE refSegment REFERENCE TO refHL7;
+--	CREATE LASTCHILD OF refSegment AS refSegment NAMESPACE ns6 NAME 'anyHL7Segment';
+--	CREATE LASTCHILD OF refSegment AS refSegment NAMESPACE ns6 NAME 'EVN';
+--	--SET refSegment.ns6:"EVN.1.EventTypeCode" = '';
+--	SET refSegment.ns6:"EVN.2.RecordedDateTime".ns6:"TS.1" = CAST (CURRENT_TIMESTAMP AS CHARACTER FORMAT 'YYYYMMddHHmmss');
+--	--SET refSegment.ns6:"EVN.3.DateTimePlannedEvent" = '';
+--	--SET refSegment.ns6:"EVN.4.EventReasonCode" = '';
+--	--SET refSegment.ns6:"EVN.5.OperatorID" = '';
+--	SET refSegment.ns6:"EVN.6.EventOccurred".ns6:"TS.1" = CAST (CURRENT_TIMESTAMP AS CHARACTER FORMAT 'YYYYMMddHHmmss');
+	--SET refSegment.ns6:"EVN.7.EventFacility" = '';
+	SET refPatient.eventADT = refHL7.ns6:"EVN.4.EventReasonCode";--nuovo
+END;
+
+CREATE PROCEDURE CreateModelFromPID(IN refHL7 REFERENCE, INOUT refPatient REFERENCE) BEGIN
+	
+	--DECLARE refPatient REFERENCE TO xmlModel;
+	--TODO
+--	MOVE refPatient FIRSTCHILD NAMESPACE ns NAME 'patient';
+--	--CHECK IF PATIENT TAG ALREADY CREATED
+--	IF NOT LASTMOVE(refPatient) THEN 
+--		CREATE LASTCHILD OF xmlModel AS refPatient NAMESPACE ns NAME 'patient';		
+--	END IF;
+	
+--	if (xmlModel.patientIdentifierList IS NOT NULL AND xmlModel.firstname IS NOT NULL) THEN
+--		DECLARE refSegment REFERENCE TO refHL7;
+--		CREATE LASTCHILD OF refSegment AS refSegment NAMESPACE ns6 NAME 'anyHL7Segment';
+--		CREATE LASTCHILD OF refSegment AS refSegment NAMESPACE ns6 NAME 'PID';
+--		--SET refSegment.ns6:"PID.1.SetIDPID" = ;
+--		--SET refSegment.ns6:"PID.2.PatientID" = ;
+		SET refPatient.patientIdentifierList = refHL7.ns6:"PID.3.PatientIdentifierList".ns6:"CX.1"; --'131175600';
+--		--SET refSegment.ns6:"PID.4.AlternatePatientIDPID" = ;
+		SET refPatient.name = refHL7.ns6:"PID.5.PatientName".ns6:"XPN.1".ns6:"FN.1";
+		SET refPatient.surname = ' ' || refHL7.ns6:"PID.5.PatientName".ns6:"XPN.2";
+--		--SET refSegment.ns6:"PID.6.MothersMaidenName" = ;
+		IF refHL7.ns6:"PID.7.DateTimeOfBirth".ns6:"TS.1" IS NOT NULL THEN
+			SET refPatient.birthdate = CAST (CAST (SUBSTRING(refHL7.ns6:"PID.7.DateTimeOfBirth".ns6:"TS.1" FROM 1 FOR 8) AS DATE FORMAT 'YYYYMMdd') AS CHARACTER FORMAT 'YYYY-MM-dd');
+		END IF;
+		SET refPatient.sex = refHL7.ns6:"PID.8.AdministrativeSex";
+--		--SET refSegment.ns6:"PID.9.PatientAlias" = ;
+		SET refPatient.race = refHL7.ns6:"PID.10.Race".ns6:"CE.1";
+		SET refPatient.address = refHL7.ns6:"PID.11.PatientAddress".ns6:"XAD.1".ns6:"SAD.1"  || '-' || refHL7.ns6:"PID.11.PatientAddress".ns6:"XAD.5" || '-' || refHL7.ns6:"PID.11.PatientAddress".ns6:"XAD.8";
+--		--SET refSegment.ns6:"PID.12.CountyCode" = ;
+--		--SET refSegment.ns6:"PID.13.PhoneNumberHome" = ;
+--		--SET refSegment.ns6:"PID.14.PhoneNumberBusiness" = ;
+--		--SET refSegment.ns6:"PID.15.PrimaryLanguage" = ;
+--		--SET refSegment.ns6:"PID.16.MaritalStatus" = ;
+--		--SET refSegment.ns6:"PID.17.Religion" = ;
+		SET refPatient.fiscalcode = refHL7.ns6:"PID.18.PatientAccountNumber".ns6:"CX.1";
+--		--SET refSegment.ns6:"PID.19.SSNNumberPatient" = ;
+--		--SET refSegment.ns6:"PID.20.DriversLicenseNumberPatient" = ;
+--		--SET refSegment.ns6:"PID.21.MothersIdentifier" = ;
+--		--SET refSegment.ns6:"PID.22.EthnicGroup" = ;
+--		--SET refSegment.ns6:"PID.23.BirthPlace" = ;
+--		--SET refSegment.ns6:"PID.24.MultipleBirthIndicator" = ;
+--		--SET refSegment.ns6:"PID.25.BirthOrder" = ;
+--		--SET refSegment.ns6:"PID.26.Citizenship" = ;
+--		--SET refSegment.ns6:"PID.27.VeteransMilitaryStatus" = ;
+--		--SET refSegment.ns6:"PID.28.Nationality" = ;
+--		--SET refSegment.ns6:"PID.29.PatientDeathDateandTime" = ;
+--		--SET refSegment.ns6:"PID.30.PatientDeathIndicator" = ;
+--		--SET refSegment.ns6:"PID.31.IdentityUnknownIndicator" = ;
+--		--SET refSegment.ns6:"PID.32.IdentityReliabilityCode" = ;
+--		--SET refSegment.ns6:"PID.33.LastUpdateDateTime" = ;
+--		--SET refSegment.ns6:"PID.34.LastUpdateFacility" = ;
+--		--SET refSegment.ns6:"PID.35.SpeciesCode" = ;
+--		--SET refSegment.ns6:"PID.36.BreedCode" = ;
+--		--SET refSegment.ns6:"PID.37.Strain" = ;
+--		--SET refSegment.ns6:"PID.38.ProductionClassCode" = ;
+--		--SET refSegment.ns6:"PID.39.TribalCitizenship" = ;
+--	END IF;
+END;
+
+CREATE PROCEDURE CreateModelFromPV1(IN refHL7 REFERENCE, INOUT refPatient REFERENCE) BEGIN
+
+	DECLARE refAdmissionData REFERENCE TO refPatient;
+	CREATE LASTCHILD OF refPatient AS refAdmissionData NAME 'admission';
+--	MOVE refPatient FIRSTCHILD NAMESPACE ns NAME 'patient';
+--	--CHECK IF PATIENT TAG ALREADY CREATED
+--	IF NOT LASTMOVE(refPatient) THEN 
+--		CREATE LASTCHILD OF xmlModel AS refPatient NAMESPACE ns NAME 'patient';		
+--	END IF;
+
+--	DECLARE refSegment REFERENCE TO refHL7;
+--	CREATE LASTCHILD OF refSegment AS refSegment NAMESPACE ns6 NAME 'anyHL7Segment';
+--	CREATE LASTCHILD OF refSegment AS refSegment NAMESPACE ns6 NAME 'PV1';
+--	--SET refSegment.ns6:"PV1.1.SetIDPV1"
+	SET refAdmissionData.class = refHL7.ns6:"PV1.2.PatientClass";
+	SET refAdmissionData.type = refHL7.ns6:"PV1.3.AssignedPatientLocation".ns6:"PL.1"; --ok
+	-- 3.2 stanza
+	SET refAdmissionData.bedNumber = refHL7.ns6:"PV1.3.AssignedPatientLocation".ns6:"PL.3"; --ok
+	SET refAdmissionData.division = refHL7.ns6:"PV1.3.AssignedPatientLocation".ns6:"PL.4".ns6:"HD.1";  --ok comparto
+	--SET refPatient.bedNumber = refHL7.ns6:"PV1.3.AssignedPatientLocation".ns6:"PL.3";
+	--???? SET refPatient.diagnosis = refSegment.ns6:"PV1.4.AdmissionType";
+--	--SET refSegment.ns6:"PV1.5.PreadmitNumber"
+	--TODO SET refPatient.class = refHL7.ns6:"PV1.6.PriorPatientLocation";
+--	--SET refSegment.ns6:"PV1.7.AttendingDoctor"
+--	--SET refSegment.ns6:"PV1.8.ReferringDoctor"
+--	--SET refSegment.ns6:"PV1.9.ConsultingDoctor"
+--	--SET refSegment.ns6:"PV1.10.HospitalService"
+--	--SET refSegment.ns6:"PV1.11.TemporaryLocation"
+--	--SET refSegment.ns6:"PV1.12.PreadmitTestIndicator"
+--	--SET refSegment.ns6:"PV1.13.ReadmissionIndicator"
+--	--SET refSegment.ns6:"PV1.14.AdmitSource"
+	--SET refPatient.diagnosis =  refHL7.ns6:"PV1.15.AmbulatoryStatus";
+--	--SET refSegment.ns6:"PV1.16.VIPIndicator"
+--	--SET refSegment.ns6:"PV1.17.AdmittingDoctor"
+--	--SET refSegment.ns6:"PV1.18.PatientType"
+	SET refAdmissionData.nosologicId = refHL7.ns6:"PV1.19.VisitNumber".ns6:"CX.1" ; 
+--	--SET refSegment.ns6:"PV1.20.FinancialClass"
+--	--SET refSegment.ns6:"PV1.21.ChargePriceIndicator"
+--	--SET refSegment.ns6:"PV1.22.CourtesyCode"
+--	--SET refSegment.ns6:"PV1.23.CreditRating"
+--	SET refSegment.ns6:"PV1.24.ContractCode" VALUE = NULL;
+--	SET refSegment.ns6:"PV1.25.ContractEffectiveDate" VALUE = NULL;
+--	SET refSegment.ns6:"PV1.26.ContractAmount" VALUE = NULL;
+--	SET refSegment.ns6:"PV1.27.ContractPeriod" VALUE = NULL;
+--	--SET refSegment.ns6:"PV1.28.InterestCode"
+--	--SET refSegment.ns6:"PV1.29.TransfertoBadDebtCode"
+--	--SET refSegment.ns6:"PV1.30.TransfertoBadDebtDate"
+--	--SET refSegment.ns6:"PV1.31.BadDebtAgencyCode"
+--	--SET refSegment.ns6:"PV1.32.BadDebtTransferAmount"
+--	--SET refSegment.ns6:"PV1.33.BadDebtRecoveryAmount"
+--	--SET refSegment.ns6:"PV1.34.DeleteAccountIndicator"
+--	--SET refSegment.ns6:"PV1.35.DeleteAccountDate"
+	--SET refPatient.diagnosis = refHL7.ns6:"PV1.36.DischargeDisposition";  --modalità dimissione, serve per dimissione
+--	--SET refSegment.ns6:"PV1.37.DischargedtoLocation"
+--	--SET refSegment.ns6:"PV1.38.DietType"
+--	--SET refSegment.ns6:"PV1.39.ServicingFacility"
+--	--SET refSegment.ns6:"PV1.40.BedStatus"
+--	--SET refSegment.ns6:"PV1.41.AccountStatus"
+--	--SET refSegment.ns6:"PV1.42.PendingLocation"
+--	--SET refSegment.ns6:"PV1.43.PriorTemporaryLocation"
+--	
+	IF refHL7.ns6:"PV1.44.AdmitDateTime".ns6:"TS.1" IS NOT NULL THEN
+		IF(LENGTH(refHL7.ns6:"PV1.44.AdmitDateTime".ns6:"TS.1" ) = 14 ) THEN
+			SET refAdmissionData.admissionDate = CAST (CAST (refHL7.ns6:"PV1.44.AdmitDateTime".ns6:"TS.1" AS TIMESTAMP FORMAT 'YYYYMMddHHmmss') AS CHARACTER FORMAT 'YYYY-MM-dd');
+			SET refAdmissionData.admissionTime = CAST (CAST (refHL7.ns6:"PV1.44.AdmitDateTime".ns6:"TS.1" AS TIMESTAMP FORMAT 'YYYYMMddHHmmss') AS CHARACTER FORMAT 'HH.mm');
+		ELSEIF (LENGTH(refHL7.ns6:"PV1.44.AdmitDateTime".ns6:"TS.1" ) = 8 ) THEN
+			SET refAdmissionData.admissionDate = CAST (CAST (refHL7.ns6:"PV1.44.AdmitDateTime".ns6:"TS.1" AS TIMESTAMP FORMAT 'YYYYMMdd') AS CHARACTER FORMAT 'YYYY-MM-dd');
+		ELSEIF (LENGTH(refHL7.ns6:"PV1.44.AdmitDateTime".ns6:"TS.1" ) = 12 ) THEN
+			SET refAdmissionData.admissionDate = CAST (CAST (refHL7.ns6:"PV1.44.AdmitDateTime".ns6:"TS.1" AS TIMESTAMP FORMAT 'YYYYMMddHHmm') AS CHARACTER FORMAT 'YYYY-MM-dd');
+			SET refAdmissionData.admissionTime = CAST (CAST (refHL7.ns6:"PV1.44.AdmitDateTime".ns6:"TS.1" AS TIMESTAMP FORMAT 'YYYYMMddHHmm') AS CHARACTER FORMAT 'HH.mm');
+		ELSEIF (LENGTH(refHL7.ns6:"PV1.44.AdmitDateTime".ns6:"TS.1" ) = 13 ) THEN
+			SET refAdmissionData.admissionDate = CAST (CAST (refHL7.ns6:"PV1.44.AdmitDateTime".ns6:"TS.1" AS TIMESTAMP FORMAT 'YYYYMMddHHmms') AS CHARACTER FORMAT 'YYYY-MM-dd');
+			SET refAdmissionData.admissionTime = CAST (CAST (refHL7.ns6:"PV1.44.AdmitDateTime".ns6:"TS.1" AS TIMESTAMP FORMAT 'YYYYMMddHHmms') AS CHARACTER FORMAT 'HH.mm');
+		END IF;
+	END IF;
+	IF refHL7.ns6:"PV1.44.DischargeDateTime".ns6:"TS.1" IS NOT NULL THEN
+		IF(LENGTH(refHL7.ns6:"PV1.44.DischargeDateTime".ns6:"TS.1" ) = 14 ) THEN
+			SET refAdmissionData.dischargeDate = CAST (CAST (refHL7.ns6:"PV1.44.DischargeDateTime".ns6:"TS.1" AS TIMESTAMP FORMAT 'YYYYMMddHHmmss') AS CHARACTER FORMAT 'YYYY-MM-dd HH.mm.ss');
+		ELSEIF (LENGTH(refHL7.ns6:"PV1.44.DischargeDateTime".ns6:"TS.1" ) = 8 ) THEN
+			SET refAdmissionData.dischargeDate = CAST (CAST (refHL7.ns6:"PV1.44.DischargeDateTime".ns6:"TS.1" AS TIMESTAMP FORMAT 'YYYYMMdd') AS CHARACTER FORMAT 'YYYY-MM-dd');
+		ELSEIF (LENGTH(refHL7.ns6:"PV1.44.DischargeDateTime".ns6:"TS.1" ) = 12 ) THEN
+			SET refAdmissionData.dischargeDate = CAST (CAST (refHL7.ns6:"PV1.44.DischargeDateTime".ns6:"TS.1" AS TIMESTAMP FORMAT 'YYYYMMddHHmm') AS CHARACTER FORMAT 'YYYY-MM-dd HH.mm');
+		ELSEIF (LENGTH(refHL7.ns6:"PV1.44.DischargeDateTime".ns6:"TS.1" ) = 13 ) THEN
+			SET refAdmissionData.dischargeDate = CAST (CAST (refHL7.ns6:"PV1.44.DischargeDateTime".ns6:"TS.1" AS TIMESTAMP FORMAT 'YYYYMMddHHmms') AS CHARACTER FORMAT 'YYYY-MM-dd HH.mm');
+		END IF;
+	END IF;
+
+	
+
+END;
+
+CREATE PROCEDURE CreateModelFromPV2(IN refHL7 REFERENCE, INOUT refPatient REFERENCE) BEGIN
+
+	DECLARE refAdmissionData REFERENCE TO refPatient;
+	MOVE refAdmissionData FIRSTCHILD NAME 'admission';
+	--CHECK IF PATIENT TAG ALREADY CREATED
+	IF NOT LASTMOVE(refAdmissionData) THEN 
+		CREATE LASTCHILD OF refPatient AS refAdmissionData NAME 'admission';		
+	END IF;
+	
+	IF refHL7.ns6:"PV2.33.ExpectedSurgeryDateandTime".ns6:"TS.1" IS NOT NULL THEN
+		IF(LENGTH(refHL7.ns6:"PV2.33.ExpectedSurgeryDateandTime".ns6:"TS.1" ) = 14 ) THEN
+			SET refAdmissionData.surgeryExpectedDate = CAST (CAST (refHL7.ns6:"PV2.33.ExpectedSurgeryDateandTime".ns6:"TS.1" AS TIMESTAMP FORMAT 'YYYYMMddHHmmss') AS CHARACTER FORMAT 'YYYY-MM-dd');
+			SET refAdmissionData.surgeryExpectedTime = CAST (CAST (refHL7.ns6:"PV2.33.ExpectedSurgeryDateandTime".ns6:"TS.1" AS TIMESTAMP FORMAT 'YYYYMMddHHmmss') AS CHARACTER FORMAT 'HH.mm');
+		ELSEIF (LENGTH(refHL7.ns6:"PV2.33.ExpectedSurgeryDateandTime".ns6:"TS.1" ) = 8 ) THEN
+			SET refAdmissionData.surgeryExpectedDate = CAST (CAST (refHL7.ns6:"PV2.33.ExpectedSurgeryDateandTime".ns6:"TS.1" AS TIMESTAMP FORMAT 'YYYYMMdd') AS CHARACTER FORMAT 'YYYY-MM-dd');
+		ELSEIF (LENGTH(refHL7.ns6:"PV2.33.ExpectedSurgeryDateandTime".ns6:"TS.1" ) = 12 ) THEN
+			SET refAdmissionData.surgeryExpectedDate = CAST (CAST (refHL7.ns6:"PV2.33.ExpectedSurgeryDateandTime".ns6:"TS.1" AS TIMESTAMP FORMAT 'YYYYMMddHHmm') AS CHARACTER FORMAT 'YYYY-MM-dd');
+			SET refAdmissionData.surgeryExpectedTime = CAST (CAST (refHL7.ns6:"PV2.33.ExpectedSurgeryDateandTime".ns6:"TS.1" AS TIMESTAMP FORMAT 'YYYYMMddHHmm') AS CHARACTER FORMAT 'HH.mm');
+		ELSEIF (LENGTH(refHL7.ns6:"PV2.33.ExpectedSurgeryDateandTime".ns6:"TS.1" ) = 13 ) THEN
+			SET refAdmissionData.surgeryExpectedDate = CAST (CAST (refHL7.ns6:"PV2.33.ExpectedSurgeryDateandTime".ns6:"TS.1" AS TIMESTAMP FORMAT 'YYYYMMddHHmms') AS CHARACTER FORMAT 'YYYY-MM-dd');
+			SET refAdmissionData.surgeryExpectedTime = CAST (CAST (refHL7.ns6:"PV2.33.ExpectedSurgeryDateandTime".ns6:"TS.1" AS TIMESTAMP FORMAT 'YYYYMMddHHmms') AS CHARACTER FORMAT 'HH.mm');
+		END IF;
+	END IF;
+	
+	IF refHL7.ns6:"PV2.33.ExpectedSurgeryDateandTime".ns6:"TS.1" IS NOT NULL THEN
+		IF(LENGTH(refHL7.ns6:"PV2.33.ExpectedSurgeryDateandTime".ns6:"TS.1" ) = 14 ) THEN
+			SET refAdmissionData.surgeryEndDate = CAST (CAST (refHL7.ns6:"PV2.33.ExpectedSurgeryDateandTime".ns6:"TS.1" AS TIMESTAMP FORMAT 'YYYYMMddHHmmss') AS CHARACTER FORMAT 'YYYY-MM-dd');
+			SET refAdmissionData.surgeryEndTime = CAST (CAST (refHL7.ns6:"PV2.33.ExpectedSurgeryDateandTime".ns6:"TS.1" AS TIMESTAMP FORMAT 'YYYYMMddHHmmss') AS CHARACTER FORMAT 'HH.mm');
+		ELSEIF (LENGTH(refHL7.ns6:"PV2.33.ExpectedSurgeryDateandTime".ns6:"TS.1" ) = 8 ) THEN
+			SET refAdmissionData.surgeryEndDate = CAST (CAST (refHL7.ns6:"PV2.33.ExpectedSurgeryDateandTime".ns6:"TS.1" AS TIMESTAMP FORMAT 'YYYYMMdd') AS CHARACTER FORMAT 'YYYY-MM-dd');
+		ELSEIF (LENGTH(refHL7.ns6:"PV2.33.ExpectedSurgeryDateandTime".ns6:"TS.1" ) = 12 ) THEN
+			SET refAdmissionData.surgeryEndDate = CAST (CAST (refHL7.ns6:"PV2.33.ExpectedSurgeryDateandTime".ns6:"TS.1" AS TIMESTAMP FORMAT 'YYYYMMddHHmm') AS CHARACTER FORMAT 'YYYY-MM-dd');
+			SET refAdmissionData.surgeryEndTime = CAST (CAST (refHL7.ns6:"PV2.33.ExpectedSurgeryDateandTime".ns6:"TS.1" AS TIMESTAMP FORMAT 'YYYYMMddHHmm') AS CHARACTER FORMAT 'HH.mm');
+		ELSEIF (LENGTH(refHL7.ns6:"PV2.33.ExpectedSurgeryDateandTime".ns6:"TS.1" ) = 13 ) THEN
+			SET refAdmissionData.surgeryEndDate = CAST (CAST (refHL7.ns6:"PV2.33.ExpectedSurgeryDateandTime".ns6:"TS.1" AS TIMESTAMP FORMAT 'YYYYMMddHHmms') AS CHARACTER FORMAT 'YYYY-MM-dd');
+			SET refAdmissionData.surgeryEndTime = CAST (CAST (refHL7.ns6:"PV2.33.ExpectedSurgeryDateandTime".ns6:"TS.1" AS TIMESTAMP FORMAT 'YYYYMMddHHmms') AS CHARACTER FORMAT 'HH.mm');
+		END IF;
+	END IF;
+--	IF NULLIF(refHL7.ns6:"PV2.33.ExpectedSurgeryDateandTime".ns6:"TS.1",'0') IS NOT NULL THEN
+--		SET refAdmissionData.surgeryDate = CAST (CAST (SUBSTRING(refHL7.ns6:"PV2.33.ExpectedSurgeryDateandTime".ns6:"TS.1" FROM 1 FOR 8) AS DATE FORMAT 'YYYYMMdd') AS CHARACTER FORMAT 'YYYY-MM-dd');
+--	END IF;
+	--SET refPatient.surgeryDate = refHL7.ns6:"PV2.46.PatientStatusEffectiveDate";
+	--nuovo
+	IF refHL7.ns6:"PV2.46.PatientStatusEffectiveDate" IS NOT NULL THEN
+		IF(LENGTH(refHL7.ns6:"PV2.46.PatientStatusEffectiveDate" ) = 14 ) THEN
+			SET refPatient.surgeryDate = CAST (CAST (refHL7.ns6:"PV2.46.PatientStatusEffectiveDate" AS TIMESTAMP FORMAT 'YYYYMMddHHmmss') AS CHARACTER FORMAT 'YYYY-MM-dd');
+			SET refPatient.surgeryTime = CAST (CAST (refHL7.ns6:"PV2.46.PatientStatusEffectiveDate" AS TIMESTAMP FORMAT 'YYYYMMddHHmmss') AS CHARACTER FORMAT 'HH.mm');
+		ELSEIF (LENGTH(refHL7.ns6:"PV2.46.PatientStatusEffectiveDate" ) = 8 ) THEN
+			SET refPatient.surgeryDate = CAST (CAST (refHL7.ns6:"PV2.46.PatientStatusEffectiveDate" AS TIMESTAMP FORMAT 'YYYYMMdd') AS CHARACTER FORMAT 'YYYY-MM-dd');
+		ELSEIF (LENGTH(refHL7.ns6:"PV2.46.PatientStatusEffectiveDate" ) = 12 ) THEN
+			SET refPatient.surgeryDate = CAST (CAST (refHL7.ns6:"PV2.46.PatientStatusEffectiveDate" AS TIMESTAMP FORMAT 'YYYYMMddHHmm') AS CHARACTER FORMAT 'YYYY-MM-dd');
+			SET refPatient.surgeryTime = CAST (CAST (refHL7.ns6:"PV2.46.PatientStatusEffectiveDate" AS TIMESTAMP FORMAT 'YYYYMMddHHmm') AS CHARACTER FORMAT 'HH.mm');
+		ELSEIF (LENGTH(refHL7.ns6:"PV2.46.PatientStatusEffectiveDate" ) = 13 ) THEN
+			SET refPatient.surgeryDate = CAST (CAST (refHL7.ns6:"PV2.46.PatientStatusEffectiveDate" AS TIMESTAMP FORMAT 'YYYYMMddHHmms') AS CHARACTER FORMAT 'YYYY-MM-dd');
+			SET refPatient.surgeryTime = CAST (CAST (refHL7.ns6:"PV2.46.PatientStatusEffectiveDate" AS TIMESTAMP FORMAT 'YYYYMMddHHmms') AS CHARACTER FORMAT 'HH.mm');
+		END IF;
+	END IF;
+	
+
+END;
+
+CREATE PROCEDURE CreateModelFromDG1(IN refHL7 REFERENCE, INOUT refPatient REFERENCE) BEGIN
+	--decomment to enable autocomplete: COMMENT BEFORE DEPLOYMENT!
+
+	DECLARE a CHARACTER;
+--	DECLARE refPatient REFERENCE TO xmlModel;
+--	MOVE refPatient FIRSTCHILD NAMESPACE ns NAME 'patient';
+--	--CHECK IF PATIENT TAG ALREADY CREATED
+--	IF NOT LASTMOVE(refPatient) THEN 
+--		CREATE LASTCHILD OF xmlModel AS refPatient NAMESPACE ns NAME 'patient';		
+--	END IF;
+
+--	DECLARE refSegment REFERENCE TO refHL7;
+--	CREATE LASTCHILD OF refSegment AS refSegment NAMESPACE ns6 NAME 'anyHL7Segment';
+--	CREATE LASTCHILD OF refSegment AS refSegment NAMESPACE ns6 NAME 'PV1';
+--	--SET refSegment.ns6:"PV1.1.SetIDPV1"
+
+	--SET refPatient.diagnosis = refHL7.ns6:"DG1.1.SetIDDG1";
+	--SET refPatient.diagnosis = refHL7.ns6:"DG1.6.DiagnosisType";
+--	IF NULLIF(refHL7.ns6:"DG1.3.DiagnosisCodeDG1".ns6:"CE.1",'') IS NOT NULL THEN
+--		SET refPatient.pathway1 = refHL7.ns6:"DG1.3.DiagnosisCodeDG1".ns6:"CE.1";--  || '-' || refHL7.ns6:"DG1.3.DiagnosisCodeDG1".ns6:"CE.2";
+--	END IF;
+--	IF NULLIF(refHL7.ns6:"DG1.3.DiagnosisCodeDG1".ns6:"CE.2",'') IS NOT NULL THEN
+--		SET refPatient.pathway2 = refHL7.ns6:"DG1.3.DiagnosisCodeDG1".ns6:"CE.2";--  || '-' || refHL7.ns6:"DG1.3.DiagnosisCodeDG1".ns6:"CE.2";
+--	END IF;
+	IF NULLIF(refHL7.ns6:"DG1.3.DiagnosisCodeDG1".ns6:"CE.2",'') IS NOT NULL THEN
+		SET refPatient.diagnosis = refHL7.ns6:"DG1.3.DiagnosisCodeDG1".ns6:"CE.1"  || '-' || refHL7.ns6:"DG1.3.DiagnosisCodeDG1".ns6:"CE.2";
+	ELSE
+		SET refPatient.diagnosis = refHL7.ns6:"DG1.3.DiagnosisCodeDG1".ns6:"CE.1";
+	END IF;
+	
+	IF NULLIF(refHL7.ns6:"DG1.20.DiagnosisIdentifier".ns6:"EI.1",'') IS NOT NULL THEN
+		SET refPatient.diagnosisID = refHL7.ns6:"DG1.20.DiagnosisIdentifier".ns6:"EI.1";
+	ELSE
+		SET refPatient.diagnosisID = '';
+	END IF;
+	
+END;
+	
+CREATE PROCEDURE CreateModelFromOBR(IN refHL7 REFERENCE, INOUT refParameters REFERENCE) BEGIN
+
+--	SET refSegment.ns6:"OBR.1.SetIDOBR" = '1';
+--	--SET refSegment.ns6:"OBR.2.PlacerOrderNumber". = ;
+	DECLARE id, taskId CHARACTER;
+	IF LENGTH(refHL7.ns6:"OBR.3.FillerOrderNumber".ns6:"EI.1") < 14 THEN
+		--OLD. ID = 3
+		SET id = RIGHT(refHL7.ns6:"OBR.3.FillerOrderNumber".ns6:"EI.1",3);
+		IF NULLIF(id,'') IS NOT NULL THEN
+			SET taskId = LEFT(refHL7.ns6:"OBR.3.FillerOrderNumber".ns6:"EI.1",LENGTH(refHL7.ns6:"OBR.3.FillerOrderNumber".ns6:"EI.1")-3);
+		ELSE 
+			SET taskId = refHL7.ns6:"OBR.3.FillerOrderNumber".ns6:"EI.1";
+		END IF;	
+	ELSE 
+		SET id = RIGHT(refHL7.ns6:"OBR.3.FillerOrderNumber".ns6:"EI.1",14);
+		IF NULLIF(id,'') IS NOT NULL THEN
+			SET taskId = LEFT(refHL7.ns6:"OBR.3.FillerOrderNumber".ns6:"EI.1",LENGTH(refHL7.ns6:"OBR.3.FillerOrderNumber".ns6:"EI.1")-14);
+		ELSE 
+			SET taskId = refHL7.ns6:"OBR.3.FillerOrderNumber".ns6:"EI.1";
+		END IF;	
+	END IF;	
+
+	SET refParameters.id = TRIM(TRAILING 'b' FROM id);
+	SET refParameters.taskId = taskId;
+--	SET refSegment.ns6:"OBR.4.UniversalServiceIdentifier".ns6:"CE.1" = 'IBMAPPLE';
+--	--SET refSegment.ns6:"OBR.5.Priority".;
+--	--SET refSegment.ns6:"OBR.6.RequestedDateTime". = ;
+	IF (refHL7.ns6:"OBR.7.ObservationDateTime".ns6:"TS.1" IS NOT NULL) THEN
+		--SET refParameters.date = CAST (CAST (refHL7.ns6:"OBR.7.ObservationDateTime".ns6:"TS.1" AS TIMESTAMP FORMAT 'YYYYMMddHHmmss') AS CHARACTER FORMAT 'YYYY-MM-dd HH.mm.ss');
+		IF(LENGTH(refHL7.ns6:"OBR.7.ObservationDateTime".ns6:"TS.1") = 14 ) THEN
+			SET refParameters.date = CAST (CAST (refHL7.ns6:"OBR.7.ObservationDateTime".ns6:"TS.1" AS TIMESTAMP FORMAT 'YYYYMMddHHmmss') AS CHARACTER FORMAT 'YYYY-MM-dd HH.mm.ss');
+		ELSEIF (LENGTH(refHL7.ns6:"OBR.7.ObservationDateTime".ns6:"TS.1") = 8 ) THEN
+			SET refParameters.date = CAST (CAST (refHL7.ns6:"OBR.7.ObservationDateTime".ns6:"TS.1" AS TIMESTAMP FORMAT 'YYYYMMdd') AS CHARACTER FORMAT 'YYYY-MM-dd');
+		END IF;
+	END IF;
+--	--SET refSegment.ns6:"OBR.8.ObservationEndDateTime";
+--	--SET refSegment.ns6:"OBR.9.CollectionVolume". = ;
+--	--SET refSegment.ns6:"OBR.10.CollectorIdentifier".;
+--	--SET refSegment.ns6:"OBR.11.SpecimenActionCode". = ;
+--	--SET refSegment.ns6:"OBR.12.DangerCode". = ;
+--	--SET refSegment.ns6:"OBR.13.RelevantClinicalInfo". = ;
+--	--SET refSegment.ns6:"OBR.14.SpecimenReceivedDateTime". = ;
+--	--SET refSegment.ns6:"OBR.15.SpecimenSource". = ;
+--	--SET refSegment.ns6:"OBR.16.OrderingProvider". = ;
+--	--SET refSegment.ns6:"OBR.17.OrderCallbackPhoneNumber". = ;
+--	--SET refSegment.ns6:"OBR.18.PlacerField1". = ;
+--	--SET refSegment.ns6:"OBR.19.PlacerField2". = ;
+--	--SET refSegment.ns6:"OBR.20.FillerField1". = ;
+--	--SET refSegment.ns6:"OBR.21.FillerField2". = ;
+--	--SET refSegment.ns6:"OBR.22.ResultsRptStatusChngDateTime". = ;
+--	--SET refSegment.ns6:"OBR.23.ChargetoPractice". = ;
+--	--SET refSegment.ns6:"OBR.24.DiagnosticServSectID". = ;
+--	--SET refSegment.ns6:"OBR.25.ResultStatus". = ;
+--	--SET refSegment.ns6:"OBR.26.ParentResult". = ;
+--	--SET refSegment.ns6:"OBR.27.QuantityTiming". = ;
+--	--SET refSegment.ns6:"OBR.28.ResultCopiesTo". = ;
+--	--SET refSegment.ns6:"OBR.29.Parent". = ;
+--	--SET refSegment.ns6:"OBR.30.TransportationMode". = ;
+--	--SET refSegment.ns6:"OBR.31.ReasonforStudy". = ;
+--	--SET refSegment.ns6:"OBR.32.PrincipalResultInterpreter". = ;
+--	--SET refSegment.ns6:"OBR.33.AssistantResultInterpreter". = ;
+
+	SET refParameters.userId = refHL7.ns6:"OBR.34.Technician".ns6:"NDL.1".ns6:"CNN.1";
+--	--SET refSegment.ns6:"OBR.35.Transcriptionist". = ;
+--	--SET refSegment.ns6:"OBR.36.ScheduledDateTime". = ;
+--	--SET refSegment.ns6:"OBR.37.NumberofSampleContainers". = ;
+--	--SET refSegment.ns6:"OBR.38.TransportLogisticsofCollectedSample". = ;
+--	--SET refSegment.ns6:"OBR.39.CollectorsComment". = ;
+--	--SET refSegment.ns6:"OBR.40.TransportArrangementResponsibility". = ;
+--	--SET refSegment.ns6:"OBR.41.TransportArranged". = ;
+--	--SET refSegment.ns6:"OBR.42.EscortRequired". = ;
+--	--SET refSegment.ns6:"OBR.43.PlannedPatientTransportComment". = ;
+--	--SET refSegment.ns6:"OBR.44.ProcedureCode". = ;
+--	--SET refSegment.ns6:"OBR.45.ProcedureCodeModifier". = ;
+--	--SET refSegment.ns6:"OBR.46.PlacerSupplementalServiceInformation". = ;
+--	--SET refSegment.ns6:"OBR.47.FillerSupplementalServiceInformation". = ;
+--	--SET refSegment.ns6:"OBR.48.MedicallyNecessaryDuplicateProcedureReason". = ;
+--	--SET refSegment.ns6:"OBR.49.ResultHandling". = ;
+--	--SET refSegment.ns6:"OBR.50.ParentUniversalServiceIdentifier". = ;
+
+END;
+
+CREATE PROCEDURE CreateModelFromOBX(IN refHL7 REFERENCE, INOUT refParameters REFERENCE) BEGIN
+
+	
+	--IF NULLIF(refHL7.ns6:"OBX.5.ObservationValue",'') IS NOT NULL THEN
+		DECLARE refValues REFERENCE TO refParameters;
+		CREATE LASTCHILD OF refParameters AS refValues NAMESPACE ns NAME 'values';	
+	--	SET refSegment.ns6:"OBX.1.SetIDOBX" = sequence;
+	--	SET refSegment.ns6:"OBX.2.ValueType" = 'NM';
+		SET refValues.measureId = refHL7.ns6:"OBX.3.ObservationIdentifier".ns6:"CE.1";
+		SET refValues.measureName = refHL7.ns6:"OBX.3.ObservationIdentifier".ns6:"CE.2";
+		IF (refValues.measureId = 'DN999') THEN
+			SET refParameters.detPoint = refHL7.ns6:"OBX.5.ObservationValue";
+		END IF;
+		IF (refValues.measureId = 'DN007') THEN
+			SET refParameters.detPointDesc = refHL7.ns6:"OBX.5.ObservationValue";
+		END IF;
+		
+		IF (refValues.measureId = 'AS999') THEN
+			SET refParameters.detPoint = refHL7.ns6:"OBX.5.ObservationValue";
+		END IF;
+		IF (refValues.measureId = 'AS004') THEN
+			SET refParameters.detPointDesc = SUBSTRING(refHL7.ns6:"OBX.5.ObservationValue" AFTER '^');--refHL7.ns6:"OBX.5.ObservationValue";
+		END IF;
+		
+		IF (refValues.measureId = 'DIU999') THEN
+			SET refParameters.detPoint = refHL7.ns6:"OBX.5.ObservationValue";
+		END IF;
+		IF (refValues.measureId = 'DIU007') THEN
+			SET refParameters.detPointDesc = SUBSTRING(refHL7.ns6:"OBX.5.ObservationValue" AFTER '^');--refHL7.ns6:"OBX.5.ObservationValue";
+		END IF;
+		IF (refValues.measureId = 'TMP001') THEN
+			SET refParameters.detPointDesc = 'Celsius';
+		END IF;
+		IF (refValues.measureId = 'PAO001') THEN
+			SET refParameters.detPointDescSist = 'Sistolica';
+		END IF;
+		IF (refValues.measureId = 'PAO002') THEN
+			SET refParameters.detPointDescDiast = 'Diastolica';
+		END IF;
+		IF (refValues.measureId = 'SPO2002') THEN
+			SET refParameters.detPointDesc = '%';
+		END IF;
+		IF (refValues.measureId = 'VAS004') THEN
+			SET refParameters.detPointDesc = 'VAS';
+		END IF;
+		IF (refValues.measureId = 'RFR005') THEN
+			SET refParameters.detPointDesc = 'Atti/min';
+		END IF;
+		IF (refValues.measureId = 'FC001') THEN
+			SET refParameters.detPointDesc = 'BPM';
+		END IF;
+		IF (refValues.measureId = 'SC008') THEN
+			SET refParameters.detPointDesc = 'Glasgow come Scale';
+		END IF;
+		IF (refValues.measureId = 'CG002') THEN
+			SET refParameters.detPointDesc = 'Glicemia';
+		END IF;
+		IF (refValues.measureId = 'SNG006') THEN
+			SET refParameters.detPointDesc = 'Quantità drenato';
+		END IF;
+		
+	--	SET refSegment.ns6:"OBX.3.ObservationIdentifier".ns6:"CE.3" = 'SRT';
+	--	--SET refSegment.ns6:"OBX.4.ObservationSubId". = ;
+		IF CONTAINS(refHL7.ns6:"OBX.5.ObservationValue",'^') THEN
+			DECLARE refAttach REFERENCE TO refValues;
+			DECLARE intParts INTEGER POSITION('^' IN refHL7.ns6:"OBX.5.ObservationValue"); 
+			SET refValues.value = SUBSTRING(refHL7.ns6:"OBX.5.ObservationValue" FROM 1 FOR intParts-1);
+			--GET BASE64
+			CREATE LASTCHILD OF refValues AS refAttach NAME 'attachment';
+			SET refAttach.base64 = SUBSTRING(refHL7.ns6:"OBX.5.ObservationValue" AFTER '^mime^^^');
+			IF NULLIF (refAttach.base64,'') IS NOT NULL	THEN
+				SET refAttach.id = refHL7.ns6:"OBX.1.SetIDOBX";
+			END IF;
+			SET refAttach.type = refHL7.ns6:"OBX.17.ObservationMethod".ns6:"CE.1";
+		ELSE 
+			SET refValues.value = refHL7.ns6:"OBX.5.ObservationValue";
+		END IF;		
+	--TODO cosa è??
+	--	IF (xmlModel.units IS NOT NULL) THEN
+	--		--SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[SEQUENCE + 4].ns6:OBX.ns6:"OBX.6.Units".ns6:"CE.1"  = xmlModel.units;
+	--		SET refSegment.ns6:"OBX.6.Units".ns6:"CE.1"  = xmlModel.units;
+	--	END IF;
+	--	--SET refSegment.ns6:"OBX.7.ReferencesRange". = ;
+	--	SET refSegment.ns6:"OBX.8.AbnormalFlags" VALUE = NULL;
+	--	--SET refSegment.ns6:"OBX.9.Probability". = ;
+	--	SET refSegment.ns6:"OBX.10.NatureofAbnormalTest" VALUE = NULL;
+	--	SET refSegment.ns6:"OBX.11.ObservationResultStatus" = 'F';
+	--	--SET refSegment.ns6:"OBX.12.DateLastObservationNormalValue". = ;
+	--	--SET refSegment.ns6:"OBX.13.UserDefinedAccessChecks". = ;
+	--	--SET refSegment.ns6:"OBX.14.DateTimeoftheObservation". = ;
+	--	--SET refSegment.ns6:"OBX.15.ProducersID". = ;
+	--	--SET refSegment.ns6:"OBX.16.ResponsibleObserver". = ;
+	--	--SET refSegment.ns6:"OBX.17.ObservationMethod". = ;
+	--	--SET refSegment.ns6:"OBX.18.EquipmentInstanceIdentifier". = ;
+	--	--SET refSegment.ns6:"OBX.19.DateTimeoftheAnalysis". = ;
+	--	--SET refSegment.ns6:"OBX.23.PerformingOrganizationName". = ;
+	--	--SET refSegment.ns6:"OBX.24.PerformingOrganizationAddress". = ;
+	--	--SET refSegment.ns6:"OBX.25.PerformingOrganizationMedicalDirector". = ;
+	--END IF;
+END;
+
+CREATE PROCEDURE CreateModelFromMSA(IN refHL7 REFERENCE, INOUT xmlModel REFERENCE) BEGIN
+--	DECLARE xmlModel REFERENCE TO InputRoot.XMLNSC.ns:senderResponse.patientDetailsResponse;
+	DECLARE refSegment REFERENCE TO refHL7;
+	SET xmlModel.result = refHL7.ns6:"MSA.1.AcknowledgementCode" || ' ' || COALESCE(refHL7.ns6:"MSA.3.TextMessage",' ');
+
+END;

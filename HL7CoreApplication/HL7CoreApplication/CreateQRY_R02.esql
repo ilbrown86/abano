@@ -1,0 +1,20 @@
+
+BROKER SCHEMA HL7CoreApplication
+
+PATH HL7CoreApplication;
+
+CREATE PROCEDURE CreateQRY_R02(/*ID UNIVOCO Messaggio*/IN msgId CHARACTER, /*Modello XML Input*/IN xmlModel REFERENCE, INOUT hl7OutRef REFERENCE) BEGIN
+
+	--decomment to enable autocomplete: COMMENT BEFORE DEPLOYMENT!
+	--DECLARE xmlModel REFERENCE TO InputRoot.XMLNSC.ns:senderRequest.patientDetailsRequest;
+	
+	--CREA MESSAGGIO ORU01
+	--CALL ModelToORU01(patient, outputMessage);
+	--CREA TESTATA MSH
+	CALL CreateMSH('QRY', 'R02', msgId, hl7OutRef);
+	--CREA QRD
+	CALL CreateQRD(msgId, xmlModel, hl7OutRef);
+	--CREA QRF
+	CALL CreateQRF(xmlModel, hl7OutRef);
+
+END;

@@ -1,0 +1,14 @@
+[
+  {
+    "patientId": "131175600",
+    "nosologicId": "17/000004"
+  },
+  {
+    "patientId": "132779960",
+    "nosologicId": "16/008817"
+  },
+  {
+    "patientId": "104452910",
+    "nosologicId": "16/008816"
+  }
+]

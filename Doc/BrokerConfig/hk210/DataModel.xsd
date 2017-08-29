@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://hk210" xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions"
+	xmlns:hk210="http://hk210">
+	<!-- Message definition generated from C:\workspaces\iib\tutorial\LOANS_DB\LOANS.dbm -->
+
+	<xsd:complexType name="ApplicationRequestType">
+		<xsd:sequence>
+			<xsd:element name="utente" type="xsd:string" />
+			<xsd:element name="descrizione" type="xsd:string" />
+			<xsd:element name="gestione" type="xsd:string" />
+			<xsd:element name="rapporto" type="xsd:string" />
+			<xsd:element name="cin" type="xsd:string" />
+			<xsd:element name="abi" type="xsd:string" />
+			<xsd:element name="cab" type="xsd:string" />
+			<xsd:element name="conto" type="xsd:string" />
+			<xsd:element name="importoContabile" type="xsd:string" />
+			<xsd:element name="segnoContabile" type="xsd:string" />
+			<xsd:element name="importoDisponibile" type="xsd:string" />
+			<xsd:element name="segnoDisponibile" type="xsd:string" />
+			<xsd:element name="dataContabile" type="xsd:date" />
+			<xsd:element name="dataValuta" type="xsd:date" />
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:element name="ApplicationRequest" type="hk210:ApplicationRequestType">
+	</xsd:element>
+
+	<xsd:complexType name="RuleRequestType">
+		<xsd:sequence>
+			<xsd:element name="acronimo" type="xsd:string" />
+			<xsd:element name="codice" type="xsd:string" />
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:element name="RuleRequest" type="hk210:RuleRequestType">
+	</xsd:element>
+
+	<xsd:complexType name="LegacyResponseType">
+		<xsd:sequence>
+			<xsd:element name="requestId" type="xsd:string" />
+			<xsd:element name="importoContabile" type="xsd:string" />
+			<xsd:element name="dataContabile" type="xsd:date" />
+			<xsd:element name="dataValuta" type="xsd:date" />
+			<xsd:element name="abi" type="xsd:string" />
+			<xsd:element name="cab" type="xsd:string" />
+			<xsd:element name="conto" type="xsd:string" />
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:element name="LegacyResponse" type="hk210:LegacyResponseType">
+	</xsd:element>
+
+	<xsd:complexType name="ApplicationResponseType">
+		<xsd:sequence>
+			<xsd:element name="returnCode" type="xsd:string" />
+			<xsd:element name="esitoApplicativo" type="xsd:string" />
+			<xsd:element name="CheckRule" type="xsd:string" />
+			<xsd:element name="CheckHost" type="xsd:string" />
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:element name="ApplicationResponse" type="hk210:ApplicationResponseType">
+	</xsd:element>
+
+</xsd:schema>

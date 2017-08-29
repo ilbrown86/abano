@@ -1,0 +1,31 @@
+<hl7:senderRequest xmlns:hl7="http://w3.ibm.com/it/hl7" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+   <action>writeParameters</action>
+   <messageId>201706011526535373387</messageId>
+   <writeParametersRequest>
+      <patient>
+         <nosologicId>16/008820</nosologicId>
+         <patientIdentifierList>132507800</patientIdentifierList>
+         <class>I</class>
+      </patient>
+      <parameter>
+         <taskId>5373387</taskId>
+         <id>1</id>
+         <userId>ibm.rnezha</userId>
+         <date>20170601152653</date>
+         <values>
+            <measureId>RPM001</measureId>
+            <measureName>handsParesthesia</measureName>
+            <value>1</value>
+            <units />
+            <type>Integer</type>
+         </values>
+         <values>
+            <measureId>RPM002</measureId>
+            <measureName>handsParesthesiaResolved</measureName>
+            <value>1</value>
+            <units />
+            <type>Integer</type>
+         </values>
+      </parameter>
+   </writeParametersRequest>
+</hl7:senderRequest>

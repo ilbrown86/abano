@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ComIbmCallableFlowInvoke.msgnode="ComIbmCallableFlowInvoke.msgnode" xmlns:ComIbmCompute.msgnode="ComIbmCompute.msgnode" xmlns:ComIbmFilter.msgnode="ComIbmFilter.msgnode" xmlns:ComIbmFlowOrder.msgnode="ComIbmFlowOrder.msgnode" xmlns:ComIbmLabel.msgnode="ComIbmLabel.msgnode" xmlns:ComIbmRouteToLabel.msgnode="ComIbmRouteToLabel.msgnode" xmlns:ComIbmSequence.msgnode="ComIbmSequence.msgnode" xmlns:ComIbmTCPIPServerOutput.msgnode="ComIbmTCPIPServerOutput.msgnode"
+    xmlns:ComIbmThrow.msgnode="ComIbmThrow.msgnode" xmlns:ComIbmTrace.msgnode="ComIbmTrace.msgnode" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:eflow="http://www.ibm.com/wbi/2005/eflow" xmlns:hl7dfdlin_HL7DFDLInput.msgflow="hl7dfdlin/HL7DFDLInput.msgflow" xmlns:utility="http://www.ibm.com/wbi/2005/eflow_utility" nsURI="HL7CoreApplication/HL7Receiver.msgflow" nsPrefix="HL7CoreApplication_HL7Receiver.msgflow">
+  <eClassifiers xmi:type="eflow:FCMComposite" name="FCMComposite_1">
+    <eSuperTypes href="http://www.ibm.com/wbi/2005/eflow#//FCMBlock"/>
+    <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.ADT01AdmissionEndpoint" name="ADT01AdmissionEndpoint" lowerBound="1" defaultValueLiteral="ADT01Admission">
+      <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.CallableTargetApplication" name="CallableTargetApplication" lowerBound="1" defaultValueLiteral="HL7_BPM_Application">
+      <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.HL7ListenerPort" name="HL7ListenerPort" lowerBound="1" defaultValueLiteral="8889">
+      <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.ADT02TransferEndPoint" name="ADT02TransferEndPoint" lowerBound="1" defaultValueLiteral="ADT02Transfer">
+      <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.ADT03DischargeEndPoint" name="ADT03DischargeEndPoint" lowerBound="1" defaultValueLiteral="ADT03Discharge">
+      <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.ADT08UpdateEndPoint" name="ADT08UpdateEndPoint" lowerBound="1" defaultValueLiteral="ADT08All">
+      <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.ADT13CancelDischargeEndPoint" name="ADT13CancelDischargeEndPoint" lowerBound="1" defaultValueLiteral="ADT13CancelDischarge">
+      <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+    <translation xmi:type="utility:TranslatableString" key="HL7Receiver" bundleName="HL7CoreApplication/HL7Receiver" pluginId="HL7CoreApplication"/>
+    <colorGraphic16 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/HL7CoreApplication/icons/full/obj16/HL7Receiver.gif"/>
+    <colorGraphic32 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/HL7CoreApplication/icons/full/obj30/HL7Receiver.gif"/>
+    <composition>
+      <nodes xmi:type="hl7dfdlin_HL7DFDLInput.msgflow:FCMComposite_1" xmi:id="FCMComposite_1_1" location="55,115" CheckDuplicates="false" ReportDuplicates="false" SendAcknowledgments="false" connectionDetails="8889">
+        <translation xmi:type="utility:ConstantString" string="HL7DFDLInput"/>
+      </nodes>
+      <nodes xmi:type="ComIbmSequence.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_4" location="385,192" pathToStoreSequenceNo="$OutputRoot/MQRFH2/usr/sequenceNumber" correlationPath="$Root/MQRFH2/usr/sequenceGroup" startOfSequence="01" endOfSequence="23600" persistenceMode="Persistent">
+        <translation xmi:type="utility:ConstantString" string="Sequence"/>
+      </nodes>
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_5" location="1132,187" computeExpression="esql://routine/HL7CoreApplication#BuildACK.Main" computeMode="all">
+        <translation xmi:type="utility:ConstantString" string="Build ACK"/>
+      </nodes>
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_6" location="174,113" computeExpression="esql://routine/HL7CoreApplication#Setup.Main" computeMode="destination">
+        <translation xmi:type="utility:ConstantString" string="Setup"/>
+      </nodes>
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_7" location="479,192" computeExpression="esql://routine/HL7CoreApplication#MilestoneHL7ToProcessing.Main" computeMode="destination">
+        <translation xmi:type="utility:ConstantString" string="Set Milestone"/>
+      </nodes>
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_8" location="268,192" computeExpression="esql://routine/HL7CoreApplication#PrepareForSequence.Main">
+        <translation xmi:type="utility:ConstantString" string="Sequence Setup"/>
+      </nodes>
+      <nodes xmi:type="ComIbmThrow.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_3" location="453,544" messageText="Error in processing HL7 request in receiver flow">
+        <translation xmi:type="utility:ConstantString" string="Throw"/>
+      </nodes>
+      <nodes xmi:type="ComIbmFlowOrder.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_9" location="208,282">
+        <translation xmi:type="utility:ConstantString" string="Flow Order"/>
+      </nodes>
+      <nodes xmi:type="ComIbmFilter.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_10" location="446,386" filterExpression="esql://routine/HL7CoreApplication#ReceiverExceptionHandlerFilterErrors.Main">
+        <translation xmi:type="utility:ConstantString" string="Build NACK?"/>
+      </nodes>
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_11" location="587,386" computeExpression="esql://routine/HL7CoreApplication#ReceiverExceptionHandlerCountErrors.Main" computeMode="destination">
+        <translation xmi:type="utility:ConstantString" string="Count Errors"/>
+      </nodes>
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_12" location="114,282" computeExpression="esql://routine/HL7CoreApplication#Setup.Main" computeMode="destination">
+        <translation xmi:type="utility:ConstantString" string="Setup1"/>
+      </nodes>
+      <nodes xmi:type="ComIbmTCPIPServerOutput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_13" location="708,386" connectionDetails="8889" idLocation="$LocalEnvironment/TCPIP/Input/ConnectionDetails/Id" recordDefinition="delimited" recordDelimiter="customDelimiter" customDelimiter="1C0D">
+        <translation xmi:type="utility:ConstantString" string="TCPIP Server Output"/>
+      </nodes>
+      <nodes xmi:type="ComIbmFlowOrder.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_14" location="300,386">
+        <translation xmi:type="utility:ConstantString" string="Flow Order Extra"/>
+      </nodes>
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_15" location="590,465" computeExpression="esql://routine/HL7CoreApplication#ReceiverExceptionHandlerBuildNACK.Main" computeMode="destinationAndMessage">
+        <translation xmi:type="utility:ConstantString" string="Build NACK"/>
+      </nodes>
+      <nodes xmi:type="ComIbmTrace.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_16" location="316,282" destination="file" filePath="C:/temp/medarchiver/tracefile.txt" pattern="--[Start]-------------------   CorrelId:  ${cast(Root.MQMD.CorrelId as character)}   --  MsgId:  ${cast(Root.MQMD.MsgId as character)}   --  ExceptionList:   ${ExceptionList}  --   Environment:   ${Environment}   --   LocalEnvironment:    ${LocalEnvironment}   --   Root:   ${Root}  --[End]--------------------">
+        <translation xmi:type="utility:ConstantString" string="Trace"/>
+      </nodes>
+      <nodes xmi:type="ComIbmTCPIPServerOutput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_17" location="1318,194" connectionDetails="8889" closeConnection="afterData" idLocation="$LocalEnvironment/TCPIP/Input/ConnectionDetails/Id" replyIdLocation="$LocalEnvironment/TCPIP/Input/ConnectionDetails/ReplyId" recordDefinition="delimited" recordDelimiter="customDelimiter" customDelimiter="1C0D">
+        <translation xmi:type="utility:ConstantString" string="Send ACK"/>
+      </nodes>
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_2" location="559,193" computeExpression="esql://routine/HL7CoreApplication#HL7Receiver_HL7_To_XML.Main" computeMode="destinationAndMessage">
+        <translation xmi:type="utility:ConstantString" string="HL7ToXMLModel"/>
+      </nodes>
+      <nodes xmi:type="ComIbmCallableFlowInvoke.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_19" location="943,104" targetApplication="HL7_BPM_Application" targetEndpointName="ADT01Admission">
+        <translation xmi:type="utility:ConstantString" string="ADT01Admission"/>
+      </nodes>
+      <nodes xmi:type="ComIbmCallableFlowInvoke.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_20" location="944,262" targetApplication="HL7_BPM_Application" targetEndpointName="ADT03Discharge">
+        <translation xmi:type="utility:ConstantString" string="ADT03Discharge"/>
+      </nodes>
+      <nodes xmi:type="ComIbmCallableFlowInvoke.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_21" location="952,187" targetApplication="HL7_BPM_Application" targetEndpointName="ADT02Transfer">
+        <translation xmi:type="utility:ConstantString" string="ADT02Transfer"/>
+      </nodes>
+      <nodes xmi:type="ComIbmRouteToLabel.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_22" location="662,190" mode="routeToFirst">
+        <translation xmi:type="utility:ConstantString" string="Route To Label"/>
+      </nodes>
+      <nodes xmi:type="ComIbmLabel.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_23" location="816,101" labelName="admission">
+        <translation xmi:type="utility:ConstantString" string="admission"/>
+      </nodes>
+      <nodes xmi:type="ComIbmLabel.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_24" location="821,186" labelName="transfer">
+        <translation xmi:type="utility:ConstantString" string="transfer"/>
+      </nodes>
+      <nodes xmi:type="ComIbmLabel.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_25" location="817,257" labelName="discharge">
+        <translation xmi:type="utility:ConstantString" string="discharge"/>
+      </nodes>
+      <nodes xmi:type="ComIbmCallableFlowInvoke.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_18" location="939,346" targetApplication="HL7_BPM_Application" targetEndpointName="ADT08All">
+        <translation xmi:type="utility:ConstantString" string="ADT08Update"/>
+      </nodes>
+      <nodes xmi:type="ComIbmLabel.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_26" location="812,341" labelName="update">
+        <translation xmi:type="utility:ConstantString" string="update"/>
+      </nodes>
+      <nodes xmi:type="ComIbmCallableFlowInvoke.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_27" location="979,475" targetApplication="HL7_BPM_Application" targetEndpointName="ADT13CancelDischarge">
+        <translation xmi:type="utility:ConstantString" string="ADT13CancelDischarge"/>
+      </nodes>
+      <nodes xmi:type="ComIbmLabel.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_28" location="854,484" labelName="cancelDischarge">
+        <translation xmi:type="utility:ConstantString" string="cancelDischarge"/>
+      </nodes>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_3" targetNode="FCMComposite_1_7" sourceNode="FCMComposite_1_4" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_5" targetNode="FCMComposite_1_4" sourceNode="FCMComposite_1_8" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_6" targetNode="FCMComposite_1_8" sourceNode="FCMComposite_1_6" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_7" targetNode="FCMComposite_1_6" sourceNode="FCMComposite_1_1" sourceTerminalName="OutTerminal.Out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_1" targetNode="FCMComposite_1_13" sourceNode="FCMComposite_1_11" sourceTerminalName="OutTerminal.out2" targetTerminalName="InTerminal.close"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_2" targetNode="FCMComposite_1_10" sourceNode="FCMComposite_1_14" sourceTerminalName="OutTerminal.first" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_9" targetNode="FCMComposite_1_15" sourceNode="FCMComposite_1_10" sourceTerminalName="OutTerminal.true" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_10" targetNode="FCMComposite_1_16" sourceNode="FCMComposite_1_9" sourceTerminalName="OutTerminal.first" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_11" targetNode="FCMComposite_1_3" sourceNode="FCMComposite_1_14" sourceTerminalName="OutTerminal.second" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_12" targetNode="FCMComposite_1_13" sourceNode="FCMComposite_1_15" sourceTerminalName="OutTerminal.out2" targetTerminalName="InTerminal.close"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_13" targetNode="FCMComposite_1_13" sourceNode="FCMComposite_1_15" sourceTerminalName="OutTerminal.out1" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_14" targetNode="FCMComposite_1_11" sourceNode="FCMComposite_1_10" sourceTerminalName="OutTerminal.false" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_15" targetNode="FCMComposite_1_9" sourceNode="FCMComposite_1_12" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_16" targetNode="FCMComposite_1_14" sourceNode="FCMComposite_1_9" sourceTerminalName="OutTerminal.second" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_17" targetNode="FCMComposite_1_12" sourceNode="FCMComposite_1_1" sourceTerminalName="OutTerminal.Failure" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_18" targetNode="FCMComposite_1_12" sourceNode="FCMComposite_1_1" sourceTerminalName="OutTerminal.Catch" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_8" targetNode="FCMComposite_1_17" sourceNode="FCMComposite_1_5" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_4" targetNode="FCMComposite_1_2" sourceNode="FCMComposite_1_7" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_20" targetNode="FCMComposite_1_5" sourceNode="FCMComposite_1_19" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_22" targetNode="FCMComposite_1_5" sourceNode="FCMComposite_1_20" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_26" targetNode="FCMComposite_1_5" sourceNode="FCMComposite_1_21" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_19" targetNode="FCMComposite_1_22" sourceNode="FCMComposite_1_2" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_23" targetNode="FCMComposite_1_19" sourceNode="FCMComposite_1_23" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_24" targetNode="FCMComposite_1_21" sourceNode="FCMComposite_1_24" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_25" targetNode="FCMComposite_1_20" sourceNode="FCMComposite_1_25" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_21" targetNode="FCMComposite_1_18" sourceNode="FCMComposite_1_26" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_27" targetNode="FCMComposite_1_27" sourceNode="FCMComposite_1_28" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_28" targetNode="FCMComposite_1_5" sourceNode="FCMComposite_1_18" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_29" targetNode="FCMComposite_1_5" sourceNode="FCMComposite_1_27" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+    </composition>
+    <propertyOrganizer>
+      <propertyDescriptor groupName="Group.Basic" propertyEditor="com.ibm.etools.mft.ibmnodes.editors.callable.InvokeNodeEndpointNameEditor" configurable="true" describedAttribute="Property.ADT01AdmissionEndpoint">
+        <propertyName xmi:type="utility:TranslatableString" key="Property.ADT01AdmissionEndpoint" bundleName="HL7CoreApplication/HL7Receiver" pluginId="HL7CoreApplication"/>
+        <propertyDescriptor groupName="Group.Basic" propertyEditor="com.ibm.etools.mft.ibmnodes.editors.callable.InvokeNodeApplicationNameEditor" configurable="true" describedAttribute="Property.CallableTargetApplication">
+          <propertyName xmi:type="utility:TranslatableString" key="Property.CallableTargetApplication" bundleName="HL7CoreApplication/HL7Receiver" pluginId="HL7CoreApplication"/>
+          <propertyDescriptor groupName="Group.Basic" propertyEditor="com.ibm.etools.mft.ibmnodes.editors.tcpip.TCPIPConnectionPropertyEditor" configurable="true" describedAttribute="Property.HL7ListenerPort">
+            <propertyName xmi:type="utility:TranslatableString" key="Property.HL7ListenerPort" bundleName="HL7CoreApplication/HL7Receiver" pluginId="HL7CoreApplication"/>
+            <propertyDescriptor groupName="Group.Basic" propertyEditor="com.ibm.etools.mft.ibmnodes.editors.callable.InvokeNodeEndpointNameEditor" configurable="true" describedAttribute="Property.ADT02TransferEndPoint">
+              <propertyName xmi:type="utility:TranslatableString" key="Property.ADT02TransferEndPoint" bundleName="HL7CoreApplication/HL7Receiver" pluginId="HL7CoreApplication"/>
+              <propertyDescriptor groupName="Group.Basic" propertyEditor="com.ibm.etools.mft.ibmnodes.editors.callable.InvokeNodeEndpointNameEditor" configurable="true" describedAttribute="Property.ADT03DischargeEndPoint">
+                <propertyName xmi:type="utility:TranslatableString" key="Property.ADT03DischargeEndPoint" bundleName="HL7CoreApplication/HL7Receiver" pluginId="HL7CoreApplication"/>
+                <propertyDescriptor groupName="Group.Basic" propertyEditor="com.ibm.etools.mft.ibmnodes.editors.callable.InvokeNodeEndpointNameEditor" configurable="true" describedAttribute="Property.ADT08UpdateEndPoint">
+                  <propertyName xmi:type="utility:TranslatableString" key="Property.ADT08UpdateEndPoint" bundleName="HL7CoreApplication/HL7Receiver" pluginId="HL7CoreApplication"/>
+                  <propertyDescriptor groupName="Group.Basic" propertyEditor="com.ibm.etools.mft.ibmnodes.editors.callable.InvokeNodeEndpointNameEditor" configurable="true" describedAttribute="Property.ADT13CancelDischargeEndPoint">
+                    <propertyName xmi:type="utility:TranslatableString" key="Property.ADT13CancelDischargeEndPoint" bundleName="HL7CoreApplication/HL7Receiver" pluginId="HL7CoreApplication"/>
+                  </propertyDescriptor>
+                </propertyDescriptor>
+              </propertyDescriptor>
+            </propertyDescriptor>
+          </propertyDescriptor>
+        </propertyDescriptor>
+      </propertyDescriptor>
+    </propertyOrganizer>
+    <attributeLinks promotedAttribute="Property.ADT01AdmissionEndpoint" overriddenNodes="FCMComposite_1_19">
+      <overriddenAttribute href="ComIbmCallableFlowInvoke.msgnode#Property.targetEndpointName"/>
+    </attributeLinks>
+    <attributeLinks promotedAttribute="Property.CallableTargetApplication" overriddenNodes="FCMComposite_1_19 FCMComposite_1_21 FCMComposite_1_20 FCMComposite_1_18 FCMComposite_1_27">
+      <overriddenAttribute href="ComIbmCallableFlowInvoke.msgnode#Property.targetApplication"/>
+    </attributeLinks>
+    <attributeLinks promotedAttribute="Property.HL7ListenerPort" overriddenNodes="FCMComposite_1_1">
+      <overriddenAttribute href="hl7dfdlin/HL7DFDLInput.msgflow#Property.connectionDetails"/>
+    </attributeLinks>
+    <attributeLinks promotedAttribute="Property.HL7ListenerPort" overriddenNodes="FCMComposite_1_13 FCMComposite_1_17">
+      <overriddenAttribute href="ComIbmTCPIPServerOutput.msgnode#Property.connectionDetails"/>
+    </attributeLinks>
+    <attributeLinks promotedAttribute="Property.ADT02TransferEndPoint" overriddenNodes="FCMComposite_1_21">
+      <overriddenAttribute href="ComIbmCallableFlowInvoke.msgnode#Property.targetEndpointName"/>
+    </attributeLinks>
+    <attributeLinks promotedAttribute="Property.ADT03DischargeEndPoint" overriddenNodes="FCMComposite_1_20">
+      <overriddenAttribute href="ComIbmCallableFlowInvoke.msgnode#Property.targetEndpointName"/>
+    </attributeLinks>
+    <attributeLinks promotedAttribute="Property.ADT08UpdateEndPoint" overriddenNodes="FCMComposite_1_18">
+      <overriddenAttribute href="ComIbmCallableFlowInvoke.msgnode#Property.targetEndpointName"/>
+    </attributeLinks>
+    <attributeLinks promotedAttribute="Property.ADT13CancelDischargeEndPoint" overriddenNodes="FCMComposite_1_27">
+      <overriddenAttribute href="ComIbmCallableFlowInvoke.msgnode#Property.targetEndpointName"/>
+    </attributeLinks>
+    <stickyBoard>
+      <stickyNote location="693,479">
+        <body xmi:type="utility:ConstantString" string="da verificare"/>
+      </stickyNote>
+    </stickyBoard>
+  </eClassifiers>
+</ecore:EPackage>

@@ -1,0 +1,121 @@
+DEFINIZIONE UTENZE
+Luciano D Moretti
+
+10:26:30 AM
+c) Create user mqm
+
+adduser mqm
+
+d) Add user mqm to group mqm
+root@osboxes:/home/osboxes# usermod -a -G mqm mqm
+
+e) Create User iibadmin
+adduser iibadmin
+
+f) Add iibadmin to group iibadmin & mqm
+root@osboxes:/home/osboxes# usermod -a -G iibadmin iibadmin
+root@osboxes:/home/osboxes# usermod -a -G mqm iibadmin
+
+g) Check Users & Groups
+
+root@osboxes:/home/osboxes# cat /etc/group | grep mqm
+mqm:x:1001:mqm,iibadmin
+root@osboxes:/home/osboxes# cat /etc/group | grep iibadmin
+mqm:x:1001:mqm,iibadmin
+iibadmin:x:1002:iibadmin  
+
+INSTALLAZIONE APPLICAZIONE IIB ABANO
+sudo -i 
+su - iibadmin
+
+creazione WMQ
+crtmqm -u ABANOQM.DLQ -lc -lp 10 -ls 20 -lf 16384  ABANOQM
+
+/sicurezza
+./runmqsc ABANOQM
+
+DEFINE QLOCAL(ABANOQM.DLQ)
+
+ALTER QMGR CHLAUTH(DISABLED)
+ALTER AUTHINFO(SYSTEM.DEFAULT.AUTHINFO.IDPWOS) AUTHTYPE(IDPWOS) CHCKCLNT(REQDADM)
+
+DEFINE LISTENER(MQLISTENER) TRPTYPE(TCP) PORT(1414) CONTROL(QMGR)
+
+DEFINE CHANNEL(MQEXPLORER.CHANNEL) CHLTYPE(SVRCONN)
+
+END
+
+definire il repository per il queue manager ssl
+  /var/mqm/qmgrs/SSL1/ssl/key
+                  /var/mqm/qmgrs/SSL2/ssl/key
+
+DEFINE CHANNEL('SSL.SVRCONN') CHLTYPE(SVRCONN) TRPTYPE(TCP) +
+SSLCIPH(TLS_RSA_WITH_AES_128_CBC_SHA) SSLCAUTH(REQUIRED) REPLACE
+TLS_RSA_WITH_AES_128_CBC_SHA
+
+
+creazione Broker
+
+mqsireportproperties IIB10ABANO_PROD -o BrokerRegistry -a
+
+mqsichangeproperties IIB10ABANO_PROD -o BrokerRegistry -n brokerKeystoreFile -v /var/mqsi/abanoIIB_keystore.jks
+mqsichangeproperties IIB10ABANO_PROD -o BrokerRegistry -n brokerTruststoreFile -v /var/mqsi/abanoIIB_truststore.jks
+
+mqsisetdbparms IIB10ABANO_PROD -n brokerKeystore::password -u temp -p password
+mqsisetdbparms IIB10ABANO_PROD -n brokerTruststore::password -u temp -p password
+
+mqsichangeproperties IIB10ABANO_PROD -o BrokerRegistry -n  brokerKeystorePass -v brokerKeystore::password
+mqsichangeproperties IIB10ABANO_PROD -o BrokerRegistry -n  brokerTruststorePass -v brokerKeystore::password
+
+mqsireportproperties IIB10ABANO_PROD -o BrokerRegistry -a
+
+
+mqsireportproperties IIB10ABANO_PROD -b httplistener -o HTTPListener -a
+
+mqsichangeproperties IIB10ABANO_PROD -b httplistener -o HTTPListener -n enableSSLConnector -v true
+
+mqsichangeproperties IIB10ABANO_PROD -b httplistener -o HTTPListener -n startListener -v true
+
+
+mqsireportproperties IIB10ABANO_PROD -b httplistener -o HTTPConnector -a
+mqsireportproperties IIB10ABANO_PROD -b httplistener -o HTTPSConnector -a
+
+mqsichangeproperties IIB10ABANO_PROD -b httplistener -o HTTPConnector -n port -v 7090
+mqsichangeproperties IIB10ABANO_PROD -b httplistener -o HTTPSConnector -n port -v 7093
+
+mqsichangeproperties IIB10ABANO_PROD -b httplistener -o HTTPConnector -n corsEnabled -v false
+mqsichangeproperties IIB10ABANO_PROD -b httplistener -o HTTPSConnector -n corsEnabled -v true
+
+mqsireportproperties IIB10ABANO_PROD -b httplistener -o HTTPListener -a
+mqsireportproperties IIB10ABANO_PROD -b httplistener -o HTTPConnector -a
+mqsireportproperties IIB10ABANO_PROD -b httplistener -o HTTPSConnector -a
+
+exec group
+
+mqsicreateexecutiongroup IIB10ABANO_PROD -e hl7Server
+
+ASSOCIARE WMQ CON IIB
+
+code
+BPM.INPUT
+ASSIGNREQUEST
+BPMQUEUE
+
+
+DEPLOY
+mqsideploy IIB10ABANO_PROD -e hl7Server -a HL7Core.bar
+mqsideploy IIB10ABANO_PROD -e hl7Server -a BPMServices.bar
+
+mqsideploy IIB10ABANO_PROD -e patientServer -a HL7RestAPI.bar
+mqsideploy IIB10ABANO_PROD -e patientServer -a IAMServices.bar
+mqsideploy IIB10ABANO_PROD -e patientServer -a S&AServices.bar
+
+mqsideploy IIB10ABANO_PROD -e teamServer -a TeamAssignement.bar
+
+
+
+http://10.4.2.112:9001 per S&A
+
+
+Permettere accesso applicazioni client solo HTTPS. Default false
+mqsichangeproperties TESTNODE_IT058867 –e default –o HTTPSConnector –n ClientAuth –v true

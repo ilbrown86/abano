@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?><wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" name="SampleService" targetNamespace="http://SampleService" xmlns:bons1="http:///www.policlinicoabano.it/bpm" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="http://SampleService" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:documentation>
+    <wsdl:appinfo source="WMQI_APPINFO">
+      <MRWSDLAppInfo imported="true">
+        <binding hasEncoding="false" imported="true" name="SampleServiceHttpBinding" originalBindingStyle="document"/>
+        <generatedXSD location="SampleService_InlineSchema1.xsd"/>
+      </MRWSDLAppInfo>
+    </wsdl:appinfo>
+  </wsdl:documentation>
+  
+  <wsdl:types>
+    
+        <xsd:schema targetNamespace="http://SampleService" xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions">
+            <xsd:include schemaLocation="SampleService_InlineSchema1.xsd"/>
+    </xsd:schema>
+    </wsdl:types>
+  <wsdl:message name="operation1RequestMsg">
+    <wsdl:part element="tns:operation1" name="operation1Parameters"/>
+  </wsdl:message>
+  <wsdl:message name="operation1ResponseMsg">
+    <wsdl:part element="tns:operation1Response" name="operation1Result"/>
+  </wsdl:message>
+  <wsdl:portType name="SampleService">
+    <wsdl:operation name="operation1">
+      <wsdl:input message="tns:operation1RequestMsg" name="operation1Request"/>
+      <wsdl:output message="tns:operation1ResponseMsg" name="operation1Response"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="SampleServiceHttpBinding" type="tns:SampleService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="operation1">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="operation1Request">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="operation1Response">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="SampleServiceHttpService">
+    <wsdl:port binding="tns:SampleServiceHttpBinding" name="SampleServiceHttpPort">
+      <soap:address location="http://localhost:7800/SampleService"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

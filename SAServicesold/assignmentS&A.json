@@ -1,0 +1,264 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "0.0.2",
+        "title": "Shifts and Assignments APIs",
+        "x-ibm-name": "sa-apis"
+    },
+    "definitions": {
+        "TaskMetadata": {
+            "discriminator": "taskId",
+            "description": "It summarizes the task information needed by S&A to filter the \navailable users \n",
+            "type": "object",
+            "properties": {
+                "taskId": {
+                    "type": "string"
+                },
+                "taskType": {
+                    "type": "string"
+                },
+                "creationDate": {
+                    "type": "string",
+                    "format": "YYYY-mm-dd HH:MM:ss:sss"
+                },
+                "patientType": {
+                    "type": "string"
+                },
+                "pathWayPhaseId": {
+                    "type": "string"
+                }
+            }
+        },
+        "Assignment": {
+            "discriminator": "taskId",
+            "description": "It contains the mapping between taskId and available users\n",
+            "type": "object",
+            "properties": {
+                "users": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "taskId": {
+                    "type": "string"
+                }
+            }
+        },
+        "getPreference": {
+            "discriminator": "userId",
+            "description": "It contains the users' preferences\n",
+            "type": "object",
+            "properties": {
+                "userId": {
+                    "type": "string"
+                },
+                "patientTypes": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "pathWayPhases": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "taskType": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "AssignmentPreference": {
+            "discriminator": "taskId",
+            "description": "An assignment preference\n",
+            "type": "object",
+            "properties": {
+                "userId": {
+                    "type": "string"
+                },
+                "patientTypes": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "pathWayPhases": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "taskType": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            }
+        }
+    },
+    "paths": {
+        "/preferences": {
+            "put": {
+                "operationId": "putPreferences",
+                "responses": {
+                    "200": {
+                        "description": "200 OK",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "examples": {
+                            "application/json": "Success"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "preference",
+                        "required": true,
+                        "in": "body",
+                        "schema": {
+                            "$ref": "#/definitions/AssignmentPreference"
+                        },
+                        "description": "Sigle preference"
+                    }
+                ]
+            },
+            "get": {
+                "operationId": "getPreferences",
+                "responses": {
+                    "200": {
+                        "description": "200 OK",
+                        "schema": {
+                            "title": "getPreferences",
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/getPreference"
+                            }
+                        },
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "userId": "mrossi",
+                                    "taskType": [
+                                        "type1",
+                                        "type2"
+                                    ],
+                                    "patientTypes": [
+                                        "tipo1"
+                                    ],
+                                    "pathWayPhases": [
+                                        "fase1",
+                                        "fase2"
+                                    ]
+                                },
+                                {
+                                    "userId": "gverdi",
+                                    "taskType": [
+                                        "type1"
+                                    ],
+                                    "patientTypes": [
+                                        ""
+                                    ],
+                                    "pathWayPhases": [
+                                        "fase1",
+                                        "fase2",
+                                        "fase3"
+                                    ]
+                                }
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "/assignments": {
+            "post": {
+                "operationId": "assignments",
+                "description": "Get a list of userID available for assignment of the tasks\n",
+                "parameters": [
+                    {
+                        "name": "tasks",
+                        "in": "body",
+                        "required": true,
+                        "description": "A list of TaskMetadata",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "tasks": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/TaskMetadata"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "schema": {
+                            "title": "Assignments",
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Assignment"
+                            }
+                        },
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "taskId": "14774",
+                                    "users": [
+                                        "mrossi",
+                                        "gverdi"
+                                    ]
+                                },
+                                {
+                                    "taskId": "14674",
+                                    "users": [
+                                        "grossi",
+                                        "mverdi",
+                                        "gverdi"
+                                    ]
+                                }
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "basePath": "/",
+    "schemes": [
+        "http"
+    ],
+    "host": "10.4.2.112:9001",
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "securityDefinitions": {
+        "Authorization": {
+            "type": "basic"
+        }
+    },
+    "security": [
+        {
+            "Authorization": []
+        }
+    ],
+    "tags": [
+        {
+            "name": "assignments",
+            "description": "assignments"
+        }
+    ]
+}

@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="UTF-8"?><!--
+ * The schemas contained in this document are reproduced with the express permission of 
+ * Health Level Seven (R) International. ALL RIGHTS RESERVED. 
+ *  
+ * The schemas contain material derived from HL7 standards. 
+ * HL7 standards can be obtained from the HL7 website: www.HL7.org 
+ * 
+ * Health Level Seven International and IBM hereby grant permission, to those obtaining 
+ * a copy of these materials, to use, copy and modify the materials solely for use with DFDL processors. 
+ * THESE MATERIALS ARE PROVIDED AS IS WITH NO WARRANTIES OF ANY KIND. 
+ * 
+ * Copyright (C) 1999-2011, Health Level Seven. 
+ * 
+ * (C) Copyright International Business Machines Corporation, 2014. 
+--><xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="urn:hl7-org:v2xml" xmlns="urn:hl7-org:v2xml" xmlns:dfdl="http://www.ogf.org/dfdl/dfdl-1.0/" xmlns:fn="http://www.w3.org/2005/xpath-functions" xmlns:hl7="urn:hl7-org:v2xml" xmlns:ibmDfdlExtn="http://www.ibm.com/dfdl/extensions" xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions" xmlns:ibmhl7="http://www.ibm.com/dfdl/HL7Format">
+    <xsd:include schemaLocation="segments.xsd"/>
+    <xsd:import namespace="http://www.ibm.com/dfdl/HL7Format" schemaLocation="IBMdefined/HL7Format.xsd"/>
+    <xsd:annotation>
+				<xsd:appinfo source="http://www.ogf.org/dfdl/">
+					<dfdl:format ref="ibmhl7:HL7Format"/>
+				</xsd:appinfo>
+			</xsd:annotation>
+    <xsd:complexType name="SIU_S12.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MSH"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="SCH"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="TQ1"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="NTE"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="SIU_S12.PATIENT"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="1" ref="SIU_S12.RESOURCES"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element ibmSchExtn:docRoot="true" name="SIU_S12" type="SIU_S12.CONTENT"/>
+    <xsd:complexType name="SIU_S12.PATIENT.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="PID"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="PD1"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="PV1"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="PV2"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="OBX"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="DG1"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="SIU_S12.PATIENT" type="SIU_S12.PATIENT.CONTENT"/>
+    <xsd:complexType name="SIU_S12.RESOURCES.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="RGS"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="SIU_S12.SERVICE"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="SIU_S12.GENERAL_RESOURCE"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="SIU_S12.LOCATION_RESOURCE"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="SIU_S12.PERSONNEL_RESOURCE"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="SIU_S12.RESOURCES" type="SIU_S12.RESOURCES.CONTENT"/>
+    <xsd:complexType name="SIU_S12.SERVICE.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="AIS"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="NTE"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="SIU_S12.SERVICE" type="SIU_S12.SERVICE.CONTENT"/>
+    <xsd:complexType name="SIU_S12.GENERAL_RESOURCE.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="AIG"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="NTE"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="SIU_S12.GENERAL_RESOURCE" type="SIU_S12.GENERAL_RESOURCE.CONTENT"/>
+    <xsd:complexType name="SIU_S12.LOCATION_RESOURCE.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="AIL"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="NTE"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="SIU_S12.LOCATION_RESOURCE" type="SIU_S12.LOCATION_RESOURCE.CONTENT"/>
+    <xsd:complexType name="SIU_S12.PERSONNEL_RESOURCE.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="AIP"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="NTE"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="SIU_S12.PERSONNEL_RESOURCE" type="SIU_S12.PERSONNEL_RESOURCE.CONTENT"/>
+<xsd:complexType name="SQM_S25.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MSH"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="QRD"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="QRF"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="SQM_S25.REQUEST"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="DSC"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element ibmSchExtn:docRoot="true" name="SQM_S25" type="SQM_S25.CONTENT"/>
+    <xsd:complexType name="SQM_S25.REQUEST.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="ARQ"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="APR"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="PID"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="1" ref="SQM_S25.RESOURCES"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="SQM_S25.REQUEST" type="SQM_S25.REQUEST.CONTENT"/>
+    <xsd:complexType name="SQM_S25.RESOURCES.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="RGS"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="SQM_S25.SERVICE"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="SQM_S25.GENERAL_RESOURCE"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="SQM_S25.PERSONNEL_RESOURCE"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="SQM_S25.LOCATION_RESOURCE"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="SQM_S25.RESOURCES" type="SQM_S25.RESOURCES.CONTENT"/>
+    <xsd:complexType name="SQM_S25.SERVICE.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="AIS"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="APR"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="SQM_S25.SERVICE" type="SQM_S25.SERVICE.CONTENT"/>
+    <xsd:complexType name="SQM_S25.GENERAL_RESOURCE.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="AIG"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="APR"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="SQM_S25.GENERAL_RESOURCE" type="SQM_S25.GENERAL_RESOURCE.CONTENT"/>
+    <xsd:complexType name="SQM_S25.PERSONNEL_RESOURCE.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="AIP"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="APR"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="SQM_S25.PERSONNEL_RESOURCE" type="SQM_S25.PERSONNEL_RESOURCE.CONTENT"/>
+    <xsd:complexType name="SQM_S25.LOCATION_RESOURCE.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="AIL"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="APR"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="SQM_S25.LOCATION_RESOURCE" type="SQM_S25.LOCATION_RESOURCE.CONTENT"/>
+    <xsd:complexType name="SQR_S25.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MSH"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MSA"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="ERR"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="QAK"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="SQR_S25.SCHEDULE"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="DSC"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element ibmSchExtn:docRoot="true" name="SQR_S25" type="SQR_S25.CONTENT"/>
+    <xsd:complexType name="SQR_S25.SCHEDULE.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="SCH"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="TQ1"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="NTE"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="SQR_S25.PATIENT"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="1" ref="SQR_S25.RESOURCES"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="SQR_S25.SCHEDULE" type="SQR_S25.SCHEDULE.CONTENT"/>
+    <xsd:complexType name="SQR_S25.PATIENT.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="PID"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="PV1"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="PV2"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="DG1"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="SQR_S25.PATIENT" type="SQR_S25.PATIENT.CONTENT"/>
+    <xsd:complexType name="SQR_S25.RESOURCES.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="RGS"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="SQR_S25.SERVICE"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="SQR_S25.GENERAL_RESOURCE"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="SQR_S25.PERSONNEL_RESOURCE"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="SQR_S25.LOCATION_RESOURCE"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="SQR_S25.RESOURCES" type="SQR_S25.RESOURCES.CONTENT"/>
+    <xsd:complexType name="SQR_S25.SERVICE.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="AIS"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="NTE"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="SQR_S25.SERVICE" type="SQR_S25.SERVICE.CONTENT"/>
+    <xsd:complexType name="SQR_S25.GENERAL_RESOURCE.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="AIG"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="NTE"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="SQR_S25.GENERAL_RESOURCE" type="SQR_S25.GENERAL_RESOURCE.CONTENT"/>
+    <xsd:complexType name="SQR_S25.PERSONNEL_RESOURCE.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="AIP"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="NTE"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="SQR_S25.PERSONNEL_RESOURCE" type="SQR_S25.PERSONNEL_RESOURCE.CONTENT"/>
+    <xsd:complexType name="SQR_S25.LOCATION_RESOURCE.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="AIL"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="NTE"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="SQR_S25.LOCATION_RESOURCE" type="SQR_S25.LOCATION_RESOURCE.CONTENT"/>
+    <xsd:complexType name="SRM_S01.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MSH"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="ARQ"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="APR"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="NTE"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="SRM_S01.PATIENT"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="1" ref="SRM_S01.RESOURCES"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element ibmSchExtn:docRoot="true" name="SRM_S01" type="SRM_S01.CONTENT"/>
+    <xsd:complexType name="SRM_S01.PATIENT.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="PID"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="PV1"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="PV2"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="OBX"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="DG1"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="SRM_S01.PATIENT" type="SRM_S01.PATIENT.CONTENT"/>
+    <xsd:complexType name="SRM_S01.RESOURCES.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="RGS"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="SRM_S01.SERVICE"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="SRM_S01.GENERALRESOURCE"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="SRM_S01.LOCATIONRESOURCE"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="SRM_S01.PERSONNELRESOURCE"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="SRM_S01.RESOURCES" type="SRM_S01.RESOURCES.CONTENT"/>
+    <xsd:complexType name="SRM_S01.SERVICE.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="AIS"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="APR"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="NTE"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="SRM_S01.SERVICE" type="SRM_S01.SERVICE.CONTENT"/>
+    <xsd:complexType name="SRM_S01.GENERALRESOURCE.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="AIG"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="APR"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="NTE"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="SRM_S01.GENERALRESOURCE" type="SRM_S01.GENERALRESOURCE.CONTENT"/>
+    <xsd:complexType name="SRM_S01.LOCATIONRESOURCE.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="AIL"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="APR"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="NTE"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="SRM_S01.LOCATIONRESOURCE" type="SRM_S01.LOCATIONRESOURCE.CONTENT"/>
+    <xsd:complexType name="SRM_S01.PERSONNELRESOURCE.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="AIP"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="APR"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="NTE"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="SRM_S01.PERSONNELRESOURCE" type="SRM_S01.PERSONNELRESOURCE.CONTENT"/>
+    <xsd:complexType name="SRR_S01.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MSH"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MSA"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="ERR"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="SRR_S01.SCHEDULE"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element ibmSchExtn:docRoot="true" name="SRR_S01" type="SRR_S01.CONTENT"/>
+    <xsd:complexType name="SRR_S01.SCHEDULE.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="SCH"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="TQ1"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="NTE"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="SRR_S01.PATIENT"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="1" ref="SRR_S01.RESOURCES"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="SRR_S01.SCHEDULE" type="SRR_S01.SCHEDULE.CONTENT"/>
+    <xsd:complexType name="SRR_S01.PATIENT.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="PID"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="PV1"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="PV2"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="DG1"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="SRR_S01.PATIENT" type="SRR_S01.PATIENT.CONTENT"/>
+    <xsd:complexType name="SRR_S01.RESOURCES.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="RGS"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="SRR_S01.SERVICE"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="SRR_S01.GENERAL_RESOURCE"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="SRR_S01.LOCATIONRESOURCE"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="SRR_S01.PERSONNEL_RESOURCE"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="SRR_S01.RESOURCES" type="SRR_S01.RESOURCES.CONTENT"/>
+    <xsd:complexType name="SRR_S01.SERVICE.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="AIS"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="NTE"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="SRR_S01.SERVICE" type="SRR_S01.SERVICE.CONTENT"/>
+    <xsd:complexType name="SRR_S01.GENERAL_RESOURCE.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="AIG"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="NTE"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="SRR_S01.GENERAL_RESOURCE" type="SRR_S01.GENERAL_RESOURCE.CONTENT"/>
+    <xsd:complexType name="SRR_S01.LOCATIONRESOURCE.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="AIL"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="NTE"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="SRR_S01.LOCATIONRESOURCE" type="SRR_S01.LOCATIONRESOURCE.CONTENT"/>
+    <xsd:complexType name="SRR_S01.PERSONNEL_RESOURCE.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="AIP"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="NTE"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="SRR_S01.PERSONNEL_RESOURCE" type="SRR_S01.PERSONNEL_RESOURCE.CONTENT"/>
+</xsd:schema>

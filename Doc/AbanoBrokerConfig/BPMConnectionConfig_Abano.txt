@@ -1,0 +1,30 @@
+Istruzioni per configurare la comunicazione con BPM
+
+usare broker console 10.0.0.7
+STORES LOCATION C:\Program Files\IBM\IIB\10.0.0.7
+
+keytool -genkey -alias abanoTEST -keystore abanoTEST.jks -keysize 2048
+-- caricare entrabi i certificati oppure quello necessario alla comunicazione BPM
+keytool -import -trustcacerts -alias abanoTEST -file "C:\Policlinico di abano\Certificati BPM DEV e TEST\bpmpc01.techmed.lan.crt" -keystore abanoTEST.jks
+keytool -list -keystore abanoIIB_keystore.jks
+
+mqsichangeproperties ABANO_broker –o BrokerRegistry –n brokerKeystoreFile –v "C:\Program Files\IBM\IIB\10.0.0.7\abanoDEV.jks"
+mqsichangeproperties ABANO_broker –o BrokerRegistry –n brokerTruststoreFile –v "C:\Program Files\IBM\IIB\10.0.0.7\abanoDEV.jks"
+mqsistop POLICLINICO_broker
+mqsisetdbparms ABANO_broker –n brokerKeystore::password –u ignore –p abanoDEV
+mqsisetdbparms ABANO_broker –n brokerTruststore::password –u ignore –p abanoDEV
+mqsistart POLICLINICO_broker
+
+
+-------------
+CONFIGURARE PORTE HTTP
+-------------
+mqsireportproperties DEVNODE -b httplistener -o HTTPConnector -r
+mqsireportproperties DEVNODE -e intServer1 -o HTTPConnector -r
+mqsireportproperties DEVNODE -e intServer2 -o HTTPConnector -r
+mqsireportproperties TESTNODE -e intServer2 -o HTTPConnector -r
+
+mqsichangeproperties DEVNODE -e intServer1 -o HTTPConnector -n explicitlySetPortNumber 7800
+mqsichangeproperties TESTNODE -e intServer1 -o HTTPConnector -n explicitlySetPortNumber 7900
+
+10.4.2.221

@@ -1,0 +1,99 @@
+crtmqm -u ABANOQM.DLQ -lp 10 -ls 20 -lf 16384  ABANOQM
+
+strmqm ABANOQM
+
+runmqsc ABANOQM
+DEFINE LISTENER(ABANOQM.LISTENER) TRPTYPE(TCP) PORT(1490) CONTROL(QMGR)
+
+START LISTENER(ABANOQM.LISTENER)
+
+DEFINE CHANNEL(ABANOQM.SVRCONN) CHLTYPE(SVRCONN)
+
+ALTER QMGR CHLAUTH(DISABLED)
+
+DISPLAY QMGR SSLKEYR
+/var/mqm/qmgrs/ABANOQM/ssl/key
+ALTER QMGR CONNAUTH(' ')
+
+REFRESH SECURITY TYPE(CONNAUTH)
+
+END
+
+su WIN. Client. già definiti
+abanoIIB_keystore.jks
+abanoIIB_TrustStore.jks
+
+su server
+
+runmqckm -keydb -create -db "/var/mqm/qmgrs/ABANOQM/ssl/key.kdb" -pw password -type cms -expire 3650 -stash
+
+runmqckm -cert -create -db "/var/mqm/qmgrs/ABANOQM/ssl/key.kdb" -pw password -label ibmwebspheremqabanoqm -dn "CN=ABANOQM,OU=test,O=IBM,ST=IT,C=IT" -expire 3650
+
+runmqckm -cert -list -db "/var/mqm/qmgrs/ABANOQM/ssl/key.kdb" -pw password
+ibmwebspheremqabanoqm
+cd /var/mqm/qmgrs/ABANOQM/ssl/
+
+runmqckm -cert -add -db "/var/mqm/qmgrs/ABANOQM/ssl/key.kdb" -pw password -label ibmwebspheremqiibselfsigned -file abanoIIBSelfSigned.crt -format ascii
+
+runmqckm -cert -list -db "/var/mqm/qmgrs/ABANOQM/ssl/key.kdb" -pw password
+   ibmwebspheremqabanoqm
+   ibmwebspheremqiibselfsigned
+
+runmqckm -cert -extract -db "/var/mqm/qmgrs/ABANOQM/ssl/key.kdb" -pw password -label ibmwebspheremqabanoqm -target abanoqm.crt -format ascii
+
+
+su client
+runmqckm -cert -add -db "C:\Program Files\IBM\IIB\10.0.0.7\abanoIIB_TrustStore.jks" -pw password -label ibmwebspheremqabanoqm -file abanoqm.crt -format ascii
+
+runmqckm -cert -list -db "C:\Program Files\IBM\IIB\10.0.0.7\abanoIIB_TrustStore.jks" -pw password
+
+su sever attiva SSL
+ALTER QMGR SSLKEYR('/var/mqm/qmgrs/ABANOQM/ssl/key')
+ALTER QMGR SSLFIPS(NO)
+DEFINE CHANNEL('ABANOQM.SVRCONN') CHLTYPE(SVRCONN) TRPTYPE(TCP) +
+SSLCIPH(TLS_RSA_WITH_AES_128_CBC_SHA) SSLCAUTH(REQUIRED) REPLACE
+REFRESH SECURITY TYPE(SSL)
+end
+
+SET CHLAUTH(ABANOQM.SVRCONN) TYPE(ADDRESSMAP) ADDRESS(*) USERSRC(CHANNEL)
+SET CHLAUTH(ABANOQM.SVRCONN) TYPE(BLOCKUSER) USERLIST('nobody')
+SET CHLAUTH(ABANOQM.BPM.SVRCONN) TYPE(BLOCKUSER) USERLIST('nobody')
+SET CHLAUTH(ABANOQM.BPM.SVRCONN) TYPE(ADDRESSMAP) ADDRESS(*) USERSRC(CHANNEL)
+
+prerequisiti PROD
+- certificato WAS del BPM
+  - caricato certificato di BPM .203:443)
+    keytool -import -trustcacerts -file bpmpst01.techmed.lan.crt -alias bpmtestwas -keystore abanoIIB_truststore.jks
+- certificato IAM
+  - caricato nel trustore certificato di IAM test
+  keytool -import -trustcacerts -file techmed_ca.cer -alias iamcacert -keystore abanoIIB_truststore.jks
+- certificato WMQ (NO finchè non si verifica la connessione)
+
+- verifiche
+- comunicazione sicura verso BPM Application Server (porta 443)
+    - mandare una ADT01 da medarchiver verso server prod
+
+-- pulire putissue, definire quale callale si deve chiamare
+
+
+--deploy
+mqsideploy IIB10ABANO_PROD -e HL7Server -a IAMServices.bar
+mqsideploy IIB10ABANO_PROD -e HL7Server -a HL7Core.bar
+mqsideploy IIB10ABANO_PROD -e HL7Server -a HL7RestAPI.bar
+mqsideploy IIB10ABANO_PROD -e HL7Server -a BPMServices.bar
+mqsideploy IIB10ABANO_PROD -e HL7Server -a TeamAssignement.bar
+
+- definire sicurezza per chiamata IAM basic auth
+mqsisetdbparms IIB10ABANO_PROD -n rest::basic -u ibm -p ibm
+mqsireportdbparms IIB10ABANO_PROD -n rest::basic
+Basic aWJtOmlibQ== 
+
+- sicurezza GUI IIB
+  - definire sicurezza HTTPS
+  - attacare la sicurezza a LDAP
+  
+- sicurezza REST tramite pfx cert
+
+- Basic Auth su REST IIB
+
+  

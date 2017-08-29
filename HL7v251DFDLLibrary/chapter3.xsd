@@ -1,0 +1,657 @@
+<?xml version="1.0" encoding="UTF-8"?><!--
+ * The schemas contained in this document are reproduced with the express permission of 
+ * Health Level Seven (R) International. ALL RIGHTS RESERVED. 
+ *  
+ * The schemas contain material derived from HL7 standards. 
+ * HL7 standards can be obtained from the HL7 website: www.HL7.org 
+ * 
+ * Health Level Seven International and IBM hereby grant permission, to those obtaining 
+ * a copy of these materials, to use, copy and modify the materials solely for use with DFDL processors. 
+ * THESE MATERIALS ARE PROVIDED AS IS WITH NO WARRANTIES OF ANY KIND. 
+ * 
+ * Copyright (C) 1999-2011, Health Level Seven. 
+ * 
+ * (C) Copyright International Business Machines Corporation, 2014. 
+--><xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="urn:hl7-org:v2xml" xmlns="urn:hl7-org:v2xml" xmlns:dfdl="http://www.ogf.org/dfdl/dfdl-1.0/" xmlns:fn="http://www.w3.org/2005/xpath-functions" xmlns:hl7="urn:hl7-org:v2xml" xmlns:ibmDfdlExtn="http://www.ibm.com/dfdl/extensions" xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions" xmlns:ibmhl7="http://www.ibm.com/dfdl/HL7Format">
+    <xsd:include schemaLocation="segments.xsd"/>
+    <xsd:import namespace="http://www.ibm.com/dfdl/HL7Format" schemaLocation="IBMdefined/HL7Format.xsd"/>
+    <xsd:annotation>
+				<xsd:appinfo source="http://www.ogf.org/dfdl/">
+					<dfdl:format ref="ibmhl7:HL7Format"/>
+				</xsd:appinfo>
+			</xsd:annotation>
+    <xsd:complexType name="ACK.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MSH"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="SFT"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MSA"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="ERR"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element ibmSchExtn:docRoot="true" name="ACK" type="ACK.CONTENT"/>
+<xsd:complexType name="ADR_A19.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MSH"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="SFT"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MSA"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="ERR"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="QAK"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="QRD"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="QRF"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="1" ref="ADR_A19.QUERY_RESPONSE"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="DSC"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element ibmSchExtn:docRoot="true" name="ADR_A19" type="ADR_A19.CONTENT"/>
+    <xsd:complexType name="ADR_A19.QUERY_RESPONSE.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="EVN"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="PID"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="PD1"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="ROL"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="NK1"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="PV1"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="PV2"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="ROL"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="DB1"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="OBX"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="AL1"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="DG1"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="DRG"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="ADR_A19.PROCEDURE"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="GT1"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="ADR_A19.INSURANCE"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="ACC"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="UB1"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="UB2"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="ADR_A19.QUERY_RESPONSE" type="ADR_A19.QUERY_RESPONSE.CONTENT"/>
+    <xsd:complexType name="ADR_A19.PROCEDURE.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="PR1"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="ROL"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="ADR_A19.PROCEDURE" type="ADR_A19.PROCEDURE.CONTENT"/>
+    <xsd:complexType name="ADR_A19.INSURANCE.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="IN1"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="IN2"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="IN3"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="ROL"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="ADR_A19.INSURANCE" type="ADR_A19.INSURANCE.CONTENT"/>
+    <xsd:complexType name="ADT_A01.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MSH"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="SFT"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="EVN"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="PID"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="PD1"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="ROL"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="NK1"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="PV1"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="PV2"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="ROL"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="DB1"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="OBX"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="AL1"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="DG1"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="DRG"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="ADT_A01.PROCEDURE"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="GT1"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="ADT_A01.INSURANCE"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="ACC"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="UB1"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="UB2"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="PDA"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element ibmSchExtn:docRoot="true" name="ADT_A01" type="ADT_A01.CONTENT"/>
+    <xsd:complexType name="ADT_A01.PROCEDURE.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="PR1"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="ROL"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="ADT_A01.PROCEDURE" type="ADT_A01.PROCEDURE.CONTENT"/>
+    <xsd:complexType name="ADT_A01.INSURANCE.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="IN1"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="IN2"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="IN3"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="ROL"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="ADT_A01.INSURANCE" type="ADT_A01.INSURANCE.CONTENT"/>
+    <xsd:complexType name="ADT_A02.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MSH"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="SFT"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="EVN"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="PID"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="PD1"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="ROL"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="PV1"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="PV2"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="ROL"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="DB1"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="OBX"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="PDA"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element ibmSchExtn:docRoot="true" name="ADT_A02" type="ADT_A02.CONTENT"/>
+    <xsd:complexType name="ADT_A03.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MSH"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="SFT"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="EVN"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="PID"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="PD1"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="ROL"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="NK1"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="PV1"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="PV2"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="ROL"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="DB1"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="AL1"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="DG1"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="DRG"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="ADT_A03.PROCEDURE"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="OBX"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="GT1"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="ADT_A03.INSURANCE"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="ACC"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="PDA"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element ibmSchExtn:docRoot="true" name="ADT_A03" type="ADT_A03.CONTENT"/>
+    <xsd:complexType name="ADT_A03.PROCEDURE.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="PR1"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="ROL"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="ADT_A03.PROCEDURE" type="ADT_A03.PROCEDURE.CONTENT"/>
+    <xsd:complexType name="ADT_A03.INSURANCE.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="IN1"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="IN2"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="IN3"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="ROL"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="ADT_A03.INSURANCE" type="ADT_A03.INSURANCE.CONTENT"/>
+    <xsd:complexType name="ADT_A05.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MSH"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="SFT"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="EVN"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="PID"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="PD1"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="ROL"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="NK1"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="PV1"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="PV2"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="ROL"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="DB1"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="OBX"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="AL1"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="DG1"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="DRG"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="ADT_A05.PROCEDURE"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="GT1"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="ADT_A05.INSURANCE"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="ACC"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="UB1"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="UB2"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element ibmSchExtn:docRoot="true" name="ADT_A05" type="ADT_A05.CONTENT"/>
+    <xsd:complexType name="ADT_A05.PROCEDURE.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="PR1"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="ROL"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="ADT_A05.PROCEDURE" type="ADT_A05.PROCEDURE.CONTENT"/>
+    <xsd:complexType name="ADT_A05.INSURANCE.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="IN1"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="IN2"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="IN3"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="ROL"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="ADT_A05.INSURANCE" type="ADT_A05.INSURANCE.CONTENT"/>
+    <xsd:complexType name="ADT_A06.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MSH"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="SFT"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="EVN"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="PID"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="PD1"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="ROL"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="MRG"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="NK1"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="PV1"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="PV2"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="ROL"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="DB1"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="OBX"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="AL1"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="DG1"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="DRG"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="ADT_A06.PROCEDURE"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="GT1"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="ADT_A06.INSURANCE"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="ACC"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="UB1"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="UB2"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element ibmSchExtn:docRoot="true" name="ADT_A06" type="ADT_A06.CONTENT"/>
+    <xsd:complexType name="ADT_A06.PROCEDURE.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="PR1"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="ROL"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="ADT_A06.PROCEDURE" type="ADT_A06.PROCEDURE.CONTENT"/>
+    <xsd:complexType name="ADT_A06.INSURANCE.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="IN1"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="IN2"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="IN3"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="ROL"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="ADT_A06.INSURANCE" type="ADT_A06.INSURANCE.CONTENT"/>
+    <xsd:complexType name="ADT_A09.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MSH"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="SFT"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="EVN"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="PID"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="PD1"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="PV1"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="PV2"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="DB1"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="OBX"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="DG1"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element ibmSchExtn:docRoot="true" name="ADT_A09" type="ADT_A09.CONTENT"/>
+    <xsd:complexType name="ADT_A12.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MSH"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="SFT"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="EVN"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="PID"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="PD1"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="PV1"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="PV2"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="DB1"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="OBX"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="DG1"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element ibmSchExtn:docRoot="true" name="ADT_A12" type="ADT_A12.CONTENT"/>
+    <xsd:complexType name="ADT_A15.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MSH"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="SFT"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="EVN"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="PID"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="PD1"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="ROL"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="PV1"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="PV2"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="ROL"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="DB1"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="OBX"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="DG1"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element ibmSchExtn:docRoot="true" name="ADT_A15" type="ADT_A15.CONTENT"/>
+    <xsd:complexType name="ADT_A16.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MSH"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="SFT"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="EVN"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="PID"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="PD1"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="ROL"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="NK1"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="PV1"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="PV2"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="ROL"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="DB1"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="OBX"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="AL1"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="DG1"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="DRG"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="ADT_A16.PROCEDURE"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="GT1"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="ADT_A16.INSURANCE"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="ACC"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element ibmSchExtn:docRoot="true" name="ADT_A16" type="ADT_A16.CONTENT"/>
+    <xsd:complexType name="ADT_A16.PROCEDURE.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="PR1"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="ROL"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="ADT_A16.PROCEDURE" type="ADT_A16.PROCEDURE.CONTENT"/>
+    <xsd:complexType name="ADT_A16.INSURANCE.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="IN1"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="IN2"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="IN3"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="ROL"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="ADT_A16.INSURANCE" type="ADT_A16.INSURANCE.CONTENT"/>
+    <xsd:complexType name="ADT_A17.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MSH"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="SFT"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="EVN"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="PID"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="PD1"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="PV1"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="PV2"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="DB1"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="OBX"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="PID"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="PD1"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="PV1"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="PV2"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="DB1"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="OBX"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element ibmSchExtn:docRoot="true" name="ADT_A17" type="ADT_A17.CONTENT"/>
+    <xsd:complexType name="ADT_A18.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MSH"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="SFT"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="EVN"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="PID"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="PD1"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MRG"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="PV1"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element ibmSchExtn:docRoot="true" name="ADT_A18" type="ADT_A18.CONTENT"/>
+    <xsd:complexType name="ADT_A20.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MSH"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="SFT"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="EVN"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="NPU"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element ibmSchExtn:docRoot="true" name="ADT_A20" type="ADT_A20.CONTENT"/>
+    <xsd:complexType name="ADT_A21.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MSH"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="SFT"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="EVN"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="PID"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="PD1"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="PV1"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="PV2"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="DB1"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="OBX"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element ibmSchExtn:docRoot="true" name="ADT_A21" type="ADT_A21.CONTENT"/>
+    <xsd:complexType name="ADT_A24.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MSH"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="SFT"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="EVN"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="PID"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="PD1"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="PV1"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="DB1"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="PID"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="PD1"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="PV1"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="DB1"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element ibmSchExtn:docRoot="true" name="ADT_A24" type="ADT_A24.CONTENT"/>
+    <xsd:complexType name="ADT_A30.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MSH"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="SFT"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="EVN"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="PID"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="PD1"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MRG"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element ibmSchExtn:docRoot="true" name="ADT_A30" type="ADT_A30.CONTENT"/>
+    <xsd:complexType name="ADT_A37.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MSH"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="SFT"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="EVN"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="PID"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="PD1"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="PV1"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="DB1"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="PID"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="PD1"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="PV1"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="DB1"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element ibmSchExtn:docRoot="true" name="ADT_A37" type="ADT_A37.CONTENT"/>
+    <xsd:complexType name="ADT_A38.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MSH"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="SFT"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="EVN"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="PID"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="PD1"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="PV1"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="PV2"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="DB1"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="OBX"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="DG1"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="DRG"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element ibmSchExtn:docRoot="true" name="ADT_A38" type="ADT_A38.CONTENT"/>
+    <xsd:complexType name="ADT_A39.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MSH"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="SFT"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="EVN"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="1" ref="ADT_A39.PATIENT"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element ibmSchExtn:docRoot="true" name="ADT_A39" type="ADT_A39.CONTENT"/>
+    <xsd:complexType name="ADT_A39.PATIENT.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="PID"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="PD1"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MRG"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="PV1"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="ADT_A39.PATIENT" type="ADT_A39.PATIENT.CONTENT"/>
+    <xsd:complexType name="ADT_A43.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MSH"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="SFT"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="EVN"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="1" ref="ADT_A43.PATIENT"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element ibmSchExtn:docRoot="true" name="ADT_A43" type="ADT_A43.CONTENT"/>
+    <xsd:complexType name="ADT_A43.PATIENT.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="PID"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="PD1"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MRG"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="ADT_A43.PATIENT" type="ADT_A43.PATIENT.CONTENT"/>
+    <xsd:complexType name="ADT_A45.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MSH"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="SFT"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="EVN"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="PID"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="PD1"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="1" ref="ADT_A45.MERGE_INFO"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element ibmSchExtn:docRoot="true" name="ADT_A45" type="ADT_A45.CONTENT"/>
+    <xsd:complexType name="ADT_A45.MERGE_INFO.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MRG"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="PV1"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="ADT_A45.MERGE_INFO" type="ADT_A45.MERGE_INFO.CONTENT"/>
+    <xsd:complexType name="ADT_A50.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MSH"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="SFT"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="EVN"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="PID"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="PD1"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MRG"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="PV1"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element ibmSchExtn:docRoot="true" name="ADT_A50" type="ADT_A50.CONTENT"/>
+    <xsd:complexType name="ADT_A52.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MSH"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="SFT"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="EVN"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="PID"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="PD1"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="PV1"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="PV2"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element ibmSchExtn:docRoot="true" name="ADT_A52" type="ADT_A52.CONTENT"/>
+    <xsd:complexType name="ADT_A54.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MSH"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="SFT"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="EVN"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="PID"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="PD1"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="ROL"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="PV1"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="PV2"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="ROL"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element ibmSchExtn:docRoot="true" name="ADT_A54" type="ADT_A54.CONTENT"/>
+    <xsd:complexType name="ADT_A60.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MSH"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="SFT"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="EVN"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="PID"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="PV1"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="PV2"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="IAM"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element ibmSchExtn:docRoot="true" name="ADT_A60" type="ADT_A60.CONTENT"/>
+    <xsd:complexType name="ADT_A61.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MSH"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="SFT"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="EVN"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="PID"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="PD1"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="PV1"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="ROL"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="PV2"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element ibmSchExtn:docRoot="true" name="ADT_A61" type="ADT_A61.CONTENT"/>
+    <xsd:complexType name="QBP_Q21.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MSH"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="SFT"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="QPD"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="RCP"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="DSC"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element ibmSchExtn:docRoot="true" name="QBP_Q21" type="QBP_Q21.CONTENT"/>
+    <xsd:complexType name="QRY.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MSH"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="QRD"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="QRF"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element ibmSchExtn:docRoot="true" name="QRY" type="QRY.CONTENT"/>
+    <xsd:complexType name="QRY_A19.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MSH"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="SFT"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="QRD"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="QRF"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element ibmSchExtn:docRoot="true" name="QRY_A19" type="QRY_A19.CONTENT"/>
+    <xsd:complexType name="RSP_K21.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MSH"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="SFT"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MSA"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="ERR"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="QAK"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="QPD"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="RSP_K21.QUERY_RESPONSE"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="DSC"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element ibmSchExtn:docRoot="true" name="RSP_K21" type="RSP_K21.CONTENT"/>
+    <xsd:complexType name="RSP_K21.QUERY_RESPONSE.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="PID"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="PD1"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="NK1"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="QRI"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="RSP_K21.QUERY_RESPONSE" type="RSP_K21.QUERY_RESPONSE.CONTENT"/>
+    <xsd:complexType name="RSP_K23.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MSH"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="SFT"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="MSA"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="ERR"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="QAK"/>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="QPD"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="RSP_K23.QUERY_RESPONSE"/>
+            <xsd:element maxOccurs="1" minOccurs="0" ref="DSC"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element ibmSchExtn:docRoot="true" name="RSP_K23" type="RSP_K23.CONTENT"/>
+    <xsd:complexType name="RSP_K23.QUERY_RESPONSE.CONTENT">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" ref="PID"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="RSP_K23.QUERY_RESPONSE" type="RSP_K23.QUERY_RESPONSE.CONTENT"/>
+</xsd:schema>

@@ -1,0 +1,61 @@
+rem TUTORIAL 001
+
+--aggiunte per evidare di inserire record duplicati
+--add primary key to EMPLOYEE
+db2 alter table employee add constraint EMPLOYEE_PK PRIMARY KEY (EMPNO)
+
+--add primary key to DEPARTMENT
+db2 alter table department add constraint DEPARTMENT_PK PRIMARY KEY (DEPTNO)
+
+SET node="IIB10ABANO"
+SET serv="hl7Server"
+
+echo Stopping IIB Node %node%
+mqsistop %node%
+echo Deleting IIB Node %node%
+mqsideletebroker %node%
+echo Creating IIB Node %node% 
+mqsicreatebroker %node% -i LocalSystem
+
+mqsistart %node%
+
+echo Node %node% must be fully started to proceed to the next stage, creating a server. Please wait for the webadmin HTTP listener to start, then click Return to proceed. Use Ctrl-C to terminate.
+PAUSE
+
+call mqsicreateexecutiongroup %node% -e %serv%
+
+echo on
+rem do we need the following?
+rem mqsichangeproperties %node% -e %serv% -o ExecutionGroup -n httpNodesUseEmbeddedListener -v true
+
+mqsichangeproperties %node% -e %serv% -o HTTPConnector -n corsEnabled -v true
+
+rem add healthcare extension for HL7DFDLInput
+mqsimode %node% -x healthcare
+
+rem add queue manager to the broker for managing HL7DFDLInput transaction
+mqsichangebroker %node% -q DEVQM
+
+echo Creating MySecurityID for %node% for HRDB database.
+mqsisetdbparms %node% -n jdbc::mySecurityId -u iibadmin -p passw0rd
+
+echo Creating JDBC connections for %node% for HRDB database 
+mqsicreateconfigurableservice %node% -c JDBCProviders -o HRDB -n connectionUrlFormat,connectionUrlFormatAttr1,connectionUrlFormatAttr2,connectionUrlFormatAttr3,connectionUrlFormatAttr4,connectionUrlFormatAttr5,databaseName,databaseType,databaseVersion,description,environmentParms,jarsURL,jdbcProviderXASupport,maxConnectionPoolSize,portNumber,securityIdentity,serverName,type4DatasourceClassName,type4DriverClassName  -v "jdbc:db2://[serverName]:[portNumber]/[databaseName]:user=[user];password=[password];","","","","","","HRDB","DB2 Universal Database","10.1","default_Description","default_none","C:\programs\SQLLIB\java","true","0","50000","mySecurityId","localhost","com.ibm.db2.jcc.DB2XADataSource","com.ibm.db2.jcc.DB2Driver"
+
+echo Creating DB security for %node% for HRDB database 
+mqsisetdbparms %node% -n jdbc::HRDB -u Administrator -p passw0rd
+
+
+echo Creating ODBC link to allow connection from Database nodes 
+mqsisetdbparms.exe %node% -n odbc::HRDB -u Administrator -p passw0rd
+
+
+rem call mqsicreateexecutiongroup %node% -e server2
+
+rem mqsichangeproperties %node% -e server2 -o HTTPConnector -n corsEnabled -v true
+
+mqsistop %node%
+mqsistart %node%
+
+rem mqsichangebroker.exe %node% -l C:\path\lil
+

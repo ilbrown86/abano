@@ -1,0 +1,20 @@
+
+- approfondire generazione Rest API con swagger 2.0, input utilizzato da IIB per creare ReST services
+
+- capire come mai DBResp non viene popolato per updEmployee, delEmployee
+
+- sistemare le classi che scrivono e leggono sulla cache. In generale per scrivere non servono parametri di input, per leggere deve essere necessario il solo EMPNO!!
+
+--->>> necessario includere employeeNumber in HRDB.xsd (magari meglio costruire una chiave che contiene la stringa...?)
+
+- TUTORIAL 006_IIB10003_EmployeeService_MQTopologies.pdf, pag45, configurazione con client MQ - OK
+
+- capire come configurare il puntamento al driver ODBC esternamente e su sistemi UNIX - OK
+
+- capire come funzionano i pattern
+
+- capire come chiamare un servizio ReST o HTTP in generale (HTTPRequest node)
+	
+- capire come funziona la sicurezza dei flussi
+
+- bar override

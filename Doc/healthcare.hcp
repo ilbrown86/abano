@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<healthcare:healthcare xmlns:healthcare="http://www.ibm.com/patterns/healthcare">
+  <modelVersion>1.0.0.0</modelVersion>
+  <sender>
+    <name>Sender</name>
+    <serverAddress>10.4.2.221</serverAddress>
+    <port>9999</port>
+    <standardProtocol>true</standardProtocol>
+    <leadingBytes>0B</leadingBytes>
+    <trailingBytes>1C0D</trailingBytes>
+    <fileName></fileName>
+    <fileContents>4D53487C5E7E5C267C49424D5F4949427C49424D7C4548525F4D454441524348495645527C4D454441524348495645527C32303137303332373131353531317C7C4F52555E5230317C32353233333633317C507C322E352E310D5049447C7C7C7C7C0D5056317C7C497C7C7C7C7C7C7C7C7C7C7C7C7C7C7C7C7C31372F30303030340D4F42527C317C7C31323334353637327C49424D4150504C457C7C7C32303137303332373131353531317C7C7C7C7C7C7C7C7C7C7C7C7C7C7C7C7C7C7C7C7C7C7C7C7C7C7C43504F5254454C4C490D4F42587C317C4E4D7C5E5E5352547C7C7C7C7C7C7C7C460D4F42587C327C4E4D7C5E5E5352547C7C7C7C7C7C7C7C460D4F42587C337C4E4D7C5E5E5352547C7C7C7C7C7C7C7C460D4F42587C347C4E4D7C5E5E5352547C7C7C7C7C7C7C7C460D4F42587C357C4E4D7C5E5E5352547C7C7C7C7C7C7C7C461C0D</fileContents>
+    <sendSequenceNumbers>false</sendSequenceNumbers>
+    <nextSequenceNumber>1</nextSequenceNumber>
+    <messageCount>1</messageCount>
+  </sender>
+  <receiver>
+    <name>Receiver</name>
+    <port>9999</port>
+    <standardProtocol>true</standardProtocol>
+    <leadingBytes>0B</leadingBytes>
+    <trailingBytes>1C0D</trailingBytes>
+    <acknowledgmentType>AutoAcknowledgment</acknowledgmentType>
+    <fileName></fileName>
+    <fileContents></fileContents>
+  </receiver>
+</healthcare:healthcare>

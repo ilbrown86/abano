@@ -1,0 +1,45 @@
+
+BROKER SCHEMA com.ibm.it.esql.util
+
+PATH com.ibm.it.esql.util;
+/****************************************************************************
+* A procedure that will get the details of the last exception from a message
+* IN exceptionList: The incoming exception list
+* OUT messageNumber: The last message numberr.
+* OUT messageText: The last message text.
+*****************************************************************************/
+CREATE PROCEDURE GetExceptionDetails(IN exceptionList REFERENCE, OUT messageNumber INTEGER, OUT messageText CHARACTER)
+BEGIN
+	DECLARE nextException reference to exceptionList;
+
+	MOVE nextException FIRSTCHILD;
+	--IF EXISTS(nextException.*[]) THEN
+	-- Create a reference to the first child of the exception list
+	-- keep looping while the moves to the child of exception list work
+	--MOVE nextException TO nextException.*[1];
+
+	L1 : WHILE LASTMOVE(nextException) DO
+		IF FIELDNAME(nextException) = 'Insert' THEN
+			DECLARE tmp CHARACTER '';
+			REPEAT
+				SET tmp = ' [' || nextException.Text || ']' || tmp;
+				MOVE nextException PREVIOUSSIBLING REPEAT NAME;
+				UNTIL
+				NOT LASTMOVE(nextException) -- OR FIELDNAME(nextException) <> 'Insert'
+			END REPEAT;
+			SET messageText = messageText || tmp;
+			LEAVE L1;
+		END IF;
+		IF nextException.Number IS NOT NULL THEN
+			SET messageNumber = nextException.Number;
+		END IF;
+		IF nextException.Text IS NOT NULL THEN
+			SET messageText = nextException.Text;
+		END IF;
+		--if nextException.RecoverableException = nextException THEN
+		-- LEAVE L1;
+		--ELSE
+		MOVE nextException LASTCHILD;
+	END WHILE;
+	--END IF;
+END;

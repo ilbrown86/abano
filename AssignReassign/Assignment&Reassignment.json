@@ -1,0 +1,156 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "Assign and reassign services",
+    "version" : "2.0.0",
+    "title" : "Assign and reassign services",
+    "contact" : { }
+  },
+  "host" : "localhost:7800",
+  "basePath" : "/AssignReassign",
+  "schemes" : [ "http" ],
+  "security" : [ {
+    "Technical User" : [ ]
+  } ],
+  "paths" : {
+    "/reassignment" : {
+      "put" : {
+        "operationId" : "Reassignment",
+        "responses" : {
+          "200" : {
+            "description" : "The operation was successful.",
+            "schema" : {
+              "type" : "string"
+            }
+          },
+          "400" : {
+            "description" : "Error",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          }
+        },
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "description" : "call for reassgniment",
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "schema" : {
+            "$ref" : "#/definitions/ParamentriReassign"
+          },
+          "description" : "The request body for the operation",
+          "required" : true
+        } ]
+      }
+    },
+    "/tasks" : {
+      "put" : {
+        "operationId" : "Tasks",
+        "responses" : {
+          "200" : {
+            "description" : "The operation was successful.",
+            "schema" : {
+              "type" : "string"
+            }
+          },
+          "400" : {
+            "description" : "Error",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          }
+        },
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "description" : "call for tasks list",
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "schema" : {
+            "$ref" : "#/definitions/ParametriTasks"
+          },
+          "description" : "The request body for the operation",
+          "required" : true
+        } ]
+      }
+    }
+  },
+  "securityDefinitions" : {
+    "Technical User" : {
+      "type" : "basic"
+    }
+  },
+  "definitions" : {
+    "ParamentriReassign" : {
+      "type" : "object",
+      "properties" : {
+        "dateFrom" : {
+          "type" : "string",
+          "format" : "date"
+        },
+        "dateTo" : {
+          "type" : "string",
+          "format" : "date"
+        },
+        "nurseId" : {
+          "type" : "string",
+          "description" : "nurseId"
+        },
+        "patientId" : {
+          "type" : "string",
+          "description" : "patientId"
+        },
+        "taskType" : {
+          "type" : "string",
+          "description" : "task type"
+        },
+        "pathwayPhase" : {
+          "type" : "string",
+          "description" : "pathway phase"
+        },
+        "typology" : {
+          "type" : "string",
+          "description" : "patient typology"
+        },
+        "clinicalPathway" : {
+          "type" : "string",
+          "description" : "clinicalPathway"
+        },
+        "nurseList" : {
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "nurseId" : {
+                "type" : "string"
+              }
+            },
+            "required" : [ "nurseId" ]
+          }
+        }
+      }
+    },
+    "ParametriTasks" : {
+      "type" : "object",
+      "properties" : {
+        "scheduled" : {
+          "type" : "boolean"
+        }
+      }
+    },
+    "Error" : {
+      "type" : "object",
+      "required" : [ "errorCode", "errorMessage" ],
+      "properties" : {
+        "errorCode" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "errorMessage" : {
+          "type" : "string"
+        }
+      }
+    }
+  }
+}

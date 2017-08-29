@@ -1,0 +1,543 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "No description",
+        "version": "1.0.0",
+        "title": "EHR",
+        "contact": {}
+    },
+    "host": "10.4.2.212:7080",
+    "schemes": [
+        "http"
+    ],
+    "security": [
+        {
+            "Technical User": []
+        }
+    ],
+    "paths": {
+        "/issues/list": {
+            "get": {
+            	"operationId" : "issueList",
+                "summary": "List barriers within a division (comparto)",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "division",
+                        "in": "query",
+                        "description": "comparto",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Status 200",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Issue"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Status 400",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/patients/list": {
+            "get": {
+            	"operationId" : "patientList",
+                "summary": "List patients with a division (comparto)",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "division",
+                        "in": "query",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Status 200",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Patient"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Status 400",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/patients/{patientId}/details": {
+            "get": {
+            	"operationId" : "patientDetails",
+                "summary": "Get Patient details",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "patientId",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Status 200",
+                        "schema": {
+                            "$ref": "#/definitions/Patient"
+                        }
+                    },
+                    "400": {
+                        "description": "Status 400",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/patients/{patientId}/issues/add": {
+            "put": {
+            	"operationId" : "issuesAdd",
+                "summary": "Add an issue",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "patientId",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/definitions/Issue"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "400": {
+                        "description": "Status 400",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/patients/{patientId}/measurements/history": {
+            "get": {
+            	"operationId" : "measurementsHistory",
+                "summary": "Read paramenters (history)",
+                "description": "Retrieve data to fill graphs",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "patientId",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Status 200",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Measurement"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/patients/{patientId}/measurements/last": {
+            "get": {
+            	"operationId" : "measurementsLast",
+                "summary": "Read current paramenters",
+                "description": "retrieve last set of measurements",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "patientId",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Status 200",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Measurement"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Status 400"
+                    }
+                }
+            }
+        },
+        "/patients/{patientId}/notes": {
+            "get": {
+            	"operationId" : "noteList",
+                "summary": "Get patient's notes",
+                "description": "Get patient's notes",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "patientId",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Note"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Status 400",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/patients/{patientId}/notes/add": {
+            "put": {
+            	"operationId" : "notesAdd",
+                "summary": "Add a note",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "patientId",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/definitions/Note"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "400": {
+                        "description": "Status 400",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "securityDefinitions": {
+        "Technical User": {
+            "type": "basic"
+        }
+    },
+    "definitions": {
+        "Note": {
+            "type": "object",
+            "required": [
+                "id",
+                "title",
+                "description",
+                "userId",
+                "date",
+                "important"
+            ],
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "description": "This id needs to be generated by MFP:\n#userdId+timestamp+random"
+                },
+                "title": {
+                    "type": "string",
+                    "description": "note's title"
+                },
+                "description": {
+                    "type": "string",
+                    "description": "Text of the note"
+                },
+                "userId": {
+                    "type": "string",
+                    "description": "User"
+                },
+                "date": {
+                    "type": "string",
+                    "format": "date"
+                },
+                "important": {
+                    "type": "boolean",
+                    "default": false
+                },
+                "attachments": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "base64": {
+                                "type": "string"
+                            },
+                            "type": {
+                                "type": "string",
+                                "description": "\"Photo\"|\"Audio\""
+                            }
+                        },
+                        "required": [
+                            "base64",
+                            "type"
+                        ]
+                    }
+                }
+            }
+        },
+        "Measurement": {
+            "type": "object",
+            "required": [
+                "id",
+                "userId",
+                "patientId",
+                "date"
+            ],
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "userId": {
+                    "type": "string",
+                    "description": "User that performed measurement"
+                },
+                "patientId": {
+                    "type": "string",
+                    "description": "Subject of measurement"
+                },
+                "date": {
+                    "type": "string",
+                    "format": "date",
+                    "description": "Date and time of measurement"
+                },
+                "values": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "required": [
+                            "measureId",
+                            "measureName",
+                            "value"
+                        ],
+                        "properties": {
+                            "measureId": {
+                                "type": "string",
+                                "description": "Id of the field (sent by BPM)"
+                            },
+                            "measureName": {
+                                "type": "string"
+                            },
+                            "value": {
+                                "type": "string"
+                            },
+                            "units": {
+                                "type": "string",
+                                "description": "mm hg"
+                            },
+                            "type": {
+                                "type": "string",
+                                "description": "Integer or String"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "Error": {
+            "type": "object",
+            "required": [
+                "errorCode",
+                "errorMessage"
+            ],
+            "properties": {
+                "errorCode": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "errorMessage": {
+                    "type": "string"
+                }
+            }
+        },
+        "Patient": {
+            "type": "object",
+            "required": [
+                "id",
+                "name",
+                "surname",
+                "diagnosis",
+                "bedNumber",
+                "class",
+                "birthdate",
+                "sex",
+                "race",
+                "fiscalcode",
+                "admissionDate",
+                "pid"
+            ],
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "description": "Nosologic number: e.g. \"17/001324\""
+                },
+                "name": {
+                    "type": "string"
+                },
+                "surname": {
+                    "type": "string"
+                },
+                "dischargeDate": {
+                    "type": "string",
+                    "format": "date"
+                },
+                "diagnosis": {
+                    "type": "string"
+                },
+                "bedNumber": {
+                    "type": "string"
+                },
+                "division": {
+                    "type": "string",
+                    "description": "\"comparto\""
+                },
+                "class": {
+                    "type": "string",
+                    "description": "I: internal,\nO: external"
+                },
+                "birthdate": {
+                    "type": "string",
+                    "description": "yyyy-MM-dd"
+                },
+                "sex": {
+                    "type": "string",
+                    "description": "M: Male,\nF: Female"
+                },
+                "race": {
+                    "type": "string"
+                },
+                "address": {
+                    "type": "string"
+                },
+                "fiscalcode": {
+                    "type": "string"
+                },
+                "admissionDate": {
+                    "type": "string",
+                    "format": "date"
+                },
+                "surgeryDate": {
+                    "type": "string",
+                    "format": "date"
+                },
+                "pid": {
+                    "type": "string",
+                    "description": "Patient Identifier List."
+                },
+                "notes": {
+                    "type": "array",
+                    "description": "Patient notes",
+                    "items": {
+                        "$ref": "#/definitions/Note"
+                    }
+                },
+                "type": {
+                    "type": "string",
+                    "description": "Patient Type: \"Chirurgico\""
+                }
+            }
+        },
+        "Issue": {
+            "type": "object",
+            "required": [
+                "id",
+                "description",
+                "title"
+            ],
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "title": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}

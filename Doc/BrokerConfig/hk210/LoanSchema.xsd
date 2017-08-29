@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://hk210" xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions"
+	xmlns:hk210="http://hk210">
+	<xsd:include schemaLocation="DataModel.xsd" />
+	<!-- Message definition generated from C:\workspaces\iib\tutorial\LOANS_DB\LOANS.dbm -->
+
+	<xsd:complexType name="InsertRequestType">
+		<xsd:sequence>
+			<xsd:element name="pid" type="xsd:string" minOccurs="0" />
+			<xsd:element ref="hk210:ApplicationRequest" />
+			<xsd:element maxOccurs="unbounded" ref="hk210:RuleRequest" />
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:element name="InsertRequest" type="hk210:InsertRequestType" />
+
+	<xsd:complexType name="InsertResponseType">
+		<xsd:sequence>
+			<xsd:element name="pid" type="xsd:string" minOccurs="0" />
+			<xsd:element ref="hk210:ApplicationResponse" />
+			<xsd:element maxOccurs="unbounded" minOccurs="0"
+				ref="hk210:LegacyResponse" />
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:element name="InsertResponse" type="hk210:InsertResponseType" />
+
+</xsd:schema>

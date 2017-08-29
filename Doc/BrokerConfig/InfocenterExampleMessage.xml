@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Invoice>
+	<InvoiceNo>300524</InvoiceNo>
+	<InvoiceDate>2000-12-07</InvoiceDate>
+	<InvoiceTime>12:40:00</InvoiceTime>
+	<TillNumber>3</TillNumber>
+	<Cashier StaffNo='089'>Mary</Cashier>
+	<Customer>
+		<FirstName>Andrew</FirstName>
+		<LastName>Smith</LastName>
+		<Title>Mr</Title>
+		<DOB>20-01-70</DOB>
+		<PhoneHome>01962818000</PhoneHome>
+		<PhoneWork />
+		<Billing>
+			<Address>14 High Street</Address>
+			<Address>Hursley Village</Address>
+			<Address>Hampshire</Address>
+			<PostCode>SO213JR</PostCode>
+		</Billing>
+	</Customer>
+	<Payment>
+		<CardType>Visa</CardType>
+		<CardNo>4921682832258418</CardNo>
+		<CardName>Mr Andrew J. Smith</CardName>
+		<Valid>1200</Valid>
+		<Expires>1101</Expires>
+	</Payment>
+	<Purchases>
+		<Item>
+			<Title Category='Computer' Form='Paperback' Edition='2'>The XML
+				Companion</Title>
+			<ISBN>0201674866</ISBN>
+			<Author>Neil Bradley</Author>
+			<Publisher>Addison-Wesley</Publisher>
+			<PublishDate>October 1999</PublishDate>
+			<UnitPrice>27.95</UnitPrice>
+			<Quantity>2</Quantity>
+		</Item>
+		<Item>
+			<Title Category='Computer' Form='Paperback' Edition='2'>A Complete
+				Guide to DB2 Universal Database</Title>
+			<ISBN>1558604820</ISBN>
+			<Author>Don Chamberlin</Author>
+			<Publisher>Morgan Kaufmann Publishers</Publisher>
+			<PublishDate>April 1998</PublishDate>
+			<UnitPrice>42.95</UnitPrice>
+			<Quantity>1</Quantity>
+		</Item>
+		<Item>
+			<Title Category='Computer' Form='Hardcover' Edition='0'>JAVA 2
+				Developers Handbook</Title>
+			<ISBN>0782121799</ISBN>
+			<Author>Philip Heller, Simon Roberts </Author>
+			<Publisher>Sybex, Inc.</Publisher>
+			<PublishDate>September 1998</PublishDate>
+			<UnitPrice>59.99</UnitPrice>
+			<Quantity>1</Quantity>
+		</Item>
+	</Purchases>
+	<StoreRecords />
+	<DirectMail />
+	<Error />
+</Invoice>

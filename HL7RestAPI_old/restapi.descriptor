@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns2:restapiDescriptor xmlns="http://com.ibm.etools.mft.descriptor.base" xmlns:ns2="http://com.ibm.etools.mft.descriptor.restapi" definitionType="swagger_20" definitionFile="iib_rest_api_ehr_v07_20170314.json" implementation="gen/HL7RestAPI_old.msgflow" https="false">
+    <ns2:operations>
+        <ns2:operation name="issueList" implementation="issueList.subflow"/>
+        <ns2:operation name="issuesAdd" implementation="issuesAdd.subflow"/>
+        <ns2:operation name="measurementsHistory" implementation="measurementsHistory.subflow"/>
+        <ns2:operation name="notesAdd" implementation="notesAdd.subflow"/>
+        <ns2:operation name="patientDetails" implementation="patientDetails.subflow"/>
+        <ns2:operation name="patientDetailsCompleteKey" implementation="patientDetailsCompleteKey.subflow"/>
+        <ns2:operation name="patientList" implementation="patientList.subflow"/>
+    </ns2:operations>
+    <ns2:errorHandlers/>
+</ns2:restapiDescriptor>

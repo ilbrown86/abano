@@ -1,0 +1,80 @@
+<hl7:senderRequest xmlns:hl7="http://w3.ibm.com/it/hl7" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<action>writeParameters</action>
+<messageId>2017033101Test</messageId>
+  <writeParametersRequest>
+    <patient>
+      <nosologicId>17/000004</nosologicId>
+      <patientIdentifierList>131175600</patientIdentifierList>
+
+      <class>I</class>
+    </patient>
+    <parameter>
+      <taskId>22</taskId>
+      <id>01</id>
+      <userId>CPORTELLI</userId>
+      <date>20170317170900</date>
+      <values>
+        <measureId>SC0001</measureId> 
+        <measureName>pharmacologicallySedated</measureName> 
+        <value>0^nessun valore</value>  
+        <units />
+        <type>Integer</type>
+      </values>
+      <values>
+        <measureId>SC001</measureId>
+        <measureName>gcsEye</measureName>
+        <value>3.0</value>
+        <units />
+        <type>Decimal</type>
+      </values>
+      <values>
+        <measureId>SC002</measureId>
+        <measureName>gcsVerbal</measureName>
+        <value>2.0</value>
+        <units />
+        <type>Decimal</type>
+      </values>
+      <values>
+        <measureId>SC003</measureId>
+        <measureName>gcsMotor</measureName>
+        <value>1.0</value>
+        <units />
+        <type>Decimal</type>
+      </values>
+    </parameter>
+    <parameter>
+      <taskId>23</taskId>
+      <id>02</id>
+      <userId>CPORTELLI</userId>
+      <date>20170317170900</date>
+      <values>
+        <measureId>SC0001</measureId> 
+        <measureName>pharmacologicallySedated</measureName> 
+        <value>0^nessun valore</value>  
+        <units />
+        <type>Integer</type>
+      </values>
+      <values>
+        <measureId>SC001</measureId>
+        <measureName>gcsEye</measureName>
+        <value>3.0</value>
+        <units />
+        <type>Decimal</type>
+      </values>
+      <values>
+        <measureId>SC002</measureId>
+        <measureName>gcsVerbal</measureName>
+        <value>2.0</value>
+        <units />
+        <type>Decimal</type>
+      </values>
+      <values>
+        <measureId>SC003</measureId>
+        <measureName>gcsMotor</measureName>
+        <value>1.0</value>
+        <units />
+        <type>Decimal</type>
+      </values>
+    </parameter>
+  </writeParametersRequest>
+</hl7:senderRequest>

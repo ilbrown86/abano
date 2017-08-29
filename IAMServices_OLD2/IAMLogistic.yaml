@@ -1,0 +1,39 @@
+---
+swagger: "2.0"
+info:
+  title: "IAMLogistic"
+  version: "1.0.0"
+host: "10.4.2.165:8080"
+basePath: "/asset"
+schemes:
+- "http"
+paths:
+  /beds/list:
+    post:
+      summary: "Find a list of beds by Compartment IDs"
+      description: ""
+      operationId: "list"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "filter"
+        required: false
+        schema:
+          $ref: "#/definitions/BedListQuery"
+      responses:
+        default:
+          description: "successful operation"
+      security:
+      - basic: []
+definitions:
+  BedListQuery:
+    type: "object"
+    properties:
+      compartmentIds:
+        type: "array"
+        items:
+          type: "string"

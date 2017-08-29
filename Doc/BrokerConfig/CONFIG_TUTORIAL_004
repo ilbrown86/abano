@@ -1,0 +1,27 @@
+
+rem TUTORIAL 004 -> global cache configuration
+
+rem generate JAXB
+rem lo schema creato (EmployeeService) non funziona!!! Sono state rimosse le dipendenze da DBResp e employeeNumber in quanto causavano problemi
+rem parsing a schema...
+rem [ERROR] src-resolve: Cannot resolve the name 'employeeNumber' to a(n) 'element declaration' component.
+rem   line 8 of file:/C:/workspaces/iib/tutorial/EmployeeService_interface_and_maps/EmployeeService_InlineSchema1.xsd
+"C:\Program Files\IBM\IIB\10.0.0.4\common\jdk\bin\xjc.exe" -verbose -d "C:\workspaces\iib\tutorial\EmployeeServiceJavaP\src" -p "com.ibm.it.betaworks" "C:\workspaces\iib\tutorial\EmployeeService_interface_and_maps\EmployeeService.xsd"
+
+mqsireportproperties %node% -b cachemanager -o CacheManager -r
+
+rem Global Cache is disabled and can not be used. The following steps will enable the Global Cache. Stop the %node%
+mqsistop %node%
+
+rem This command enables the default configuration for the IIB Global Cache on %node%.
+mqsichangebroker %node% -b default
+
+rem Start the %node% and ensure the node comes up correctly.
+mqsistart %node%
+
+rem Run the following command again to confirm that the CacheManager policy is now set to default:
+mqsireportproperties %node% -b cachemanager -o CacheManager -r
+
+rem Now enter the following command to check the contents of the Global Cache:
+mqsicacheadmin %node% -c showMapSizes
+

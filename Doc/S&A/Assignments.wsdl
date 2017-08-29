@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.casacura.it/Assignments/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="Assignments" targetNamespace="http://www.casacura.it/Assignments/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://www.casacura.it/Assignments/">
+      <xsd:element name="request"
+      	type="tns:TaskAssignmentsRequest">
+      </xsd:element>
+
+      <xsd:complexType name="TaskAssignmentsRequest">
+      	<xsd:sequence>
+      		<xsd:element name="task" type="tns:Task" maxOccurs="unbounded" minOccurs="1"></xsd:element>
+      	</xsd:sequence>
+      </xsd:complexType>
+    
+      <xsd:complexType name="Task">
+      	<xsd:sequence>
+      		<xsd:element name="id" type="xsd:string" minOccurs="1"
+      			maxOccurs="1">
+      		</xsd:element>
+      		<xsd:element name="type" type="xsd:string" minOccurs="1"
+      			maxOccurs="1">
+      		</xsd:element>
+      		<xsd:element name="creationDate" type="xsd:dateTime"></xsd:element>
+      		<xsd:element name="patientId" type="xsd:string"
+      			minOccurs="1" maxOccurs="1">
+      		</xsd:element>
+      		<xsd:element name="pathwayPhase" type="xsd:string"
+      			minOccurs="1" maxOccurs="1">
+      		</xsd:element>
+      	</xsd:sequence>
+      	
+      </xsd:complexType>
+      <xsd:element name="response" type="tns:TaskAssignmentsResponse"></xsd:element>
+
+      <xsd:complexType name="TaskAssignmentsResponse">
+      	<xsd:sequence>
+      		<xsd:element name="assignments" type="tns:Assignment"></xsd:element>
+      	</xsd:sequence>
+      </xsd:complexType>
+    
+      <xsd:complexType name="Assignment">
+      	<xsd:sequence>
+      		<xsd:element name="userId" type="xsd:string" maxOccurs="unbounded" minOccurs="0"></xsd:element>
+      	</xsd:sequence>
+      	<xsd:attribute name="taskId" type="xsd:string"></xsd:attribute>
+      </xsd:complexType>
+      <xsd:element name="saveAssignmentPreferences" type="tns:AssignmentPreference">
+      </xsd:element>
+      <xsd:element name="saveAssignmentPreferencesResponse">
+      	<xsd:complexType>
+      		<xsd:sequence>
+      			<xsd:element name="out" type="xsd:string"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+    
+      <xsd:complexType name="AssignmentPreference">
+      	<xsd:sequence>
+      		<xsd:element name="userId" type="xsd:string" minOccurs="1"
+      			maxOccurs="1">
+      		</xsd:element>
+      		<xsd:element name="patientType" type="xsd:string"
+      			minOccurs="0" maxOccurs="unbounded">
+      		</xsd:element>
+      		<xsd:element name="pathwayPhase" type="xsd:string" minOccurs="0" maxOccurs="unbounded"></xsd:element>
+      	</xsd:sequence>
+      </xsd:complexType>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="obtainAssignmentsRequest">
+    <wsdl:part element="tns:request" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="obtainAssignmentsResponse">
+    <wsdl:part element="tns:response" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="saveAssignmentPreferencesRequest">
+  	<wsdl:part name="parameters" element="tns:saveAssignmentPreferences"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="saveAssignmentPreferencesResponse">
+  	<wsdl:part name="parameters" element="tns:saveAssignmentPreferencesResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="Assignments">
+    <wsdl:operation name="obtainAssignments">
+      <wsdl:input message="tns:obtainAssignmentsRequest"/>
+      <wsdl:output message="tns:obtainAssignmentsResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="saveAssignmentPreferences">
+    	<wsdl:input message="tns:saveAssignmentPreferencesRequest"></wsdl:input>
+    	<wsdl:output message="tns:saveAssignmentPreferencesResponse"></wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="AssignmentsSOAP" type="tns:Assignments">
+  	<soap:binding style="document"
+  		transport="http://schemas.xmlsoap.org/soap/http" />
+  	<wsdl:operation name="obtainAssignments">
+  		<soap:operation
+  			soapAction="http://www.casacura.it/Assignments/obtainAssignments" />
+  		<wsdl:input>
+  			<soap:body use="literal" />
+  		</wsdl:input>
+  		<wsdl:output>
+  			<soap:body use="literal" />
+  		</wsdl:output>
+  	</wsdl:operation>
+  	<wsdl:operation name="saveAssignmentPreferences">
+  		<soap:operation
+  			soapAction="http://www.casacura.it/Assignments/saveAssignmentPreferences" required="true"/>
+  		<wsdl:input>
+  			<soap:body use="literal"
+  				namespace="http://www.casacura.it/Assignments/" />
+  		</wsdl:input>
+  		<wsdl:output>
+  			<soap:body use="literal"
+  				namespace="http://www.casacura.it/Assignments/" />
+  		</wsdl:output>
+  	</wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="SAApi">
+        <wsdl:port name="NewPort" binding="tns:AssignmentsSOAP">
+        	<soap:address location="https://internal.casacura.it/saapi" />
+        </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

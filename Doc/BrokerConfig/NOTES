@@ -1,0 +1,29 @@
+
+BROKER SCHEMA gen
+
+
+CREATE DATABASE MODULE updateEmployee_Database
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		DECLARE employeeNumber REFERENCE to Root.XMLNSC.*:getEmployeeResponse.*:EmployeeResponse.*:EMPLOYEE.EMPNO;
+		set Environment.EMPLOYEE = Root.XMLNSC.*:getEmployeeResponse.*:EmployeeResponse.*:EMPLOYEE;
+		UPDATE Database.IIBADMIN.EMPLOYEE AS EMP SET BONUS = 0 WHERE EMP.EMPNO = employeeNumber;
+		RETURN TRUE;
+	END;
+
+END MODULE;
+
+TRACE getEmployee_REST response
+Local environment : ${LocalEnvironment}
+Environment: ${Environment}
+Body: ${Body}
+Traced at: ${EXTRACT(HOUR FROM CURRENT_TIMESTAMP)}:${EXTRACT(MINUTE FROM CURRENT_TIMESTAMP)}:${EXTRACT(SECOND FROM CURRENT_TIMESTAMP)}
+
+
+Swagger / SOAPUI
+http://win7pro:7800/EmployeeService_REST/resources/EmployeeService.json
+http://win7pro:7800/EmployeeService_REST/resources/employees/000010
+
+Client Application URI
+/EmployeeServiceClient/getEmployee
+

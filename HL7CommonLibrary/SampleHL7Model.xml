@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<hl7:senderRequest xmlns:hl7="http://w3.ibm.com/it/hl7" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://w3.ibm.com/it/hl7 HL7Model.xsd ">
+  <action>action</action>
+  <messageId>messageId</messageId>
+</hl7:senderRequest>

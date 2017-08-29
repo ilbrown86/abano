@@ -1,0 +1,2394 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://endevor.ca.com" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:ns="http://endevor.ca.com" xmlns:ax21="http://endevor.ca.com/xsd" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:ax24="http://mime.endevor.ca.com/xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:ns1="http://org.apache.axis2/xsd">
+  <wsdl:types>
+    <xs:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://endevor.ca.com/xsd" xmlns:ax22="http://endevor.ca.com" xmlns:ax25="http://mime.endevor.ca.com/xsd">
+			<xs:import namespace="http://endevor.ca.com"/>
+			<xs:import namespace="http://mime.endevor.ca.com/xsd"/>
+			<xs:complexType name="EndevorService">
+				<xs:complexContent>
+					<xs:extension base="ax22:Exception">
+						<xs:sequence>
+							<xs:element minOccurs="0" name="id" type="xs:long"/>
+						</xs:sequence>
+					</xs:extension>
+				</xs:complexContent>
+			</xs:complexType>
+			<xs:complexType name="LoginProperties">
+				<xs:sequence>
+					<xs:element minOccurs="1" name="dataSource" nillable="false" type="xs:string"/>
+					<xs:element minOccurs="1" name="password" nillable="false" type="xs:string"/>
+					<xs:element minOccurs="1" name="userId" nillable="false" type="xs:string"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="SCL">
+				<xs:sequence>
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="attachments" nillable="true" type="ax24:Attachments"/>
+					<xs:element minOccurs="1" name="statement" nillable="false" type="xs:string"/>
+					<xs:element minOccurs="0" name="wsParameters" nillable="true" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>
+								The wsParameters includes pairs of attribute/value
+								coded as xml
+								syntax.
+								Character sets and encoding string values inform the
+								server hos to
+								translate
+								the scl statement,
+								the report and elment or file
+								passed as
+								attachment.
+								For now: the supported atributes are:
+								1.
+								LFSEncoding=&quot;ISO8859-1&quot; Encoding=&quot;cp01147&quot; applicable for the
+								translation of
+								exchanged
+								elements and files, and
+								2.
+								CharacterSet=&quot;ISO8859-1&quot;
+								CodePage=&quot;cp01147&quot; applicable for the
+								translation of
+								all other textual information. Note the encoding and code
+								page are
+								also coded
+								in
+								the
+								endevor.cfg configuration files. When coded in
+								this
+								property, there overwrite
+								the
+								configuration values for the execution
+								of the submitSCL.
+								Other
+								possible attributes but not
+								currently handled
+								are:
+								Lang=&quot;En&quot; Locale=&quot;EN_US&quot; TimeZone=&quot;GMT+0&quot;
+								example:
+								CharacterSet=&quot;ISO8859-1&quot; CodePage=&quot;cp01147&quot;
+								LFSEncoding=&quot;ISO8859-1&quot;
+								Encoding=&quot;cp01147&quot;
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="Result">
+				<xs:sequence>
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="attachments" nillable="true" type="ax24:Attachments"/>
+					<xs:element minOccurs="0" name="message" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="reasonCode" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="report" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="returnCode" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="wsParameters" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="xID" nillable="true" type="xs:string"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="Configuration">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="description" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="message" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="name" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="status" nillable="true" type="xs:string"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="ResultElementSummary">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="result" nillable="true" type="ax21:Result"/>
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="ElementSummary" nillable="true" type="ax21:ElementSummary"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="ElementSummary">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="rcdType" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="dataType" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="siteId" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="envName" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="sysName" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="sbsName" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="elmName" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="fullElmName" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="typeName" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="stgName" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="stgId" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="stgNum" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="stgSeqNum" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="procGrpName" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="updtDate" nillable="true" type="xs:dateTime"/>
+					<xs:element minOccurs="0" name="signoutId" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="elmVv" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="elmLl" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="cmpntVv" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="cmpntLl" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="rcdCnt" nillable="true" type="xs:int"/>
+					<xs:element minOccurs="0" name="rcdNum" nillable="true" type="xs:int"/>
+					<xs:element minOccurs="0" name="chgVv" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="chgLl" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="chgUsrid" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="chgDate" nillable="true" type="xs:dateTime"/>
+					<xs:element minOccurs="0" name="numStmts" nillable="true" type="xs:int"/>
+					<xs:element minOccurs="0" name="numInsert" nillable="true" type="xs:int"/>
+					<xs:element minOccurs="0" name="numDelete" nillable="true" type="xs:int"/>
+					<xs:element minOccurs="0" name="sync" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="ccid" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="comment" nillable="true" type="xs:string"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="ResultElementDetail">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="result" nillable="true" type="ax21:Result"/>
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="ElementDetail" nillable="true" type="ax21:ElementDetail"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="ElementDetail">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="rcdType" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="siteId" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="envName" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="sysName" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="sbsName" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="elmName" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="fullElmName" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="typeName" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="stgName" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="stgId" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="stgNum" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="stgSeqNum" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="procGrpName" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="updtDate" nillable="true" type="xs:dateTime"/>
+					<xs:element minOccurs="0" name="signoutId" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="elmVv" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="elmLl" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="cmpntVv" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="cmpntLl" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="relId" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="lastActModElm" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="lastAct" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="endevorRc" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="lastActDate" nillable="true" type="xs:dateTime"/>
+					<xs:element minOccurs="0" name="lastActUsrid" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="lastActCcid" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="lastActComment" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="elmBaseMbr" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="elmBaseDate" nillable="true" type="xs:dateTime"/>
+					<xs:element minOccurs="0" name="elmBaseNumStmts" nillable="true" type="xs:int"/>
+					<xs:element minOccurs="0" name="baseLl" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="baseCompressed" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="baseUsrid" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="baseComment" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="elmDeltaMbrName" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="elmLastLlDate" nillable="true" type="xs:dateTime"/>
+					<xs:element minOccurs="0" name="elmLastLlNumStmts" nillable="true" type="xs:int"/>
+					<xs:element minOccurs="0" name="elmLastLlUsrid" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="elmLastLlCcid" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="elmLastLlComment" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="elmLastLlNumInsert" nillable="true" type="xs:int"/>
+					<xs:element minOccurs="0" name="elmLastLlNumDelete" nillable="true" type="xs:int"/>
+					<xs:element minOccurs="0" name="elmDeltaFormat" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="cmpntMbr" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="cmpntDate" nillable="true" type="xs:dateTime"/>
+					<xs:element minOccurs="0" name="cmpntBaseNumStmts" nillable="true" type="xs:int"/>
+					<xs:element minOccurs="0" name="cmpntBaseLl" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="cmpntDeltaMbrName" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="cmpntLastLlDate" nillable="true" type="xs:dateTime"/>
+					<xs:element minOccurs="0" name="cmpntLastLlNumStmts" nillable="true" type="xs:int"/>
+					<xs:element minOccurs="0" name="cmpntLastLlNumInsert" nillable="true" type="xs:int"/>
+					<xs:element minOccurs="0" name="cmpntLastLlNumDelete" nillable="true" type="xs:int"/>
+					<xs:element minOccurs="0" name="cmpntDeltaFormat" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="cmpntListMonitor" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="cmpntListCopied" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="cmpntListLoc" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="moveDate" nillable="true" type="xs:dateTime"/>
+					<xs:element minOccurs="0" name="moveUsrid" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="procFlg" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="procFailed" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="lastProcDate" nillable="true" type="xs:dateTime"/>
+					<xs:element minOccurs="0" name="generateDate" nillable="true" type="xs:dateTime"/>
+					<xs:element minOccurs="0" name="generateUsrid" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="generateCcid" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="generateComment" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="failedLit" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="procName" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="procRc" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="retrDate" nillable="true" type="xs:dateTime"/>
+					<xs:element minOccurs="0" name="retrUsrid" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="retrCcid" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="retrComment" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="pkgIdSource" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="pkgExecDateSource" nillable="true" type="xs:dateTime"/>
+					<xs:element minOccurs="0" name="backedOutOutput" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="pkgIdOutput" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="pkgExecDateOutput" nillable="true" type="xs:dateTime"/>
+					<xs:element minOccurs="0" name="pkgId" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="lockedDate" nillable="true" type="xs:dateTime"/>
+					<xs:element minOccurs="0" name="siteIdFrom" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="envNameFrom" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="sysNameFrom" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="sbsNameFrom" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="elmFrom" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="typeNameFrom" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="stgNumFrom" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="actThatUpdtFrom" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="vvNumFrom" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="llNumFrom" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="addUpdtDsnPathFrom" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="addUpdtMbrFileFrom" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="retrDsnPathTo" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="retrMbrFileTo" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="userData" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="nosource" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="baseVv" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="cmpntBaseVv" nillable="true" type="xs:string"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="ResultElementBasic">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="result" nillable="true" type="ax21:Result"/>
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="ElementBasic" nillable="true" type="ax21:ElementBasic"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="ElementBasic">
+			<!-- The following sequence matches the CSV structure for v15.0, non automatic generation !!  -->
+				<xs:sequence>
+					<xs:element minOccurs="0" name="rcdType" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="siteId" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="envName" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="sysName" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="sbsName" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="elmName" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="fullElmName" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="typeName" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="stgName" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="stgId" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="stgNum" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="stgSeqNum" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="procGrpName" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="updtDate" nillable="true" type="xs:dateTime"/>
+					<xs:element minOccurs="0" name="signoutId" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="elmVv" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="elmLl" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="cmpntVv" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="cmpntLl" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="nosource" nillable="true" type="xs:string"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="ResultEnvironment">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="result" nillable="true" type="ax21:Result"/>
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="Environment" nillable="true" type="ax21:Environment"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="Environment">
+			<!-- The following sequence matches the CSV structure for v15.0, non automatic generation !!  -->
+				<xs:sequence>
+					<xs:element minOccurs="0" name="siteId" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="envName" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="title" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="usrSecTbl" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="resrcSecTbl" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="smfSec" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="smfAct" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="smfEnv" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="dbBridgeAvail" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="dbBridgeActive" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="dbBridgeOpt1" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="dbBridgeOpt2" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="dbBridgeOpt3" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="dbBridgeOpt4" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="syncLoc" nillable="true" type="xs:string"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="ResultSystem">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="result" nillable="true" type="ax21:Result"/>
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="System" nillable="true" type="ax21:System"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="System">
+			<!-- The following sequence matches the CSV structure for v15.0, non automatic generation !!  -->
+				<xs:sequence>
+					<xs:element minOccurs="0" name="siteId" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="envName" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="sysName" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="stgName" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="stgId" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="stgSeqNum" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="rcdUpdtCnt" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="updtDate" nillable="true" type="xs:dateTime"/>
+					<xs:element minOccurs="0" name="updtUsrid" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="title" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="nextSys" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="procLoadLib" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="procListLib" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="commentReq" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="ccidReq" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="signoutReq" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="validateRetrDsn" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="jumpOptReq" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="backupDate" nillable="true" type="xs:dateTime"/>
+					<xs:element minOccurs="0" name="relId" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="dupElmReg" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="dupElmRegSevLl" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="procOPReg" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="procOPRegSevLl" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="elmAutoRetent" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="retainElmlvlForNummths" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="cmpAutoRetent" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="retainCmplvlForNummths" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="procOPRegAcrossSbs" nillable="true" type="xs:string"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="ResultSubSystem">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="result" nillable="true" type="ax21:Result"/>
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="SubSystem" nillable="true" type="ax21:SubSystem"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="SubSystem">
+			<!-- The following sequence matches the CSV structure for v15.0, non automatic generation !!  -->
+				<xs:sequence>
+					<xs:element minOccurs="0" name="siteId" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="envName" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="sysName" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="sbsName" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="stgName" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="stgId" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="stgSeqNum" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="rcdUpdtCnt" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="updtDate" nillable="true" type="xs:dateTime"/>
+					<xs:element minOccurs="0" name="updtUsrid" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="title" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="nextSbs" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="relId" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="excludeFromProcOPCk" nillable="true" type="xs:string"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="ResultStage">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="result" nillable="true" type="ax21:Result"/>
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="Stage" nillable="true" type="ax21:Stage"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="Stage">
+			<!-- The following sequence matches the CSV structure for v15.0, non automatic generation !!  -->
+				<xs:sequence>
+					<xs:element minOccurs="0" name="siteId" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="envName" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="stgName" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="stgId" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="stgNum" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="title" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="mcfDsn" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="entryStg" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="stopStg" nillable="true" type="xs:string"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="ResultType">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="result" nillable="true" type="ax21:Result"/>
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="Type" nillable="true" type="ax21:Type"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="Type">
+			<!-- The following sequence matches the CSV structure for v15.0, non automatic generation !!  -->
+				<xs:sequence>
+					<xs:element minOccurs="0" name="siteId" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="envName" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="sysName" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="typeName" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="typeNumId" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="stgName" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="stgId" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="stgNum" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="stgSeqNum" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="rcdUpdtCnt" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="updtDate" nillable="true" type="xs:dateTime"/>
+					<xs:element minOccurs="0" name="updtUsrid" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="relId" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="nextType" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="description" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="dfltProcGrp" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="fileExt" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="dataFormat" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="lang" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="pvLbLang" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="regrPerc" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="regrSev" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="srcLng" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="compareFrom" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="compareTo" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="autoConsol" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="consolLl" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="autoConsolLl" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="cmpntAutoConsol" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="cmpntConsolLl" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="cmpmtAutoConsolLl" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="expandIncl" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="fwdRevImgLogElmDelta" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="fwdRevCmpntDelta" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="compressBase" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="elmNameNotEncrypted" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="srcOPDsType" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="srcOPDsn" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="inclDsType" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="inclDsn" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="baseDsType" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="baseImageDsn" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="deltaDsType" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="deltaDsn" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="hfsDelimiter" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="elementRecfm" nillable="true" type="xs:string"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="ResultDataSet">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="result" nillable="true" type="ax21:Result"/>
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="DataSet" nillable="true" type="ax21:DataSet"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="DataSet">
+			<!-- The following sequence matches the CSV structure for v15.0, non automatic generation !!  -->
+				<xs:sequence>
+					<xs:element minOccurs="0" name="siteId" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="envName" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="sysName" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="stgName" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="stgId" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="stgNum" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="dsRcdId" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="dsRcdType" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="dsName" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="rcdUpdtCnt" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="updtDate" nillable="true" type="xs:dateTime"/>
+					<xs:element minOccurs="0" name="updtUsrid" nillable="true" type="xs:string"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="ResultDestination">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="result" nillable="true" type="ax21:Result"/>
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="Destination" nillable="true" type="ax21:Destination"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="Destination">
+			<!-- The following sequence matches the CSV structure for v15.0, non automatic generation !!  -->
+				<xs:sequence>
+					<xs:element minOccurs="0" name="destId" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="description" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="transCode" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="transDesc" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="transNode" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="cmplFiles" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="hostDsnPrefix" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="hostDsnPrefix_disp" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="hostDsnPrefix_unit" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="hostDsnPrefix_volser" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="remoteDsnPrefix" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="remoteDsnPrefix_disp" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="remoteDsnPrefix_unit" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="remoteDsnPrefix_volser" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="siteId" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="createDate" nillable="true" type="xs:dateTime"/>
+					<xs:element minOccurs="0" name="createUsrid" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="updtDate" nillable="true" type="xs:dateTime"/>
+					<xs:element minOccurs="0" name="updtUsrid" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="ipname" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="ipport" nillable="true" type="xs:string"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="ResultApproverGroup">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="result" nillable="true" type="ax21:Result"/>
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="ApproverGroup" nillable="true" type="ax21:ApproverGroup"/>
+				</xs:sequence>
+			</xs:complexType>
+
+			<xs:complexType name="ApproverGroup">
+			<!-- The following sequence matches the CSV structure for v15.0, non automatic generation !!  -->
+				<xs:sequence>
+					<xs:element minOccurs="0" name="siteId" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="envName" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="stgName" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="stgId" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="stgNum" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="apprGrpName" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="rcdUpdtCnt" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="updtDate" nillable="true" type="xs:dateTime"/>
+					<xs:element minOccurs="0" name="updtUsrid" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="relId" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="quorumCnt" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="title" nillable="true" type="xs:string"/>
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="apprUsrid" nillable="true" type="xs:string"/>
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="apprReq" nillable="true" type="xs:string"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="ResultApproverGroupJunction">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="result" nillable="true" type="ax21:Result"/>
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="ApproverGroupJunction" nillable="true" type="ax21:ApproverGroupJunction"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="ApproverGroupJunction">
+			<!-- The following sequence matches the CSV structure for v15.0, non automatic generation !!  -->
+				<xs:sequence>
+					<xs:element minOccurs="0" name="siteId" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="envName" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="sysName" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="sbsName" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="typeName" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="stgNum" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="rcdUpdtCnt" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="updtDate" nillable="true" type="xs:dateTime"/>
+					<xs:element minOccurs="0" name="updtUsrid" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="relId" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="junctionType" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="apprGrpName" nillable="true" type="xs:string"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="ResultProcessorGroup">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="result" nillable="true" type="ax21:Result"/>
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="ProcessorGroup" nillable="true" type="ax21:ProcessorGroup"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="ProcessorGroup">
+			<!-- The following sequence matches the CSV structure for v15.0, non automatic generation !!  -->
+				<xs:sequence>
+					<xs:element minOccurs="0" name="siteId" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="envName" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="sysName" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="typeName" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="stgName" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="stgId" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="stgNum" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="procGrpName" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="procType" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="symOvrdNum" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="updtDate" nillable="true" type="xs:dateTime"/>
+					<xs:element minOccurs="0" name="updtUsrid" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="description" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="nextProcGrp" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="procOPType" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="moveActProc" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="fgFlg" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="procName" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="trnsfrActProc" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="symOvrdLng" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="symOvrd" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="symOvrdValueLng" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="symOvrdValue" nillable="true" type="xs:string"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="ResultPackage">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="result" nillable="true" type="ax21:Result"/>
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="EPackage" nillable="true" type="ax21:EPackage"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="EPackage">
+			<!-- The following sequence matches the CSV structure for v15.0, non automatic generation !!  -->
+				<xs:sequence>
+					<xs:element minOccurs="0" name="pkgId" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="siteId" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="description" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="pkgType" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="shrOpt" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="backoutFlg" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="windowStartDate" nillable="true" type="xs:dateTime"/>
+					<xs:element minOccurs="0" name="windowEndDate" nillable="true" type="xs:dateTime"/>
+					<xs:element minOccurs="0" name="status" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="createDate" nillable="true" type="xs:dateTime"/>
+					<xs:element minOccurs="0" name="createUsrid" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="updtDate" nillable="true" type="xs:dateTime"/>
+					<xs:element minOccurs="0" name="updtUsrid" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="sclDate" nillable="true" type="xs:dateTime"/>
+					<xs:element minOccurs="0" name="sclUsrid" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="corrRcdExist" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="enterpriseCorr" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="numCorr" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="castRcdExist" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="castDate" nillable="true" type="xs:dateTime"/>
+					<xs:element minOccurs="0" name="castUsrid" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="apprGrpExists" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="apprDate" nillable="true" type="xs:dateTime"/>
+					<xs:element minOccurs="0" name="execBeginDate" nillable="true" type="xs:dateTime"/>
+					<xs:element minOccurs="0" name="execEndDate" nillable="true" type="xs:dateTime"/>
+					<xs:element minOccurs="0" name="execUsrid" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="execRc" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="abnormalTerm" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="backoutNA" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="backoutRcdExist" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="pkgBackedOut" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="pkgBackinBackoutBegun" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="pkgBackoutStatus" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="backoutDate" nillable="true" type="xs:dateTime"/>
+					<xs:element minOccurs="0" name="backoutUsrid" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="backinDate" nillable="true" type="xs:dateTime"/>
+					<xs:element minOccurs="0" name="backinUsrid" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="commitDate" nillable="true" type="xs:dateTime"/>
+					<xs:element minOccurs="0" name="commitUsrid" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="externalSaf" nillable="true" type="xs:string"/>
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="note" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="cvalOpt" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="promPkg" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="promRcdExist" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="intPkgId" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="pkgVersion" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="promPrevPkgid" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="promTgtEnv" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="promTgtStgid" nillable="true" type="xs:string"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="ResultPackageShip">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="result" nillable="true" type="ax21:Result"/>
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="PackageShip" nillable="true" type="ax21:PackageShip"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="PackageShip">
+			<!-- The following sequence matches the CSV structure for v15.0, non automatic generation !!  -->
+				<xs:sequence>
+					<xs:element minOccurs="0" name="pkgId" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="submitDate" nillable="true" type="xs:dateTime"/>
+					<xs:element minOccurs="0" name="submitUsrid" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="updtDate" nillable="true" type="xs:dateTime"/>
+					<xs:element minOccurs="0" name="rcdUpdtCnt" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="shipType" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="cmplFiles" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="cmplFilesOvrd" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="transCode" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="destId" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="hostStgRc" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="hostTransRc" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="rmtMoveRc" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="rmtJobName" nillable="true" type="xs:string"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="ResultPackageSCL">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="result" nillable="true" type="ax21:Result"/>
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="PackageSCL" nillable="true" type="ax21:PackageSCL"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="PackageSCL">
+			<!-- The following sequence matches the CSV structure for v15.0, non automatic generation !!  -->
+				<xs:sequence>
+					<xs:element minOccurs="0" name="pkgId" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="siteId" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="updtDate" nillable="true" type="xs:dateTime"/>
+					<xs:element minOccurs="0" name="updtUsrid" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="numStmts" nillable="true" type="xs:string"/>
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="scl" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="intPkgId" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="pkgVersion" nillable="true" type="xs:string"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="ResultPackageApproverGroup">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="result" nillable="true" type="ax21:Result"/>
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="PackageApproverGroup" nillable="true" type="ax21:PackageApproverGroup"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="PackageApproverGroup">
+			<!-- The following sequence matches the CSV structure for v15.0, non automatic generation !!  -->
+				<xs:sequence>
+					<xs:element minOccurs="0" name="pkgId" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="apprGrpName" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="envName" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="siteId" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="overallApprStatus" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="apprGrpType" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="quorumCnt" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="seqnum" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="numAppr" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="updtDate" nillable="true" type="xs:dateTime"/>
+					<xs:element minOccurs="0" name="updtUsrid" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="usridOfAppr" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="apprDate" nillable="true" type="xs:dateTime"/>
+					<xs:element minOccurs="0" name="apprStatus" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="apprReqLit" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="intPkgId" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="pkgVersion" nillable="true" type="xs:string"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="ResultPackageActionSummary">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="result" nillable="true" type="ax21:Result"/>
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="PackageActionSummary" nillable="true" type="ax21:PackageActionSummary"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="PackageActionSummary">
+			<!-- The following sequence matches the CSV structure for v15.0, non automatic generation !!  -->
+				<xs:sequence>
+					<xs:element minOccurs="0" name="pkgId" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="sclStmtnum" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="siteId" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="elmAct" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="endevorRc" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="procRc" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="beginExecDate" nillable="true" type="xs:dateTime"/>
+					<xs:element minOccurs="0" name="endExecDate" nillable="true" type="xs:dateTime"/>
+					<xs:element minOccurs="0" name="ccid" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="comment" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="updtDate" nillable="true" type="xs:dateTime"/>
+					<xs:element minOccurs="0" name="updtUsrid" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="intPkgId" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="pkgVersion" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="apprReqSource" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="validationReqSource" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="locSource" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="siteIdSource" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="envNameSource" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="sysNameSource" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="sbsNameSource" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="typeNameSource" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="stgNumSource" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="stgNameSource" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="stgIdSource" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="vv_llSource" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="deltaDateSource" nillable="true" type="xs:dateTime"/>
+					<xs:element minOccurs="0" name="deltaTimeSource" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="generateDateSource" nillable="true" type="xs:dateTime"/>
+					<xs:element minOccurs="0" name="procDateSource" nillable="true" type="xs:dateTime"/>
+					<xs:element minOccurs="0" name="prevPkgIdSource" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="apprReqTo" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="validationReqTo" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="locTo" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="siteIdTo" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="envNameTo" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="sysNameTo" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="sbsNameTo" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="typeNameTo" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="stgNumTo" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="stgNameTo" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="stgIdTo" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="vv_llTo" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="deltaDateTo" nillable="true" type="xs:dateTime"/>
+					<xs:element minOccurs="0" name="generateDateTo" nillable="true" type="xs:dateTime"/>
+					<xs:element minOccurs="0" name="procDateTo" nillable="true" type="xs:dateTime"/>
+					<xs:element minOccurs="0" name="prevPkgIdTo" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="elmSource" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="dsnPathSource" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="mbrFileSource" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="elmTo" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="dsnPathTo" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="mbrFileTo" nillable="true" type="xs:string"/>
+				</xs:sequence>
+			</xs:complexType>
+		</xs:schema>
+    <xs:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://endevor.ca.com" xmlns:ax23="http://endevor.ca.com/xsd" xmlns:ax26="http://mime.endevor.ca.com/xsd">
+			<xs:import namespace="http://endevor.ca.com/xsd"/>
+			<xs:import namespace="http://mime.endevor.ca.com/xsd"/>
+			<xs:complexType name="Exception">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="Exception" nillable="true" type="xs:anyType"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element name="EndevorService">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="EndevorService" nillable="true" type="ax21:EndevorService"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="submitSCL">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="1" name="loginProperties" nillable="false" type="ax21:LoginProperties">
+							<xs:annotation>
+								<xs:documentation>
+								</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element minOccurs="1" name="scl" nillable="false" type="ax21:SCL"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="submitSCLResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="return" nillable="true" type="ax21:Result"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="getVersion">
+				<xs:complexType>
+					<xs:sequence/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="getVersionResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="return" nillable="true" type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="getConfigurations">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="loginProperties" nillable="true" type="ax21:LoginProperties"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="getConfigurationsResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0" name="return" nillable="true" type="ax21:Configuration"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="getConfiguration">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="loginProperties" nillable="true" type="ax21:LoginProperties"/>
+						<xs:element minOccurs="0" name="scl" nillable="true" type="ax21:SCL"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="getConfigurationResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="return" nillable="true" type="ax21:Result"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="monitorConfiguration">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="loginProperties" nillable="true" type="ax21:LoginProperties"/>
+						<xs:element minOccurs="0" name="scl" nillable="true" type="ax21:SCL"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="monitorConfigurationResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="return" nillable="true" type="ax21:Result"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="getElementDetail">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="1" name="loginProperties" nillable="false" type="ax21:LoginProperties">
+							<xs:annotation>
+								<xs:documentation>
+								</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element minOccurs="1" name="scl" nillable="false" type="ax21:SCL"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="getElementDetailResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="return" nillable="true" type="ax21:ResultElementDetail"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="getElementBasic">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="1" name="loginProperties" nillable="false" type="ax21:LoginProperties">
+							<xs:annotation>
+								<xs:documentation>
+								</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element minOccurs="1" name="scl" nillable="false" type="ax21:SCL"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="getElementBasicResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="return" nillable="true" type="ax21:ResultElementBasic"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="getPackageActionSummary">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="1" name="loginProperties" nillable="false" type="ax21:LoginProperties">
+							<xs:annotation>
+								<xs:documentation>
+								</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element minOccurs="1" name="scl" nillable="false" type="ax21:SCL"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="getPackageActionSummaryResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="return" nillable="true" type="ax21:ResultPackageActionSummary"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="getElementSummary">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="1" name="loginProperties" nillable="false" type="ax21:LoginProperties">
+							<xs:annotation>
+								<xs:documentation>
+								</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element minOccurs="1" name="scl" nillable="false" type="ax21:SCL"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="getElementSummaryResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="return" nillable="true" type="ax21:ResultElementSummary"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="getEnvironment">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="1" name="loginProperties" nillable="false" type="ax21:LoginProperties">
+							<xs:annotation>
+								<xs:documentation>
+								</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element minOccurs="1" name="scl" nillable="false" type="ax21:SCL"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="getEnvironmentResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="return" nillable="true" type="ax21:ResultEnvironment"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="getSystem">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="1" name="loginProperties" nillable="false" type="ax21:LoginProperties">
+							<xs:annotation>
+								<xs:documentation>
+								</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element minOccurs="1" name="scl" nillable="false" type="ax21:SCL"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="getSystemResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="return" nillable="true" type="ax21:ResultSystem"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="getSubSystem">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="1" name="loginProperties" nillable="false" type="ax21:LoginProperties">
+							<xs:annotation>
+								<xs:documentation>
+								</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element minOccurs="1" name="scl" nillable="false" type="ax21:SCL"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="getSubSystemResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="return" nillable="true" type="ax21:ResultSubSystem"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="getStage">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="1" name="loginProperties" nillable="false" type="ax21:LoginProperties">
+							<xs:annotation>
+								<xs:documentation>
+								</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element minOccurs="1" name="scl" nillable="false" type="ax21:SCL"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="getStageResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="return" nillable="true" type="ax21:ResultStage"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="getType">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="1" name="loginProperties" nillable="false" type="ax21:LoginProperties">
+							<xs:annotation>
+								<xs:documentation>
+								</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element minOccurs="1" name="scl" nillable="false" type="ax21:SCL"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="getTypeResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="return" nillable="true" type="ax21:ResultType"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="getDataSet">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="1" name="loginProperties" nillable="false" type="ax21:LoginProperties">
+							<xs:annotation>
+								<xs:documentation>
+								</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element minOccurs="1" name="scl" nillable="false" type="ax21:SCL"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="getDataSetResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="return" nillable="true" type="ax21:ResultDataSet"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="getDestination">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="1" name="loginProperties" nillable="false" type="ax21:LoginProperties">
+							<xs:annotation>
+								<xs:documentation>
+								</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element minOccurs="1" name="scl" nillable="false" type="ax21:SCL"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="getDestinationResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="return" nillable="true" type="ax21:ResultDestination"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="getApproverGroup">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="1" name="loginProperties" nillable="false" type="ax21:LoginProperties">
+							<xs:annotation>
+								<xs:documentation>
+								</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element minOccurs="1" name="scl" nillable="false" type="ax21:SCL"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="getApproverGroupResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="return" nillable="true" type="ax21:ResultApproverGroup"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="getApproverGroupJunction">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="1" name="loginProperties" nillable="false" type="ax21:LoginProperties">
+							<xs:annotation>
+								<xs:documentation>
+								</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element minOccurs="1" name="scl" nillable="false" type="ax21:SCL"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="getApproverGroupJunctionResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="return" nillable="true" type="ax21:ResultApproverGroupJunction"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="getProcessorGroup">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="1" name="loginProperties" nillable="false" type="ax21:LoginProperties">
+							<xs:annotation>
+								<xs:documentation>
+								</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element minOccurs="1" name="scl" nillable="false" type="ax21:SCL"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="getProcessorGroupResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="return" nillable="true" type="ax21:ResultProcessorGroup"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="getPackage">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="1" name="loginProperties" nillable="false" type="ax21:LoginProperties">
+							<xs:annotation>
+								<xs:documentation>
+								</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element minOccurs="1" name="scl" nillable="false" type="ax21:SCL"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="getPackageResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="return" nillable="true" type="ax21:ResultPackage"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="getPackageShip">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="1" name="loginProperties" nillable="false" type="ax21:LoginProperties">
+							<xs:annotation>
+								<xs:documentation>
+								</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element minOccurs="1" name="scl" nillable="false" type="ax21:SCL"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="getPackageShipResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="return" nillable="true" type="ax21:ResultPackageShip"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="getPackageSCL">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="1" name="loginProperties" nillable="false" type="ax21:LoginProperties">
+							<xs:annotation>
+								<xs:documentation>
+								</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element minOccurs="1" name="scl" nillable="false" type="ax21:SCL"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="getPackageSCLResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="return" nillable="true" type="ax21:ResultPackageSCL"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="getPackageApproverGroup">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="1" name="loginProperties" nillable="false" type="ax21:LoginProperties">
+							<xs:annotation>
+								<xs:documentation>
+								</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element minOccurs="1" name="scl" nillable="false" type="ax21:SCL"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="getPackageApproverGroupResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="return" nillable="true" type="ax21:ResultPackageApproverGroup"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:schema>
+    <xs:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://mime.endevor.ca.com/xsd">
+			<xs:complexType name="Attachments">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="DD" nillable="true" type="xs:base64Binary"/>
+					<xs:element minOccurs="1" name="DDName" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="1" name="contentType" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="nextPart" nillable="true" type="xs:string"/>
+				</xs:sequence>
+			</xs:complexType>
+		</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="getStageResponse">
+    <wsdl:part name="parameters" element="ns:getStageResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getPackageActionSummaryRequest">
+    <wsdl:part name="parameters" element="ns:getPackageActionSummary">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getPackageApproverGroupResponse">
+    <wsdl:part name="parameters" element="ns:getPackageApproverGroupResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getApproverGroupResponse">
+    <wsdl:part name="parameters" element="ns:getApproverGroupResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getTypeRequest">
+    <wsdl:part name="parameters" element="ns:getType">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getSystemRequest">
+    <wsdl:part name="parameters" element="ns:getSystem">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getConfigurationsRequest">
+    <wsdl:part name="parameters" element="ns:getConfigurations">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getPackageRequest">
+    <wsdl:part name="parameters" element="ns:getPackage">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getDataSetRequest">
+    <wsdl:part name="parameters" element="ns:getDataSet">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="monitorConfigurationResponse">
+    <wsdl:part name="parameters" element="ns:monitorConfigurationResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getVersionResponse">
+    <wsdl:part name="parameters" element="ns:getVersionResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getApproverGroupJunctionRequest">
+    <wsdl:part name="parameters" element="ns:getApproverGroupJunction">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getConfigurationResponse">
+    <wsdl:part name="parameters" element="ns:getConfigurationResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="submitSCLRequest">
+    <wsdl:part name="parameters" element="ns:submitSCL">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getPackageSCLResponse">
+    <wsdl:part name="parameters" element="ns:getPackageSCLResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="monitorConfigurationRequest">
+    <wsdl:part name="parameters" element="ns:monitorConfiguration">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getElementDetailRequest">
+    <wsdl:part name="parameters" element="ns:getElementDetail">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getEnvironmentRequest">
+    <wsdl:part name="parameters" element="ns:getEnvironment">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getPackageShipResponse">
+    <wsdl:part name="parameters" element="ns:getPackageShipResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getElementBasicResponse">
+    <wsdl:part name="parameters" element="ns:getElementBasicResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="EndevorService">
+    <wsdl:part name="parameters" element="ns:EndevorService">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getStageRequest">
+    <wsdl:part name="parameters" element="ns:getStage">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getConfigurationRequest">
+    <wsdl:part name="parameters" element="ns:getConfiguration">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getApproverGroupJunctionResponse">
+    <wsdl:part name="parameters" element="ns:getApproverGroupJunctionResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getTypeResponse">
+    <wsdl:part name="parameters" element="ns:getTypeResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getProcessorGroupResponse">
+    <wsdl:part name="parameters" element="ns:getProcessorGroupResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getDestinationResponse">
+    <wsdl:part name="parameters" element="ns:getDestinationResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getProcessorGroupRequest">
+    <wsdl:part name="parameters" element="ns:getProcessorGroup">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getConfigurationsResponse">
+    <wsdl:part name="parameters" element="ns:getConfigurationsResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getApproverGroupRequest">
+    <wsdl:part name="parameters" element="ns:getApproverGroup">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getVersionRequest">
+    <wsdl:part name="parameters" element="ns:getVersion">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getSystemResponse">
+    <wsdl:part name="parameters" element="ns:getSystemResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getElementSummaryResponse">
+    <wsdl:part name="parameters" element="ns:getElementSummaryResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getPackageActionSummaryResponse">
+    <wsdl:part name="parameters" element="ns:getPackageActionSummaryResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getElementDetailResponse">
+    <wsdl:part name="parameters" element="ns:getElementDetailResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getPackageShipRequest">
+    <wsdl:part name="parameters" element="ns:getPackageShip">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getPackageResponse">
+    <wsdl:part name="parameters" element="ns:getPackageResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getDataSetResponse">
+    <wsdl:part name="parameters" element="ns:getDataSetResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getPackageSCLRequest">
+    <wsdl:part name="parameters" element="ns:getPackageSCL">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="submitSCLResponse">
+    <wsdl:part name="parameters" element="ns:submitSCLResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getSubSystemRequest">
+    <wsdl:part name="parameters" element="ns:getSubSystem">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getSubSystemResponse">
+    <wsdl:part name="parameters" element="ns:getSubSystemResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getDestinationRequest">
+    <wsdl:part name="parameters" element="ns:getDestination">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getElementSummaryRequest">
+    <wsdl:part name="parameters" element="ns:getElementSummary">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getEnvironmentResponse">
+    <wsdl:part name="parameters" element="ns:getEnvironmentResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getPackageApproverGroupRequest">
+    <wsdl:part name="parameters" element="ns:getPackageApproverGroup">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getElementBasicRequest">
+    <wsdl:part name="parameters" element="ns:getElementBasic">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="EndevorServicePortType">
+<wsdl:documentation>d</wsdl:documentation>
+    <wsdl:operation name="submitSCL">
+      <wsdl:input message="ns:submitSCLRequest" wsaw:Action="urn:submitSCL">
+    </wsdl:input>
+      <wsdl:output message="ns:submitSCLResponse" wsaw:Action="urn:submitSCLResponse">
+    </wsdl:output>
+      <wsdl:fault name="EndevorService" message="ns:EndevorService" wsaw:Action="urn:submitSCLEndevorService">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getVersion">
+      <wsdl:input message="ns:getVersionRequest" wsaw:Action="urn:getVersion">
+    </wsdl:input>
+      <wsdl:output message="ns:getVersionResponse" wsaw:Action="urn:getVersionResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getConfigurations">
+      <wsdl:input message="ns:getConfigurationsRequest" wsaw:Action="urn:getConfigurations">
+    </wsdl:input>
+      <wsdl:output message="ns:getConfigurationsResponse" wsaw:Action="urn:getConfigurationsResponse">
+    </wsdl:output>
+      <wsdl:fault name="EndevorService" message="ns:EndevorService" wsaw:Action="urn:getConfigurationsEndevorService">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getConfiguration">
+      <wsdl:input message="ns:getConfigurationRequest" wsaw:Action="urn:getConfiguration">
+    </wsdl:input>
+      <wsdl:output message="ns:getConfigurationResponse" wsaw:Action="urn:getConfigurationResponse">
+    </wsdl:output>
+      <wsdl:fault name="EndevorService" message="ns:EndevorService" wsaw:Action="urn:getConfigurationEndevorService">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="monitorConfiguration">
+      <wsdl:input message="ns:monitorConfigurationRequest" wsaw:Action="urn:monitorConfiguration">
+    </wsdl:input>
+      <wsdl:output message="ns:monitorConfigurationResponse" wsaw:Action="urn:monitorConfigurationResponse">
+    </wsdl:output>
+      <wsdl:fault name="EndevorService" message="ns:EndevorService" wsaw:Action="urn:monitorConfigurationEndevorService">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getElementDetail">
+      <wsdl:input message="ns:getElementDetailRequest" wsaw:Action="urn:getElementDetail">
+    </wsdl:input>
+      <wsdl:output message="ns:getElementDetailResponse" wsaw:Action="urn:getElementDetailResponse">
+    </wsdl:output>
+      <wsdl:fault name="EndevorService" message="ns:EndevorService" wsaw:Action="urn:getElementDetailEndevorService">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getElementBasic">
+      <wsdl:input message="ns:getElementBasicRequest" wsaw:Action="urn:getElementBasic">
+    </wsdl:input>
+      <wsdl:output message="ns:getElementBasicResponse" wsaw:Action="urn:getElementBasicResponse">
+    </wsdl:output>
+      <wsdl:fault name="EndevorService" message="ns:EndevorService" wsaw:Action="urn:getElementBasicEndevorService">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getElementSummary">
+      <wsdl:input message="ns:getElementSummaryRequest" wsaw:Action="urn:getElementSummary">
+    </wsdl:input>
+      <wsdl:output message="ns:getElementSummaryResponse" wsaw:Action="urn:getElementSummaryResponse">
+    </wsdl:output>
+      <wsdl:fault name="EndevorService" message="ns:EndevorService" wsaw:Action="urn:getElementSummaryEndevorService">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getPackageActionSummary">
+      <wsdl:input message="ns:getPackageActionSummaryRequest" wsaw:Action="urn:getPackageActionSummary">
+    </wsdl:input>
+      <wsdl:output message="ns:getPackageActionSummaryResponse" wsaw:Action="urn:getPackageActionSummaryResponse">
+    </wsdl:output>
+      <wsdl:fault name="EndevorService" message="ns:EndevorService" wsaw:Action="urn:getPackageActionSummaryEndevorService">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getEnvironment">
+      <wsdl:input message="ns:getEnvironmentRequest" wsaw:Action="urn:getEnvironment">
+    </wsdl:input>
+      <wsdl:output message="ns:getEnvironmentResponse" wsaw:Action="urn:getEnvironmentResponse">
+    </wsdl:output>
+      <wsdl:fault name="EndevorService" message="ns:EndevorService" wsaw:Action="urn:getEnvironmentEndevorService">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getSystem">
+      <wsdl:input message="ns:getSystemRequest" wsaw:Action="urn:getSystem">
+    </wsdl:input>
+      <wsdl:output message="ns:getSystemResponse" wsaw:Action="urn:getSystemResponse">
+    </wsdl:output>
+      <wsdl:fault name="EndevorService" message="ns:EndevorService" wsaw:Action="urn:getSystemEndevorService">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getSubSystem">
+      <wsdl:input message="ns:getSubSystemRequest" wsaw:Action="urn:getSubSystem">
+    </wsdl:input>
+      <wsdl:output message="ns:getSubSystemResponse" wsaw:Action="urn:getSubSystemResponse">
+    </wsdl:output>
+      <wsdl:fault name="EndevorService" message="ns:EndevorService" wsaw:Action="urn:getSubSystemEndevorService">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getStage">
+      <wsdl:input message="ns:getStageRequest" wsaw:Action="urn:getStage">
+    </wsdl:input>
+      <wsdl:output message="ns:getStageResponse" wsaw:Action="urn:getStageResponse">
+    </wsdl:output>
+      <wsdl:fault name="EndevorService" message="ns:EndevorService" wsaw:Action="urn:getStageEndevorService">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getType">
+      <wsdl:input message="ns:getTypeRequest" wsaw:Action="urn:getType">
+    </wsdl:input>
+      <wsdl:output message="ns:getTypeResponse" wsaw:Action="urn:getTypeResponse">
+    </wsdl:output>
+      <wsdl:fault name="EndevorService" message="ns:EndevorService" wsaw:Action="urn:getTypeEndevorService">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getDataSet">
+      <wsdl:input message="ns:getDataSetRequest" wsaw:Action="urn:getDataSet">
+    </wsdl:input>
+      <wsdl:output message="ns:getDataSetResponse" wsaw:Action="urn:getDataSetResponse">
+    </wsdl:output>
+      <wsdl:fault name="EndevorService" message="ns:EndevorService" wsaw:Action="urn:getDataSetEndevorService">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getDestination">
+      <wsdl:input message="ns:getDestinationRequest" wsaw:Action="urn:getDestination">
+    </wsdl:input>
+      <wsdl:output message="ns:getDestinationResponse" wsaw:Action="urn:getDestinationResponse">
+    </wsdl:output>
+      <wsdl:fault name="EndevorService" message="ns:EndevorService" wsaw:Action="urn:getDestinationEndevorService">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getApproverGroup">
+      <wsdl:input message="ns:getApproverGroupRequest" wsaw:Action="urn:getApproverGroup">
+    </wsdl:input>
+      <wsdl:output message="ns:getApproverGroupResponse" wsaw:Action="urn:getApproverGroupResponse">
+    </wsdl:output>
+      <wsdl:fault name="EndevorService" message="ns:EndevorService" wsaw:Action="urn:getApproverGroupEndevorService">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getApproverGroupJunction">
+      <wsdl:input message="ns:getApproverGroupJunctionRequest" wsaw:Action="urn:getApproverGroupJunction">
+    </wsdl:input>
+      <wsdl:output message="ns:getApproverGroupJunctionResponse" wsaw:Action="urn:getApproverGroupJunctionResponse">
+    </wsdl:output>
+      <wsdl:fault name="EndevorService" message="ns:EndevorService" wsaw:Action="urn:getApproverGroupJunctionEndevorService">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getProcessorGroup">
+      <wsdl:input message="ns:getProcessorGroupRequest" wsaw:Action="urn:getProcessorGroup">
+    </wsdl:input>
+      <wsdl:output message="ns:getProcessorGroupResponse" wsaw:Action="urn:getProcessorGroupResponse">
+    </wsdl:output>
+      <wsdl:fault name="EndevorService" message="ns:EndevorService" wsaw:Action="urn:getProcessorGroupEndevorService">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getPackage">
+      <wsdl:input message="ns:getPackageRequest" wsaw:Action="urn:getPackage">
+    </wsdl:input>
+      <wsdl:output message="ns:getPackageResponse" wsaw:Action="urn:getPackageResponse">
+    </wsdl:output>
+      <wsdl:fault name="EndevorService" message="ns:EndevorService" wsaw:Action="urn:getPackageEndevorService">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getPackageShip">
+      <wsdl:input message="ns:getPackageShipRequest" wsaw:Action="urn:getPackageShip">
+    </wsdl:input>
+      <wsdl:output message="ns:getPackageShipResponse" wsaw:Action="urn:getPackageShipResponse">
+    </wsdl:output>
+      <wsdl:fault name="EndevorService" message="ns:EndevorService" wsaw:Action="urn:getPackageShipEndevorService">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getPackageSCL">
+      <wsdl:input message="ns:getPackageSCLRequest" wsaw:Action="urn:getPackageSCL">
+    </wsdl:input>
+      <wsdl:output message="ns:getPackageSCLResponse" wsaw:Action="urn:getPackageSCLResponse">
+    </wsdl:output>
+      <wsdl:fault name="EndevorService" message="ns:EndevorService" wsaw:Action="urn:getPackageSCLEndevorService">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getPackageApproverGroup">
+      <wsdl:input message="ns:getPackageApproverGroupRequest" wsaw:Action="urn:getPackageApproverGroup">
+    </wsdl:input>
+      <wsdl:output message="ns:getPackageApproverGroupResponse" wsaw:Action="urn:getPackageApproverGroupResponse">
+    </wsdl:output>
+      <wsdl:fault name="EndevorService" message="ns:EndevorService" wsaw:Action="urn:getPackageApproverGroupEndevorService">
+    </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="EndevorServiceSoap12Binding" type="ns:EndevorServicePortType">
+    <soap12:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="submitSCL">
+      <soap12:operation soapAction="urn:submitSCL" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="EndevorService">
+        <soap12:fault name="EndevorService" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getVersion">
+      <soap12:operation soapAction="urn:getVersion" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getConfigurations">
+      <soap12:operation soapAction="urn:getConfigurations" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="EndevorService">
+        <soap12:fault name="EndevorService" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getConfiguration">
+      <soap12:operation soapAction="urn:getConfiguration" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="EndevorService">
+        <soap12:fault name="EndevorService" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="monitorConfiguration">
+      <soap12:operation soapAction="urn:monitorConfiguration" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="EndevorService">
+        <soap12:fault name="EndevorService" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getElementDetail">
+      <soap12:operation soapAction="urn:getElementDetail" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="EndevorService">
+        <soap12:fault name="EndevorService" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getElementBasic">
+      <soap12:operation soapAction="urn:getElementBasic" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="EndevorService">
+        <soap12:fault name="EndevorService" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getElementSummary">
+      <soap12:operation soapAction="urn:getElementSummary" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="EndevorService">
+        <soap12:fault name="EndevorService" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getPackageActionSummary">
+      <soap12:operation soapAction="urn:getPackageActionSummary" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="EndevorService">
+        <soap12:fault name="EndevorService" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getEnvironment">
+      <soap12:operation soapAction="urn:getEnvironment" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="EndevorService">
+        <soap12:fault name="EndevorService" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getSystem">
+      <soap12:operation soapAction="urn:getSystem" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="EndevorService">
+        <soap12:fault name="EndevorService" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getSubSystem">
+      <soap12:operation soapAction="urn:getSubSystem" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="EndevorService">
+        <soap12:fault name="EndevorService" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getStage">
+      <soap12:operation soapAction="urn:getStage" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="EndevorService">
+        <soap12:fault name="EndevorService" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getType">
+      <soap12:operation soapAction="urn:getType" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="EndevorService">
+        <soap12:fault name="EndevorService" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getDataSet">
+      <soap12:operation soapAction="urn:getDataSet" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="EndevorService">
+        <soap12:fault name="EndevorService" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getDestination">
+      <soap12:operation soapAction="urn:getDestination" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="EndevorService">
+        <soap12:fault name="EndevorService" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getApproverGroup">
+      <soap12:operation soapAction="urn:getApproverGroup" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="EndevorService">
+        <soap12:fault name="EndevorService" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getApproverGroupJunction">
+      <soap12:operation soapAction="urn:getApproverGroupJunction" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="EndevorService">
+        <soap12:fault name="EndevorService" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getProcessorGroup">
+      <soap12:operation soapAction="urn:getProcessorGroup" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="EndevorService">
+        <soap12:fault name="EndevorService" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getPackage">
+      <soap12:operation soapAction="urn:getPackage" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="EndevorService">
+        <soap12:fault name="EndevorService" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getPackageShip">
+      <soap12:operation soapAction="urn:getPackageShip" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="EndevorService">
+        <soap12:fault name="EndevorService" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getPackageSCL">
+      <soap12:operation soapAction="urn:getPackageSCL" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="EndevorService">
+        <soap12:fault name="EndevorService" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getPackageApproverGroup">
+      <soap12:operation soapAction="urn:getPackageApproverGroup" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="EndevorService">
+        <soap12:fault name="EndevorService" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="EndevorServiceSoap11Binding" type="ns:EndevorServicePortType">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="submitSCL">
+      <soap:operation soapAction="urn:submitSCL" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="EndevorService">
+        <soap:fault name="EndevorService" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getVersion">
+      <soap:operation soapAction="urn:getVersion" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getConfigurations">
+      <soap:operation soapAction="urn:getConfigurations" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="EndevorService">
+        <soap:fault name="EndevorService" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getConfiguration">
+      <soap:operation soapAction="urn:getConfiguration" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="EndevorService">
+        <soap:fault name="EndevorService" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="monitorConfiguration">
+      <soap:operation soapAction="urn:monitorConfiguration" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="EndevorService">
+        <soap:fault name="EndevorService" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getElementDetail">
+      <soap:operation soapAction="urn:getElementDetail" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="EndevorService">
+        <soap:fault name="EndevorService" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getElementBasic">
+      <soap:operation soapAction="urn:getElementBasic" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="EndevorService">
+        <soap:fault name="EndevorService" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getElementSummary">
+      <soap:operation soapAction="urn:getElementSummary" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="EndevorService">
+        <soap:fault name="EndevorService" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getPackageActionSummary">
+      <soap:operation soapAction="urn:getPackageActionSummary" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="EndevorService">
+        <soap:fault name="EndevorService" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getEnvironment">
+      <soap:operation soapAction="urn:getEnvironment" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="EndevorService">
+        <soap:fault name="EndevorService" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getSystem">
+      <soap:operation soapAction="urn:getSystem" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="EndevorService">
+        <soap:fault name="EndevorService" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getSubSystem">
+      <soap:operation soapAction="urn:getSubSystem" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="EndevorService">
+        <soap:fault name="EndevorService" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getStage">
+      <soap:operation soapAction="urn:getStage" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="EndevorService">
+        <soap:fault name="EndevorService" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getType">
+      <soap:operation soapAction="urn:getType" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="EndevorService">
+        <soap:fault name="EndevorService" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getDataSet">
+      <soap:operation soapAction="urn:getDataSet" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="EndevorService">
+        <soap:fault name="EndevorService" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getDestination">
+      <soap:operation soapAction="urn:getDestination" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="EndevorService">
+        <soap:fault name="EndevorService" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getApproverGroup">
+      <soap:operation soapAction="urn:getApproverGroup" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="EndevorService">
+        <soap:fault name="EndevorService" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getApproverGroupJunction">
+      <soap:operation soapAction="urn:getApproverGroupJunction" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="EndevorService">
+        <soap:fault name="EndevorService" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getProcessorGroup">
+      <soap:operation soapAction="urn:getProcessorGroup" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="EndevorService">
+        <soap:fault name="EndevorService" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getPackage">
+      <soap:operation soapAction="urn:getPackage" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="EndevorService">
+        <soap:fault name="EndevorService" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getPackageShip">
+      <soap:operation soapAction="urn:getPackageShip" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="EndevorService">
+        <soap:fault name="EndevorService" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getPackageSCL">
+      <soap:operation soapAction="urn:getPackageSCL" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="EndevorService">
+        <soap:fault name="EndevorService" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getPackageApproverGroup">
+      <soap:operation soapAction="urn:getPackageApproverGroup" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="EndevorService">
+        <soap:fault name="EndevorService" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="EndevorServiceHttpBinding" type="ns:EndevorServicePortType">
+<wsdl:documentation>Http binding</wsdl:documentation>
+    <http:binding verb="POST"/>
+    <wsdl:operation name="submitSCL">
+      <http:operation location="EndevorService/submitSCL"/>
+      <wsdl:input>
+        <mime:content part="submitSCL" type="text/xml"/>
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="submitSCL" type="text/xml"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getVersion">
+      <http:operation location="EndevorService/getVersion"/>
+      <wsdl:input>
+        <mime:content part="getVersion" type="text/xml"/>
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="getVersion" type="text/xml"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getConfigurations">
+      <http:operation location="EndevorService/getConfigurations"/>
+      <wsdl:input>
+        <mime:content part="getConfigurations" type="text/xml"/>
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="getConfigurations" type="text/xml"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getConfiguration">
+      <http:operation location="EndevorService/getConfiguration"/>
+      <wsdl:input>
+        <mime:content part="getConfiguration" type="text/xml"/>
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="getConfiguration" type="text/xml"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="monitorConfiguration">
+      <http:operation location="EndevorService/monitorConfiguration"/>
+      <wsdl:input>
+        <mime:content part="monitorConfiguration" type="text/xml"/>
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="monitorConfiguration" type="text/xml"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getElementDetail">
+      <http:operation location="EndevorService/getElementDetail"/>
+      <wsdl:input>
+        <mime:content part="getElementDetail" type="text/xml"/>
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="getElementDetail" type="text/xml"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getElementBasic">
+      <http:operation location="EndevorService/getElementBasic"/>
+      <wsdl:input>
+        <mime:content part="getElementBasic" type="text/xml"/>
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="getElementBasic" type="text/xml"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getElementSummary">
+      <http:operation location="EndevorService/getElementSummary"/>
+      <wsdl:input>
+        <mime:content part="getElementSummary" type="text/xml"/>
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="getElementSummary" type="text/xml"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getPackageActionSummary">
+      <http:operation location="EndevorService/getPackageActionSummary"/>
+      <wsdl:input>
+        <mime:content part="getPackageActionSummary" type="text/xml"/>
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="getPackageActionSummary" type="text/xml"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getEnvironment">
+      <http:operation location="EndevorService/getEnvironment"/>
+      <wsdl:input>
+        <mime:content part="getEnvironment" type="text/xml"/>
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="getEnvironment" type="text/xml"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getSystem">
+      <http:operation location="EndevorService/getSystem"/>
+      <wsdl:input>
+        <mime:content part="getSystem" type="text/xml"/>
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="getSystem" type="text/xml"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getSubSystem">
+      <http:operation location="EndevorService/getSubSystem"/>
+      <wsdl:input>
+        <mime:content part="getSubSystem" type="text/xml"/>
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="getSubSystem" type="text/xml"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getStage">
+      <http:operation location="EndevorService/getStage"/>
+      <wsdl:input>
+        <mime:content part="getStage" type="text/xml"/>
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="getStage" type="text/xml"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getType">
+      <http:operation location="EndevorService/getType"/>
+      <wsdl:input>
+        <mime:content part="getType" type="text/xml"/>
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="getType" type="text/xml"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getDataSet">
+      <http:operation location="EndevorService/getDataSet"/>
+      <wsdl:input>
+        <mime:content part="getDataSet" type="text/xml"/>
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="getDataSet" type="text/xml"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getApproverGroup">
+      <http:operation location="EndevorService/getApproverGroup"/>
+      <wsdl:input>
+        <mime:content part="getApproverGroup" type="text/xml"/>
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="getApproverGroup" type="text/xml"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getApproverGroupJunction">
+      <http:operation location="EndevorService/getApproverGroupJunction"/>
+      <wsdl:input>
+        <mime:content part="getApproverGroupJunction" type="text/xml"/>
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="getApproverGroupJunction" type="text/xml"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getProcessorGroup">
+      <http:operation location="EndevorService/getProcessorGroup"/>
+      <wsdl:input>
+        <mime:content part="getProcessorGroup" type="text/xml"/>
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="getProcessorGroup" type="text/xml"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getPackage">
+      <http:operation location="EndevorService/getPackage"/>
+      <wsdl:input>
+        <mime:content part="getPackage" type="text/xml"/>
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="getPackage" type="text/xml"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getPackageShip">
+      <http:operation location="EndevorService/getPackageShip"/>
+      <wsdl:input>
+        <mime:content part="getPackageShip" type="text/xml"/>
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="getPackageShip" type="text/xml"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getPackageSCL">
+      <http:operation location="EndevorService/getPackageSCL"/>
+      <wsdl:input>
+        <mime:content part="getPackageSCL" type="text/xml"/>
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="getPackageSCL" type="text/xml"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getPackageApproverGroup">
+      <http:operation location="EndevorService/getPackageApproverGroup"/>
+      <wsdl:input>
+        <mime:content part="getPackageApproverGroup" type="text/xml"/>
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="getPackageApproverGroup" type="text/xml"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="EndevorService">
+<wsdl:documentation>Endevor Service
+			Web Services Description Language
+			(WSDL) 1.1
+			Coded using W3C Note
+			15 March 2001
+			and WSDL 1.1 binding
+			Extension for
+			SOAP 1.2
+			05 April 2006
+			DDS Endevor native Web
+			Services
+			dated of 15SEP10
+			Include the
+			submitSCL function
+		</wsdl:documentation>
+    <wsdl:port name="EndevorServiceHttpEndpoint" binding="ns:EndevorServiceHttpBinding">
+<wsdl:documentation>documentation ***</wsdl:documentation>
+      <http:address location="http://tomcatend.ato.mframe.sanpaoloimi.com:18968/axis2/services/EndevorService.EndevorServiceHttpEndpoint/"/>
+    </wsdl:port>
+    <wsdl:port name="EndevorServiceHttpSoap11Endpoint" binding="ns:EndevorServiceSoap11Binding">
+      <soap:address location="http://tomcatend.ato.mframe.sanpaoloimi.com:18968/axis2/services/EndevorService.EndevorServiceHttpSoap11Endpoint/"/>
+    </wsdl:port>
+    <wsdl:port name="EndevorServiceHttpSoap12Endpoint" binding="ns:EndevorServiceSoap12Binding">
+      <soap12:address location="http://tomcatend.ato.mframe.sanpaoloimi.com:18968/axis2/services/EndevorService.EndevorServiceHttpSoap12Endpoint/"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

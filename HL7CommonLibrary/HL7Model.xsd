@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://w3.ibm.com/it/hl7" xmlns:hl7="http://w3.ibm.com/it/hl7">
+
+    <xsd:complexType name="PatientUniqueKey">
+		<xsd:sequence>
+			<xsd:element name="patientId" type="xsd:string" />
+			<xsd:element name="nosologicId" type="xsd:string" />
+			<xsd:element name="logistic" type="hl7:logisticType" maxOccurs="1" minOccurs="0"></xsd:element>
+		</xsd:sequence>
+    </xsd:complexType>
+	<xsd:complexType name="Patient">
+		<xsd:sequence>
+			<xsd:element name="name" type="xsd:string" minOccurs="0" />
+			<xsd:element name="surname" type="xsd:string" minOccurs="0" />
+			<xsd:element name="patientIdentifierList" type="xsd:string" />
+			<xsd:element name="birthdate" type="xsd:string"
+				minOccurs="0" />
+			<xsd:element name="sex" type="xsd:string" minOccurs="0" />
+			<xsd:element name="race" type="xsd:string" minOccurs="0" />
+			<xsd:element name="address" type="xsd:string" minOccurs="0" />
+			<xsd:element name="fiscalcode" type="xsd:string"
+				minOccurs="0" />
+
+			<xsd:element name="notes" type="hl7:Note" minOccurs="0"
+				maxOccurs="unbounded" />
+			<xsd:element name="type" type="xsd:string" minOccurs="0" />
+			<xsd:element name="admission" type="hl7:admissionData" maxOccurs="unbounded" minOccurs="1"></xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="Note">
+		<xsd:sequence>
+			<xsd:element name="id" type="xsd:string" />
+			<xsd:element name="title" type="xsd:string" />
+			<xsd:element name="description" type="xsd:string" />
+			<xsd:element name="userId" type="xsd:string" />
+			<xsd:element name="date" type="xsd:string" />
+			<xsd:element name="important" type="xsd:boolean" />
+			<xsd:element name="attachments" type="hl7:Attachments"
+				minOccurs="0" maxOccurs="unbounded" />
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="Attachments">
+		<xsd:sequence>
+			<xsd:element name="base64" type="xsd:string" />
+			<xsd:element name="type" type="xsd:string" />
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="Parameter">
+		<xsd:sequence>
+			<!-- taskId BPM -->
+            <xsd:element name="taskId" type="xsd:string" />
+            <xsd:element name="id" type="xsd:string"></xsd:element>
+			<!-- infermiere -->
+            <xsd:element name="userId" type="xsd:string" />
+			<xsd:element name="date" type="xsd:string" />
+			<xsd:element name="values" type="hl7:Value" minOccurs="0"
+				maxOccurs="unbounded" />
+			
+			
+		</xsd:sequence>
+
+
+
+	</xsd:complexType>
+	<xsd:complexType name="Value">
+		<xsd:sequence>
+			<xsd:element name="measureId" type="xsd:string" />
+			<xsd:element name="measureName" type="xsd:string" />
+			<xsd:element name="value" type="xsd:string" />
+			<xsd:element name="units" type="xsd:string" minOccurs="0" />
+			<xsd:element name="type" type="xsd:string" minOccurs="0" />
+			<xsd:element name="attachment" type="hl7:Attachments"></xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="Issue">
+		<xsd:sequence>
+			<xsd:element name="id" type="xsd:string" />
+			<xsd:element name="title" type="xsd:string" />
+			<xsd:element name="description" type="xsd:string" />
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="Error">
+		<xsd:sequence>
+			<xsd:element name="result" type="xsd:string" />
+			<xsd:element name="errorCode" type="xsd:integer" />
+			<xsd:element name="errorMessage" type="xsd:string" />
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:element name="senderRequest">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="action" type="xsd:string" />
+				<xsd:element name="messageId" type="xsd:string"></xsd:element>
+				<xsd:choice minOccurs="0">
+					<!-- Patient details Model. Chiamato da MFP via servizio ReST -->
+					<xsd:element name="patientDetailsRequest"
+						type="hl7:patientDetailsRequestType">
+
+					</xsd:element>
+					<!-- Patient list Model. Chiamato da MFP via servizio ReST -->
+					<xsd:element name="patientListRequest">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="division" type="xsd:string" />
+							</xsd:sequence>
+						</xsd:complexType>
+					</xsd:element>
+
+
+					<!-- Read issues Model. Chiamato da MFP via servizio ReST -->
+					<xsd:element name="readIssuesRequest">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="division" type="xsd:string" />
+							</xsd:sequence>
+						</xsd:complexType>
+					</xsd:element>
+					<!-- Read notes Model. Chiamato da MFP via servizio ReST -->
+
+					<!-- Read parameters Model. Chiamato da MFP via servizio ReST -->
+					<xsd:element name="readParametersRequest">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="patientKey"
+									type="hl7:PatientUniqueKey">
+								</xsd:element>
+								<xsd:element name="paramsId"
+									type="xsd:string" maxOccurs="unbounded" minOccurs="0"/>
+							</xsd:sequence>
+						</xsd:complexType>
+					</xsd:element>
+					<!-- Write issue Model. Chiamato da MFP via servizio ReST -->
+					<xsd:element name="writeIssueRequest">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="issue" type="hl7:Issue" />
+							</xsd:sequence>
+						</xsd:complexType>
+					</xsd:element>
+					<!-- Write note Model. Chiamato da MFP via servizio ReST -->
+					<xsd:element name="writeNoteRequest">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="note" type="hl7:Note" />
+							</xsd:sequence>
+						</xsd:complexType>
+					</xsd:element>
+					<!-- Write parameters Model. Chiamato da BPM via MQ -->
+					<xsd:element name="writeParametersRequest" type="hl7:PatientDetailsParameters">
+					</xsd:element>
+				</xsd:choice>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:element name="senderResponse">
+		<xsd:complexType>
+			<xsd:choice>
+				<!-- Patient details Model. Chiamato da MFP via servizio ReST -->
+				<xsd:element name="patientDetailsResponse">
+					<xsd:complexType>
+						<xsd:sequence>
+							<xsd:element name="patient"
+								type="hl7:Patient" />
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+				<!-- Patient list Model. Chiamato da MFP via servizio ReST -->
+				<xsd:element name="patientListResponse">
+					<xsd:complexType>
+						<xsd:sequence>
+							<xsd:element name="patients">
+								<xsd:complexType>
+									<xsd:sequence>
+										<xsd:element name="patient"
+											type="hl7:Patient" minOccurs="0" maxOccurs="unbounded" />
+									</xsd:sequence>
+								</xsd:complexType>
+							</xsd:element>
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+				<!-- Read issues Model. Chiamato da MFP via servizio ReST -->
+				<xsd:element name="readIssuesResponse">
+					<xsd:complexType>
+						<xsd:sequence>
+							<xsd:element name="issues">
+								<xsd:complexType>
+									<xsd:sequence>
+										<xsd:element name="issue"
+											type="hl7:Issue" minOccurs="0" maxOccurs="unbounded" />
+									</xsd:sequence>
+								</xsd:complexType>
+							</xsd:element>
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+				<!-- Read notes Model. Chiamato da MFP via servizio ReST -->
+				<xsd:element name="readNotesResponse">
+					<xsd:complexType>
+						<xsd:sequence>
+							<xsd:element name="notes">
+								<xsd:complexType>
+									<xsd:sequence>
+										<xsd:element name="note"
+											type="hl7:Note" minOccurs="0" maxOccurs="unbounded" />
+									</xsd:sequence>
+								</xsd:complexType>
+							</xsd:element>
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+				<!-- Read parameters Model. Chiamato da MFP via servizio ReST -->
+				<xsd:element name="readParametersResponse"
+					type="hl7:PatientDetailsParameters">
+
+				</xsd:element>
+				<!-- Write issue Model. Chiamato da MFP via servizio ReST -->
+				<xsd:element name="writeIssueResponse">
+					<xsd:complexType>
+						<xsd:sequence>
+							<xsd:element name="result"
+								type="xsd:string" />
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+				<!-- Write note Model. Chiamato da MFP via servizio ReST -->
+				<xsd:element name="writeNoteResponse">
+					<xsd:complexType>
+						<xsd:sequence>
+							<xsd:element name="result"
+								type="xsd:string" />
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+				<!-- Write parameters Model. Chiamato da BPM via MQ -->
+				<xsd:element name="writeParametersResponse">
+					<xsd:complexType>
+						<xsd:sequence>
+							<xsd:element name="result"
+								type="xsd:string" />
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+				<xsd:element name="error" type="hl7:Error" />
+				<xsd:element name="patientBedListResponse" type="hl7:patientBedListResponseType" maxOccurs="unbounded" minOccurs="1"></xsd:element>
+			</xsd:choice>
+		</xsd:complexType>
+	</xsd:element>
+
+
+	<xsd:complexType name="patientDetailsRequestType">
+		<xsd:sequence>
+			<xsd:element name="patientKey" type="hl7:PatientUniqueKey"></xsd:element>
+			<xsd:element name="paramsId" type="xsd:string" maxOccurs="unbounded" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="PatientDetailsParameters">
+		<xsd:sequence>
+			<xsd:element name="patient" type="hl7:Patient"></xsd:element>
+			<xsd:element name="parameter" type="hl7:Parameter" maxOccurs="unbounded" minOccurs="0"></xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:element name="receiverRequest">
+
+		<xsd:complexType>
+			<xsd:sequence>
+
+				<xsd:choice>
+					<xsd:element name="admission" type="hl7:Patient"></xsd:element>
+					<xsd:element name="discharge" type="hl7:Patient"></xsd:element>
+				</xsd:choice>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:complexType name="admissionData">
+		<xsd:sequence>
+			<xsd:element name="nosologicId" type="xsd:string"></xsd:element>
+			<xsd:element name="dischargeDate" type="xsd:string"></xsd:element>
+			<xsd:element name="diagnosis" type="xsd:string"></xsd:element>
+			<xsd:element name="bedNumber" type="xsd:string"></xsd:element>
+			<xsd:element name="division" type="xsd:string"></xsd:element>
+			<xsd:element name="class" type="xsd:string"></xsd:element>
+			<xsd:element name="admissionDate" type="xsd:string"></xsd:element>
+			<xsd:element name="surgeryDate" type="xsd:string"></xsd:element>
+			<xsd:element name="focusOn" type="xsd:boolean"></xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="patientBedListResponseType">
+		<xsd:sequence>
+			<xsd:element name="logistic" type="hl7:logisticType"></xsd:element>
+			<xsd:element name="patient" type="hl7:Patient" maxOccurs="1" minOccurs="0"></xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="logisticType">
+		<xsd:sequence>
+			<xsd:element name="compartmentId" type="xsd:string"></xsd:element>
+			<xsd:element name="roomId" type="xsd:string"></xsd:element>
+
+			<xsd:element name="bedId" type="xsd:string"></xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+</xsd:schema>
+
