@@ -61,7 +61,7 @@
         <translation xmi:type="utility:ConstantString" string="Compute2"/>
       </nodes>
       <nodes xmi:type="ComIbmWSRequest.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_8" location="793,123" URLSpecifier="https://10.4.2.204:443/rest/bpm/wle/v1/service/ABANO@getTasks" httpVersion="1.1" protocol="TLSv1.2" keyAlias="bpmtestwas" useWholeInputMsgAsRequest="false" requestMsgLocationInTree="InputLocalEnvironment">
-        <translation xmi:type="utility:ConstantString" string="HTTP Request1"/>
+        <translation xmi:type="utility:ConstantString" string="HTTP Request - Reassignment"/>
       </nodes>
       <nodes xmi:type="ComIbmWSRequest.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_9" location="504,39" URLSpecifier="https://10.4.2.204:443/rest/bpm/wle/v1/service/ABANO@cpStartTipo" httpVersion="1.1" protocol="TLSv1.2" keyAlias="bpmtestwas" useWholeInputMsgAsRequest="false" requestMsgLocationInTree="InputLocalEnvironment">
         <translation xmi:type="utility:ConstantString" string="HTTP Request start tipo"/>

@@ -1,0 +1,213 @@
+/*EATE FUNCTION Main() RETURNS BOOLE*/
+	BEGIN
+		CALL CopyMessageHeaders();
+		--CALL CopyEntireMessage();
+
+		DECLARE response REFERENCE TO InputRoot.XMLNSC.ns:senderResponse;
+		DECLARE errorResponse REFERENCE TO InputRoot.XMLNSC.ns:senderResponse;
+		--GESTIONE ERRORE
+		MOVE errorResponse FIRSTCHILD NAME 'error';
+		IF LASTMOVE(errorResponse) THEN
+			SET OutputLocalEnvironment.Destination.HTTP.ReplyStatusCode = 400;
+			SET OutputRoot.JSON.Data.errorCode = errorResponse.errorCode;
+			SET OutputRoot.JSON.Data.errorMessage = errorResponse.errorMessage;
+			RETURN TRUE;
+		END IF; 
+
+		SET OutputLocalEnvironment.Destination.HTTP.ReplyStatusCode = 200;
+
+		--MAP MODEL TO JSON
+		MOVE response FIRSTCHILD;
+		SET OutputRoot.JSON.Data TYPE = JSON.Array;
+		DECLARE refOutJSON REFERENCE TO OutputRoot.JSON.Data;
+		WHILE LASTMOVE(response) DO
+			CREATE LASTCHILD OF OutputRoot.JSON.Data AS refOutJSON NAME 'Item';
+			--logistic Info		
+			CREATE LASTCHILD OF refOutJSON TYPE NameValue NAME 'bedId' VALUE response.bedId;
+			CREATE LASTCHILD OF refOutJSON TYPE NameValue NAME 'roomId' VALUE response.roomId;
+			CREATE LASTCHILD OF refOutJSON TYPE NameValue NAME 'compartmentId' VALUE CAST(response.compartmentId AS CHARACTER);
+			
+			
+			DECLARE refPatient REFERENCE TO response;
+			MOVE refPatient FIRSTCHILD NAME 'patient';
+			DECLARE numberImportantNotes CHARACTER;
+			SET numberImportantNotes = refPatient.numberImportantNotes;
+			MOVE refPatient FIRSTCHILD;
+			IF LASTMOVE(refPatient) THEN
+				--patient Info
+				--CREATE LASTCHILD OF refOutJSON NAME 'patient';
+				CREATE LASTCHILD OF refOutJSON AS refOutJSON NAME 'patient';
+
+				DECLARE refAdmission REFERENCE TO refPatient;
+				MOVE refAdmission FIRSTCHILD NAME 'admission';
+				SET refOutJSON.id = refAdmission.nosologicId;
+				IF NULLIF(refPatient.name,'') IS NOT NULL THEN
+					SET refOutJSON.name = refPatient.name;
+				ELSE
+					SET refOutJSON.name = '';
+				END IF;
+			
+				IF NULLIF(refPatient.surname,'') IS NOT NULL THEN
+					SET refOutJSON.surname = refPatient.surname;
+				ELSE
+					SET refOutJSON.surname = '';
+				END IF;
+				IF NULLIF(refAdmission.dischargeDate,'') IS NOT NULL THEN
+					SET refOutJSON.dischargeDate = refAdmission.dischargeDate;
+				ELSE
+					SET refOutJSON.dischargeDate = '';
+				END IF;
+--				IF NULLIF(refPatient.diagnosis,'') IS NOT NULL THEN
+--					SET refOutJSON.diagnosis = refPatient.diagnosis;
+--				ELSE
+--					SET refOutJSON.diagnosis = '';
+--				END IF;
+				
+--				IF NULLIF(response.pathway,'') IS NOT NULL THEN
+--					SET OutputRoot.JSON.Data.pathway = response.pathway;
+--				ELSE
+--					SET OutputRoot.JSON.Data.pathway = '';
+--				END IF;
+				
+				IF NULLIF(refAdmission.bedNumber,'') IS NOT NULL THEN
+					SET refOutJSON.bedNumber = refAdmission.bedNumber;
+				ELSE
+					SET refOutJSON.bedNumber = '';
+				END IF;
+				IF NULLIF(refAdmission.division,'') IS NOT NULL THEN
+					SET refOutJSON.division = refAdmission.division;
+				ELSE
+					SET refOutJSON.division = '';
+				END IF;
+				SET OutputRoot.JSON.Data.diagnosis = '';
+				IF NULLIF(refAdmission.diagnosis,'') IS NOT NULL THEN
+					SET OutputRoot.JSON.Data.pathway = refAdmission.diagnosis;
+				ELSE
+					SET OutputRoot.JSON.Data.pathway = '';
+				END IF;
+				IF NULLIF(refAdmission.class,'') IS NOT NULL THEN
+					SET refOutJSON.class = refAdmission.class;
+				ELSE
+					SET refOutJSON.class = '';
+				END IF;
+				IF NULLIF(refPatient.birthdate,'') IS NOT NULL THEN
+					SET refOutJSON.birthdate = refPatient.birthdate;
+				ELSE
+					SET refOutJSON.birthdate = '';
+				END IF;
+				IF NULLIF(refPatient.sex,'') IS NOT NULL THEN
+					SET refOutJSON.sex = refPatient.sex;
+				ELSE
+					SET refOutJSON.sex = '';
+				END IF;
+				IF NULLIF(refPatient.race,'') IS NOT NULL THEN
+					SET refOutJSON.race = refPatient.race;
+				ELSE
+					SET refOutJSON.race = '';
+				END IF;			
+				IF NULLIF(refPatient.address,'') IS NOT NULL THEN
+					SET refOutJSON.address = refPatient.address;
+				ELSE
+					SET refOutJSON.address = '';
+				END IF;
+				IF NULLIF(refPatient.fiscalcode,'') IS NOT NULL THEN
+					SET refOutJSON.fiscalcode = refPatient.fiscalcode;
+				ELSE
+					SET refOutJSON.fiscalcode = '';
+				END IF;
+				IF NULLIF(refAdmission.admissionDate,'') IS NOT NULL THEN
+					SET refOutJSON.admissionDate = refAdmission.admissionDate;
+				ELSE
+					SET refOutJSON.admissionDate = '';
+				END IF;
+--				IF NULLIF(refAdmission.surgeryDate,'') IS NOT NULL THEN
+--					SET refOutJSON.surgeryDate = refAdmission.surgeryDate;
+--				ELSE
+--					SET refOutJSON.surgeryDate = '';
+--				END IF;
+--				IF NULLIF(refPatient.patientIdentifierList,'') IS NOT NULL THEN
+--					SET refOutJSON.pid = refPatient.patientIdentifierList;
+--				ELSE
+--					SET refOutJSON.pid = '';
+--				END IF;
+--				IF NULLIF(refPatient.type,'') IS NOT NULL THEN
+--					SET refOutJSON.type = refPatient.type;
+--				ELSE
+--					SET refOutJSON.type = '';
+--				END IF;
+				
+				IF NULLIF(refAdmission.surgeryExpectedDate,'') IS NOT NULL THEN
+					SET refOutJSON.surgeryExpectedDate = refAdmission.surgeryExpectedDate;
+				ELSE
+					SET refOutJSON.surgeryExpectedDate = '';
+				END IF;
+				
+				IF NULLIF(refAdmission.surgeryExpectedTime,'') IS NOT NULL THEN
+					SET refOutJSON.surgeryExpectedTime = refAdmission.surgeryExpectedTime;
+				ELSE
+					SET refOutJSON.surgeryExpectedTime = '';
+				END IF;
+				
+				IF NULLIF(refAdmission.surgeryEndDate,'') IS NOT NULL THEN
+					SET refOutJSON.surgeryEndDate = refAdmission.surgeryEndDate;
+				ELSE
+					SET refOutJSON.surgeryEndDate = '';
+				END IF;
+				
+				IF NULLIF(refAdmission.surgeryEndTime,'') IS NOT NULL THEN
+					SET refOutJSON.surgeryEndTime = refAdmission.surgeryEndTime;
+				ELSE
+					SET refOutJSON.surgeryEndTime = '';
+				END IF;
+				
+				IF NULLIF(refPatient.patientIdentifierList,'') IS NOT NULL THEN
+					SET refOutJSON.pid = refPatient.patientIdentifierList;
+				ELSE
+					SET refOutJSON.pid = '';
+				END IF;
+				
+				IF NULLIF(refAdmission.type,'') IS NOT NULL THEN
+					SET refOutJSON.type = refAdmission.type;
+				ELSE
+					SET refOutJSON.type = '';
+				END IF;
+				--CHECK FOR IMPORTANT NOTES
+				set refOutJSON.numberOfImportantNotes = numberImportantNotes;
+				DECLARE refNotes REFERENCE TO refPatient;
+				MOVE refNotes FIRSTCHILD NAMESPACE ns NAME 'parameter';
+				IF (numberImportantNotes > 0) THEN 
+					SET refOutJSON.importantNotes = 'true';
+				ELSE
+					SET refOutJSON.importantNotes = 'false';
+				END IF;
+--				IF LASTMOVE(refNotes) THEN 
+--					SET refOutJSON.importantNotes = 'true';
+--				ELSE
+--					SET refOutJSON.importantNotes = 'false';
+--				END IF;
+				
+					
+			END IF;								
+
+			MOVE response NEXTSIBLING REPEAT NAME;
+		END WHILE;
+
+		SET OutputLocalEnvironment.Destination.HTTP.ReplyStatusCode = 200;
+		--CREATE LASTCHILD OF OutputRoot Domain('JSON');
+		--SET OutputRoot.JSON.Data.ns:senderResponse.error.errorCode = 1;
+		RETURN TRUE;
+	END;
+
+	CREATE PROCEDURE CopyMessageHeaders() BEGIN
+		DECLARE I INTEGER 1;
+		DECLARE J INTEGER;
+		SET J = CARDINALITY(InputRoot.*[]);
+		WHILE I < J DO
+			SET OutputRoot.*[I] = InputRoot.*[I];
+			SET I = I + 1;
+		END WHILE;
+	END;
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		SET OutputRoot = InputRoot;
+	END;

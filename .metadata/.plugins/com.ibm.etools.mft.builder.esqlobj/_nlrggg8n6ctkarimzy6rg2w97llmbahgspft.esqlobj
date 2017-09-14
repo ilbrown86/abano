@@ -1,0 +1,27 @@
+/*EATE FUNCTION Main() RETURNS BOOLE*/
+	BEGIN
+		CALL CopyMessageHeaders();
+
+		--Environment.Variables.HL7RestAPI.patientRef.Item[]
+		DECLARE refPatient REFERENCE TO Environment.Variables.HL7RestAPI.patientRef;
+		MOVE refPatient LASTCHILD;
+		--MOVE refIssue FIRSTCHILD NAME 'issues';
+		CREATE LASTCHILD OF refPatient AS refPatient NAME 'patient';
+		--put response in environment
+		set refPatient = InputRoot.XMLNSC;
+		RETURN TRUE;
+	END;
+
+	CREATE PROCEDURE CopyMessageHeaders() BEGIN
+		DECLARE I INTEGER 1;
+		DECLARE J INTEGER;
+		SET J = CARDINALITY(InputRoot.*[]);
+		WHILE I < J DO
+			SET OutputRoot.*[I] = InputRoot.*[I];
+			SET I = I + 1;
+		END WHILE;
+	END;
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		SET OutputRoot = InputRoot;
+	END;

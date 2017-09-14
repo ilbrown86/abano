@@ -1,0 +1,20 @@
+CREATE PROCEDURE CreateGenericQRD(IN inModel REFERENCE, INOUT refHL7 REFERENCE) BEGIN
+	DECLARE refSegment REFERENCE TO refHL7;
+	CREATE LASTCHILD OF refSegment AS refSegment NAMESPACE ns6 NAME 'anyHL7Segment';
+	CREATE LASTCHILD OF refSegment AS refSegment NAMESPACE ns6 NAME 'QRD';
+
+	SET refSegment.ns6:"QRD.1.QueryDateTime".ns6:"TS.1" = CURRENT_TIMESTAMP;
+	SET refSegment.ns6:"QRD.1.QueryDateTime".ns6:"TS.2" = '';
+	SET refSegment.ns6:"QRD.2.QueryFormatCode" = 'R';
+	SET refSegment.ns6:"QRD.3.QueryPriority" = 'I';
+	SET refSegment.ns6:"QRD.4.QueryID" = inModel.requestId;
+	--SET refSegment.ns6:"QRD.5.DeferredResponseType" = '';
+	--SET refSegment.ns6:"QRD.6.DeferredResponseDateTime" = '';
+	SET refSegment.ns6:"QRD.7.QuantityLimitedRequest" = inModel.resourceLimit;
+	SET refSegment.ns6:"QRD.8.WhoSubjectFilter" = inModel.patientId;
+	SET refSegment.ns6:"QRD.9.WhatSubjectFilter" = 'RES';
+	SET refSegment.ns6:"QRD.10.WhatDepartmentDataCode" = inModel.nosologicId;
+	--SET refSegment.ns6:"QRD.11.WhatDataCodeValueQual" = '';
+	--SET refSegment.ns6:"QRD.12.QueryResultsLevel" = '';
+
+END;

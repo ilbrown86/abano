@@ -1,0 +1,31 @@
+CREATE PROCEDURE CreateModelFromDG1(IN refHL7 REFERENCE, INOUT refPatient REFERENCE) BEGIN
+	--decomment to enable autocomplete: COMMENT BEFORE DEPLOYMENT!
+
+	DECLARE a CHARACTER;
+--	DECLARE refPatient REFERENCE TO xmlModel;
+--	MOVE refPatient FIRSTCHILD NAMESPACE ns NAME 'patient';
+--	--CHECK IF PATIENT TAG ALREADY CREATED
+--	IF NOT LASTMOVE(refPatient) THEN 
+--		CREATE LASTCHILD OF xmlModel AS refPatient NAMESPACE ns NAME 'patient';		
+--	END IF;
+
+--	DECLARE refSegment REFERENCE TO refHL7;
+--	CREATE LASTCHILD OF refSegment AS refSegment NAMESPACE ns6 NAME 'anyHL7Segment';
+--	CREATE LASTCHILD OF refSegment AS refSegment NAMESPACE ns6 NAME 'PV1';
+--	--SET refSegment.ns6:"PV1.1.SetIDPV1"
+
+	--SET refPatient.diagnosis = refHL7.ns6:"DG1.1.SetIDDG1";
+	--SET refPatient.diagnosis = refHL7.ns6:"DG1.6.DiagnosisType";
+--	IF NULLIF(refHL7.ns6:"DG1.3.DiagnosisCodeDG1".ns6:"CE.1",'') IS NOT NULL THEN
+--		SET refPatient.pathway1 = refHL7.ns6:"DG1.3.DiagnosisCodeDG1".ns6:"CE.1";--  || '-' || refHL7.ns6:"DG1.3.DiagnosisCodeDG1".ns6:"CE.2";
+--	END IF;
+--	IF NULLIF(refHL7.ns6:"DG1.3.DiagnosisCodeDG1".ns6:"CE.2",'') IS NOT NULL THEN
+--		SET refPatient.pathway2 = refHL7.ns6:"DG1.3.DiagnosisCodeDG1".ns6:"CE.2";--  || '-' || refHL7.ns6:"DG1.3.DiagnosisCodeDG1".ns6:"CE.2";
+--	END IF;
+	IF NULLIF(refHL7.ns6:"DG1.3.DiagnosisCodeDG1".ns6:"CE.2",'') IS NOT NULL THEN
+		SET refPatient.diagnosis = refHL7.ns6:"DG1.3.DiagnosisCodeDG1".ns6:"CE.1"  || '-' || refHL7.ns6:"DG1.3.DiagnosisCodeDG1".ns6:"CE.2";
+	ELSE
+		SET refPatient.diagnosis = refHL7.ns6:"DG1.3.DiagnosisCodeDG1".ns6:"CE.1";
+	END IF;
+	
+END;

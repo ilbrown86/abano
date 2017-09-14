@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?><launchConfiguration type="com.ibm.etools.mft.debug.internal.mbLaunchConfigurationDelegate">
+<stringAttribute key="BRName" value="IIB10ABANO"/>
+<stringAttribute key="ConnectionInfo" value=""/>
+<stringAttribute key="EGName" value="hl7Server"/>
+<stringAttribute key="com.ibm.debug.wsa.attr_vm_name" value="IBM J9 VM"/>
+<stringAttribute key="com.ibm.debug.wsa.attr_vm_version" value="1.7.0"/>
+<intAttribute key="com.ibm.debug.wsa.attr_was_version" value="61"/>
+<stringAttribute key="com.ibm.etools.mft.debug.attr_hostname" value="IBM016-VMware-564de43a76e74f80-0d3b941f78cd862e"/>
+<stringAttribute key="com.ibm.etools.mft.debug.attr_javaportname" value="6667"/>
+</launchConfiguration>

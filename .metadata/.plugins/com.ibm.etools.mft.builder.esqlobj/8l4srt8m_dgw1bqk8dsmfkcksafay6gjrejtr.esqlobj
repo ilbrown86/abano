@@ -1,0 +1,20 @@
+CREATE PROCEDURE BuildACKMSA(IN MSHEnv REFERENCE, IN MSAFields REFERENCE, IN AckCode CHARACTER, IN ErrorText CHARACTER) 
+BEGIN
+    -- Assign the ACK code sent from BuildACK or BuildNACK nodes
+    SET MSAFields.hl7:"MSA.1.AcknowledgementCode" = AckCode;
+
+    -- Get the message control ID from the input message and assign it
+    IF MSHEnv.Field10 IS NOT NULL THEN
+        SET MSAFields.hl7:"MSA.2.MessageControlID" = MSHEnv.Field10;
+    ELSE
+        SET MSAFields.hl7:"MSA.2.MessageControlID" = DefaultMessageControlID;
+    END IF;
+
+    -- Error text in case of ACK AE or ACK AR
+    SET MSAFields.hl7:"MSA.3.TextMessage" = ErrorText;
+
+    -- Get the sequence number from input message if present
+    IF MSHEnv.Field13 IS NOT NULL THEN
+        SET MSAFields.hl7:"MSA.4.ExpectedSequenceNumber" = MSHEnv.Field13;
+    END IF;
+END;

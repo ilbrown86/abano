@@ -1,0 +1,90 @@
+CREATE PROCEDURE CreateModelFromPV1(IN refHL7 REFERENCE, INOUT refPatient REFERENCE) BEGIN
+
+	DECLARE refAdmissionData REFERENCE TO refPatient;
+	CREATE LASTCHILD OF refPatient AS refAdmissionData NAME 'admission';
+--	MOVE refPatient FIRSTCHILD NAMESPACE ns NAME 'patient';
+--	--CHECK IF PATIENT TAG ALREADY CREATED
+--	IF NOT LASTMOVE(refPatient) THEN 
+--		CREATE LASTCHILD OF xmlModel AS refPatient NAMESPACE ns NAME 'patient';		
+--	END IF;
+
+--	DECLARE refSegment REFERENCE TO refHL7;
+--	CREATE LASTCHILD OF refSegment AS refSegment NAMESPACE ns6 NAME 'anyHL7Segment';
+--	CREATE LASTCHILD OF refSegment AS refSegment NAMESPACE ns6 NAME 'PV1';
+--	--SET refSegment.ns6:"PV1.1.SetIDPV1"
+	SET refAdmissionData.class = refHL7.ns6:"PV1.2.PatientClass";
+	SET refAdmissionData.type = refHL7.ns6:"PV1.3.AssignedPatientLocation".ns6:"PL.1"; --ok
+	-- 3.2 stanza
+	SET refAdmissionData.bedNumber = refHL7.ns6:"PV1.3.AssignedPatientLocation".ns6:"PL.3"; --ok
+	SET refAdmissionData.division = refHL7.ns6:"PV1.3.AssignedPatientLocation".ns6:"PL.4".ns6:"HD.1";  --ok comparto
+	--SET refPatient.bedNumber = refHL7.ns6:"PV1.3.AssignedPatientLocation".ns6:"PL.3";
+	--???? SET refPatient.diagnosis = refSegment.ns6:"PV1.4.AdmissionType";
+--	--SET refSegment.ns6:"PV1.5.PreadmitNumber"
+	--TODO SET refPatient.class = refHL7.ns6:"PV1.6.PriorPatientLocation";
+--	--SET refSegment.ns6:"PV1.7.AttendingDoctor"
+--	--SET refSegment.ns6:"PV1.8.ReferringDoctor"
+--	--SET refSegment.ns6:"PV1.9.ConsultingDoctor"
+--	--SET refSegment.ns6:"PV1.10.HospitalService"
+--	--SET refSegment.ns6:"PV1.11.TemporaryLocation"
+--	--SET refSegment.ns6:"PV1.12.PreadmitTestIndicator"
+--	--SET refSegment.ns6:"PV1.13.ReadmissionIndicator"
+--	--SET refSegment.ns6:"PV1.14.AdmitSource"
+	--SET refPatient.diagnosis =  refHL7.ns6:"PV1.15.AmbulatoryStatus";
+--	--SET refSegment.ns6:"PV1.16.VIPIndicator"
+--	--SET refSegment.ns6:"PV1.17.AdmittingDoctor"
+--	--SET refSegment.ns6:"PV1.18.PatientType"
+	SET refAdmissionData.nosologicId = refHL7.ns6:"PV1.19.VisitNumber".ns6:"CX.1" ; 
+--	--SET refSegment.ns6:"PV1.20.FinancialClass"
+--	--SET refSegment.ns6:"PV1.21.ChargePriceIndicator"
+--	--SET refSegment.ns6:"PV1.22.CourtesyCode"
+--	--SET refSegment.ns6:"PV1.23.CreditRating"
+--	SET refSegment.ns6:"PV1.24.ContractCode" VALUE = NULL;
+--	SET refSegment.ns6:"PV1.25.ContractEffectiveDate" VALUE = NULL;
+--	SET refSegment.ns6:"PV1.26.ContractAmount" VALUE = NULL;
+--	SET refSegment.ns6:"PV1.27.ContractPeriod" VALUE = NULL;
+--	--SET refSegment.ns6:"PV1.28.InterestCode"
+--	--SET refSegment.ns6:"PV1.29.TransfertoBadDebtCode"
+--	--SET refSegment.ns6:"PV1.30.TransfertoBadDebtDate"
+--	--SET refSegment.ns6:"PV1.31.BadDebtAgencyCode"
+--	--SET refSegment.ns6:"PV1.32.BadDebtTransferAmount"
+--	--SET refSegment.ns6:"PV1.33.BadDebtRecoveryAmount"
+--	--SET refSegment.ns6:"PV1.34.DeleteAccountIndicator"
+--	--SET refSegment.ns6:"PV1.35.DeleteAccountDate"
+	--SET refPatient.diagnosis = refHL7.ns6:"PV1.36.DischargeDisposition";  --modalità dimissione, serve per dimissione
+--	--SET refSegment.ns6:"PV1.37.DischargedtoLocation"
+--	--SET refSegment.ns6:"PV1.38.DietType"
+--	--SET refSegment.ns6:"PV1.39.ServicingFacility"
+--	--SET refSegment.ns6:"PV1.40.BedStatus"
+--	--SET refSegment.ns6:"PV1.41.AccountStatus"
+--	--SET refSegment.ns6:"PV1.42.PendingLocation"
+--	--SET refSegment.ns6:"PV1.43.PriorTemporaryLocation"
+--	
+	IF refHL7.ns6:"PV1.44.AdmitDateTime".ns6:"TS.1" IS NOT NULL THEN
+		IF(LENGTH(refHL7.ns6:"PV1.44.AdmitDateTime".ns6:"TS.1" ) = 14 ) THEN
+			SET refAdmissionData.admissionDate = CAST (CAST (refHL7.ns6:"PV1.44.AdmitDateTime".ns6:"TS.1" AS TIMESTAMP FORMAT 'YYYYMMddHHmmss') AS CHARACTER FORMAT 'YYYY-MM-dd');
+			SET refAdmissionData.admissionTime = CAST (CAST (refHL7.ns6:"PV1.44.AdmitDateTime".ns6:"TS.1" AS TIMESTAMP FORMAT 'YYYYMMddHHmmss') AS CHARACTER FORMAT 'HH.mm');
+		ELSEIF (LENGTH(refHL7.ns6:"PV1.44.AdmitDateTime".ns6:"TS.1" ) = 8 ) THEN
+			SET refAdmissionData.admissionDate = CAST (CAST (refHL7.ns6:"PV1.44.AdmitDateTime".ns6:"TS.1" AS TIMESTAMP FORMAT 'YYYYMMdd') AS CHARACTER FORMAT 'YYYY-MM-dd');
+		ELSEIF (LENGTH(refHL7.ns6:"PV1.44.AdmitDateTime".ns6:"TS.1" ) = 12 ) THEN
+			SET refAdmissionData.admissionDate = CAST (CAST (refHL7.ns6:"PV1.44.AdmitDateTime".ns6:"TS.1" AS TIMESTAMP FORMAT 'YYYYMMddHHmm') AS CHARACTER FORMAT 'YYYY-MM-dd');
+			SET refAdmissionData.admissionTime = CAST (CAST (refHL7.ns6:"PV1.44.AdmitDateTime".ns6:"TS.1" AS TIMESTAMP FORMAT 'YYYYMMddHHmm') AS CHARACTER FORMAT 'HH.mm');
+		ELSEIF (LENGTH(refHL7.ns6:"PV1.44.AdmitDateTime".ns6:"TS.1" ) = 13 ) THEN
+			SET refAdmissionData.admissionDate = CAST (CAST (refHL7.ns6:"PV1.44.AdmitDateTime".ns6:"TS.1" AS TIMESTAMP FORMAT 'YYYYMMddHHmms') AS CHARACTER FORMAT 'YYYY-MM-dd');
+			SET refAdmissionData.admissionTime = CAST (CAST (refHL7.ns6:"PV1.44.AdmitDateTime".ns6:"TS.1" AS TIMESTAMP FORMAT 'YYYYMMddHHmms') AS CHARACTER FORMAT 'HH.mm');
+		END IF;
+	END IF;
+	IF refHL7.ns6:"PV1.44.DischargeDateTime".ns6:"TS.1" IS NOT NULL THEN
+		IF(LENGTH(refHL7.ns6:"PV1.44.DischargeDateTime".ns6:"TS.1" ) = 14 ) THEN
+			SET refAdmissionData.dischargeDate = CAST (CAST (refHL7.ns6:"PV1.44.DischargeDateTime".ns6:"TS.1" AS TIMESTAMP FORMAT 'YYYYMMddHHmmss') AS CHARACTER FORMAT 'YYYY-MM-dd HH.mm.ss');
+		ELSEIF (LENGTH(refHL7.ns6:"PV1.44.DischargeDateTime".ns6:"TS.1" ) = 8 ) THEN
+			SET refAdmissionData.dischargeDate = CAST (CAST (refHL7.ns6:"PV1.44.DischargeDateTime".ns6:"TS.1" AS TIMESTAMP FORMAT 'YYYYMMdd') AS CHARACTER FORMAT 'YYYY-MM-dd');
+		ELSEIF (LENGTH(refHL7.ns6:"PV1.44.DischargeDateTime".ns6:"TS.1" ) = 12 ) THEN
+			SET refAdmissionData.dischargeDate = CAST (CAST (refHL7.ns6:"PV1.44.DischargeDateTime".ns6:"TS.1" AS TIMESTAMP FORMAT 'YYYYMMddHHmm') AS CHARACTER FORMAT 'YYYY-MM-dd HH.mm');
+		ELSEIF (LENGTH(refHL7.ns6:"PV1.44.DischargeDateTime".ns6:"TS.1" ) = 13 ) THEN
+			SET refAdmissionData.dischargeDate = CAST (CAST (refHL7.ns6:"PV1.44.DischargeDateTime".ns6:"TS.1" AS TIMESTAMP FORMAT 'YYYYMMddHHmms') AS CHARACTER FORMAT 'YYYY-MM-dd HH.mm');
+		END IF;
+	END IF;
+
+	
+
+END;

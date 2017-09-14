@@ -1,0 +1,6 @@
+/*EATE FUNCTION Main() RETURNS BOOLE*/
+    BEGIN
+        SET OutputLocalEnvironment = InputLocalEnvironment;
+        SET Environment.PatternVariables = InputLocalEnvironment.HL7;
+    RETURN TRUE;
+    END;

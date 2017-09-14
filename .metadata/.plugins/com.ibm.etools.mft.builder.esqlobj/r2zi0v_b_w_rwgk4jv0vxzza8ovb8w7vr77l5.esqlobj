@@ -1,0 +1,25 @@
+/*EATE FUNCTION Main() RETURNS BOOLE*/
+    BEGIN
+        SET OutputLocalEnvironment = InputLocalEnvironment;
+        SET OutputRoot = InputRoot; 
+
+        IF FIELDTYPE(OutputRoot.MQMD) IS NULL THEN
+            CREATE NEXTSIBLING OF OutputRoot.Properties DOMAIN 'MQMD';
+            SET OutputRoot.MQMD.CodedCharSetId = OutputRoot.Properties.CodedCharSetId;
+            SET OutputRoot.MQMD.Encoding = OutputRoot.Properties.Encoding;
+        END IF;        
+
+        IF FIELDTYPE(OutputRoot.MQRFH2) IS NULL THEN
+            CREATE NEXTSIBLING OF OutputRoot.MQMD DOMAIN 'MQRFH2';
+        END IF;
+
+        SET OutputRoot.MQRFH2.(MQRFH2.Field)Format = 'MQSTR';
+        SET OutputRoot.MQRFH2.(MQRFH2.Field)Version = 2;
+        SET OutputRoot.MQRFH2.(MQRFH2.Field)NameValueCCSID = 1208;
+        SET OutputRoot.MQRFH2.(MQRFH2.Field)CodedCharSetId = OutputRoot.Properties.CodedCharSetId;
+
+        -- Add the ACK code and error text into MQRFH2 header
+        -- This will help user to identify the error
+        SET OutputRoot.MQRFH2.usr.ErrorCondition = 'ACK code : ' || Environment.PatternVariables.HL7RC || ' Error Condition : ' || Environment.PatternVariables.ErrorCondition;
+        RETURN TRUE;
+    END;

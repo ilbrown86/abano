@@ -1,0 +1,103 @@
+/*EATE FUNCTION Main() RETURNS BOOLE*/
+	BEGIN
+		CALL CopyMessageHeaders();
+		--CALL CopyEntireMessage();
+
+		DECLARE division CHARACTER;
+		
+		SET division = InputRoot.JSON.Data.division;
+		
+		SET OutputRoot.JSON.Data TYPE = JSON.Array;
+
+ 		DECLARE refData REFERENCE TO OutputRoot.JSON.Data;
+ 		DECLARE refOut REFERENCE TO OutputRoot.JSON.Data;
+ 		
+ 		--ciclo
+ 		DECLARE ind INTEGER 1;
+ 		WHILE ind < 10 DO
+			CREATE LASTCHILD OF OutputRoot.JSON.Data.Item[ind] TYPE NameValue NAME 'id' VALUE 'uniqueID';
+			CREATE LASTCHILD OF OutputRoot.JSON.Data.Item[ind] TYPE NameValue NAME 'name' VALUE 'nome';
+			CREATE LASTCHILD OF OutputRoot.JSON.Data.Item[ind] TYPE NameValue NAME 'surname' VALUE 'cognome';
+			CREATE LASTCHILD OF OutputRoot.JSON.Data.Item[ind] TYPE NameValue NAME 'dischargeDate' VALUE 'data';
+			CREATE LASTCHILD OF OutputRoot.JSON.Data.Item[ind] TYPE NameValue NAME 'diagnosis' VALUE 'diagnosi';
+			CREATE LASTCHILD OF OutputRoot.JSON.Data.Item[ind] TYPE NameValue NAME 'bedNumber' VALUE 'numeroLetto';
+			CREATE LASTCHILD OF OutputRoot.JSON.Data.Item[ind] TYPE NameValue NAME 'division' VALUE division;
+			CREATE LASTCHILD OF OutputRoot.JSON.Data.Item[ind] TYPE NameValue NAME 'class' VALUE 'calsse';
+			CREATE LASTCHILD OF OutputRoot.JSON.Data.Item[ind] TYPE NameValue NAME 'birthdate' VALUE 'compleanno';
+			CREATE LASTCHILD OF OutputRoot.JSON.Data.Item[ind] TYPE NameValue NAME 'sex' VALUE 'sesso';
+			CREATE LASTCHILD OF OutputRoot.JSON.Data.Item[ind] TYPE NameValue NAME 'race' VALUE 'razza';
+			CREATE LASTCHILD OF OutputRoot.JSON.Data.Item[ind] TYPE NameValue NAME 'address' VALUE 'indirizzo';
+			CREATE LASTCHILD OF OutputRoot.JSON.Data.Item[ind] TYPE NameValue NAME 'fiscalcode' VALUE 'codice fiscale';
+			CREATE LASTCHILD OF OutputRoot.JSON.Data.Item[ind] TYPE NameValue NAME 'admissionDate' VALUE 'data admin';
+			CREATE LASTCHILD OF OutputRoot.JSON.Data.Item[ind] TYPE NameValue NAME 'surgeryDate' VALUE 'dataSurg';
+			CREATE LASTCHILD OF OutputRoot.JSON.Data.Item[ind] TYPE NameValue NAME 'pid' VALUE 'patient id';
+						
+			--mettere il nome notes come root dell'array
+			CREATE LASTCHILD OF OutputRoot.JSON.Data.Item[ind].notes[1] TYPE NameValue NAME 'id' VALUE 'id1';
+			CREATE LASTCHILD OF OutputRoot.JSON.Data.Item[ind].notes[1] TYPE NameValue NAME 'title' VALUE 'titolo1';
+			CREATE LASTCHILD OF OutputRoot.JSON.Data.Item[ind].notes[1] TYPE NameValue NAME 'description' VALUE 'descrizione1';
+			CREATE LASTCHILD OF OutputRoot.JSON.Data.Item[ind].notes[1] TYPE NameValue NAME 'userId' VALUE 'userId1';
+			CREATE LASTCHILD OF OutputRoot.JSON.Data.Item[ind].notes[1] TYPE NameValue NAME 'date' VALUE 'data1';
+			CREATE LASTCHILD OF OutputRoot.JSON.Data.Item[ind].notes[1] TYPE NameValue NAME 'important' VALUE 'importante1';
+			
+			CREATE LASTCHILD OF OutputRoot.JSON.Data.Item[ind].notes[1].attachments[1] TYPE NameValue NAME 'base64' VALUE 'base1';
+			CREATE LASTCHILD OF OutputRoot.JSON.Data.Item[ind].notes[1].attachments[1] TYPE NameValue NAME 'type' VALUE 'type1';
+			CREATE LASTCHILD OF OutputRoot.JSON.Data.Item[ind].notes[1].attachments[2] TYPE NameValue NAME 'base64' VALUE 'base2';
+			CREATE LASTCHILD OF OutputRoot.JSON.Data.Item[ind].notes[1].attachments[2] TYPE NameValue NAME 'type' VALUE 'type2';
+			CREATE LASTCHILD OF OutputRoot.JSON.Data.Item[ind].notes[1].attachments[3] TYPE NameValue NAME 'base64' VALUE 'base3';
+			CREATE LASTCHILD OF OutputRoot.JSON.Data.Item[ind].notes[1].attachments[3] TYPE NameValue NAME 'type' VALUE 'type3';
+			
+			CREATE LASTCHILD OF OutputRoot.JSON.Data.Item[ind].notes[2] TYPE NameValue NAME 'id' VALUE 'id1';
+			CREATE LASTCHILD OF OutputRoot.JSON.Data.Item[ind].notes[2] TYPE NameValue NAME 'title' VALUE 'titolo1';
+			CREATE LASTCHILD OF OutputRoot.JSON.Data.Item[ind].notes[2] TYPE NameValue NAME 'description' VALUE 'descrizione1';
+			CREATE LASTCHILD OF OutputRoot.JSON.Data.Item[ind].notes[2] TYPE NameValue NAME 'userId' VALUE 'userId1';
+			CREATE LASTCHILD OF OutputRoot.JSON.Data.Item[ind].notes[2] TYPE NameValue NAME 'date' VALUE 'data1';
+			CREATE LASTCHILD OF OutputRoot.JSON.Data.Item[ind].notes[2] TYPE NameValue NAME 'important' VALUE 'importante1';
+			
+			CREATE LASTCHILD OF OutputRoot.JSON.Data.Item[ind].notes[2].attachments[1] TYPE NameValue NAME 'base64' VALUE 'base1';
+			CREATE LASTCHILD OF OutputRoot.JSON.Data.Item[ind].notes[2].attachments[1] TYPE NameValue NAME 'type' VALUE 'type1';
+			CREATE LASTCHILD OF OutputRoot.JSON.Data.Item[ind].notes[2].attachments[2] TYPE NameValue NAME 'base64' VALUE 'base2';
+			CREATE LASTCHILD OF OutputRoot.JSON.Data.Item[ind].notes[2].attachments[2] TYPE NameValue NAME 'type' VALUE 'type2';
+			CREATE LASTCHILD OF OutputRoot.JSON.Data.Item[ind].notes[2].attachments[3] TYPE NameValue NAME 'base64' VALUE 'base3';
+			CREATE LASTCHILD OF OutputRoot.JSON.Data.Item[ind].notes[2].attachments[3] TYPE NameValue NAME 'type' VALUE 'type3';
+			
+			
+			CREATE LASTCHILD OF OutputRoot.JSON.Data.Item[ind].notes[3] TYPE NameValue NAME 'id' VALUE 'id1';
+			CREATE LASTCHILD OF OutputRoot.JSON.Data.Item[ind].notes[3] TYPE NameValue NAME 'title' VALUE 'titolo1';
+			CREATE LASTCHILD OF OutputRoot.JSON.Data.Item[ind].notes[3] TYPE NameValue NAME 'description' VALUE 'descrizione1';
+			CREATE LASTCHILD OF OutputRoot.JSON.Data.Item[ind].notes[3] TYPE NameValue NAME 'userId' VALUE 'userId1';
+			CREATE LASTCHILD OF OutputRoot.JSON.Data.Item[ind].notes[3] TYPE NameValue NAME 'date' VALUE 'data1';
+			CREATE LASTCHILD OF OutputRoot.JSON.Data.Item[ind].notes[3] TYPE NameValue NAME 'important' VALUE 'importante1';
+			
+			CREATE LASTCHILD OF OutputRoot.JSON.Data.Item[ind].notes[3].attachments[1] TYPE NameValue NAME 'base64' VALUE 'base1';
+			CREATE LASTCHILD OF OutputRoot.JSON.Data.Item[ind].notes[3].attachments[1] TYPE NameValue NAME 'type' VALUE 'type1';
+			CREATE LASTCHILD OF OutputRoot.JSON.Data.Item[ind].notes[3].attachments[2] TYPE NameValue NAME 'base64' VALUE 'base2';
+			CREATE LASTCHILD OF OutputRoot.JSON.Data.Item[ind].notes[3].attachments[2] TYPE NameValue NAME 'type' VALUE 'type2';
+			CREATE LASTCHILD OF OutputRoot.JSON.Data.Item[ind].notes[3].attachments[3] TYPE NameValue NAME 'base64' VALUE 'base3';
+			CREATE LASTCHILD OF OutputRoot.JSON.Data.Item[ind].notes[3].attachments[3] TYPE NameValue NAME 'type' VALUE 'type3';
+			
+			CREATE LASTCHILD OF OutputRoot.JSON.Data.Item[ind] TYPE NameValue NAME 'type' VALUE 'type';
+			
+			
+		SET ind = ind + 1;
+ 		END WHILE;
+
+		SET OutputLocalEnvironment.Destination.HTTP.ReplyStatusCode = 200;
+		--CREATE LASTCHILD OF OutputRoot Domain('JSON');
+		--SET OutputRoot.JSON.Data.ns:senderResponse.error.errorCode = 1;
+		RETURN TRUE;
+	END;
+
+	CREATE PROCEDURE CopyMessageHeaders() BEGIN
+		DECLARE I INTEGER 1;
+		DECLARE J INTEGER;
+		SET J = CARDINALITY(InputRoot.*[]);
+		WHILE I < J DO
+			SET OutputRoot.*[I] = InputRoot.*[I];
+			SET I = I + 1;
+		END WHILE;
+	END;
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		SET OutputRoot = InputRoot;
+	END;

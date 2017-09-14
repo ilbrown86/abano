@@ -1,0 +1,31 @@
+CREATE PROCEDURE CreateParametersModelFromRSP_Z82(/*Modello HL7 Input*/IN hl7InRef REFERENCE, /*Modello XML Output*/INOUT xmlModel REFERENCE) BEGIN
+
+	MOVE hl7InRef FIRSTCHILD;
+	DECLARE ACTION CHARACTER;
+	DECLARE refParameter REFERENCE TO xmlModel;
+	
+	WHILE LASTMOVE(hl7InRef) DO
+		IF FIELDNAME(hl7InRef) = 'MSH' THEN
+			SET ACTION = 'MAP MSH TO XML';
+			CALL CreateModelFromMSH(hl7InRef,xmlModel);
+		ELSE 
+			DECLARE refHl7AnySegment REFERENCE TO hl7InRef;
+			MOVE refHl7AnySegment FIRSTCHILD;
+			IF LASTMOVE(refHl7AnySegment) THEN
+				CASE FIELDNAME(refHl7AnySegment) 
+				WHEN 'OBR' THEN
+					SET ACTION = 'MAP MSH TO XML';
+					CREATE LASTCHILD OF xmlModel AS refParameter NAMESPACE ns NAME 'parameter';
+					CALL CreateModelFromOBR(refHl7AnySegment,refParameter);
+				WHEN 'OBX' THEN
+					SET ACTION = 'MAP MSH TO XML';
+					CALL CreateModelFromOBX(refHl7AnySegment,refParameter);
+				ELSE 
+					SET ACTION = 'NO MAP';
+				END CASE;
+			END IF;
+		END IF;
+		MOVE hl7InRef NEXTSIBLING;
+	END WHILE;
+
+END;

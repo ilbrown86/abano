@@ -1,0 +1,37 @@
+CREATE COMPUTE MODULE ComputeAddIssueToBPM
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		 CALL CopyMessageHeaders();
+		 --DECLARE response REFERENCE TO OutputRoot; 
+		 
+		 --DECLARE risposta REFERENCE TO InputRoot.XMLNSC.ns:senderRequest.writeParametersRequest.parameter;
+		 
+--		 SET Environment.Variables.HL7RestAPI.idSchedulationHospitalization =  risposta.idSchedulationHospitalization;
+--		 SET Environment.Variables.HL7RestAPI.raisedIssueNewValue =  '1';
+--		 SET Environment.Variables.HL7RestAPI.raisedIssueMessageNewValue =  risposta.values.value;
+		 
+--		 SET OutputLocalEnvironment.Data.idSchedulationHospitalization =  risposta.idSchedulationHospitalization;
+--		 SET OutputLocalEnvironment.Data.raisedIssueNewValue =  '1';
+--		 SET OutputLocalEnvironment.Data.raisedIssueMessageNewValue =  risposta.values.value;
+		 
+--		 SET OutputRoot.JSON.Data.idSchedulationHospitalization =  risposta.idSchedulationHospitalization;
+--		 SET OutputRoot.JSON.Data.raisedIssueNewValue =  '1';
+--		 SET OutputRoot.JSON.Data.raisedIssueMessageNewValue =  risposta.values.value;
+		CALL CopyEntireMessage();
+		RETURN TRUE;
+	END;
+
+	CREATE PROCEDURE CopyMessageHeaders() BEGIN
+		DECLARE I INTEGER 1;
+		DECLARE J INTEGER;
+		SET J = CARDINALITY(InputRoot.*[]);
+		WHILE I < J DO
+			SET OutputRoot.*[I] = InputRoot.*[I];
+			SET I = I + 1;
+		END WHILE;
+	END;
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		SET OutputRoot = InputRoot;
+	END;
+END MODULE;

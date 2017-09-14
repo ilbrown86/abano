@@ -1,0 +1,51 @@
+CREATE COMPUTE MODULE noteList_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		CALL CopyMessageHeaders();
+		--CALL CopyEntireMessage();
+
+		DECLARE division CHARACTER;
+		
+		SET division = InputRoot.JSON.Data.division;
+		
+		SET OutputRoot.JSON.Data TYPE = JSON.Array;
+
+ 		DECLARE refData REFERENCE TO OutputRoot.JSON.Data;
+ 		DECLARE refOut REFERENCE TO OutputRoot.JSON.Data;
+
+ 		--ciclo
+ 		DECLARE ind INTEGER 1;
+ 		DECLARE charInd CHARACTER CAST (ind as CHARACTER);
+ 		
+ 		WHILE ind < 10 DO
+ 			SET charInd = CAST (ind as CHARACTER);
+			CREATE LASTCHILD OF OutputRoot.JSON.Data.Item[ind] TYPE NameValue NAME 'id' VALUE 'uniqueID' || charInd ;
+			CREATE LASTCHILD OF OutputRoot.JSON.Data.Item[ind] TYPE NameValue NAME 'title' VALUE 'titolo' || charInd ;
+			CREATE LASTCHILD OF OutputRoot.JSON.Data.Item[ind] TYPE NameValue NAME 'description' VALUE 'descrizione' || charInd ;
+			CREATE LASTCHILD OF OutputRoot.JSON.Data.Item[ind] TYPE NameValue NAME 'userId' VALUE 'user' || charInd ;
+			CREATE LASTCHILD OF OutputRoot.JSON.Data.Item[ind] TYPE NameValue NAME 'date' VALUE CAST(CURRENT_DATE AS CHARACTER FORMAT 'yyyy-MM-dd') ;
+			CREATE LASTCHILD OF OutputRoot.JSON.Data.Item[ind] TYPE NameValue NAME 'important' VALUE 'false';
+					
+		SET ind = ind + 1;
+ 		END WHILE;
+
+		SET OutputLocalEnvironment.Destination.HTTP.ReplyStatusCode = 200;
+		--CREATE LASTCHILD OF OutputRoot Domain('JSON');
+		--SET OutputRoot.JSON.Data.ns:senderResponse.error.errorCode = 1;
+		RETURN TRUE;
+	END;
+
+	CREATE PROCEDURE CopyMessageHeaders() BEGIN
+		DECLARE I INTEGER 1;
+		DECLARE J INTEGER;
+		SET J = CARDINALITY(InputRoot.*[]);
+		WHILE I < J DO
+			SET OutputRoot.*[I] = InputRoot.*[I];
+			SET I = I + 1;
+		END WHILE;
+	END;
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		SET OutputRoot = InputRoot;
+	END;
+END MODULE;

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?><MessageBroker name="HL7CommonLibrary">
+  <XSDCollection href="platform:/resource/HL7CommonLibrary/HL7Model.xsd" prefix="hl7" targetNamespace="http://w3.ibm.com/it/hl7">
+    <element href="platform:/resource/HL7CommonLibrary/HL7Model.xsd#//senderRequest;XSDElementDeclaration" name="senderRequest"/>
+    <element href="platform:/resource/HL7CommonLibrary/HL7Model.xsd#//senderResponse;XSDElementDeclaration=1" name="senderResponse"/>
+    <element href="platform:/resource/HL7CommonLibrary/HL7Model.xsd#//receiverRequest;XSDElementDeclaration=2" name="receiverRequest"/>
+    <complexType baseType="mlib://HL7CommonLibrary#/-/complexType{http://www.w3.org/2001/XMLSchema}anyType" href="platform:/resource/HL7CommonLibrary/HL7Model.xsd#//PatientUniqueKey;XSDComplexTypeDefinition" name="PatientUniqueKey"/>
+    <complexType baseType="mlib://HL7CommonLibrary#/-/complexType{http://www.w3.org/2001/XMLSchema}anyType" href="platform:/resource/HL7CommonLibrary/HL7Model.xsd#//Patient;XSDComplexTypeDefinition=1" name="Patient"/>
+    <complexType baseType="mlib://HL7CommonLibrary#/-/complexType{http://www.w3.org/2001/XMLSchema}anyType" href="platform:/resource/HL7CommonLibrary/HL7Model.xsd#//Note;XSDComplexTypeDefinition=2" name="Note"/>
+    <complexType baseType="mlib://HL7CommonLibrary#/-/complexType{http://www.w3.org/2001/XMLSchema}anyType" href="platform:/resource/HL7CommonLibrary/HL7Model.xsd#//Attachments;XSDComplexTypeDefinition=3" name="Attachments"/>
+    <complexType baseType="mlib://HL7CommonLibrary#/-/complexType{http://www.w3.org/2001/XMLSchema}anyType" href="platform:/resource/HL7CommonLibrary/HL7Model.xsd#//Parameter;XSDComplexTypeDefinition=4" name="Parameter"/>
+    <complexType baseType="mlib://HL7CommonLibrary#/-/complexType{http://www.w3.org/2001/XMLSchema}anyType" href="platform:/resource/HL7CommonLibrary/HL7Model.xsd#//Value;XSDComplexTypeDefinition=5" name="Value"/>
+    <complexType baseType="mlib://HL7CommonLibrary#/-/complexType{http://www.w3.org/2001/XMLSchema}anyType" href="platform:/resource/HL7CommonLibrary/HL7Model.xsd#//Issue;XSDComplexTypeDefinition=6" name="Issue"/>
+    <complexType baseType="mlib://HL7CommonLibrary#/-/complexType{http://www.w3.org/2001/XMLSchema}anyType" href="platform:/resource/HL7CommonLibrary/HL7Model.xsd#//Error;XSDComplexTypeDefinition=7" name="Error"/>
+    <complexType baseType="mlib://HL7CommonLibrary#/-/complexType{http://www.w3.org/2001/XMLSchema}anyType" href="platform:/resource/HL7CommonLibrary/HL7Model.xsd#//patientDetailsRequestType;XSDComplexTypeDefinition=8" name="patientDetailsRequestType"/>
+    <complexType baseType="mlib://HL7CommonLibrary#/-/complexType{http://www.w3.org/2001/XMLSchema}anyType" href="platform:/resource/HL7CommonLibrary/HL7Model.xsd#//PatientDetailsParameters;XSDComplexTypeDefinition=9" name="PatientDetailsParameters"/>
+    <complexType baseType="mlib://HL7CommonLibrary#/-/complexType{http://www.w3.org/2001/XMLSchema}anyType" href="platform:/resource/HL7CommonLibrary/HL7Model.xsd#//admissionData;XSDComplexTypeDefinition=10" name="admissionData"/>
+    <complexType baseType="mlib://HL7CommonLibrary#/-/complexType{http://www.w3.org/2001/XMLSchema}anyType" href="platform:/resource/HL7CommonLibrary/HL7Model.xsd#//patientBedListResponseType;XSDComplexTypeDefinition=11" name="patientBedListResponseType"/>
+    <complexType baseType="mlib://HL7CommonLibrary#/-/complexType{http://www.w3.org/2001/XMLSchema}anyType" href="platform:/resource/HL7CommonLibrary/HL7Model.xsd#//logisticType;XSDComplexTypeDefinition=12" name="logisticType"/>
+  </XSDCollection>
+</MessageBroker>

@@ -1,0 +1,53 @@
+CREATE COMPUTE MODULE getPatientDetailsFromList_LoopoverKeys
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+		BEGIN
+		CALL CopyMessageHeaders();
+
+		--get PatientKey
+		DECLARE patientId CHARACTER InputRoot.XMLNSC.patientId;
+		DECLARE nosologicId CHARACTER InputRoot.XMLNSC.nosologicId;
+		--CREA CHIAMATA A MEDARCHIVER 
+		DECLARE outputMessage REFERENCE TO OutputRoot; 
+		DECLARE outPatientKey REFERENCE TO OutputRoot;
+		DECLARE outParameters REFERENCE TO OutputRoot;
+		CREATE LASTCHILD OF OutputRoot AS outputMessage DOMAIN('XMLNSC') NAME 'XMLNSC';
+		CREATE FIRSTCHILD OF outputMessage as outputMessage NAMESPACE ns NAME 'senderRequest';
+		--aggiiunto patientId alla chiave per evitare Id duplicati
+		DECLARE msgId CHARACTER InputLocalEnvironment.Destination.HTTP.RequestIdentifier;
+		SET msgId = REPLACE(msgId,'''','') || InputRoot.XMLNSC.patientId;
+		SET msgId = 'Y' || msgId;
+
+		SET outputMessage.messageId = msgId;
+		SET outputMessage.action = InputLocalEnvironment.REST.Input.Operation;
+		CREATE LASTCHILD OF outputMessage AS outputMessage NAME 'patientDetailsRequest';
+		CREATE LASTCHILD OF outputMessage AS outPatientKey NAME 'patientKey';
+		SET outPatientKey.patientId = patientId;
+		SET outPatientKey.nosologicId = nosologicId;
+		--lista parametri
+		CREATE FIRSTCHILD OF outputMessage AS outParameters NAME 'paramsId';
+		SET outParameters = 'PAZ';
+		IF nosologicId IS NULL THEN 
+			PROPAGATE TO TERMINAL 'out1';
+		ELSE 
+			PROPAGATE TO TERMINAL 'out';
+		END IF;
+		--RETURN TRUE;
+		RETURN FALSE;
+		
+
+	END;
+
+	CREATE PROCEDURE CopyMessageHeaders() BEGIN
+		DECLARE I INTEGER 1;
+		DECLARE J INTEGER;
+		SET J = CARDINALITY(InputRoot.*[]);
+		WHILE I < J DO
+			SET OutputRoot.*[I] = InputRoot.*[I];
+			SET I = I + 1;
+		END WHILE;
+	END;
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		SET OutputRoot = InputRoot;
+	END;
+END MODULE;

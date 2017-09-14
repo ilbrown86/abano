@@ -1,0 +1,37 @@
+CREATE COMPUTE MODULE patientDetailsCompleteKey_Compute
+CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		CALL CopyMessageHeaders();
+		--CALL CopyEntireMessage();
+
+		DECLARE patientId CHARACTER;
+		DECLARE nosologicId CHARACTER;
+		
+		SET patientId = InputLocalEnvironment.REST.Input.Parameters.patientId;
+		SET nosologicId = InputLocalEnvironment.REST.Input.Parameters.nosologicId;
+
+		CREATE LASTCHILD OF OutputRoot DOMAIN('XMLNSC') NAME 'XMLNSC';
+		SET OutputRoot.XMLNSC.ns:senderRequest.action = InputLocalEnvironment.REST.Input.Operation;
+		SET OutputRoot.XMLNSC.ns:senderRequest.patientNosologicDetails.patientId = patientId;
+		SET OutputRoot.XMLNSC.ns:senderRequest.patientNosologicDetails.nosologicId = nosologicId;
+		   
+	--SET OutputLocalEnvironment.Destination.HTTP.ReplyStatusCode = 200;
+		--CREATE LASTCHILD OF OutputRoot Domain('JSON');
+		--SET OutputRoot.JSON.Data.ns:senderResponse.error.errorCode = 1;
+		RETURN TRUE;
+	END;
+
+	CREATE PROCEDURE CopyMessageHeaders() BEGIN
+		DECLARE I INTEGER 1;
+		DECLARE J INTEGER;
+		SET J = CARDINALITY(InputRoot.*[]);
+		WHILE I < J DO
+			SET OutputRoot.*[I] = InputRoot.*[I];
+			SET I = I + 1;
+		END WHILE;
+	END;
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		SET OutputRoot = InputRoot;
+	END;
+END MODULE;

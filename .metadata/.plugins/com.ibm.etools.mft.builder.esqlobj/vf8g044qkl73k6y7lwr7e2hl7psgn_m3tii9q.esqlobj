@@ -1,0 +1,31 @@
+CREATE PROCEDURE CreateModelFromADT_A13(/*Modello HL7 Input*/IN hl7InRef REFERENCE, /*Modello XML Output*/INOUT xmlModel REFERENCE) BEGIN
+
+	MOVE hl7InRef FIRSTCHILD;
+	DECLARE ACTION CHARACTER;
+	WHILE LASTMOVE(hl7InRef) DO
+		IF FIELDNAME(hl7InRef) = 'MSH' THEN
+			SET ACTION = 'MAP MSH TO XML';
+			CALL CreateModelFromMSH(hl7InRef,xmlModel);
+		ELSE 
+			DECLARE refHl7AnySegment REFERENCE TO hl7InRef;
+			MOVE refHl7AnySegment FIRSTCHILD;
+			IF LASTMOVE(refHl7AnySegment) THEN
+				CASE FIELDNAME(refHl7AnySegment) 
+				WHEN 'PID' THEN
+					SET ACTION = 'MAP MSH TO XML';
+					CALL CreateModelFromPID(refHl7AnySegment,xmlModel);
+				WHEN 'PV1' THEN
+					SET ACTION = 'MAP MSH TO XML';
+					CALL CreateModelFromPV1(refHl7AnySegment,xmlModel);
+				WHEN 'DG1' THEN
+					SET ACTION = 'MAP MSH TO XML';
+					CALL CreateModelFromDG1(refHl7AnySegment,xmlModel);
+				ELSE 
+					SET ACTION = 'NO MAP';
+				END CASE;
+			END IF;
+		END IF;
+		MOVE hl7InRef NEXTSIBLING;
+	END WHILE;
+
+END;

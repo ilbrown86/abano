@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="com.ibm.team.filesystem.ide.ui.LoadOperationInput">
+		<item value="1" key="com.ibm.team.filesystem.ide.ui.LoadTypePreference"/>
+		<item value="" key="com.ibm.team.filesystem.ide.ui.SandboxPath"/>
+	</section>
+</section>

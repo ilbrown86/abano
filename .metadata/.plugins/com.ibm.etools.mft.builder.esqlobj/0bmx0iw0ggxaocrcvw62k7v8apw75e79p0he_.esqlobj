@@ -1,0 +1,12 @@
+CREATE PROCEDURE CreateDG1(IN inModel REFERENCE, INOUT refHL7 REFERENCE) BEGIN
+	DECLARE refSegment REFERENCE TO refHL7;
+	CREATE LASTCHILD OF refSegment AS refSegment NAMESPACE ns6 NAME 'anyHL7Segment';
+	CREATE LASTCHILD OF refSegment AS refSegment NAMESPACE ns6 NAME 'DG1';
+
+	--SET refSegment.ns6:"DG1.1.SetIDDG1" = '';
+	--SET refSegment.ns6:"DG1.2.DiagnosisCodingMethod" = '';
+	SET refSegment.ns6:"DG1.3.DiagnosisCodeDG1".ns6:"CE.1" = 'CLIN1';
+	SET refSegment.ns6:"DG1.3.DiagnosisCodeDG1".ns6:"CE.2" = 'DESC CLINICAL PATH';
+	
+
+END;

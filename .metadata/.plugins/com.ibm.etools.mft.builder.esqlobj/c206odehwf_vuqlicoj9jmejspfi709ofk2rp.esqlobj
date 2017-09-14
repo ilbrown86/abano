@@ -1,0 +1,9 @@
+/*EATE FUNCTION Main() RETURNS BOOLE*/
+    BEGIN
+        DECLARE env REFERENCE TO Environment.PatternVariables;
+        IF (env.FlowMilestoneReached IS NOT NULL) AND (env.FlowMilestoneReached <> ' ') THEN
+            RETURN TRUE;
+        ELSE
+            RETURN FALSE;
+        END IF;
+    END;

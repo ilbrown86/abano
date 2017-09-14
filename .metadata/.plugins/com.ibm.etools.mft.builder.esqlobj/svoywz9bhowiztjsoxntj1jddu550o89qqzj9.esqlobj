@@ -1,0 +1,66 @@
+CREATE COMPUTE MODULE HL7Receiver_HL7_To_XML
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		CALL CopyMessageHeaders();
+		-- CALL CopyEntireMessage();
+		DECLARE action REFERENCE to OutputLocalEnvironment;
+		CREATE FIRSTCHILD OF OutputLocalEnvironment.Destination.RouterList.DestinationData[1] AS action NAME 'labelName';
+		-- create Output XML Model
+		DECLARE outputMessage REFERENCE TO OutputRoot;
+		
+		CREATE LASTCHILD OF outputMessage AS outputMessage DOMAIN('XMLNSC') NAME 'XMLNSC';
+		DECLARE response REFERENCE TO InputRoot.DFDL;
+		-- SPOSTO SU MESSAGGIO HL7
+		MOVE response FIRSTCHILD;
+		-- refMSH punta su testata mSH
+		DECLARE refMSH REFERENCE TO response;
+		MOVE refMSH FIRSTCHILD;
+
+		CREATE LASTCHILD OF outputMessage AS outputMessage NAMESPACE ns NAME 'receiverRequest';
+		
+		CASE
+		WHEN refMSH.ns6:"MSH.9.MessageType".ns6:"MSG.1" = 'ADT' AND refMSH.ns6:"MSH.9.MessageType".ns6:"MSG.2" = 'A01' THEN
+			SET action = 'admission';
+			CREATE LASTCHILD OF outputMessage AS outputMessage NAMESPACE ns NAME 'admission';
+			CALL CreateModelFromADT_A01(response, outputMessage);
+		WHEN refMSH.ns6:"MSH.9.MessageType".ns6:"MSG.1" = 'ADT' AND refMSH.ns6:"MSH.9.MessageType".ns6:"MSG.2" = 'A02' THEN
+			SET action = 'transfer';
+			CREATE LASTCHILD OF outputMessage AS outputMessage NAMESPACE ns NAME 'transfer';
+			CALL CreateModelFromADT_A02(response, outputMessage);
+		WHEN refMSH.ns6:"MSH.9.MessageType".ns6:"MSG.1" = 'ADT' AND refMSH.ns6:"MSH.9.MessageType".ns6:"MSG.2" = 'A03' THEN
+			SET action = 'discharge';
+			CREATE LASTCHILD OF outputMessage AS outputMessage NAMESPACE ns NAME 'discharge';
+			CALL CreateModelFromADT_A03(response, outputMessage);
+		WHEN refMSH.ns6:"MSH.9.MessageType".ns6:"MSG.1" = 'ADT' AND refMSH.ns6:"MSH.9.MessageType".ns6:"MSG.2" = 'A08' THEN
+			SET action = 'update';
+			CREATE LASTCHILD OF outputMessage AS outputMessage NAMESPACE ns NAME 'update';
+			CALL CreateModelFromADT_A08(response, outputMessage);
+		WHEN refMSH.ns6:"MSH.9.MessageType".ns6:"MSG.1" = 'ADT' AND refMSH.ns6:"MSH.9.MessageType".ns6:"MSG.2" = 'A08ALL' THEN
+			SET action = 'update';
+			CREATE LASTCHILD OF outputMessage AS outputMessage NAMESPACE ns NAME 'update';
+			CALL CreateModelFromADT_A08(response, outputMessage);
+		WHEN refMSH.ns6:"MSH.9.MessageType".ns6:"MSG.1" = 'ADT' AND refMSH.ns6:"MSH.9.MessageType".ns6:"MSG.2" = 'A08' THEN
+			SET action = 'cancelDischarge';
+			CREATE LASTCHILD OF outputMessage AS outputMessage NAMESPACE ns NAME 'cancelDischarge';
+			CALL CreateModelFromADT_A13(response, outputMessage);
+		ELSE 
+			CALL CreateErrorModel(response, outputMessage);
+		END CASE;
+
+		RETURN TRUE;
+	END;
+
+	CREATE PROCEDURE CopyMessageHeaders() BEGIN
+		DECLARE I INTEGER 1;
+		DECLARE J INTEGER;
+		SET J = CARDINALITY(InputRoot.*[]);
+		WHILE I < J DO
+			SET OutputRoot.*[I] = InputRoot.*[I];
+			SET I = I + 1;
+		END WHILE;
+	END;
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		SET OutputRoot = InputRoot;
+	END;
+END MODULE;

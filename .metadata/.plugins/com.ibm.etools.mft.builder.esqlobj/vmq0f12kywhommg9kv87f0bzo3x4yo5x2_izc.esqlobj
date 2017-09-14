@@ -1,0 +1,2 @@
+CREATE COMPUTE MODULE measurementHistoryMultiline_MapToJSONModel
+CREATE FUNCTION Main() RETURNS BOOLEAN

@@ -1,0 +1,1092 @@
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1497859937250
+2871<<Administration Result<<2017-06-19 10:12:24.462 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7CoreApplication>>IIB10ABANO>>hl7Server>>0>>1497860270921
+2871<<Administration Result<<2017-06-19 10:19:32.686 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7CoreApplicationproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+IAMServices>>TESTNODE>>hl7Server>>2>>1497860470994
+1243<<TESTNODE<<2017-06-19 10:21:11.198 CEST<<IAMServices<<TESTNODE<<hl7Server
+HL7Core.bar>>TESTNODE>>hl7Server>>2>>1497860496000
+2087<<Runtime Response<<2017-06-19 10:22:38.482 CEST<<TESTNODE<<92adbf50-e15e-11e6-9ba2-7f0001010000
+4041<<Runtime Response<<2017-06-19 10:22:38.482 CEST<<hl7Server<<7dcf8f65-39ac-4636-a2cb-dd301f74e4c9
+3594<<Runtime Response<<2017-06-19 10:22:38.482 CEST<<8888<<Address already in use
+2871<<Administration Result<<2017-06-19 10:22:38.483 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/HL7Core.bar<<BAR<<hl7Server<<ExecutionGroup<<FAILED
+HL7Core.bar>>TESTNODE>>hl7Server>>0>>1497860837263
+2871<<Administration Result<<2017-06-19 10:28:00.413 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/HL7Core.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI.bar>>TESTNODE>>hl7Server>>0>>1497860919311
+2871<<Administration Result<<2017-06-19 10:28:47.125 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/HL7RestAPI.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI.bar>>TESTNODE>>hl7Server>>0>>1497860959196
+2871<<Administration Result<<2017-06-19 10:29:26.167 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/HL7RestAPI.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI.bar>>TESTNODE>>hl7Server>>0>>1497861084911
+2871<<Administration Result<<2017-06-19 10:31:42.062 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/HL7RestAPI.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+IAMServices.bar>>TESTNODE>>hl7Server>>0>>1497861117736
+2871<<Administration Result<<2017-06-19 10:32:00.461 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/RESTClient/IAMServices.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI.bar>>TESTNODE>>hl7Server>>0>>1497861125131
+2871<<Administration Result<<2017-06-19 10:32:22.977 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/HL7RestAPI.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI.bar>>TESTNODE>>hl7Server>>0>>1497861583306
+2871<<Administration Result<<2017-06-19 10:39:50.552 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/HL7RestAPI.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7Core.bar>>TESTNODE>>hl7Server>>0>>1497861638562
+2871<<Administration Result<<2017-06-19 10:41:16.156 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/HL7Core.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1497863103921
+2871<<Administration Result<<2017-06-19 11:05:10.495 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1497866070734
+2871<<Administration Result<<2017-06-19 11:54:46.112 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1497866182562
+2871<<Administration Result<<2017-06-19 11:56:43.777 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1497866296006
+2871<<Administration Result<<2017-06-19 11:58:27.934 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1497866553953
+2871<<Administration Result<<2017-06-19 12:02:39.678 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1497867187782
+2871<<Administration Result<<2017-06-19 12:13:11.776 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1497867347633
+2871<<Administration Result<<2017-06-19 12:15:52.001 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1497867680354
+2871<<Administration Result<<2017-06-19 12:21:26.305 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1497867740866
+2871<<Administration Result<<2017-06-19 12:22:36.362 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1497867795897
+2871<<Administration Result<<2017-06-19 12:23:29.507 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1497868137439
+2871<<Administration Result<<2017-06-19 12:29:01.102 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>2>>1497868385242
+2087<<Runtime Response<<2017-06-19 12:33:09.704 CEST<<IIB10ABANO<<d240d108-8d0d-4966-b51b-9bd91dd8e0f4
+4041<<Runtime Response<<2017-06-19 12:33:09.704 CEST<<hl7Server<<acf079d1-e207-4df4-b582-0f55ea94bf8e
+2560<<Runtime Response<<2017-06-19 12:33:09.704 CEST<<HL7RestAPI.measurementHistoryMultiline_MapToJSONModel.Main<<89.33
+2871<<Administration Result<<2017-06-19 12:33:09.704 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<FAILED
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1497868435531
+2871<<Administration Result<<2017-06-19 12:34:01.574 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1497869052201
+2871<<Administration Result<<2017-06-19 12:44:24.527 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1497869095541
+2871<<Administration Result<<2017-06-19 12:45:03.608 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1497869341931
+2871<<Administration Result<<2017-06-19 12:49:07.996 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1497869400693
+2871<<Administration Result<<2017-06-19 12:50:06.292 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1497869411327
+2871<<Administration Result<<2017-06-19 12:50:20.013 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>DEVNODE>>intServer1>>0>>1497869455784
+2871<<Administration Result<<2017-06-19 12:51:02.905 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<intServer1<<ExecutionGroup<<COMPLETE
+HL7RestAPI.bar>>TESTNODE>>hl7Server>>0>>1497869490104
+2871<<Administration Result<<2017-06-19 12:51:38.279 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/HL7RestAPI.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1497869573042
+2871<<Administration Result<<2017-06-19 12:53:09.600 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1497869890125
+2871<<Administration Result<<2017-06-19 12:58:21.292 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1497869966208
+2871<<Administration Result<<2017-06-19 12:59:32.962 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1497870002022
+2871<<Administration Result<<2017-06-19 13:00:08.351 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>2>>1497870041455
+2087<<Runtime Response<<2017-06-19 13:00:50.372 CEST<<IIB10ABANO<<d240d108-8d0d-4966-b51b-9bd91dd8e0f4
+4041<<Runtime Response<<2017-06-19 13:00:50.372 CEST<<hl7Server<<acf079d1-e207-4df4-b582-0f55ea94bf8e
+2560<<Runtime Response<<2017-06-19 13:00:50.372 CEST<<HL7RestAPI.measurementHistoryMultiline_MapToJSONModel.Main<<122.32
+2871<<Administration Result<<2017-06-19 13:00:50.373 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<FAILED
+HL7RestAPI>>IIB10ABANO>>hl7Server>>2>>1497870072817
+2087<<Runtime Response<<2017-06-19 13:01:17.041 CEST<<IIB10ABANO<<d240d108-8d0d-4966-b51b-9bd91dd8e0f4
+4041<<Runtime Response<<2017-06-19 13:01:17.041 CEST<<hl7Server<<acf079d1-e207-4df4-b582-0f55ea94bf8e
+2560<<Runtime Response<<2017-06-19 13:01:17.042 CEST<<HL7RestAPI.measurementHistoryMultiline_MapToJSONModel.Main<<122.32
+2871<<Administration Result<<2017-06-19 13:01:17.042 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<FAILED
+HL7RestAPI>>IIB10ABANO>>hl7Server>>2>>1497870215799
+2087<<Runtime Response<<2017-06-19 13:03:38.273 CEST<<IIB10ABANO<<d240d108-8d0d-4966-b51b-9bd91dd8e0f4
+4041<<Runtime Response<<2017-06-19 13:03:38.273 CEST<<hl7Server<<acf079d1-e207-4df4-b582-0f55ea94bf8e
+2560<<Runtime Response<<2017-06-19 13:03:38.273 CEST<<HL7RestAPI.measurementHistoryMultiline_MapToJSONModel.Main<<122.32
+2871<<Administration Result<<2017-06-19 13:03:38.273 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<FAILED
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1497870228081
+2871<<Administration Result<<2017-06-19 13:03:55.573 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1497870292655
+2871<<Administration Result<<2017-06-19 13:05:05.831 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1497870506619
+2871<<Administration Result<<2017-06-19 13:08:31.780 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>DEVNODE>>intServer1>>0>>1497870587568
+2871<<Administration Result<<2017-06-19 13:09:52.651 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<intServer1<<ExecutionGroup<<COMPLETE
+HL7RestAPI.bar>>TESTNODE>>hl7Server>>0>>1497870709975
+2871<<Administration Result<<2017-06-19 13:11:57.470 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/HL7RestAPI.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1497870872749
+2871<<Administration Result<<2017-06-19 13:14:37.519 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1497870949808
+2871<<Administration Result<<2017-06-19 13:15:55.300 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1497871019700
+2871<<Administration Result<<2017-06-19 13:17:06.820 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1497871367102
+2871<<Administration Result<<2017-06-19 13:22:56.627 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1497871505429
+2871<<Administration Result<<2017-06-19 13:25:17.944 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1497871641717
+2871<<Administration Result<<2017-06-19 13:27:30.441 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1497874674870
+2871<<Administration Result<<2017-06-19 14:17:57.527 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>2>>1497875020269
+2087<<Runtime Response<<2017-06-19 14:23:51.653 CEST<<IIB10ABANO<<d240d108-8d0d-4966-b51b-9bd91dd8e0f4
+2039<<Runtime Response<<2017-06-19 14:23:51.653 CEST<<IIB10ABANO<<d240d108-8d0d-4966-b51b-9bd91dd8e0f4<<hl7Server<<600000
+2871<<Administration Result<<2017-06-19 14:23:51.653 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<FAILED
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1497875056540
+2871<<Administration Result<<2017-06-19 14:24:21.596 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1497877143415
+2871<<Administration Result<<2017-06-19 14:59:07.512 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1497881176312
+2871<<Administration Result<<2017-06-19 16:06:24.320 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1497881645424
+2871<<Administration Result<<2017-06-19 16:14:10.605 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1497882500937
+2871<<Administration Result<<2017-06-19 16:28:28.250 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1497882674590
+2871<<Administration Result<<2017-06-19 16:31:21.489 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1497882743567
+2871<<Administration Result<<2017-06-19 16:32:28.625 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1497883795787
+2871<<Administration Result<<2017-06-19 16:50:00.534 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1497887050257
+2871<<Administration Result<<2017-06-19 17:44:16.308 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1497887086611
+2871<<Administration Result<<2017-06-19 17:44:52.444 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1497887226457
+2871<<Administration Result<<2017-06-19 17:47:11.382 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1497904373450
+2871<<Administration Result<<2017-06-19 22:33:01.740 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1497938021745
+2871<<Administration Result<<2017-06-20 07:53:48.341 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI.bar>>IIB10ABANO_PROD>>HL7Server>>0>>1497938159055
+2871<<Administration Result<<2017-06-20 07:56:03.509 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/HL7RestAPI.bar<<BAR<<HL7Server<<ExecutionGroup<<COMPLETE
+HL7Core.bar>>IIB10ABANO_PROD>>HL7Server>>0>>1497938169805
+2871<<Administration Result<<2017-06-20 07:57:17.840 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/HL7Core.bar<<BAR<<HL7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI.bar>>IIB10ABANO_PROD>>HL7Server>>0>>1497938269063
+2871<<Administration Result<<2017-06-20 07:58:00.984 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/HL7RestAPI.bar<<BAR<<HL7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1497948192070
+2871<<Administration Result<<2017-06-20 10:43:20.365 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1497948257081
+2871<<Administration Result<<2017-06-20 10:44:23.577 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1497948375521
+2871<<Administration Result<<2017-06-20 10:46:17.923 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1497948399909
+2871<<Administration Result<<2017-06-20 10:46:44.365 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>DEVNODE>>intServer1>>0>>1497948817634
+2871<<Administration Result<<2017-06-20 10:53:40.840 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<intServer1<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1497948842805
+2871<<Administration Result<<2017-06-20 10:54:08.943 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>DEVNODE>>intServer1>>0>>1497948852854
+2871<<Administration Result<<2017-06-20 10:54:16.424 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<intServer1<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>DEVNODE>>intServer1>>0>>1497948932120
+2871<<Administration Result<<2017-06-20 10:55:35.499 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<intServer1<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1497949015727
+2871<<Administration Result<<2017-06-20 10:56:59.674 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>DEVNODE>>intServer1>>0>>1497949262987
+2871<<Administration Result<<2017-06-20 11:01:08.191 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<intServer1<<ExecutionGroup<<COMPLETE
+HL7RestAPI.bar>>TESTNODE>>hl7Server>>0>>1497949446700
+2871<<Administration Result<<2017-06-20 11:04:14.864 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/HL7RestAPI.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI.bar>>IIB10ABANO_PROD>>HL7Server>>0>>1497949487547
+2871<<Administration Result<<2017-06-20 11:04:55.389 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/HL7RestAPI.bar<<BAR<<HL7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI.bar>>TESTNODE>>hl7Server>>0>>1497949729018
+2871<<Administration Result<<2017-06-20 11:08:52.406 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/HL7RestAPI.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI.bar>>IIB10ABANO_PROD>>HL7Server>>0>>1497949739127
+2871<<Administration Result<<2017-06-20 11:09:02.188 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/HL7RestAPI.bar<<BAR<<HL7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1497952803873
+2871<<Administration Result<<2017-06-20 12:00:07.801 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1497968382993
+2871<<Administration Result<<2017-06-20 16:19:47.310 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1497968885031
+2871<<Administration Result<<2017-06-20 16:28:07.286 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1497969745996
+2871<<Administration Result<<2017-06-20 16:42:31.212 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1497972516393
+2871<<Administration Result<<2017-06-20 17:28:38.331 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1497972657951
+2871<<Administration Result<<2017-06-20 17:31:02.077 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>DEVNODE>>intServer1>>0>>1497972737125
+2871<<Administration Result<<2017-06-20 17:32:19.997 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<intServer1<<ExecutionGroup<<COMPLETE
+HL7RestAPI.bar>>TESTNODE>>hl7Server>>0>>1497972765843
+2871<<Administration Result<<2017-06-20 17:32:50.449 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/HL7RestAPI.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI.bar>>IIB10ABANO_PROD>>HL7Server>>0>>1497972784408
+2871<<Administration Result<<2017-06-20 17:33:10.805 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/HL7RestAPI.bar<<BAR<<HL7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498035170372
+2871<<Administration Result<<2017-06-21 10:52:54.377 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498035510528
+2871<<Administration Result<<2017-06-21 10:58:35.859 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498035566859
+2871<<Administration Result<<2017-06-21 10:59:33.112 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498035639108
+2871<<Administration Result<<2017-06-21 11:00:45.410 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498035714189
+2871<<Administration Result<<2017-06-21 11:01:59.486 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498035894663
+2871<<Administration Result<<2017-06-21 11:04:59.782 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498036063067
+2871<<Administration Result<<2017-06-21 11:07:46.490 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498036123765
+2871<<Administration Result<<2017-06-21 11:08:51.125 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498036276434
+2871<<Administration Result<<2017-06-21 11:11:18.990 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498036325674
+2871<<Administration Result<<2017-06-21 11:12:08.690 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498036413128
+2871<<Administration Result<<2017-06-21 11:13:38.039 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498036465629
+2871<<Administration Result<<2017-06-21 11:14:27.546 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498036491566
+2871<<Administration Result<<2017-06-21 11:14:56.494 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498036533601
+2871<<Administration Result<<2017-06-21 11:15:39.933 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498036565272
+2871<<Administration Result<<2017-06-21 11:16:12.338 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498039063247
+2871<<Administration Result<<2017-06-21 11:57:50.905 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498039608553
+2871<<Administration Result<<2017-06-21 12:06:58.040 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498040655422
+2871<<Administration Result<<2017-06-21 12:24:21.551 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>DEVNODE>>intServer1>>0>>1498041179483
+2871<<Administration Result<<2017-06-21 12:33:04.378 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<intServer1<<ExecutionGroup<<COMPLETE
+HL7RestAPI.bar>>TESTNODE>>hl7Server>>0>>1498041269059
+2871<<Administration Result<<2017-06-21 12:34:33.846 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/HL7RestAPI.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498044154724
+2871<<Administration Result<<2017-06-21 13:22:38.485 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498044533542
+2871<<Administration Result<<2017-06-21 13:29:03.570 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498044867652
+2871<<Administration Result<<2017-06-21 13:34:31.768 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498044930930
+2871<<Administration Result<<2017-06-21 13:35:40.043 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498045103860
+2871<<Administration Result<<2017-06-21 13:38:31.444 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498045325018
+2871<<Administration Result<<2017-06-21 13:42:11.993 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI.bar>>TESTNODE>>hl7Server>>0>>1498045469054
+2871<<Administration Result<<2017-06-21 13:44:34.390 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/HL7RestAPI.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>DEVNODE>>intServer1>>0>>1498045747837
+2871<<Administration Result<<2017-06-21 13:49:09.018 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<intServer1<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498048533326
+2871<<Administration Result<<2017-06-21 14:35:35.367 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498048585728
+2871<<Administration Result<<2017-06-21 14:36:32.182 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498048613699
+2871<<Administration Result<<2017-06-21 14:37:02.545 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>2>>1498048814678
+2087<<Runtime Response<<2017-06-21 14:40:50.824 CEST<<IIB10ABANO<<d240d108-8d0d-4966-b51b-9bd91dd8e0f4
+2039<<Runtime Response<<2017-06-21 14:40:50.824 CEST<<IIB10ABANO<<d240d108-8d0d-4966-b51b-9bd91dd8e0f4<<hl7Server<<600000
+2871<<Administration Result<<2017-06-21 14:40:50.825 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<FAILED
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498048890400
+2871<<Administration Result<<2017-06-21 14:41:56.646 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498049287140
+2871<<Administration Result<<2017-06-21 14:48:13.182 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498049490360
+2871<<Administration Result<<2017-06-21 14:51:40.394 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498049569029
+2871<<Administration Result<<2017-06-21 14:52:54.770 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498049601915
+2871<<Administration Result<<2017-06-21 14:53:27.179 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498050038398
+2871<<Administration Result<<2017-06-21 15:00:43.611 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498051771666
+2871<<Administration Result<<2017-06-21 15:29:32.647 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498052107021
+2871<<Administration Result<<2017-06-21 15:35:11.725 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498052203282
+2871<<Administration Result<<2017-06-21 15:36:49.113 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498052432003
+2871<<Administration Result<<2017-06-21 15:40:37.365 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498052631968
+2871<<Administration Result<<2017-06-21 15:43:56.876 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498052692800
+2871<<Administration Result<<2017-06-21 15:45:00.137 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498053157451
+2871<<Administration Result<<2017-06-21 15:52:45.133 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498053311602
+2871<<Administration Result<<2017-06-21 15:55:16.065 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498053338279
+2871<<Administration Result<<2017-06-21 15:55:41.643 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498053390248
+2871<<Administration Result<<2017-06-21 15:56:40.257 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498054002676
+2871<<Administration Result<<2017-06-21 16:06:48.054 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498054068087
+2871<<Administration Result<<2017-06-21 16:07:55.453 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498054128977
+2871<<Administration Result<<2017-06-21 16:08:57.973 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498054389310
+2871<<Administration Result<<2017-06-21 16:13:13.318 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498054614856
+2871<<Administration Result<<2017-06-21 16:16:59.673 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498055464365
+2871<<Administration Result<<2017-06-21 16:31:06.894 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498056093045
+2871<<Administration Result<<2017-06-21 16:41:34.995 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498056576897
+2871<<Administration Result<<2017-06-21 16:49:38.250 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498056915891
+2871<<Administration Result<<2017-06-21 16:55:17.378 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498057834250
+2871<<Administration Result<<2017-06-21 17:10:38.994 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498057898698
+2871<<Administration Result<<2017-06-21 17:11:43.794 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498057969614
+2871<<Administration Result<<2017-06-21 17:12:55.049 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498058915023
+2871<<Administration Result<<2017-06-21 17:28:38.483 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498059014318
+2871<<Administration Result<<2017-06-21 17:30:21.316 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498059133005
+2871<<Administration Result<<2017-06-21 17:32:20.996 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498059286241
+2871<<Administration Result<<2017-06-21 17:34:54.103 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498059582355
+2871<<Administration Result<<2017-06-21 17:39:45.498 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498059937712
+2871<<Administration Result<<2017-06-21 17:45:41.282 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>2>>1498060978215
+2087<<Runtime Response<<2017-06-21 18:03:10.866 CEST<<IIB10ABANO<<d240d108-8d0d-4966-b51b-9bd91dd8e0f4
+4041<<Runtime Response<<2017-06-21 18:03:10.867 CEST<<hl7Server<<acf079d1-e207-4df4-b582-0f55ea94bf8e
+2560<<Runtime Response<<2017-06-21 18:03:10.867 CEST<<HL7RestAPI.measurementHistoryMultiline_MapToJSONModel.Main<<113.17
+2871<<Administration Result<<2017-06-21 18:03:10.868 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<FAILED
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498061125389
+2871<<Administration Result<<2017-06-21 18:05:33.688 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498061395940
+2871<<Administration Result<<2017-06-21 18:10:05.098 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498061473150
+2871<<Administration Result<<2017-06-21 18:11:18.813 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498064692512
+2871<<Administration Result<<2017-06-21 19:04:55.569 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498064728658
+2871<<Administration Result<<2017-06-21 19:05:29.521 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498064749819
+2871<<Administration Result<<2017-06-21 19:05:54.125 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498064796186
+2871<<Administration Result<<2017-06-21 19:06:51.835 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498079644008
+2871<<Administration Result<<2017-06-21 23:14:11.382 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498079788050
+2871<<Administration Result<<2017-06-21 23:16:36.040 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498079839281
+2871<<Administration Result<<2017-06-21 23:17:25.235 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498079888161
+2871<<Administration Result<<2017-06-21 23:18:16.612 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498083643328
+2871<<Administration Result<<2017-06-22 00:20:46.886 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498083744757
+2871<<Administration Result<<2017-06-22 00:22:30.736 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498083860290
+2871<<Administration Result<<2017-06-22 00:24:25.902 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498083923995
+2871<<Administration Result<<2017-06-22 00:25:32.403 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498084064956
+2871<<Administration Result<<2017-06-22 00:27:51.285 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498084240391
+2871<<Administration Result<<2017-06-22 00:30:50.655 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498116726350
+2871<<Administration Result<<2017-06-22 09:32:16.556 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI.bar>>TESTNODE>>hl7Server>>0>>1498116810699
+2871<<Administration Result<<2017-06-22 09:33:36.705 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/HL7RestAPI.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498117779845
+2871<<Administration Result<<2017-06-22 09:49:45.331 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498118396968
+2871<<Administration Result<<2017-06-22 10:00:04.823 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498118522985
+2871<<Administration Result<<2017-06-22 10:02:09.094 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498118632924
+2871<<Administration Result<<2017-06-22 10:04:01.260 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498118884410
+2871<<Administration Result<<2017-06-22 10:08:06.225 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498122461107
+2871<<Administration Result<<2017-06-22 11:07:45.061 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498123980644
+2871<<Administration Result<<2017-06-22 11:33:06.915 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7CoreApplication>>IIB10ABANO>>hl7Server>>0>>1498124265229
+2871<<Administration Result<<2017-06-22 11:40:12.624 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7CoreApplicationproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7CoreApplication>>IIB10ABANO>>hl7Server>>0>>1498125604407
+2871<<Administration Result<<2017-06-22 12:00:39.791 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7CoreApplicationproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7CoreApplication>>IIB10ABANO>>hl7Server>>0>>1498125889569
+2871<<Administration Result<<2017-06-22 12:06:10.587 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7CoreApplicationproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498126863583
+2871<<Administration Result<<2017-06-22 12:21:15.451 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498126952467
+2871<<Administration Result<<2017-06-22 12:22:39.985 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498127316677
+2871<<Administration Result<<2017-06-22 12:28:44.276 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7CoreApplication>>IIB10ABANO>>hl7Server>>0>>1498127410483
+2871<<Administration Result<<2017-06-22 12:31:53.340 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7CoreApplicationproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498127809814
+2871<<Administration Result<<2017-06-22 12:37:02.698 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7CoreApplication>>IIB10ABANO>>hl7Server>>0>>1498127957945
+2871<<Administration Result<<2017-06-22 12:40:31.094 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7CoreApplicationproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498128144946
+2871<<Administration Result<<2017-06-22 12:42:32.629 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7CoreApplication>>DEVNODE>>intServer1>>0>>1498128534588
+2871<<Administration Result<<2017-06-22 12:49:57.394 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7CoreApplicationproject.generated.bar<<BAR<<intServer1<<ExecutionGroup<<COMPLETE
+HL7CoreApplication>>DEVNODE>>intServer1>>2>>1498128639533
+2087<<Runtime Response<<2017-06-22 12:51:17.624 CEST<<DEVNODE<<4ff619ce-e15d-11e6-ba16-7f0001010000
+4041<<Runtime Response<<2017-06-22 12:51:17.624 CEST<<intServer1<<da8c0d67-d469-46c1-9a87-64b2af9b162a
+3594<<Runtime Response<<2017-06-22 12:51:17.624 CEST<<8889<<Address already in use
+2871<<Administration Result<<2017-06-22 12:51:17.624 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7CoreApplicationproject.generated.bar<<BAR<<intServer1<<ExecutionGroup<<FAILED
+HL7CoreApplication>>DEVNODE>>intServer1>>0>>1498128714566
+2871<<Administration Result<<2017-06-22 12:52:32.291 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7CoreApplicationproject.generated.bar<<BAR<<intServer1<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>DEVNODE>>intServer1>>0>>1498128780877
+2871<<Administration Result<<2017-06-22 12:53:05.096 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<intServer1<<ExecutionGroup<<COMPLETE
+HL7Core.bar>>TESTNODE>>hl7Server>>0>>1498128906407
+2871<<Administration Result<<2017-06-22 12:55:42.576 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/HL7Core.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI.bar>>TESTNODE>>hl7Server>>0>>1498128952199
+2871<<Administration Result<<2017-06-22 12:55:54.885 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/HL7RestAPI.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>2>>1498129763493
+2087<<Runtime Response<<2017-06-22 13:09:30.105 CEST<<IIB10ABANO<<d240d108-8d0d-4966-b51b-9bd91dd8e0f4
+4041<<Runtime Response<<2017-06-22 13:09:30.105 CEST<<hl7Server<<acf079d1-e207-4df4-b582-0f55ea94bf8e
+2432<<Runtime Response<<2017-06-22 13:09:30.105 CEST<<HL7RestAPI.measurementHistoryMultiline_MapToJSONModel.Main<<67.39<<multiline<<ns, Environment, InputLocalEnvironment, OutputLocalEnvironment, InputRoot, InputBody, InputProperties, OutputRoot, InputExceptionList, OutputExceptionList, InputDestinationList, OutputDestinationList, response, errorResponse, refOutJSON, refMeasures, measure, uscita, misure, risposta, dateToday, dateSeven, retAge, indiceProv, ind, refValues, detPointResponse, detPointDescResponse, responseDate, detectionPointID, detectionPointDescription, refMeasureId, multiId
+2871<<Administration Result<<2017-06-22 13:09:30.106 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<FAILED
+HL7RestAPI>>IIB10ABANO>>hl7Server>>2>>1498129788491
+2087<<Runtime Response<<2017-06-22 13:09:58.284 CEST<<IIB10ABANO<<d240d108-8d0d-4966-b51b-9bd91dd8e0f4
+4041<<Runtime Response<<2017-06-22 13:09:58.284 CEST<<hl7Server<<acf079d1-e207-4df4-b582-0f55ea94bf8e
+2432<<Runtime Response<<2017-06-22 13:09:58.284 CEST<<HL7RestAPI.measurementHistoryMultiline_MapToJSONModel.Main<<98.17<<multiId<<ns, Environment, InputLocalEnvironment, OutputLocalEnvironment, InputRoot, InputBody, InputProperties, OutputRoot, InputExceptionList, OutputExceptionList, InputDestinationList, OutputDestinationList, response, errorResponse, refOutJSON, refMeasures, measure, uscita, misure, risposta, dateToday, dateSeven, retAge, indiceProv, ind, refValues, detPointResponse, detPointDescResponse, responseDate, detectionPointID, detectionPointDescription, refMeasureId
+2871<<Administration Result<<2017-06-22 13:09:58.285 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<FAILED
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498129822043
+2871<<Administration Result<<2017-06-22 13:10:27.997 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498129859729
+2871<<Administration Result<<2017-06-22 13:11:05.854 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498129941701
+2871<<Administration Result<<2017-06-22 13:12:27.538 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498130009485
+2871<<Administration Result<<2017-06-22 13:13:37.092 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498130087775
+2871<<Administration Result<<2017-06-22 13:14:55.326 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7CoreApplication>>IIB10ABANO>>hl7Server>>0>>1498130229497
+2871<<Administration Result<<2017-06-22 13:18:26.042 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7CoreApplicationproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498131167573
+2871<<Administration Result<<2017-06-22 13:32:58.577 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498131216924
+2871<<Administration Result<<2017-06-22 13:33:40.312 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7CoreApplication>>IIB10ABANO>>hl7Server>>0>>1498131449378
+2871<<Administration Result<<2017-06-22 13:38:11.088 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7CoreApplicationproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498131507296
+2871<<Administration Result<<2017-06-22 13:38:31.434 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498131716654
+2871<<Administration Result<<2017-06-22 13:42:08.681 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498131966400
+2871<<Administration Result<<2017-06-22 13:46:18.629 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498132061260
+2871<<Administration Result<<2017-06-22 13:47:44.647 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498132132864
+2871<<Administration Result<<2017-06-22 13:49:06.711 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498132270725
+2871<<Administration Result<<2017-06-22 13:51:26.327 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498136524407
+2871<<Administration Result<<2017-06-22 15:02:15.198 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498136646291
+2871<<Administration Result<<2017-06-22 15:04:15.406 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498136679251
+2871<<Administration Result<<2017-06-22 15:04:50.202 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>2>>1498136997042
+2087<<Runtime Response<<2017-06-22 15:10:04.066 CEST<<IIB10ABANO<<d240d108-8d0d-4966-b51b-9bd91dd8e0f4
+4041<<Runtime Response<<2017-06-22 15:10:04.066 CEST<<hl7Server<<acf079d1-e207-4df4-b582-0f55ea94bf8e
+2905<<Runtime Response<<2017-06-22 15:10:04.066 CEST<<HL7RestAPI.measurementLastMultiline_MapToJSONModel.Main<<149.12<<CREATE<<CHARACTER<<NAME
+2871<<Administration Result<<2017-06-22 15:10:04.067 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<FAILED
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498137075755
+2871<<Administration Result<<2017-06-22 15:11:28.014 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498137377221
+2871<<Administration Result<<2017-06-22 15:16:28.913 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498137466799
+2871<<Administration Result<<2017-06-22 15:17:59.294 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498137610313
+2871<<Administration Result<<2017-06-22 15:20:27.594 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498137715910
+2871<<Administration Result<<2017-06-22 15:22:12.658 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498138487855
+2871<<Administration Result<<2017-06-22 15:35:00.875 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498138565048
+2871<<Administration Result<<2017-06-22 15:36:21.024 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498138613471
+2871<<Administration Result<<2017-06-22 15:37:06.457 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>2>>1498138809182
+2087<<Runtime Response<<2017-06-22 15:40:18.627 CEST<<IIB10ABANO<<d240d108-8d0d-4966-b51b-9bd91dd8e0f4
+4041<<Runtime Response<<2017-06-22 15:40:18.627 CEST<<hl7Server<<acf079d1-e207-4df4-b582-0f55ea94bf8e
+2432<<Runtime Response<<2017-06-22 15:40:18.627 CEST<<HL7RestAPI.measurementHistoryMultiline_MapToJSONModel.Main<<141.17<<multiId<<ns, Environment, InputLocalEnvironment, OutputLocalEnvironment, InputRoot, InputBody, InputProperties, OutputRoot, InputExceptionList, OutputExceptionList, InputDestinationList, OutputDestinationList, response, errorResponse, refOutJSON, refMeasures, measure, dateToday, dateSeven, retAge, indiceProv, ind, refValues, detPointResponse, detPointDescResponse, responseDate, detectionPointID, detectionPointDescription, refMeasureId
+2871<<Administration Result<<2017-06-22 15:40:18.628 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<FAILED
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498138836601
+2871<<Administration Result<<2017-06-22 15:40:49.618 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>2>>1498139324655
+2087<<Runtime Response<<2017-06-22 15:48:54.237 CEST<<IIB10ABANO<<d240d108-8d0d-4966-b51b-9bd91dd8e0f4
+4041<<Runtime Response<<2017-06-22 15:48:54.237 CEST<<hl7Server<<acf079d1-e207-4df4-b582-0f55ea94bf8e
+2432<<Runtime Response<<2017-06-22 15:48:54.237 CEST<<HL7RestAPI.measurementHistoryMultiline_MapToJSONModel.Main<<86.17<<multiId<<ns, Environment, InputLocalEnvironment, OutputLocalEnvironment, InputRoot, InputBody, InputProperties, OutputRoot, InputExceptionList, OutputExceptionList, InputDestinationList, OutputDestinationList, response, errorResponse, refOutJSON, refMeasures, measure, dateToday, dateSeven, retAge, indiceProv, ind, refValues, detPointResponse, detPointDescResponse, responseDate, detectionPointID, detectionPointDescription, refMeasureId
+2871<<Administration Result<<2017-06-22 15:48:54.240 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<FAILED
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498139393362
+2871<<Administration Result<<2017-06-22 15:49:58.959 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498139434192
+2871<<Administration Result<<2017-06-22 15:50:53.391 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498139487120
+2871<<Administration Result<<2017-06-22 15:51:49.521 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498139572789
+2871<<Administration Result<<2017-06-22 15:53:09.218 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498139619111
+2871<<Administration Result<<2017-06-22 15:53:50.823 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498139871497
+2871<<Administration Result<<2017-06-22 15:58:06.676 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498140077044
+2871<<Administration Result<<2017-06-22 16:01:26.634 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>2>>1498140142595
+2087<<Runtime Response<<2017-06-22 16:02:31.481 CEST<<IIB10ABANO<<d240d108-8d0d-4966-b51b-9bd91dd8e0f4
+4041<<Runtime Response<<2017-06-22 16:02:31.481 CEST<<hl7Server<<acf079d1-e207-4df4-b582-0f55ea94bf8e
+2420<<Runtime Response<<2017-06-22 16:02:31.482 CEST<<HL7RestAPI.measurementLastMultiline_MapToJSONModel.Main<<148.70<<||
+2871<<Administration Result<<2017-06-22 16:02:31.482 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<FAILED
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498140176722
+2871<<Administration Result<<2017-06-22 16:03:16.311 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498140239917
+2871<<Administration Result<<2017-06-22 16:04:05.049 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498140556891
+2871<<Administration Result<<2017-06-22 16:09:33.530 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498140602444
+2871<<Administration Result<<2017-06-22 16:10:21.150 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498140696406
+2871<<Administration Result<<2017-06-22 16:11:55.083 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI.bar>>TESTNODE>>hl7Server>>0>>1498146331207
+2871<<Administration Result<<2017-06-22 17:45:34.357 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/HL7RestAPI.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498147456586
+2871<<Administration Result<<2017-06-22 18:04:38.269 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498147535916
+2871<<Administration Result<<2017-06-22 18:06:02.058 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498147716010
+2871<<Administration Result<<2017-06-22 18:08:54.465 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498147777911
+2871<<Administration Result<<2017-06-22 18:09:58.986 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498147873768
+2871<<Administration Result<<2017-06-22 18:11:35.500 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498147948016
+2871<<Administration Result<<2017-06-22 18:12:42.220 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498148029446
+2871<<Administration Result<<2017-06-22 18:14:10.813 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498148162898
+2871<<Administration Result<<2017-06-22 18:16:29.697 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498148386383
+2871<<Administration Result<<2017-06-22 18:19:54.623 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498148641604
+2871<<Administration Result<<2017-06-22 18:24:18.292 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>2>>1498148923579
+2087<<Runtime Response<<2017-06-22 18:29:19.305 CEST<<IIB10ABANO<<d240d108-8d0d-4966-b51b-9bd91dd8e0f4
+2039<<Runtime Response<<2017-06-22 18:29:19.305 CEST<<IIB10ABANO<<d240d108-8d0d-4966-b51b-9bd91dd8e0f4<<hl7Server<<600000
+2871<<Administration Result<<2017-06-22 18:29:19.306 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<FAILED
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498149307484
+2871<<Administration Result<<2017-06-22 18:35:22.747 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498149425731
+2871<<Administration Result<<2017-06-22 18:37:15.603 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI.bar>>IIB10ABANO>>hl7Server>>0>>1498149509877
+2871<<Administration Result<<2017-06-22 18:38:39.428 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/HL7RestAPI.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI.bar>>TESTNODE>>hl7Server>>0>>1498149518343
+2871<<Administration Result<<2017-06-22 18:38:44.201 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/HL7RestAPI.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498204387877
+2871<<Administration Result<<2017-06-23 09:53:18.131 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498204635308
+2871<<Administration Result<<2017-06-23 09:57:18.962 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498204815151
+2871<<Administration Result<<2017-06-23 10:00:26.521 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498205080759
+2871<<Administration Result<<2017-06-23 10:04:50.223 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498205199046
+2871<<Administration Result<<2017-06-23 10:06:46.269 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498205559741
+2871<<Administration Result<<2017-06-23 10:12:51.247 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498205757868
+2871<<Administration Result<<2017-06-23 10:16:05.622 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498205880151
+2871<<Administration Result<<2017-06-23 10:18:08.117 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498205995992
+2871<<Administration Result<<2017-06-23 10:20:04.697 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7CoreApplication>>IIB10ABANO>>hl7Server>>0>>1498206560245
+2871<<Administration Result<<2017-06-23 10:30:15.126 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7CoreApplicationproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7CoreApplication>>IIB10ABANO>>hl7Server>>0>>1498206655246
+2871<<Administration Result<<2017-06-23 10:32:18.132 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7CoreApplicationproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7Core.bar>>TESTNODE>>hl7Server>>0>>1498214727436
+2871<<Administration Result<<2017-06-23 12:46:05.776 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/HL7Core.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI.bar>>TESTNODE>>hl7Server>>0>>1498214774486
+2871<<Administration Result<<2017-06-23 12:46:23.334 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/HL7RestAPI.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7CoreApplication>>DEVNODE>>intServer1>>2>>1498214953161
+2087<<Runtime Response<<2017-06-23 12:50:43.755 CEST<<DEVNODE<<4ff619ce-e15d-11e6-ba16-7f0001010000
+4041<<Runtime Response<<2017-06-23 12:50:43.756 CEST<<intServer1<<da8c0d67-d469-46c1-9a87-64b2af9b162a
+3594<<Runtime Response<<2017-06-23 12:50:43.756 CEST<<8889<<Address already in use
+2871<<Administration Result<<2017-06-23 12:50:43.756 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7CoreApplicationproject.generated.bar<<BAR<<intServer1<<ExecutionGroup<<FAILED
+HL7CoreApplication>>DEVNODE>>intServer1>>0>>1498215110988
+2871<<Administration Result<<2017-06-23 12:54:59.870 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7CoreApplicationproject.generated.bar<<BAR<<intServer1<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>DEVNODE>>intServer1>>0>>1498215990372
+2871<<Administration Result<<2017-06-23 13:06:37.251 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<intServer1<<ExecutionGroup<<COMPLETE
+HL7Core.bar>>TESTNODE>>hl7Server>>0>>1498552509772
+2871<<Administration Result<<2017-06-27 10:35:49.318 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/HL7Core.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7CoreApplication>>DEVNODE>>intServer1>>0>>1498552630740
+2871<<Administration Result<<2017-06-27 10:37:45.370 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7CoreApplicationproject.generated.bar<<BAR<<intServer1<<ExecutionGroup<<COMPLETE
+BPMServices.bar>>TESTNODE>>hl7Server>>0>>1498552693537
+2871<<Administration Result<<2017-06-27 10:38:20.508 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/BPMServices.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7_BPM_Application>>DEVNODE>>intServer1>>0>>1498552710790
+2871<<Administration Result<<2017-06-27 10:38:34.925 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7_BPM_Applicationproject.generated.bar<<BAR<<intServer1<<ExecutionGroup<<COMPLETE
+BPMServices.bar>>IIB10ABANO_PROD>>HL7Server>>0>>1498553985621
+2871<<Administration Result<<2017-06-27 10:59:50.385 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/BPMServices.bar<<BAR<<HL7Server<<ExecutionGroup<<COMPLETE
+BPMServices.bar>>IIB10ABANO_PROD>>HL7Server>>0>>1498560218871
+2871<<Administration Result<<2017-06-27 12:43:41.116 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/BPMServices.bar<<BAR<<HL7Server<<ExecutionGroup<<COMPLETE
+BPMServices.bar>>TESTNODE>>hl7Server>>0>>1498560227610
+2871<<Administration Result<<2017-06-27 12:43:52.881 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/BPMServices.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7_BPM_Application>>DEVNODE>>intServer1>>0>>1498560461437
+2871<<Administration Result<<2017-06-27 12:47:47.187 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7_BPM_Applicationproject.generated.bar<<BAR<<intServer1<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498572116506
+2871<<Administration Result<<2017-06-27 16:02:04.697 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498572173166
+2871<<Administration Result<<2017-06-27 16:02:57.839 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498572195938
+2871<<Administration Result<<2017-06-27 16:03:21.868 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498572235583
+2871<<Administration Result<<2017-06-27 16:04:00.506 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498572271384
+2871<<Administration Result<<2017-06-27 16:04:40.108 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+BPMServices.bar>>TESTNODE>>hl7Server>>0>>1498572474865
+2871<<Administration Result<<2017-06-27 16:08:00.158 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/BPMServices.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498726893504
+2871<<Administration Result<<2017-06-29 11:01:39.049 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7CoreApplication>>IIB10ABANO>>hl7Server>>0>>1498730755536
+2871<<Administration Result<<2017-06-29 12:08:25.021 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7CoreApplicationproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1498732480544
+2871<<Administration Result<<2017-06-29 12:34:44.995 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7CoreApplication>>IIB10ABANO>>hl7Server>>0>>1498733350620
+2871<<Administration Result<<2017-06-29 12:49:46.349 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7CoreApplicationproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7Core.bar>>TESTNODE>>hl7Server>>0>>1498733960435
+2871<<Administration Result<<2017-06-29 13:00:23.949 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/HL7Core.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI.bar>>TESTNODE>>hl7Server>>0>>1498734064597
+2871<<Administration Result<<2017-06-29 13:01:08.103 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/HL7RestAPI.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7CoreApplication>>DEVNODE>>intServer1>>0>>1498800625422
+2871<<Administration Result<<2017-06-30 07:31:02.340 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7CoreApplicationproject.generated.bar<<BAR<<intServer1<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>DEVNODE>>intServer1>>0>>1498800776243
+2871<<Administration Result<<2017-06-30 07:33:01.297 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<intServer1<<ExecutionGroup<<COMPLETE
+HL7RestAPI.bar>>IIB10ABANO_PROD>>HL7Server>>0>>1498800864877
+2871<<Administration Result<<2017-06-30 07:34:33.567 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/HL7RestAPI.bar<<BAR<<HL7Server<<ExecutionGroup<<COMPLETE
+HL7Core.bar>>IIB10ABANO_PROD>>HL7Server>>0>>1498800898729
+2871<<Administration Result<<2017-06-30 07:35:56.480 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/HL7Core.bar<<BAR<<HL7Server<<ExecutionGroup<<COMPLETE
+HL7CoreApplication>>DEVNODE>>intServer1>>0>>1498811999815
+2871<<Administration Result<<2017-06-30 10:40:35.991 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7CoreApplicationproject.generated.bar<<BAR<<intServer1<<ExecutionGroup<<COMPLETE
+HL7_BPM_Application>>DEVNODE>>intServer1>>0>>1498813549733
+2871<<Administration Result<<2017-06-30 11:05:57.721 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7_BPM_Applicationproject.generated.bar<<BAR<<intServer1<<ExecutionGroup<<COMPLETE
+HL7_BPM_Application>>DEVNODE>>intServer1>>0>>1498814786032
+2871<<Administration Result<<2017-06-30 11:26:29.983 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7_BPM_Applicationproject.generated.bar<<BAR<<intServer1<<ExecutionGroup<<COMPLETE
+BPMServices.bar>>TESTNODE>>hl7Server>>0>>1498815738354
+2871<<Administration Result<<2017-06-30 11:42:24.294 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/BPMServices.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7Core.bar>>TESTNODE>>hl7Server>>0>>1498815765331
+2871<<Administration Result<<2017-06-30 11:43:25.415 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/HL7Core.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7_BPM_Application>>DEVNODE>>intServer1>>0>>1498822515084
+2871<<Administration Result<<2017-06-30 13:35:22.052 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7_BPM_Applicationproject.generated.bar<<BAR<<intServer1<<ExecutionGroup<<COMPLETE
+HL7_BPM_Application>>DEVNODE>>intServer1>>0>>1498823125520
+2871<<Administration Result<<2017-06-30 13:45:28.784 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7_BPM_Applicationproject.generated.bar<<BAR<<intServer1<<ExecutionGroup<<COMPLETE
+BPMServices.bar>>TESTNODE>>hl7Server>>0>>1498824052625
+2871<<Administration Result<<2017-06-30 14:01:01.189 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/BPMServices.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+BPMServices.bar>>TESTNODE>>hl7Server>>0>>1498842140664
+2871<<Administration Result<<2017-06-30 19:02:25.361 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/BPMServices.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7_BPM_Application>>DEVNODE>>intServer1>>0>>1499077163305
+2871<<Administration Result<<2017-07-03 12:19:29.270 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7_BPM_Applicationproject.generated.bar<<BAR<<intServer1<<ExecutionGroup<<COMPLETE
+HL7_BPM_Application>>DEVNODE>>intServer1>>0>>1499078378086
+2871<<Administration Result<<2017-07-03 12:39:41.112 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7_BPM_Applicationproject.generated.bar<<BAR<<intServer1<<ExecutionGroup<<COMPLETE
+HL7_BPM_Application>>DEVNODE>>intServer1>>0>>1499078566661
+2871<<Administration Result<<2017-07-03 12:42:52.759 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7_BPM_Applicationproject.generated.bar<<BAR<<intServer1<<ExecutionGroup<<COMPLETE
+HL7_BPM_Application>>DEVNODE>>intServer1>>0>>1499090772363
+2871<<Administration Result<<2017-07-03 16:06:15.410 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7_BPM_Applicationproject.generated.bar<<BAR<<intServer1<<ExecutionGroup<<COMPLETE
+HL7_BPM_Application>>DEVNODE>>intServer1>>0>>1499091323639
+2871<<Administration Result<<2017-07-03 16:15:27.116 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7_BPM_Applicationproject.generated.bar<<BAR<<intServer1<<ExecutionGroup<<COMPLETE
+HL7CoreApplication>>DEVNODE>>intServer1>>0>>1499093765765
+2871<<Administration Result<<2017-07-03 16:56:45.176 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7CoreApplicationproject.generated.bar<<BAR<<intServer1<<ExecutionGroup<<COMPLETE
+HL7_BPM_Application>>DEVNODE>>intServer1>>0>>1499093833972
+2871<<Administration Result<<2017-07-03 16:57:20.116 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7_BPM_Applicationproject.generated.bar<<BAR<<intServer1<<ExecutionGroup<<COMPLETE
+HL7CoreApplication>>DEVNODE>>intServer1>>0>>1499094573456
+2871<<Administration Result<<2017-07-03 17:10:12.308 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7CoreApplicationproject.generated.bar<<BAR<<intServer1<<ExecutionGroup<<COMPLETE
+HL7_BPM_Application>>DEVNODE>>intServer1>>0>>1499094909917
+2871<<Administration Result<<2017-07-03 17:15:17.172 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7_BPM_Applicationproject.generated.bar<<BAR<<intServer1<<ExecutionGroup<<COMPLETE
+HL7_BPM_Application>>DEVNODE>>intServer1>>0>>1499095602520
+2871<<Administration Result<<2017-07-03 17:26:48.796 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7_BPM_Applicationproject.generated.bar<<BAR<<intServer1<<ExecutionGroup<<COMPLETE
+HL7Core.bar>>TESTNODE>>hl7Server>>0>>1499098153354
+2871<<Administration Result<<2017-07-03 18:09:51.620 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/HL7Core.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+BPMServices.bar>>TESTNODE>>hl7Server>>0>>1499098257346
+2871<<Administration Result<<2017-07-03 18:11:03.985 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/BPMServices.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7CoreApplication>>IIB10ABANO>>hl7Server>>0>>1499155271477
+2871<<Administration Result<<2017-07-04 10:03:34.551 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7CoreApplicationproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1499155549168
+2871<<Administration Result<<2017-07-04 10:05:58.743 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>IIB10ABANO>>hl7Server>>0>>1499155654824
+2871<<Administration Result<<2017-07-04 10:07:42.583 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7Core.bar>>TESTNODE>>hl7Server>>0>>1499155761209
+2871<<Administration Result<<2017-07-04 10:10:00.673 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/HL7Core.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI.bar>>TESTNODE>>hl7Server>>0>>1499155809588
+2871<<Administration Result<<2017-07-04 10:10:15.757 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/HL7RestAPI.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7Core.bar>>TESTNODE>>hl7Server>>0>>1499155884450
+2871<<Administration Result<<2017-07-04 10:12:04.051 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/HL7Core.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7Core.bar>>TESTNODE>>hl7Server>>0>>1499155991619
+2871<<Administration Result<<2017-07-04 10:14:15.129 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/HL7Core.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7CoreApplication>>DEVNODE>>intServer1>>0>>1499156091470
+2871<<Administration Result<<2017-07-04 10:15:29.514 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7CoreApplicationproject.generated.bar<<BAR<<intServer1<<ExecutionGroup<<COMPLETE
+HL7RestAPI>>DEVNODE>>intServer1>>0>>1499156153405
+2871<<Administration Result<<2017-07-04 10:16:00.519 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<intServer1<<ExecutionGroup<<COMPLETE
+HL7Core.bar>>TESTNODE>>hl7Server>>0>>1499156196009
+2871<<Administration Result<<2017-07-04 10:17:16.314 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/HL7Core.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7Core.bar>>TESTNODE>>hl7Server>>0>>1499156445238
+2871<<Administration Result<<2017-07-04 10:21:26.074 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/HL7Core.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7Core.bar>>IIB10ABANO_PROD>>HL7Server>>0>>1499156502467
+2871<<Administration Result<<2017-07-04 10:22:18.108 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/HL7Core.bar<<BAR<<HL7Server<<ExecutionGroup<<COMPLETE
+HL7Core.bar>>TESTNODE>>hl7Server>>0>>1499156546200
+2871<<Administration Result<<2017-07-04 10:23:04.909 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/HL7Core.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7Core.bar>>TESTNODE>>hl7Server>>0>>1499156867588
+2871<<Administration Result<<2017-07-04 10:28:26.189 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/HL7Core.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI.bar>>TESTNODE>>hl7Server>>0>>1499157167619
+2871<<Administration Result<<2017-07-04 10:32:54.707 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/HL7RestAPI.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI.bar>>IIB10ABANO_PROD>>HL7Server>>0>>1499157202686
+2871<<Administration Result<<2017-07-04 10:33:30.129 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/HL7RestAPI.bar<<BAR<<HL7Server<<ExecutionGroup<<COMPLETE
+BPMServices.bar>>TESTNODE>>hl7Server>>0>>1499160195628
+2871<<Administration Result<<2017-07-04 11:23:20.823 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/BPMServices.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7Core.bar>>TESTNODE>>hl7Server>>0>>1499171944742
+2871<<Administration Result<<2017-07-04 14:39:41.725 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/HL7Core.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7Core.bar>>TESTNODE>>hl7Server>>0>>1499172052933
+2871<<Administration Result<<2017-07-04 14:41:31.011 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/HL7Core.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7Core.bar>>TESTNODE>>hl7Server>>0>>1499172305057
+2871<<Administration Result<<2017-07-04 14:45:39.993 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/HL7Core.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+BPMServices.bar>>TESTNODE>>hl7Server>>0>>1499241949174
+2871<<Administration Result<<2017-07-05 10:05:54.326 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/BPMServices.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+BPMServices.bar>>IIB10ABANO_PROD>>HL7Server>>0>>1499243207134
+2871<<Administration Result<<2017-07-05 10:26:52.227 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/BPMServices.bar<<BAR<<HL7Server<<ExecutionGroup<<COMPLETE
+HL7Core.bar>>IIB10ABANO_PROD>>HL7Server>>0>>1499243221689
+2871<<Administration Result<<2017-07-05 10:27:39.163 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/HL7Core.bar<<BAR<<HL7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI.bar>>IIB10ABANO_PROD>>HL7Server>>2>>1499243264183
+2087<<Runtime Response<<2017-07-05 10:27:45.911 CEST<<IIB10ABANO_PROD<<744e38b0-45df-11e7-ad10-0a0402d50000
+4041<<Runtime Response<<2017-07-05 10:27:45.912 CEST<<HL7Server<<da3c8a31-ab18-44e7-8cbd-2f390229cc15
+6359<<Runtime Response<<2017-07-05 10:27:45.912 CEST<<patientList.list<<baseURL<<
+2871<<Administration Result<<2017-07-05 10:27:45.912 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/HL7RestAPI.bar<<BAR<<HL7Server<<ExecutionGroup<<FAILED
+IAMServices.bar>>IIB10ABANO_PROD>>HL7Server>>0>>1499243306085
+2871<<Administration Result<<2017-07-05 10:28:27.900 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/RESTClient/IAMServices.bar<<BAR<<HL7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI.bar>>IIB10ABANO_PROD>>HL7Server>>2>>1499243313901
+2087<<Runtime Response<<2017-07-05 10:28:36.309 CEST<<IIB10ABANO_PROD<<744e38b0-45df-11e7-ad10-0a0402d50000
+4041<<Runtime Response<<2017-07-05 10:28:36.309 CEST<<HL7Server<<da3c8a31-ab18-44e7-8cbd-2f390229cc15
+6359<<Runtime Response<<2017-07-05 10:28:36.309 CEST<<patientList.list<<baseURL<<
+2871<<Administration Result<<2017-07-05 10:28:36.309 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/HL7RestAPI.bar<<BAR<<HL7Server<<ExecutionGroup<<FAILED
+HL7RestAPI.bar>>IIB10ABANO_PROD>>HL7Server>>2>>1499243635495
+2087<<Runtime Response<<2017-07-05 10:34:01.791 CEST<<IIB10ABANO_PROD<<744e38b0-45df-11e7-ad10-0a0402d50000
+4041<<Runtime Response<<2017-07-05 10:34:01.791 CEST<<HL7Server<<da3c8a31-ab18-44e7-8cbd-2f390229cc15
+1305<<Runtime Response<<2017-07-05 10:34:01.791 CEST<<HL7RestAPI<<IAMServices<<HL7RestAPI
+2871<<Administration Result<<2017-07-05 10:34:01.792 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/HL7RestAPI.bar<<BAR<<HL7Server<<ExecutionGroup<<FAILED
+HL7RestAPI.bar>>TESTNODE>>hl7Server>>2>>1499243669488
+2087<<Runtime Response<<2017-07-05 10:34:32.005 CEST<<TESTNODE<<92adbf50-e15e-11e6-9ba2-7f0001010000
+4041<<Runtime Response<<2017-07-05 10:34:32.005 CEST<<hl7Server<<7dcf8f65-39ac-4636-a2cb-dd301f74e4c9
+1305<<Runtime Response<<2017-07-05 10:34:32.005 CEST<<HL7RestAPI<<IAMServices<<HL7RestAPI
+2871<<Administration Result<<2017-07-05 10:34:32.005 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/HL7RestAPI.bar<<BAR<<hl7Server<<ExecutionGroup<<FAILED
+HL7RestAPI.bar>>IIB10ABANO_PROD>>HL7Server>>2>>1499243743947
+2087<<Runtime Response<<2017-07-05 10:35:47.295 CEST<<IIB10ABANO_PROD<<744e38b0-45df-11e7-ad10-0a0402d50000
+4041<<Runtime Response<<2017-07-05 10:35:47.295 CEST<<HL7Server<<da3c8a31-ab18-44e7-8cbd-2f390229cc15
+1305<<Runtime Response<<2017-07-05 10:35:47.295 CEST<<HL7RestAPI<<IAMServices<<HL7RestAPI
+2871<<Administration Result<<2017-07-05 10:35:47.296 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/HL7RestAPI.bar<<BAR<<HL7Server<<ExecutionGroup<<FAILED
+HL7RestAPI.bar>>IIB10ABANO_PROD>>HL7Server>>2>>1499243824817
+2087<<Runtime Response<<2017-07-05 10:37:07.838 CEST<<IIB10ABANO_PROD<<744e38b0-45df-11e7-ad10-0a0402d50000
+4041<<Runtime Response<<2017-07-05 10:37:07.838 CEST<<HL7Server<<da3c8a31-ab18-44e7-8cbd-2f390229cc15
+1305<<Runtime Response<<2017-07-05 10:37:07.838 CEST<<HL7RestAPI<<IAMServices<<HL7RestAPI
+2871<<Administration Result<<2017-07-05 10:37:07.838 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/HL7RestAPI.bar<<BAR<<HL7Server<<ExecutionGroup<<FAILED
+HL7RestAPI.bar>>IIB10ABANO_PROD>>HL7Server>>2>>1499243853178
+2087<<Runtime Response<<2017-07-05 10:37:38.319 CEST<<IIB10ABANO_PROD<<744e38b0-45df-11e7-ad10-0a0402d50000
+4041<<Runtime Response<<2017-07-05 10:37:38.319 CEST<<HL7Server<<da3c8a31-ab18-44e7-8cbd-2f390229cc15
+1305<<Runtime Response<<2017-07-05 10:37:38.319 CEST<<HL7RestAPI<<IAMServices<<HL7RestAPI
+2871<<Administration Result<<2017-07-05 10:37:38.319 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/HL7RestAPI.bar<<BAR<<HL7Server<<ExecutionGroup<<FAILED
+HL7RestAPI>>IIB10ABANO_PROD>>HL7Server>>2>>1499243929602
+2087<<Runtime Response<<2017-07-05 10:38:53.697 CEST<<IIB10ABANO_PROD<<744e38b0-45df-11e7-ad10-0a0402d50000
+4041<<Runtime Response<<2017-07-05 10:38:53.697 CEST<<HL7Server<<da3c8a31-ab18-44e7-8cbd-2f390229cc15
+6359<<Runtime Response<<2017-07-05 10:38:53.697 CEST<<patientList.list<<baseURL<<
+2871<<Administration Result<<2017-07-05 10:38:53.698 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/HL7RestAPIproject.generated.bar<<BAR<<HL7Server<<ExecutionGroup<<FAILED
+HL7RestAPI.bar>>IIB10ABANO_PROD>>HL7Server>>2>>1499244292225
+2087<<Runtime Response<<2017-07-05 10:44:54.174 CEST<<IIB10ABANO_PROD<<744e38b0-45df-11e7-ad10-0a0402d50000
+4041<<Runtime Response<<2017-07-05 10:44:54.175 CEST<<HL7Server<<da3c8a31-ab18-44e7-8cbd-2f390229cc15
+2210<<Runtime Response<<2017-07-05 10:44:54.175 CEST<<baseURL<<patientList
+2871<<Administration Result<<2017-07-05 10:44:54.175 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/HL7RestAPI.bar<<BAR<<HL7Server<<ExecutionGroup<<FAILED
+HL7RestAPI.bar>>IIB10ABANO_PROD>>HL7Server>>2>>1499244348978
+2087<<Runtime Response<<2017-07-05 10:45:54.669 CEST<<IIB10ABANO_PROD<<744e38b0-45df-11e7-ad10-0a0402d50000
+4041<<Runtime Response<<2017-07-05 10:45:54.670 CEST<<HL7Server<<da3c8a31-ab18-44e7-8cbd-2f390229cc15
+2210<<Runtime Response<<2017-07-05 10:45:54.670 CEST<<baseURL<<patientList
+2871<<Administration Result<<2017-07-05 10:45:54.670 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/HL7RestAPI.bar<<BAR<<HL7Server<<ExecutionGroup<<FAILED
+HL7RestAPI.bar>>IIB10ABANO_PROD>>HL7Server>>2>>1499244879395
+2087<<Runtime Response<<2017-07-05 10:54:45.183 CEST<<IIB10ABANO_PROD<<744e38b0-45df-11e7-ad10-0a0402d50000
+4041<<Runtime Response<<2017-07-05 10:54:45.183 CEST<<HL7Server<<da3c8a31-ab18-44e7-8cbd-2f390229cc15
+6359<<Runtime Response<<2017-07-05 10:54:45.183 CEST<<gen.HL7RestAPI.patientList (Implementation).list<<baseURL<<
+2871<<Administration Result<<2017-07-05 10:54:45.183 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/HL7RestAPI.bar<<BAR<<HL7Server<<ExecutionGroup<<FAILED
+HL7RestAPI.bar>>IIB10ABANO_PROD>>HL7Server>>2>>1499245110753
+2087<<Runtime Response<<2017-07-05 10:58:35.665 CEST<<IIB10ABANO_PROD<<744e38b0-45df-11e7-ad10-0a0402d50000
+4041<<Runtime Response<<2017-07-05 10:58:35.666 CEST<<HL7Server<<da3c8a31-ab18-44e7-8cbd-2f390229cc15
+6359<<Runtime Response<<2017-07-05 10:58:35.666 CEST<<gen.HL7RestAPI.patientList (Implementation).list<<baseURL<<
+2871<<Administration Result<<2017-07-05 10:58:35.666 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/HL7RestAPI.bar<<BAR<<HL7Server<<ExecutionGroup<<FAILED
+HL7RestAPI.bar>>IIB10ABANO_PROD>>HL7Server>>2>>1499245156570
+2087<<Runtime Response<<2017-07-05 10:59:21.190 CEST<<IIB10ABANO_PROD<<744e38b0-45df-11e7-ad10-0a0402d50000
+4041<<Runtime Response<<2017-07-05 10:59:21.190 CEST<<HL7Server<<da3c8a31-ab18-44e7-8cbd-2f390229cc15
+6359<<Runtime Response<<2017-07-05 10:59:21.190 CEST<<gen.HL7RestAPI.patientList (Implementation).list<<baseURL<<
+2871<<Administration Result<<2017-07-05 10:59:21.190 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/HL7RestAPI.bar<<BAR<<HL7Server<<ExecutionGroup<<FAILED
+HL7RestAPI.bar>>IIB10ABANO_PROD>>HL7Server>>2>>1499245541782
+2087<<Runtime Response<<2017-07-05 11:05:46.650 CEST<<IIB10ABANO_PROD<<744e38b0-45df-11e7-ad10-0a0402d50000
+4041<<Runtime Response<<2017-07-05 11:05:46.650 CEST<<HL7Server<<da3c8a31-ab18-44e7-8cbd-2f390229cc15
+6359<<Runtime Response<<2017-07-05 11:05:46.650 CEST<<gen.HL7RestAPI.patientList (Implementation).list<<baseURL<<
+2871<<Administration Result<<2017-07-05 11:05:46.651 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/HL7RestAPI.bar<<BAR<<HL7Server<<ExecutionGroup<<FAILED
+HL7RestAPI.bar>>IIB10ABANO_PROD>>HL7Server>>2>>1499245816327
+2087<<Runtime Response<<2017-07-05 11:10:22.184 CEST<<IIB10ABANO_PROD<<744e38b0-45df-11e7-ad10-0a0402d50000
+4041<<Runtime Response<<2017-07-05 11:10:22.185 CEST<<HL7Server<<da3c8a31-ab18-44e7-8cbd-2f390229cc15
+6359<<Runtime Response<<2017-07-05 11:10:22.185 CEST<<gen.HL7RestAPI.patientList (Implementation).list<<baseURL<<
+2871<<Administration Result<<2017-07-05 11:10:22.185 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/HL7RestAPI.bar<<BAR<<HL7Server<<ExecutionGroup<<FAILED
+HL7RestAPI.bar>>IIB10ABANO_PROD>>HL7Server>>0>>1499245907150
+2871<<Administration Result<<2017-07-05 11:11:55.339 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/HL7RestAPI.bar<<BAR<<HL7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI.bar>>TESTNODE>>hl7Server>>0>>1499245921643
+2871<<Administration Result<<2017-07-05 11:12:09.784 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/HL7RestAPI.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI.bar>>IIB10ABANO_PROD>>HL7Server>>0>>1499262586039
+2871<<Administration Result<<2017-07-05 15:49:53.611 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/HL7RestAPI.bar<<BAR<<HL7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI.bar>>IIB10ABANO_PROD>>HL7Server>>0>>1499262799558
+2871<<Administration Result<<2017-07-05 15:53:22.257 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/HL7RestAPI.bar<<BAR<<HL7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI.bar>>IIB10ABANO_PROD>>HL7Server>>0>>1499262856872
+2871<<Administration Result<<2017-07-05 15:54:21.301 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/HL7RestAPI.bar<<BAR<<HL7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI.bar>>IIB10ABANO_PROD>>HL7Server>>0>>1499262960037
+2871<<Administration Result<<2017-07-05 15:56:04.781 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/HL7RestAPI.bar<<BAR<<HL7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI.bar>>IIB10ABANO_PROD>>HL7Server>>0>>1499263088957
+2871<<Administration Result<<2017-07-05 15:58:14.653 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/HL7RestAPI.bar<<BAR<<HL7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI.bar>>IIB10ABANO_PROD>>HL7Server>>0>>1499263170978
+2871<<Administration Result<<2017-07-05 15:59:37.801 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/HL7RestAPI.bar<<BAR<<HL7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI.bar>>IIB10ABANO_PROD>>HL7Server>>0>>1499263232052
+2871<<Administration Result<<2017-07-05 16:00:36.922 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/HL7RestAPI.bar<<BAR<<HL7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI.bar>>IIB10ABANO_PROD>>HL7Server>>0>>1499263341535
+2871<<Administration Result<<2017-07-05 16:02:26.078 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/HL7RestAPI.bar<<BAR<<HL7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI.bar>>IIB10ABANO_PROD>>HL7Server>>0>>1499263485260
+2871<<Administration Result<<2017-07-05 16:04:52.009 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/HL7RestAPI.bar<<BAR<<HL7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI.bar>>IIB10ABANO_PROD>>HL7Server>>2>>1499263648353
+2087<<Runtime Response<<2017-07-05 16:07:34.017 CEST<<IIB10ABANO_PROD<<744e38b0-45df-11e7-ad10-0a0402d50000
+4041<<Runtime Response<<2017-07-05 16:07:34.017 CEST<<HL7Server<<da3c8a31-ab18-44e7-8cbd-2f390229cc15
+6359<<Runtime Response<<2017-07-05 16:07:34.017 CEST<<patientList.list<<baseURL<<prova
+2871<<Administration Result<<2017-07-05 16:07:34.017 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/HL7RestAPI.bar<<BAR<<HL7Server<<ExecutionGroup<<FAILED
+HL7RestAPI.bar>>IIB10ABANO_PROD>>HL7Server>>0>>1499263680993
+2871<<Administration Result<<2017-07-05 16:08:06.156 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/HL7RestAPI.bar<<BAR<<HL7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI.bar>>IIB10ABANO_PROD>>HL7Server>>0>>1499264309714
+2871<<Administration Result<<2017-07-05 16:18:33.525 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/HL7RestAPI.bar<<BAR<<HL7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI.bar>>IIB10ABANO_PROD>>HL7Server>>0>>1499264385165
+2871<<Administration Result<<2017-07-05 16:19:50.819 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/HL7RestAPI.bar<<BAR<<HL7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI.bar>>IIB10ABANO_PROD>>HL7Server>>0>>1499264684583
+2871<<Administration Result<<2017-07-05 16:24:48.781 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/HL7RestAPI.bar<<BAR<<HL7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI.bar>>IIB10ABANO_PROD>>HL7Server>>0>>1499265297216
+2871<<Administration Result<<2017-07-05 16:35:04.707 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/HL7RestAPI.bar<<BAR<<HL7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI.bar>>IIB10ABANO_PROD>>HL7Server>>0>>1499265467736
+2871<<Administration Result<<2017-07-05 16:37:53.736 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/HL7RestAPI.bar<<BAR<<HL7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI.bar>>IIB10ABANO_PROD>>HL7Server>>0>>1499265502241
+2871<<Administration Result<<2017-07-05 16:38:29.803 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/HL7RestAPI.bar<<BAR<<HL7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI.bar>>IIB10ABANO_PROD>>HL7Server>>0>>1499266018536
+2871<<Administration Result<<2017-07-05 16:47:05.160 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/HL7RestAPI.bar<<BAR<<HL7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI.bar>>IIB10ABANO_PROD>>HL7Server>>0>>1499275423282
+2871<<Administration Result<<2017-07-05 19:23:49.411 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/HL7RestAPI.bar<<BAR<<HL7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI.bar>>IIB10ABANO_PROD>>HL7Server>>0>>1499276464603
+2871<<Administration Result<<2017-07-05 19:41:07.884 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/HL7RestAPI.bar<<BAR<<HL7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI.bar>>IIB10ABANO_PROD>>HL7Server>>0>>1499276608260
+2871<<Administration Result<<2017-07-05 19:43:33.846 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/HL7RestAPI.bar<<BAR<<HL7Server<<ExecutionGroup<<COMPLETE
+BPMServices.bar>>IIB10ABANO_PROD>>HL7Server>>0>>1499329800432
+2871<<Administration Result<<2017-07-06 10:30:04.061 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/BPMServices.bar<<BAR<<HL7Server<<ExecutionGroup<<COMPLETE
+BPMServices.bar>>IIB10ABANO_PROD>>HL7Server>>0>>1499330935999
+2871<<Administration Result<<2017-07-06 10:49:01.707 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/BPMServices.bar<<BAR<<HL7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI.bar>>IIB10ABANO_PROD>>HL7Server>>0>>1499346213953
+2871<<Administration Result<<2017-07-06 15:03:40.477 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/HL7RestAPI.bar<<BAR<<HL7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI.bar>>TESTNODE>>hl7Server>>0>>1499346827122
+2871<<Administration Result<<2017-07-06 15:13:53.968 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/HL7RestAPI.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7Core.bar>>IIB10ABANO_PROD>>HL7Server>>0>>1499628782409
+2871<<Administration Result<<2017-07-09 21:34:00.610 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/HL7Core.bar<<BAR<<HL7Server<<ExecutionGroup<<COMPLETE
+HL7Core.bar>>TESTNODE>>hl7Server>>0>>1499845050137
+2871<<Administration Result<<2017-07-12 09:38:07.818 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/HL7Core.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI.bar>>TESTNODE>>hl7Server>>0>>1499845607076
+2871<<Administration Result<<2017-07-12 09:46:55.084 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/HL7RestAPI.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI.bar>>TESTNODE>>hl7Server>>0>>1499845719085
+2871<<Administration Result<<2017-07-12 09:48:44.987 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/HL7RestAPI.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI.bar>>IIB10ABANO_PROD>>HL7Server>>0>>1499845746983
+2871<<Administration Result<<2017-07-12 09:49:19.021 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/HL7RestAPI.bar<<BAR<<HL7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI.bar>>IIB10ABANO_PROD>>HL7Server>>0>>1499847285078
+2871<<Administration Result<<2017-07-12 10:14:48.549 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/HL7RestAPI.bar<<BAR<<HL7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI.bar>>IIB10ABANO_PROD>>HL7Server>>0>>1499847554277
+2871<<Administration Result<<2017-07-12 10:19:20.706 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/HL7RestAPI.bar<<BAR<<HL7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI.bar>>IIB10ABANO_PROD>>HL7Server>>0>>1499948179035
+2871<<Administration Result<<2017-07-13 14:16:23.453 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/HL7RestAPI.bar<<BAR<<HL7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI.bar>>IIB10ABANO_PROD>>HL7Server>>0>>1499948307883
+2871<<Administration Result<<2017-07-13 14:18:37.662 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/HL7RestAPI.bar<<BAR<<HL7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI.bar>>IIB10ABANO_PROD>>HL7Server>>0>>1499948525230
+2871<<Administration Result<<2017-07-13 14:22:07.345 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/HL7RestAPI.bar<<BAR<<HL7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI.bar>>IIB10ABANO_PROD>>HL7Server>>0>>1499948655816
+2871<<Administration Result<<2017-07-13 14:24:17.740 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/HL7RestAPI.bar<<BAR<<HL7Server<<ExecutionGroup<<COMPLETE
+HL7RestAPI.bar>>IIB10ABANO_PROD>>HL7Server>>0>>1499951241122
+2871<<Administration Result<<2017-07-13 15:09:23.503 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/HL7RestAPI.bar<<BAR<<HL7Server<<ExecutionGroup<<COMPLETE
+TeamAssignement.bar>>IIB10ABANO_PROD>>HL7Server>>0>>1500021228239
+2871<<Administration Result<<2017-07-14 10:33:51.924 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/TeamAssignement.bar<<BAR<<HL7Server<<ExecutionGroup<<COMPLETE
+AssignReassign>>IIB10ABANO_PROD>>HL7Server>>0>>1500021268227
+2871<<Administration Result<<2017-07-14 10:34:32.077 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/AssignReassignproject.generated.bar<<BAR<<HL7Server<<ExecutionGroup<<COMPLETE
+AssignReassign>>IIB10ABANO_PROD>>HL7Server>>0>>1500021333125
+2871<<Administration Result<<2017-07-14 10:35:35.480 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/AssignReassignproject.generated.bar<<BAR<<HL7Server<<ExecutionGroup<<COMPLETE
+TeamAssignement.bar>>IIB10ABANO_PROD>>HL7Server>>0>>1500021352504
+2871<<Administration Result<<2017-07-14 10:35:55.597 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/TeamAssignement.bar<<BAR<<HL7Server<<ExecutionGroup<<COMPLETE
+AssignReassign>>IIB10ABANO_PROD>>HL7Server>>0>>1500022179447
+2871<<Administration Result<<2017-07-14 10:49:40.489 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/AssignReassignproject.generated.bar<<BAR<<HL7Server<<ExecutionGroup<<COMPLETE
+AssignReassign>>IIB10ABANO_PROD>>HL7Server>>0>>1500022232053
+2871<<Administration Result<<2017-07-14 10:50:34.097 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/AssignReassignproject.generated.bar<<BAR<<HL7Server<<ExecutionGroup<<COMPLETE
+TeamAssignement.bar>>IIB10ABANO_PROD>>HL7Server>>0>>1500024080258
+2871<<Administration Result<<2017-07-14 11:21:26.491 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/TeamAssignement.bar<<BAR<<HL7Server<<ExecutionGroup<<COMPLETE
+TeamAssignement.bar>>IIB10ABANO_PROD>>HL7Server>>0>>1500024218051
+2871<<Administration Result<<2017-07-14 11:23:46.199 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/TeamAssignement.bar<<BAR<<HL7Server<<ExecutionGroup<<COMPLETE
+TeamAssignement.bar>>IIB10ABANO_PROD>>HL7Server>>0>>1500024404073
+2871<<Administration Result<<2017-07-14 11:26:47.270 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/TeamAssignement.bar<<BAR<<HL7Server<<ExecutionGroup<<COMPLETE
+BPMServices.bar>>IIB10ABANO_PROD>>HL7Server>>0>>1500025658621
+2871<<Administration Result<<2017-07-14 11:47:43.527 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/BPMServices.bar<<BAR<<HL7Server<<ExecutionGroup<<COMPLETE
+BPMServices.bar>>TESTNODE>>hl7Server>>0>>1500458856714
+2871<<Administration Result<<2017-07-19 12:07:40.227 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/BPMServices.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7Core.bar>>TESTNODE>>hl7Server>>0>>1500458870773
+2871<<Administration Result<<2017-07-19 12:08:58.324 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/HL7Core.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+TeamAssignement.bar>>TESTNODE>>hl7Server>>0>>1500458951779
+2871<<Administration Result<<2017-07-19 12:09:15.015 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/TeamAssignement.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+HL7Core.bar>>TESTNODE>>hl7Server>>0>>1500467872018
+2871<<Administration Result<<2017-07-19 14:38:33.108 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/HL7Core.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+BPMServices.bar>>TESTNODE>>hl7Server>>0>>1500468195171
+2871<<Administration Result<<2017-07-19 14:43:19.870 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/BPMServices.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+BPMServices.bar>>IIB10ABANO_PROD>>HL7Server>>0>>1500536994390
+2871<<Administration Result<<2017-07-20 09:50:01.650 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/BPMServices.bar<<BAR<<HL7Server<<ExecutionGroup<<COMPLETE
+HL7Core.bar>>IIB10ABANO_PROD>>HL7Server>>0>>1500537015015
+2871<<Administration Result<<2017-07-20 09:51:15.322 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/HL7Core.bar<<BAR<<HL7Server<<ExecutionGroup<<COMPLETE
+TeamAssignement.bar>>IIB10ABANO_PROD>>HL7Server>>0>>1500537093824
+2871<<Administration Result<<2017-07-20 09:51:41.790 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/TeamAssignement.bar<<BAR<<HL7Server<<ExecutionGroup<<COMPLETE
+HL7Core.bar>>IIB10ABANO_PROD>>HL7Server>>0>>1500537721811
+2871<<Administration Result<<2017-07-20 10:02:36.838 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/HL7Core.bar<<BAR<<HL7Server<<ExecutionGroup<<COMPLETE
+BPMServices.bar>>TESTNODE>>hl7Server>>0>>1500914462264
+2871<<Administration Result<<2017-07-24 18:41:08.185 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/BPMServices.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+BPMServices.bar>>IIB10ABANO_PROD>>HL7Server>>0>>1500916665018
+2871<<Administration Result<<2017-07-24 19:17:51.816 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/BPMServices.bar<<BAR<<HL7Server<<ExecutionGroup<<COMPLETE
+BPMServices.bar>>DEVNODE>>intServer1>>0>>1500994515868
+2871<<Administration Result<<2017-07-25 16:55:20.664 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/BPMServices.bar<<BAR<<intServer1<<ExecutionGroup<<COMPLETE
+HL7Core.bar>>DEVNODE>>intServer1>>0>>1500994687948
+2871<<Administration Result<<2017-07-25 16:59:11.966 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/HL7Core.bar<<BAR<<intServer1<<ExecutionGroup<<COMPLETE
+TeamAssignement.bar>>DEVNODE>>intServer1>>0>>1500994801773
+2871<<Administration Result<<2017-07-25 17:00:06.565 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/TeamAssignement.bar<<BAR<<intServer1<<ExecutionGroup<<COMPLETE
+AssignReassign>>DEVNODE>>intServer1>>0>>1501150948591
+2871<<Administration Result<<2017-07-27 12:22:30.737 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/AssignReassignproject.generated.bar<<BAR<<intServer1<<ExecutionGroup<<COMPLETE
+AssignReassign>>DEVNODE>>intServer1>>0>>1501151847130
+2871<<Administration Result<<2017-07-27 12:37:31.088 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/AssignReassignproject.generated.bar<<BAR<<intServer1<<ExecutionGroup<<COMPLETE
+BPMServices.bar>>DEVNODE>>intServer1>>0>>1501152014506
+2871<<Administration Result<<2017-07-27 12:40:18.915 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/BPMServices.bar<<BAR<<intServer1<<ExecutionGroup<<COMPLETE
+AssignReassign>>DEVNODE>>intServer1>>0>>1501152378849
+2871<<Administration Result<<2017-07-27 12:46:19.287 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/AssignReassignproject.generated.bar<<BAR<<intServer1<<ExecutionGroup<<COMPLETE
+BPMServices.bar>>DEVNODE>>intServer1>>0>>1501152605857
+2871<<Administration Result<<2017-07-27 12:50:10.881 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/BPMServices.bar<<BAR<<intServer1<<ExecutionGroup<<COMPLETE
+AssignReassign>>DEVNODE>>intServer1>>0>>1501152993888
+2871<<Administration Result<<2017-07-27 12:56:37.248 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/AssignReassignproject.generated.bar<<BAR<<intServer1<<ExecutionGroup<<COMPLETE
+AssignReassign>>DEVNODE>>intServer1>>0>>1501153219240
+2871<<Administration Result<<2017-07-27 13:00:22.977 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/AssignReassignproject.generated.bar<<BAR<<intServer1<<ExecutionGroup<<COMPLETE
+AssignReassign>>DEVNODE>>intServer1>>0>>1501153402310
+2871<<Administration Result<<2017-07-27 13:03:23.192 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/AssignReassignproject.generated.bar<<BAR<<intServer1<<ExecutionGroup<<COMPLETE
+AssignReassign>>DEVNODE>>intServer1>>0>>1501153459362
+2871<<Administration Result<<2017-07-27 13:04:19.209 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/AssignReassignproject.generated.bar<<BAR<<intServer1<<ExecutionGroup<<COMPLETE
+AssignReassign>>DEVNODE>>intServer1>>0>>1501154155555
+2871<<Administration Result<<2017-07-27 13:15:58.028 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/AssignReassignproject.generated.bar<<BAR<<intServer1<<ExecutionGroup<<COMPLETE
+AssignReassign>>TESTNODE_ADMINIBM>>default>>0>>1501154600246
+2871<<Administration Result<<2017-07-27 13:23:24.465 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/AssignReassignproject.generated.bar<<BAR<<default<<ExecutionGroup<<COMPLETE
+AssignReassign>>DEVNODE>>intServer1>>0>>1501154606332
+2871<<Administration Result<<2017-07-27 13:23:28.853 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/AssignReassignproject.generated.bar<<BAR<<intServer1<<ExecutionGroup<<COMPLETE
+AssignReassign>>DEVNODE>>intServer1>>0>>1501154837951
+2871<<Administration Result<<2017-07-27 13:27:18.062 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/AssignReassignproject.generated.bar<<BAR<<intServer1<<ExecutionGroup<<COMPLETE
+AssignReassign>>TESTNODE_ADMINIBM>>default>>2>>1501155034071
+2087<<Runtime Response<<2017-07-27 13:30:41.506 CEST<<TESTNODE_ADMINIBM<<eff0a7af-1ed0-4a20-ab62-82859a7f2e4d
+4041<<Runtime Response<<2017-07-27 13:30:41.507 CEST<<default<<3f5bdb18-11c7-4976-96ec-4b040d959b96
+4001<<Runtime Response<<2017-07-27 13:30:41.507 CEST<<Tasks.Compute1
+2432<<Runtime Response<<2017-07-27 13:30:41.507 CEST<<.BlobToJSONTasks.Main<<37.22<<measure<<Environment, InputLocalEnvironment, OutputLocalEnvironment, InputRoot, InputBody, InputProperties, OutputRoot, InputExceptionList, OutputExceptionList, InputDestinationList, OutputDestinationList, inCCSID, inEncoding, inBitStream, response, refOutJSON, refMeasures, ind
+2871<<Administration Result<<2017-07-27 13:30:41.507 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/AssignReassignproject.generated.bar<<BAR<<default<<ExecutionGroup<<FAILED
+AssignReassign>>DEVNODE>>intServer1>>0>>1501155049804
+2871<<Administration Result<<2017-07-27 13:30:53.761 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/AssignReassignproject.generated.bar<<BAR<<intServer1<<ExecutionGroup<<COMPLETE
+AssignReassign>>DEVNODE>>intServer1>>0>>1501155114462
+2871<<Administration Result<<2017-07-27 13:31:57.089 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/AssignReassignproject.generated.bar<<BAR<<intServer1<<ExecutionGroup<<COMPLETE
+AssignReassign>>DEVNODE>>intServer1>>0>>1501155345952
+2871<<Administration Result<<2017-07-27 13:35:47.397 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/AssignReassignproject.generated.bar<<BAR<<intServer1<<ExecutionGroup<<COMPLETE
+AssignReassign>>DEVNODE>>intServer1>>0>>1501155403547
+2871<<Administration Result<<2017-07-27 13:36:45.929 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/AssignReassignproject.generated.bar<<BAR<<intServer1<<ExecutionGroup<<COMPLETE
+AssignReassign>>DEVNODE>>intServer1>>0>>1501155618690
+2871<<Administration Result<<2017-07-27 13:40:20.056 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/AssignReassignproject.generated.bar<<BAR<<intServer1<<ExecutionGroup<<COMPLETE
+AssignReassign>>DEVNODE>>intServer1>>0>>1501155934862
+2871<<Administration Result<<2017-07-27 13:45:38.174 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/AssignReassignproject.generated.bar<<BAR<<intServer1<<ExecutionGroup<<COMPLETE
+TeamAssignement.bar>>TESTNODE>>hl7Server>>0>>1501156087428
+2871<<Administration Result<<2017-07-27 13:48:08.855 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/TeamAssignement.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+BPMServices.bar>>TESTNODE>>hl7Server>>0>>1501156112225
+2871<<Administration Result<<2017-07-27 13:48:35.159 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/BPMServices.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+AssignReassign>>DEVNODE>>intServer1>>0>>1501156359337
+2871<<Administration Result<<2017-07-27 13:52:40.440 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/AssignReassignproject.generated.bar<<BAR<<intServer1<<ExecutionGroup<<COMPLETE
+AssignReassign>>DEVNODE>>intServer1>>0>>1501156870283
+2871<<Administration Result<<2017-07-27 14:01:14.501 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/AssignReassignproject.generated.bar<<BAR<<intServer1<<ExecutionGroup<<COMPLETE
+AssignReassign>>DEVNODE>>intServer1>>0>>1501157345012
+2871<<Administration Result<<2017-07-27 14:09:05.435 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/AssignReassignproject.generated.bar<<BAR<<intServer1<<ExecutionGroup<<COMPLETE
+AssignReassign>>DEVNODE>>intServer1>>0>>1501157444151
+2871<<Administration Result<<2017-07-27 14:10:46.121 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/AssignReassignproject.generated.bar<<BAR<<intServer1<<ExecutionGroup<<COMPLETE
+AssignReassign>>DEVNODE>>intServer1>>0>>1501157688855
+2871<<Administration Result<<2017-07-27 14:14:49.080 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/AssignReassignproject.generated.bar<<BAR<<intServer1<<ExecutionGroup<<COMPLETE
+AssignReassign>>TESTNODE_ADMINIBM>>default>>2>>1501158963620
+2087<<Runtime Response<<2017-07-27 14:36:06.247 CEST<<TESTNODE_ADMINIBM<<eff0a7af-1ed0-4a20-ab62-82859a7f2e4d
+4041<<Runtime Response<<2017-07-27 14:36:06.247 CEST<<default<<3f5bdb18-11c7-4976-96ec-4b040d959b96
+4001<<Runtime Response<<2017-07-27 14:36:06.247 CEST<<Tasks.Compute1
+2432<<Runtime Response<<2017-07-27 14:36:06.247 CEST<<.BlobToJSONTasks.Main<<50.11<<refAttach<<Environment, InputLocalEnvironment, OutputLocalEnvironment, InputRoot, InputBody, InputProperties, OutputRoot, InputExceptionList, OutputExceptionList, InputDestinationList, OutputDestinationList, inCCSID, inEncoding, inBitStream, response, refOutJSON, refMeasures, measure, ind, refValues, refMeasureId, refOwner, refOutOwner
+2871<<Administration Result<<2017-07-27 14:36:06.247 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/AssignReassignproject.generated.bar<<BAR<<default<<ExecutionGroup<<FAILED
+AssignReassign>>DEVNODE>>intServer1>>2>>1501158995790
+2087<<Runtime Response<<2017-07-27 14:36:38.814 CEST<<DEVNODE<<4ff619ce-e15d-11e6-ba16-7f0001010000
+4041<<Runtime Response<<2017-07-27 14:36:38.814 CEST<<intServer1<<da8c0d67-d469-46c1-9a87-64b2af9b162a
+4001<<Runtime Response<<2017-07-27 14:36:38.814 CEST<<Tasks.Compute1
+2432<<Runtime Response<<2017-07-27 14:36:38.814 CEST<<.BlobToJSONTasks.Main<<50.11<<refAttach<<Environment, InputLocalEnvironment, OutputLocalEnvironment, InputRoot, InputBody, InputProperties, OutputRoot, InputExceptionList, OutputExceptionList, InputDestinationList, OutputDestinationList, inCCSID, inEncoding, inBitStream, response, refOutJSON, refMeasures, measure, ind, refValues, refMeasureId, refOwner, refOutOwner
+2871<<Administration Result<<2017-07-27 14:36:38.815 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/AssignReassignproject.generated.bar<<BAR<<intServer1<<ExecutionGroup<<FAILED
+AssignReassign>>DEVNODE>>intServer1>>2>>1501159039350
+2087<<Runtime Response<<2017-07-27 14:37:18.998 CEST<<DEVNODE<<4ff619ce-e15d-11e6-ba16-7f0001010000
+4041<<Runtime Response<<2017-07-27 14:37:18.998 CEST<<intServer1<<da8c0d67-d469-46c1-9a87-64b2af9b162a
+4001<<Runtime Response<<2017-07-27 14:37:18.998 CEST<<Tasks.Compute1
+2432<<Runtime Response<<2017-07-27 14:37:18.998 CEST<<.BlobToJSONTasks.Main<<50.11<<refAttach<<Environment, InputLocalEnvironment, OutputLocalEnvironment, InputRoot, InputBody, InputProperties, OutputRoot, InputExceptionList, OutputExceptionList, InputDestinationList, OutputDestinationList, inCCSID, inEncoding, inBitStream, response, refOutJSON, refMeasures, measure, ind, refValues, refMeasureId, refOwner, refOutOwner
+2871<<Administration Result<<2017-07-27 14:37:18.998 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/AssignReassignproject.generated.bar<<BAR<<intServer1<<ExecutionGroup<<FAILED
+AssignReassign>>DEVNODE>>intServer1>>0>>1501159075404
+2871<<Administration Result<<2017-07-27 14:37:55.401 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/AssignReassignproject.generated.bar<<BAR<<intServer1<<ExecutionGroup<<COMPLETE
+AssignReassign>>DEVNODE>>intServer1>>0>>1501159213543
+2871<<Administration Result<<2017-07-27 14:40:18.071 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/AssignReassignproject.generated.bar<<BAR<<intServer1<<ExecutionGroup<<COMPLETE
+AssignReassign>>DEVNODE>>intServer1>>0>>1501159283636
+2871<<Administration Result<<2017-07-27 14:41:27.596 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/AssignReassignproject.generated.bar<<BAR<<intServer1<<ExecutionGroup<<COMPLETE
+AssignReassign>>DEVNODE>>intServer1>>0>>1501159621539
+2871<<Administration Result<<2017-07-27 14:47:03.061 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/AssignReassignproject.generated.bar<<BAR<<intServer1<<ExecutionGroup<<COMPLETE
+AssignReassign>>DEVNODE>>intServer1>>0>>1501160492930
+2871<<Administration Result<<2017-07-27 15:01:32.234 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/AssignReassignproject.generated.bar<<BAR<<intServer1<<ExecutionGroup<<COMPLETE
+AssignReassign>>DEVNODE>>intServer1>>0>>1501160559814
+2871<<Administration Result<<2017-07-27 15:02:43.289 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/AssignReassignproject.generated.bar<<BAR<<intServer1<<ExecutionGroup<<COMPLETE
+TeamAssignement.bar>>TESTNODE>>hl7Server>>0>>1501163022030
+2871<<Administration Result<<2017-07-27 15:43:43.288 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/TeamAssignement.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+BPMServices.bar>>TESTNODE>>hl7Server>>0>>1501163052766
+2871<<Administration Result<<2017-07-27 15:44:15.814 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/BPMServices.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+AssignReassign>>DEVNODE>>intServer1>>0>>1501231903919
+2871<<Administration Result<<2017-07-28 10:51:47.555 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/AssignReassignproject.generated.bar<<BAR<<intServer1<<ExecutionGroup<<COMPLETE
+AssignReassign>>DEVNODE>>intServer1>>0>>1501232051810
+2871<<Administration Result<<2017-07-28 10:54:12.222 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/AssignReassignproject.generated.bar<<BAR<<intServer1<<ExecutionGroup<<COMPLETE
+AssignReassign>>DEVNODE>>intServer1>>0>>1501232107463
+2871<<Administration Result<<2017-07-28 10:55:10.580 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/AssignReassignproject.generated.bar<<BAR<<intServer1<<ExecutionGroup<<COMPLETE
+AssignReassign>>TESTNODE_ADMINIBM>>default>>0>>1501232144748
+2871<<Administration Result<<2017-07-28 10:55:53.431 CEST<<IBM016-VMWARE-5\ADMINIBM<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/AssignReassignproject.generated.bar<<BAR<<default<<ExecutionGroup<<COMPLETE
+AssignReassign>>DEVNODE>>intServer1>>0>>1501232149742
+2871<<Administration Result<<2017-07-28 10:55:53.689 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/AssignReassignproject.generated.bar<<BAR<<intServer1<<ExecutionGroup<<COMPLETE
+AssignReassign>>DEVNODE>>intServer1>>0>>1501232192039
+2871<<Administration Result<<2017-07-28 10:56:33.862 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/AssignReassignproject.generated.bar<<BAR<<intServer1<<ExecutionGroup<<COMPLETE
+AssignReassign>>DEVNODE>>intServer1>>0>>1501232210927
+2871<<Administration Result<<2017-07-28 10:56:51.704 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/AssignReassignproject.generated.bar<<BAR<<intServer1<<ExecutionGroup<<COMPLETE
+AssignReassign>>DEVNODE>>intServer1>>0>>1501232262918
+2871<<Administration Result<<2017-07-28 10:57:45.407 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/AssignReassignproject.generated.bar<<BAR<<intServer1<<ExecutionGroup<<COMPLETE
+AssignReassign>>DEVNODE>>intServer1>>0>>1501232349996
+2871<<Administration Result<<2017-07-28 10:59:12.545 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/AssignReassignproject.generated.bar<<BAR<<intServer1<<ExecutionGroup<<COMPLETE
+AssignReassign>>DEVNODE>>intServer1>>0>>1501237130044
+2871<<Administration Result<<2017-07-28 12:18:51.320 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/AssignReassignproject.generated.bar<<BAR<<intServer1<<ExecutionGroup<<COMPLETE
+AssignReassign>>DEVNODE>>intServer1>>0>>1501237220160
+2871<<Administration Result<<2017-07-28 12:20:20.671 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/AssignReassignproject.generated.bar<<BAR<<intServer1<<ExecutionGroup<<COMPLETE
+AssignReassign>>DEVNODE>>intServer1>>0>>1501237286391
+2871<<Administration Result<<2017-07-28 12:21:28.404 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/AssignReassignproject.generated.bar<<BAR<<intServer1<<ExecutionGroup<<COMPLETE
+AssignReassign>>DEVNODE>>intServer1>>0>>1501237569793
+2871<<Administration Result<<2017-07-28 12:26:12.372 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/AssignReassignproject.generated.bar<<BAR<<intServer1<<ExecutionGroup<<COMPLETE
+AssignReassign>>DEVNODE>>intServer1>>0>>1501237622892
+2871<<Administration Result<<2017-07-28 12:27:06.043 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/AssignReassignproject.generated.bar<<BAR<<intServer1<<ExecutionGroup<<COMPLETE
+AssignReassign>>DEVNODE>>intServer1>>0>>1501237776045
+2871<<Administration Result<<2017-07-28 12:29:37.611 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/GeneratedBarFiles/AssignReassignproject.generated.bar<<BAR<<intServer1<<ExecutionGroup<<COMPLETE
+TeamAssignement.bar>>TESTNODE>>hl7Server>>0>>1501240452386
+2871<<Administration Result<<2017-07-28 13:14:16.155 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/TeamAssignement.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+TeamAssignement.bar>>TESTNODE>>hl7Server>>0>>1501240503773
+2871<<Administration Result<<2017-07-28 13:15:06.352 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/TeamAssignement.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+TeamAssignement.bar>>TESTNODE>>hl7Server>>0>>1501240603199
+2871<<Administration Result<<2017-07-28 13:16:43.607 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/TeamAssignement.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+BPMServices.bar>>IIB10ABANO_PROD>>HL7Server>>0>>1501241988392
+2871<<Administration Result<<2017-07-28 13:39:52.564 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/BPMServices.bar<<BAR<<HL7Server<<ExecutionGroup<<COMPLETE
+TeamAssignement.bar>>IIB10ABANO_PROD>>HL7Server>>0>>1501242013211
+2871<<Administration Result<<2017-07-28 13:40:14.953 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/TeamAssignement.bar<<BAR<<HL7Server<<ExecutionGroup<<COMPLETE
+TeamAssignement.bar>>IIB10ABANO_PROD>>HL7Server>>0>>1504182135869
+2871<<Administration Result<<2017-08-31 14:22:18.810 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/TeamAssignement.bar<<BAR<<HL7Server<<ExecutionGroup<<COMPLETE
+TeamAssignement.bar>>TESTNODE>>hl7Server>>0>>1504186862445
+2871<<Administration Result<<2017-08-31 15:41:02.918 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/TeamAssignement.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+TeamAssignement.bar>>IIB10ABANO_PROD>>HL7Server>>0>>1504273042223
+2871<<Administration Result<<2017-09-01 15:37:23.542 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/TeamAssignement.bar<<BAR<<HL7Server<<ExecutionGroup<<COMPLETE
+TeamAssignement.bar>>IIB10ABANO_PROD>>HL7Server>>0>>1504273118105
+2871<<Administration Result<<2017-09-01 15:38:39.898 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/TeamAssignement.bar<<BAR<<HL7Server<<ExecutionGroup<<COMPLETE
+TeamAssignement.bar>>TESTNODE>>hl7Server>>0>>1504273563201
+2871<<Administration Result<<2017-09-01 15:46:06.630 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/TeamAssignement.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE
+TeamAssignement.bar>>IIB10ABANO_PROD>>HL7Server>>0>>1504275528844
+2871<<Administration Result<<2017-09-01 16:18:54.403 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/TeamAssignement.bar<<BAR<<HL7Server<<ExecutionGroup<<COMPLETE
+TeamAssignement.bar>>IIB10ABANO_PROD>>HL7Server>>0>>1504275650182
+2871<<Administration Result<<2017-09-01 16:20:52.308 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/TeamAssignement.bar<<BAR<<HL7Server<<ExecutionGroup<<COMPLETE
+TeamAssignement.bar>>TESTNODE>>hl7Server>>0>>1504275656446
+2871<<Administration Result<<2017-09-01 16:20:56.932 CEST<<iibadmin[iibadmin]<<deploy<<C:/Users/IBM_ADMIN/IBM/IIBT10/workspace/HL7Deployables/HL7Services/TeamAssignement.bar<<BAR<<hl7Server<<ExecutionGroup<<COMPLETE

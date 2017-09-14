@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pluginspace>
+<plugin id="ATNANodes" version="4.0.0.0"/>
+<plugin id="DICOMNodes" version="4.0.0.0"/>
+<plugin id="HL7GenericDFDLNodes" version="4.0.0.0"/>
+<plugin id="HL7GenericNodes" version="4.0.0.0"/>
+<plugin id="MQTTNodes" version="1.1.0.v20161123-1136"/>
+<plugin id="com.ibm.etools.mft.connector.loopback" version="10.0.700.v20161123-1136"/>
+<plugin id="com.ibm.etools.mft.connector.salesforce" version="10.0.700.v20161123-1136"/>
+<plugin id="com.ibm.etools.mft.mapping.codegen.esql" version="10.0.700.v20161123-1136"/>
+<plugin id="com.ibm.healthcare.node" version="4.0.0.0"/>
+</pluginspace>

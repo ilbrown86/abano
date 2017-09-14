@@ -1,0 +1,12 @@
+com.ibm.team.filesystem.ui.changes.RenameChangeSetUtil/MruComments/value0=modfiche varie e bar prod
+com.ibm.team.filesystem.ui.changes.RenameChangeSetUtil/MruComments/value1=set porta prod mq
+com.ibm.team.filesystem.ui.changes.RenameChangeSetUtil/MruComments/value2=set coda prod
+com.ibm.team.filesystem.ui.changes.RenameChangeSetUtil/MruComments/value3=BPM Bar test
+com.ibm.team.filesystem.ui.changes.RenameChangeSetUtil/MruComments/value4=modifiche varie
+com.ibm.team.filesystem.ui.changes.RenameChangeSetUtil/MruComments/value5=modfica adt02
+com.ibm.team.filesystem.ui.changes.RenameChangeSetUtil/MruComments/value6=fix sistolica
+com.ibm.team.filesystem.ui.changes.RenameChangeSetUtil/MruComments/value7=propagate property adt08all
+com.ibm.team.filesystem.ui.changes.RenameChangeSetUtil/MruComments/value8=nuovo flow adt08all
+com.ibm.team.filesystem.ui.changes.RenameChangeSetUtil/MruComments/value9=split indirizzi
+eclipse.preferences.version=1
+previous_ignore_patterns=\#*\n*$\n*.BAK\n*.Z\n*.bak\n*.elc\n*.ln\n*.log\n*.o\n*.obj\n*.olb\n*.old\n*.orig\n*.rej\n*/.git/*\n*~\n,*\n.\#*\n.DS_Store\n.del-*\n.deployables\n.git\n.make.state\n.nse_depinfo\nCVS.adm\nRCS\nRCSLOG\nSCCS\n_$*\nclasses\n

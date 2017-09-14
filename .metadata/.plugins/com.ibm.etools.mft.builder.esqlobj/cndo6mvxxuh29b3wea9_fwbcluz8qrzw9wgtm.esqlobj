@@ -1,0 +1,81 @@
+CREATE COMPUTE MODULE measurementsHistory_MapToXMLModel
+CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		CALL CopyMessageHeaders();
+		--CALL CopyEntireMessage();
+
+		DECLARE patientId CHARACTER;
+		SET patientId = InputLocalEnvironment.REST.Input.Parameters.patientId;
+		DECLARE nosologicId CHARACTER;
+		SET nosologicId = InputLocalEnvironment.REST.Input.Parameters.nosologicId;
+		
+		DECLARE outputMessage REFERENCE TO OutputRoot; 
+		DECLARE outPatientKey REFERENCE TO OutputRoot;
+		DECLARE outParameters REFERENCE TO OutputRoot;
+		 
+		CREATE LASTCHILD OF OutputRoot AS outputMessage DOMAIN('XMLNSC') NAME 'XMLNSC';
+		CREATE FIRSTCHILD OF outputMessage as outputMessage NAMESPACE ns NAME 'senderRequest';
+		
+		DECLARE msgId CHARACTER InputLocalEnvironment.Destination.HTTP.RequestIdentifier;
+		SET msgId = REPLACE(msgId,'''','');
+		SET msgId = 'C' || msgId;
+		SET outputMessage.messageId = msgId;
+		
+		SET outputMessage.action = InputLocalEnvironment.REST.Input.Operation;
+		CREATE LASTCHILD OF outputMessage AS outputMessage NAME 'readParametersRequest';
+		CREATE LASTCHILD OF outputMessage AS outPatientKey NAME 'patientKey';
+		SET outPatientKey.patientId = patientId;
+		SET outPatientKey.nosologicId = nosologicId;
+		--lista parametri
+		--CREATE LASTCHILD OF outputMessage AS outParameters NAME 'paramsId';
+		--SET outParameters = 'ALL';
+--		CREATE LASTCHILD OF outputMessage AS outParameters NAME 'paramsId';
+--		SET outParameters = 'TMP001';
+--		CREATE LASTCHILD OF outputMessage AS outParameters NAME 'paramsId';
+--		SET outParameters = 'PAO001';
+--		CREATE LASTCHILD OF outputMessage AS outParameters NAME 'paramsId';
+--		SET outParameters = 'PAO002';
+--		CREATE LASTCHILD OF outputMessage AS outParameters NAME 'paramsId';
+--		SET outParameters = 'SPO2002';
+--		CREATE LASTCHILD OF outputMessage AS outParameters NAME 'paramsId';
+--		SET outParameters = 'RFR005';
+--		CREATE LASTCHILD OF outputMessage AS outParameters NAME 'paramsId';
+--		SET outParameters = 'FC001';
+--		CREATE LASTCHILD OF outputMessage AS outParameters NAME 'paramsId';
+--		SET outParameters = 'VAS004';
+--		CREATE LASTCHILD OF outputMessage AS outParameters NAME 'paramsId';
+--		SET outParameters = 'SNG006';
+--		CREATE LASTCHILD OF outputMessage AS outParameters NAME 'paramsId';
+--		SET outParameters = 'CG002';
+--		CREATE LASTCHILD OF outputMessage AS outParameters NAME 'paramsId';
+--		SET outParameters = 'SC008';
+		CREATE LASTCHILD OF outputMessage AS outParameters NAME 'paramsId';
+		SET outParameters = 'AV001';
+		--CREATE LASTCHILD OF outputMessage AS outParameters NAME 'paramsId';
+		--SET outParameters = 'DN003';
+		--CREATE LASTCHILD OF outputMessage AS outParameters NAME 'paramsId';
+		--SET outParameters = 'DN012';
+		--CREATE LASTCHILD OF outputMessage AS outParameters NAME 'paramsId';
+		--SET outParameters = 'DN007';
+		
+		DECLARE A CHARACTER;
+		--CREATE LASTCHILD OF outputMessage AS outParameters NAME 'paramsId';
+		--SET outParameters = 'DIU011';
+		
+		RETURN TRUE;
+	END;
+
+	CREATE PROCEDURE CopyMessageHeaders() BEGIN
+		DECLARE I INTEGER 1;
+		DECLARE J INTEGER;
+		SET J = CARDINALITY(InputRoot.*[]);
+		WHILE I < J DO
+			SET OutputRoot.*[I] = InputRoot.*[I];
+			SET I = I + 1;
+		END WHILE;
+	END;
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		SET OutputRoot = InputRoot;
+	END;
+END MODULE;

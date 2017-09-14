@@ -1,0 +1,35 @@
+CREATE PROCEDURE CreateQRD(IN queryId CHARACTER, IN inModel REFERENCE, INOUT refHL7 REFERENCE) BEGIN
+	DECLARE refSegment REFERENCE TO refHL7;
+	CREATE LASTCHILD OF refSegment AS refSegment NAMESPACE ns6 NAME 'anyHL7Segment';
+	CREATE LASTCHILD OF refSegment AS refSegment NAMESPACE ns6 NAME 'QRD';
+	
+	DECLARE refPatientKey REFERENCE TO inModel;
+	MOVE refPatientKey FIRSTCHILD NAME 'patientKey'; 
+	SET refSegment.ns6:"QRD.1.QueryDateTime".ns6:"TS.1" = CAST (CURRENT_TIMESTAMP AS CHARACTER FORMAT 'YYYYMMddHHmmss');
+	--SET refSegment.ns6:"QRD.1.QueryDateTime".ns6:"TS.2" = '';
+	SET refSegment.ns6:"QRD.2.QueryFormatCode" = 'R';
+	SET refSegment.ns6:"QRD.3.QueryPriority" = 'I';
+	SET queryId = COALESCE(NULLIF(queryId,''),GetUUID());
+	SET refSegment.ns6:"QRD.4.QueryID" = queryId;
+	--SET refSegment.ns6:"QRD.4.QueryID" = '123456789';
+	--SET refSegment.ns6:"QRD.5.DeferredResponseType" = '';
+	--SET refSegment.ns6:"QRD.6.DeferredResponseDateTime" = '';
+	--SET refSegment.ns6:"QRD.7.QuantityLimitedRequest" = inModel.resourceLimit;
+	SET refSegment.ns6:"QRD.7.QuantityLimitedRequest".ns6:"CQ.1" = refPatientKey.maxResult;
+	SET refSegment.ns6:"QRD.8.WhoSubjectFilter".ns6:"XCN.1" = refPatientKey.patientId;
+	SET refSegment.ns6:"QRD.9.WhatSubjectFilter".ns6:"CE.1" = 'RES';
+	SET refSegment.ns6:"QRD.10.WhatDepartmentDataCode".ns6:"CE.1" = refPatientKey.nosologicId;
+	SET refSegment.ns6:"QRD.10.WhatDepartmentDataCode".ns6:"CE.2" = refPatientKey.logistic.compartmentId;
+	SET refSegment.ns6:"QRD.10.WhatDepartmentDataCode".ns6:"CE.3" = refPatientKey.logistic.roomId;
+	SET refSegment.ns6:"QRD.10.WhatDepartmentDataCode".ns6:"CE.4" = refPatientKey.logistic.bedId;
+	--SET refSegment.ns6:"QRD.11.WhatDataCodeValueQual" = '';
+	IF (refPatientKey.attachment = 'true') THEN
+		SET refSegment.ns6:"QRD.12.QueryResultsLevel" = 'T';	
+	ELSEIF (refPatientKey.attachment = 'false') THEN
+		SET refSegment.ns6:"QRD.12.QueryResultsLevel" = 'R';
+	ELSE
+		SET refSegment.ns6:"QRD.12.QueryResultsLevel" = '';
+	END IF;
+	
+
+END;

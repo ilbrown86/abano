@@ -1,0 +1,116 @@
+/*EATE FUNCTION Main() RETURNS BOOLE*/
+	BEGIN
+		--CALL CopyMessageHeaders();
+		--CALL CopyEntireMessage();
+		--copia Properties
+		SET OutputRoot.Properties = InputRoot.Properties;
+		--definizione tipo messaggio HL7
+		SET OutputRoot.Properties.MessageType = '{urn:hl7-org:v2xml}:HL7';
+		--definizione puntatori
+		--Output Message
+
+		DECLARE request REFERENCE TO InputRoot.XMLNSC.ns:senderRequest;		DECLARE action CHARACTER request.action;
+		DECLARE messageId CHARACTER COALESCE(request.messageId,CAST(CURRENT_TIMESTAMP AS CHARACTER FORMAT 'YYYYMMddHHmmss'));		--SET messageId = GetUUID();
+		DECLARE trace CHARACTER;		DECLARE outputMessage REFERENCE TO OutputRoot;
+		DECLARE model REFERENCE TO InputRoot;
+		--CREATE LASTCHILD OF OutputRoot AS outputMessage Domain('DFDL');
+		CREATE LASTCHILD OF OutputLocalEnvironment.Variables.HL7 AS outputMessage Domain('DFDL');
+		CREATE LASTCHILD OF outputMessage AS outputMessage NAMESPACE ns6 NAME 'HL7';		
+		SET Environment.HL7.action = action;
+				CASE action
+		WHEN 'getPatientClinicalHistory' THEN
+			SET trace = action;
+			MOVE model TO request.patientDetailsRequest;
+			CALL CreateQRY_R02(messageId, model, outputMessage);
+		WHEN 'getPatientDetails' THEN
+			SET trace = action;
+			MOVE model TO request.patientDetailsRequest;
+			CALL CreateQRY_R02(messageId, model, outputMessage);
+		WHEN 'patientDetails' THEN			SET trace = action;			MOVE model TO request.patientDetailsRequest;
+			CALL CreateQRY_R02(messageId, model, outputMessage);
+		WHEN 'patientListFromKeys' THEN
+			SET trace = action;
+			MOVE model TO request.patientDetailsRequest;
+			CALL CreateQRY_R02(messageId, model, outputMessage);
+		WHEN 'patientList' THEN			SET trace = action;			MOVE model TO request.patientDetailsRequest;
+			CALL CreateQRY_R02(messageId, model, outputMessage);		WHEN 'issueList' THEN			SET trace = action;
+			MOVE model TO request.readParametersRequest;
+			CALL CreateQRY_R02(messageId, model, outputMessage);		WHEN 'noteList' THEN
+			SET trace = action;
+			MOVE model TO request.readParametersRequest;
+			CALL CreateQRY_R02(messageId, model, outputMessage);
+		WHEN 'getPatientNotes' THEN
+			SET trace = action;
+			MOVE model TO request.readParametersRequest;
+			CALL CreateQRY_R02(messageId, model, outputMessage);
+		WHEN 'getPatientMeasurementHistoryMultiline' THEN
+			SET trace = action;
+			MOVE model TO request.readParametersRequest;
+			CALL CreateQRY_R02(messageId, model, outputMessage);
+		WHEN 'getPatientMeasurementLastMultiline' THEN
+			SET trace = action;
+			MOVE model TO request.readParametersRequest;
+			CALL CreateQRY_R02(messageId, model, outputMessage);		WHEN 'readParameters' THEN			SET trace = action;
+		WHEN 'measurementsHistory' THEN
+			SET trace = action;
+			MOVE model TO request.readParametersRequest;
+			CALL CreateQRY_R02(messageId, model, outputMessage);
+		WHEN 'measurementsLast' THEN
+			SET trace = action;
+			MOVE model TO request.readParametersRequest;
+			CALL CreateQRY_R02(messageId, model, outputMessage);		WHEN 'getPatientMeasurementHistory' THEN
+			SET trace = action;
+			MOVE model TO request.readParametersRequest;
+			CALL CreateQRY_R02(messageId, model, outputMessage);
+		WHEN 'getPatientMeasurementLast' THEN
+			SET trace = action;
+			MOVE model TO request.readParametersRequest;
+			CALL CreateQRY_R02(messageId, model, outputMessage);
+		WHEN 'issuesAdd' THEN			SET trace = action;
+			MOVE model TO request.writeParametersRequest;
+			CALL CreateORU_R01(messageId, model, outputMessage);		WHEN 'putPatientIssue' THEN
+			SET trace = action;
+			MOVE model TO request.writeParametersRequest;
+			CALL CreateORU_R01(messageId, model, outputMessage);
+		WHEN 'notesAdd' THEN			SET trace = action;			MOVE model TO request.writeParametersRequest;
+			CALL CreateORU_R01(messageId, model, outputMessage);
+		WHEN 'putPatientNote' THEN
+			SET trace = action;
+			MOVE model TO request.writeParametersRequest;
+			DECLARE attachPres CHARACTER;
+			SET attachPres = model.patient.attachPresent; 
+			IF attachPres = 'true' THEN
+				CALL CreateORU_R01Attachment(messageId, model, outputMessage);
+			ELSE
+				CALL CreateORU_R01(messageId, model, outputMessage);
+			END IF;
+			
+		WHEN 'writeParameters' THEN			SET trace = action;			MOVE model TO request.writeParametersRequest;
+			CALL CreateORU_R01(messageId, model, outputMessage);
+		ELSE
+			SET trace = 'actionUnrecognized'||action;		END CASE;
+		
+		DECLARE OUTBLOB BLOB ASBITSTREAM(OutputLocalEnvironment.Variables.HL7.DFDL 
+								OPTIONS RootBitStream
+								ENCODING InputRoot.Properties.Encoding
+								CCSID InputRoot.Properties.CodedCharSetId
+								SET ''
+								TYPE 'hl7:HL7'
+								FORMAT 'DFDL');
+		SET OutputRoot.BLOB.BLOB = OUTBLOB;
+		RETURN TRUE;
+	END;
+
+	CREATE PROCEDURE CopyMessageHeaders() BEGIN
+		DECLARE I INTEGER 1;
+		DECLARE J INTEGER;
+		SET J = CARDINALITY(InputRoot.*[]);
+		WHILE I < J DO
+			SET OutputRoot.*[I] = InputRoot.*[I];
+			SET I = I + 1;
+		END WHILE;
+	END;
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		SET OutputRoot = InputRoot;
+	END;

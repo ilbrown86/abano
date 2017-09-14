@@ -1,0 +1,88 @@
+CREATE PROCEDURE BuildACKMSH(IN MSHEnv REFERENCE, IN MSHFields REFERENCE) 
+BEGIN
+    -- Assign the FieldSeparator value from input message if it is present
+    IF MSHEnv.Field1 IS NOT NULL THEN
+        SET MSHFields.hl7:"MSH.1.FieldSeparator" = MSHEnv.Field1;
+    ELSE
+        SET MSHFields.hl7:"MSH.1.FieldSeparator" = FieldSeparator;
+    END IF;
+
+    -- Assign the ServiceString value from input message if it is present
+	IF MSHEnv.Field2.ComponentSeparator IS NOT NULL THEN
+		SET MSHFields.hl7:"MSH.2.ServiceString".hl7:ComponentSeparator = MSHEnv.Field2.ComponentSeparator;
+	ELSE
+		SET MSHFields.hl7:"MSH.2.ServiceString".hl7:ComponentSeparator = ComponentSeparator;
+	END IF;
+	IF MSHEnv.Field2.RepeatSeparator IS NOT NULL THEN
+		SET MSHFields.hl7:"MSH.2.ServiceString".hl7:RepeatSeparator = MSHEnv.Field2.RepeatSeparator;
+	ELSE
+		SET MSHFields.hl7:"MSH.2.ServiceString".hl7:RepeatSeparator = RepeatSeparator;
+	END IF;
+	IF MSHEnv.Field2.EscapeSeparator IS NOT NULL THEN
+		SET MSHFields.hl7:"MSH.2.ServiceString".hl7:EscapeCharacter = MSHEnv.Field2.EscapeSeparator;
+	ELSE
+		SET MSHFields.hl7:"MSH.2.ServiceString".hl7:EscapeCharacter = EscapeSeparator;
+	END IF;
+	IF MSHEnv.Field2.SubComponentSeparator IS NOT NULL THEN
+		SET MSHFields.hl7:"MSH.2.ServiceString".hl7:SubComponentSeparator = MSHEnv.Field2.SubComponentSeparator;
+	ELSE
+		SET MSHFields.hl7:"MSH.2.ServiceString".hl7:SubComponentSeparator = SubComponentSeparator;
+	END IF;
+
+    -- Get the values from UDPs and assign to field 3 and 4
+    SET MSHFields.hl7:"MSH.3.SendingApplication".hl7:"HD.1" = SendingApplication;
+    SET MSHFields.hl7:"MSH.4.SendingFacility".hl7:"HD.1" = SendingFacility;
+
+    -- Assign the SendingApplication value from input message if it is present
+    IF MSHEnv.Field3 IS NOT NULL THEN
+        SET MSHFields.hl7:"MSH.5.ReceivingApplication".hl7:"HD.1" = MSHEnv.Field3;
+    ELSE
+        SET MSHFields.hl7:"MSH.5.ReceivingApplication".hl7:"HD.1" = ReceivingApplication;
+    END IF;
+
+    -- Assign the SendingFacility value from input message if it is present
+    IF MSHEnv.Field4 IS NOT NULL THEN
+        SET MSHFields.hl7:"MSH.6.ReceivingFacility".hl7:"HD.1" = MSHEnv.Field4;
+    ELSE
+        SET MSHFields.hl7:"MSH.6.ReceivingFacility".hl7:"HD.1" = ReceivingFacility;
+    END IF;
+
+    -- Compute date time in YYYYMMddHHmmss format  
+    IF MSHEnv.Field12 IS NOT NULL THEN
+    	DECLARE MsgVersion FLOAT;
+    	SET MsgVersion = CAST(SUBSTRING(MSHEnv.Field12 FROM 1 FOR 3) AS FLOAT);
+    	IF MsgVersion < 2.6 THEN
+    		SET MSHFields.hl7:"MSH.7.DateTimeOfMessage".hl7:"TS.1" = CAST(CURRENT_TIMESTAMP AS CHARACTER FORMAT 'YYYYMMddHHmmss');
+    	ELSE     		
+    		SET MSHFields.hl7:"MSH.7.DateTimeOfMessage" = CAST(CURRENT_TIMESTAMP AS CHARACTER FORMAT 'YYYYMMddHHmmss');
+    	END IF;
+    ELSE
+    	IF ReceiverMessageSet = 'HL7v27DFDL' OR ReceiverMessageSet = 'HL7v26DFDL' THEN
+    		SET MSHFields.hl7:"MSH.7.DateTimeOfMessage" = CAST(CURRENT_TIMESTAMP AS CHARACTER FORMAT 'YYYYMMddHHmmss');
+    	ELSE 
+    		SET MSHFields.hl7:"MSH.7.DateTimeOfMessage".hl7:"TS.1" = CAST(CURRENT_TIMESTAMP AS CHARACTER FORMAT 'YYYYMMddHHmmss');
+    	END IF;
+    END IF;
+    
+    -- Type of message - ACK in case of acknowledgement
+    SET MSHFields.hl7:"MSH.9.MessageType".hl7:"MSG.1" = 'ACK';
+	SET MSHFields.hl7:"MSH.9.MessageType".hl7:"MSG.2" = 'ACK';
+	SET MSHFields.hl7:"MSH.9.MessageType".hl7:"MSG.3" = 'ACK';
+
+    -- Get the 20 bytes length of UID and assign it as message control ID
+    SET MSHFields.hl7:"MSH.10.MessageControlID" = GetUUID();
+
+    -- Assign the ProcessingID value from the input message
+    IF MSHEnv.Field11 IS NOT NULL THEN
+        SET MSHFields.hl7:"MSH.11.ProcessingID".hl7:"PT.1" = MSHEnv.Field11;
+    ELSE
+        SET MSHFields.hl7:"MSH.11.ProcessingID".hl7:"PT.1" = ProcessingID;
+    END IF;
+
+    -- Assign the VersionID value from the input message - by default it is 2.2
+    IF MSHEnv.Field12 IS NOT NULL THEN
+        SET MSHFields.hl7:"MSH.12.VersionID".hl7:"VID.1" = MSHEnv.Field12;
+    ELSE
+        SET MSHFields.hl7:"MSH.12.VersionID".hl7:"VID.1" = '2.2';
+    END IF;
+END;

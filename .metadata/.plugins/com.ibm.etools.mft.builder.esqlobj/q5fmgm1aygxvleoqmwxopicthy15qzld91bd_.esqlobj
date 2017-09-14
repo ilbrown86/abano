@@ -1,0 +1,14 @@
+/*EATE FUNCTION Main() RETURNS BOOLE*/
+    BEGIN
+        DECLARE env REFERENCE TO Environment.PatternVariables;
+        -- Send a close if failure count exceeded
+        -- ErrorLimit is defined by the pattern parameter
+        DECLARE ErrorLimit INTEGER;
+        SET ErrorLimit =  0;
+        SET FailureCount = FailureCount + 1;
+        IF  (ErrorLimit > 0) AND (FailureCount > ErrorLimit) THEN
+            SET FailureCount = 0;
+            PROPAGATE TO TERMINAL 'out2' DELETE NONE;
+        END IF;     
+        RETURN TRUE;
+    END;

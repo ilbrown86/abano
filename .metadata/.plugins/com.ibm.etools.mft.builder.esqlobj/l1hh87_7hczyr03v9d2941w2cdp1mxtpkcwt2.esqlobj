@@ -1,0 +1,69 @@
+/*EATE FUNCTION Main() RETURNS BOOLE*/
+	BEGIN
+		CALL CopyMessageHeaders();
+		--CALL CopyEntireMessage();
+
+		DECLARE patientId CHARACTER;
+		SET patientId = InputLocalEnvironment.REST.Input.Parameters.patientId;
+		DECLARE nosologicId CHARACTER;
+		SET nosologicId = InputLocalEnvironment.REST.Input.Parameters.nosologicId;
+		DECLARE maxResult CHARACTER;
+		SET maxResult = InputLocalEnvironment.REST.Input.Parameters.maxResult;
+		DECLARE attachment CHARACTER;
+		SET attachment = InputLocalEnvironment.REST.Input.Parameters.attachment;
+		
+		DECLARE outputMessage REFERENCE TO OutputRoot; 
+		DECLARE outPatientKey REFERENCE TO OutputRoot;
+		DECLARE outParameters REFERENCE TO OutputRoot;
+		DECLARE outParameters2 REFERENCE TO OutputRoot;
+		 
+		CREATE LASTCHILD OF OutputRoot AS outputMessage DOMAIN('XMLNSC') NAME 'XMLNSC';
+		CREATE FIRSTCHILD OF outputMessage as outputMessage NAMESPACE ns NAME 'senderRequest';
+		-- MessageId is create randomly by HL7Sender
+		--sarebbe perfetto. In attesa verifica MEDArchiver (stefano)
+		--DECLARE msgId CHARACTER InputLocalEnvironment.Destination.HTTP.RequestIdentifier;
+		--SET outputMessage.messageId = msgId;
+		--DECLARE msgId CHARACTER 'E' || CAST (CURRENT_TIMESTAMP AS CHARACTER FORMAT 'YYYYMMddHHmmss');
+		DECLARE msgId CHARACTER InputLocalEnvironment.Destination.HTTP.RequestIdentifier;
+		SET msgId = REPLACE(msgId,'''','');
+		SET msgId = 'E' || msgId;
+		SET outputMessage.messageId = msgId;
+		
+		SET outputMessage.action = InputLocalEnvironment.REST.Input.Operation;
+		CREATE LASTCHILD OF outputMessage AS outputMessage NAME 'readParametersRequest';
+		CREATE LASTCHILD OF outputMessage AS outPatientKey NAME 'patientKey';
+		SET outPatientKey.patientId = patientId;
+		SET outPatientKey.nosologicId = nosologicId;
+		SET outPatientKey.maxResult = maxResult;
+		IF NULLIF(attachment, '') IS NOT NULL THEN
+			SET outPatientKey.attachment = attachment;
+		ELSE
+			SET outPatientKey.attachment = 'T'
+		END IF;
+		--SET outPatientKey.attachment = attachment;
+		--lista parametri
+		--CREATE LASTCHILD OF outputMessage AS outParameters NAME 'Item';
+		--CREATE LASTCHILD OF outParameters TYPE NameValue NAME 'paramsId' VALUE 'NINF001';
+		--CREATE LASTCHILD OF outParameters TYPE NameValue NAME 'paramsId' VALUE 'NINF101';
+		
+		CREATE LASTCHILD OF outputMessage AS outParameters NAME 'paramsId';
+		SET outParameters = 'NINF001';
+		CREATE LASTCHILD OF outputMessage AS outParameters NAME 'paramsId';
+		SET outParameters = 'NINF101';
+
+		RETURN TRUE;
+	END;
+
+	CREATE PROCEDURE CopyMessageHeaders() BEGIN
+		DECLARE I INTEGER 1;
+		DECLARE J INTEGER;
+		SET J = CARDINALITY(InputRoot.*[]);
+		WHILE I < J DO
+			SET OutputRoot.*[I] = InputRoot.*[I];
+			SET I = I + 1;
+		END WHILE;
+	END;
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		SET OutputRoot = InputRoot;
+	END;

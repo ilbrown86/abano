@@ -1,0 +1,350 @@
+CREATE COMPUTE MODULE measurementLastMultiline_MapToJSONModel
+CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		CALL CopyMessageHeaders();
+		--CALL CopyEntireMessage();
+
+		DECLARE response REFERENCE TO InputRoot.XMLNSC.ns:senderResponse;
+		DECLARE errorResponse REFERENCE TO InputRoot.XMLNSC.ns:senderResponse;
+		--GESTIONE ERRORE
+		MOVE errorResponse FIRSTCHILD NAME 'error';
+		IF LASTMOVE(errorResponse) THEN
+			SET OutputLocalEnvironment.Destination.HTTP.ReplyStatusCode = 400;
+			SET OutputRoot.JSON.Data.errorCode = errorResponse.errorCode;
+			SET OutputRoot.JSON.Data.errorMessage = errorResponse.errorMessage;
+			RETURN TRUE;
+		END IF; 
+
+		SET OutputLocalEnvironment.Destination.HTTP.ReplyStatusCode = 200;
+
+		--MAP MODEL TO JSON
+		MOVE response FIRSTCHILD;
+
+		IF LASTMOVE(response) THEN
+			MOVE response FIRSTCHILD NAMESPACE ns NAME 'parameter';	
+			--array di misurazioni
+			DECLARE refOutJSON REFERENCE TO OutputRoot;
+			DECLARE refMeasures REFERENCE TO OutputRoot;
+			DECLARE measure ROW;
+			
+						
+			DECLARE dateToday TIMESTAMP;
+			SET dateToday = CAST (CURRENT_TIMESTAMP AS TIMESTAMP FORMAT 'YYYY-MM-dd HH.mm.ss');
+			DECLARE dateSeven TIMESTAMP;
+			DECLARE retAge CHARACTER '7';
+			SET dateSeven = dateToday - CAST(retAge AS INTERVAL DAY);
+			DECLARE indiceProv INTEGER 1;
+			
+			
+			CREATE FIELD OutputRoot.JSON.Data AS refOutJSON IDENTITY (JSON.Array)Data;
+			DECLARE ind INTEGER 1;
+ 			WHILE LASTMOVE(response) DO
+ 				DECLARE refValues REFERENCE TO response;
+ 				DECLARE detPointResponse CHARACTER;
+ 				DECLARE detPointDescResponse CHARACTER;
+ 				IF NULLIF(response.detPoint,'') IS NOT NULL THEN
+ 					SET detPointResponse = response.detPoint;
+ 				END IF;
+ 				IF NULLIF(response.detPoint,'') IS NOT NULL THEN
+ 					SET detPointDescResponse = response.detPointDesc;
+ 				END IF;
+				MOVE refValues FIRSTCHILD NAMESPACE ns NAME 'values';
+				DECLARE responseDate TIMESTAMP CAST(response.date AS TIMESTAMP FORMAT 'YYYY-MM-dd HH.mm.ss');
+				DECLARE detectionPointID CHARACTER;
+				DECLARE detectionPointDescription CHARACTER;
+				
+				
+				IF NULLIF(refValues.measureId,'NINF001') IS NOT NULL AND NULLIF(refValues.measureId,'IINF001') IS NOT NULL AND NULLIF(refValues.measureId,'NINF101') IS NOT NULL THEN 
+			 			WHILE LASTMOVE(refValues) DO
+			 				IF NULLIF(refValues.value,'') IS NOT NULL 
+			 					AND NULLIF(refValues.measureId,'') IS NOT NULL 
+			 					AND NULLIF(refValues.value,'null') IS NOT NULL 
+			 					AND responseDate > dateSeven
+			 					THEN
+			 					DECLARE refMeasureId REFERENCE TO measure;
+			 					IF NULLIF(detPointResponse,'') IS NOT NULL THEN
+									SET detectionPointID = detPointResponse;
+			 						
+			 					ELSE
+			 						SET detectionPointID = '';
+			 					END IF;
+			 					IF NULLIF(detPointDescResponse,'') IS NOT NULL THEN
+									SET detectionPointDescription = detPointDescResponse;
+			 						
+			 					ELSE
+			 						SET detectionPointDescription = '';
+			 					END IF;
+
+			 					IF (refValues.measureId = 'DN012') THEN
+										
+			 							
+										CREATE FIRSTCHILD OF refValues NAME detectionPointID VALUE detectionPointID;
+										SET refValues.detectionPointID = detectionPointID;
+
+					 					MOVE refMeasureId FIRSTCHILD NAME refValues.measureId;
+					 					IF NOT LASTMOVE(refMeasureId) THEN
+					 						CREATE LASTCHILD OF measure AS refMeasureId NAME refValues.measureId;
+					 						CREATE LASTCHILD OF refMeasureId TYPE NameValue NAME 'measureId' VALUE refValues.measureId;
+					 						CREATE LASTCHILD OF refMeasureId TYPE NameValue NAME 'measureName' VALUE refValues.measureName;
+					 						CREATE LASTCHILD OF refMeasureId AS refMeasureId NAME 'measurements'; 
+					 						SET refMeasureId TYPE =	JSON.Array;
+
+					 					ELSE 
+											MOVE refMeasureId FIRSTCHILD NAME 'measurements'; 
+					 						
+					 					END IF;
+					 					
+					 					--CREATE LASTCHILD OF refMeasureId AS refMeasureId NAME 'measurements';
+					 					MOVE refMeasureId FIRSTCHILD NAME refValues.detectionPointID;
+					 					
+					 					
+										IF NOT LASTMOVE(refMeasureId) THEN
+											--CREATE LASTCHILD OF refMeasureId AS refMeasureId NAME 'measurements';--prima
+											CREATE LASTCHILD OF refMeasureId AS refMeasureId NAME detectionPointID;--per creare un unico measurements con due values
+											CREATE LASTCHILD OF refMeasureId TYPE NameValue NAME 'detectionPointID' VALUE detectionPointID;
+											CREATE LASTCHILD OF refMeasureId TYPE NameValue NAME 'detectionPointDescription' VALUE detectionPointDescription;
+										 
+											
+										END IF;
+										
+				 						CREATE LASTCHILD OF refMeasureId AS refMeasureId NAME 'values';
+										CREATE LASTCHILD OF refMeasureId TYPE NameValue NAME 'taskId' VALUE response.taskId;
+										CREATE LASTCHILD OF refMeasureId TYPE NameValue NAME 'userId' VALUE response.userId;
+										CREATE LASTCHILD OF refMeasureId TYPE NameValue NAME 'value' VALUE refValues.value;
+										CREATE LASTCHILD OF refMeasureId TYPE NameValue NAME 'date' VALUE response.date;
+										IF (refValues.units IS NOT NULL) THEN
+											CREATE LASTCHILD OF refMeasureId TYPE NameValue NAME 'units' VALUE refValues.units;
+										END IF;
+										IF (refValues.type IS NOT NULL) THEN
+											CREATE LASTCHILD OF refMeasureId TYPE NameValue NAME 'type' VALUE refValues.type;
+										END IF;
+										
+										
+								END IF;
+								IF (refValues.measureId = 'TMP001') THEN
+										
+			 							
+										CREATE FIRSTCHILD OF refValues NAME detectionPointID VALUE detectionPointID;
+										SET refValues.detectionPointID = detectionPointID;
+										DECLARE detPointNull CHARACTER '';
+
+					 					MOVE refMeasureId FIRSTCHILD NAME refValues.measureId;
+					 					IF NOT LASTMOVE(refMeasureId) THEN
+					 						CREATE LASTCHILD OF measure AS refMeasureId NAME refValues.measureId;
+					 						CREATE LASTCHILD OF refMeasureId TYPE NameValue NAME 'measureId' VALUE refValues.measureId;
+					 						CREATE LASTCHILD OF refMeasureId TYPE NameValue NAME 'measureName' VALUE refValues.measureName;
+					 						CREATE LASTCHILD OF refMeasureId AS refMeasureId NAME 'measurements'; 
+					 						SET refMeasureId TYPE =	JSON.Array;
+
+					 					ELSE 
+											MOVE refMeasureId FIRSTCHILD NAME 'measurements'; 
+					 						
+					 					END IF;
+					 					
+					 					--CREATE LASTCHILD OF refMeasureId AS refMeasureId NAME 'measurements';
+					 					MOVE refMeasureId FIRSTCHILD NAME refValues.detectionPointID;
+					 					
+					 					
+										IF NOT LASTMOVE(refMeasureId) THEN
+											--CREATE LASTCHILD OF refMeasureId AS refMeasureId NAME 'measurements';--prima
+											CREATE LASTCHILD OF refMeasureId AS refMeasureId NAME indiceProv;--'*' || detectionPointID;--per creare un unico measurements con due values
+											CREATE LASTCHILD OF refMeasureId TYPE NameValue NAME 'detectionPointID' VALUE detPointNull;
+											CREATE LASTCHILD OF refMeasureId TYPE NameValue NAME 'detectionPointDescription' VALUE detectionPointDescription;
+											
+										--END IF;
+										
+					 						CREATE LASTCHILD OF refMeasureId AS refMeasureId NAME 'values';
+											CREATE LASTCHILD OF refMeasureId TYPE NameValue NAME 'taskId' VALUE response.taskId;
+											CREATE LASTCHILD OF refMeasureId TYPE NameValue NAME 'userId' VALUE response.userId;
+											CREATE LASTCHILD OF refMeasureId TYPE NameValue NAME 'value' VALUE refValues.value;
+											CREATE LASTCHILD OF refMeasureId TYPE NameValue NAME 'date' VALUE response.date;
+											IF (refValues.units IS NOT NULL) THEN
+												CREATE LASTCHILD OF refMeasureId TYPE NameValue NAME 'units' VALUE refValues.units;
+											END IF;
+											IF (refValues.type IS NOT NULL) THEN
+												CREATE LASTCHILD OF refMeasureId TYPE NameValue NAME 'type' VALUE refValues.type;
+											END IF;
+										
+										ELSEIF CAST(refMeasureId.values.date AS TIMESTAMP FORMAT 'YYYY-MM-dd HH.mm.ss') < responseDate THEN
+					 						MOVE refMeasureId FIRSTCHILD NAME 'values';
+					 						
+											SET refMeasureId.taskId = response.taskId;
+											SET refMeasureId.userId = response.userId;
+											SET refMeasureId.value = refValues.value;
+											SET refMeasureId.date  = response.date;
+											IF (refValues.units IS NOT NULL) THEN
+												SET refMeasureId.units = refValues.units;
+											END IF;
+											IF (refValues.type IS NOT NULL) THEN
+												SET refMeasureId.type = refValues.type;
+											END IF;
+					 					ELSEIF CAST(refMeasureId.values.date AS TIMESTAMP FORMAT 'YYYY-MM-dd HH.mm.ss') = responseDate THEN
+					 						
+					 						CREATE LASTCHILD OF refMeasureId AS refMeasureId NAME 'values';
+					 						
+											CREATE LASTCHILD OF refMeasureId TYPE NameValue NAME 'taskId' VALUE response.taskId;
+											CREATE LASTCHILD OF refMeasureId TYPE NameValue NAME 'userId' VALUE response.userId;
+											CREATE LASTCHILD OF refMeasureId TYPE NameValue NAME 'value' VALUE refValues.value;
+											CREATE LASTCHILD OF refMeasureId TYPE NameValue NAME 'date' VALUE response.date;
+					 					END IF;
+																				
+								END IF;								
+			 				END IF;
+			 				MOVE refValues NEXTSIBLING REPEAT NAME;
+			 			END WHILE;
+			 	END IF;
+
+				SET ind = ind + 1;
+				MOVE response NEXTSIBLING;
+	 		END WHILE;
+
+	 		
+			
+			DECLARE pr CHARACTER;
+	 		SET refOutJSON = measure;
+	 		DECLARE refCompact REFERENCE to refOutJSON;
+	 		move refCompact FIRSTCHILD;
+--	 		IF NULLIF (refCompact,'') IS NOT NULL THEN
+--	 			DECLARE pro CHARACTER;
+--	 		ELSE
+--	 			RETURN TRUE;
+--	 		END IF;
+	 		WHILE LASTMOVE(refCompact) DO
+	 			DECLARE refmeasuretocompact REFERENCE TO refCompact;
+	 			MOVE refmeasuretocompact FIRSTCHILD NAME 'measurements';
+	 			--MOVE refmeasuretocompact FIRSTCHILD;
+	 			call compactJSONArray(refmeasuretocompact);
+	 			MOVE refmeasuretocompact TO refCompact;
+		 		move refmeasuretocompact LASTCHILD NAME 'measurements';
+		 		DETACH refmeasuretocompact;
+	 			
+	 			MOVE refCompact NEXTSIBLING;
+	 		END WHILE;
+--	 		move refCompact LASTCHILD NAME 'measurements';
+--	 		DETACH refCompact;
+	 		--SET refOutJSON = multiline;
+	 		CALL createJSONArrays(OutputRoot.JSON.Data);
+			RETURN TRUE;
+			
+		END IF;
+	
+
+		SET OutputLocalEnvironment.Destination.HTTP.ReplyStatusCode = 200;
+		--CREATE LASTCHILD OF OutputRoot Domain('JSON');
+		--SET OutputRoot.JSON.Data.ns:senderResponse.error.errorCode = 1;
+		RETURN TRUE;
+	END;
+
+	CREATE PROCEDURE CopyMessageHeaders() BEGIN
+		DECLARE I INTEGER 1;
+		DECLARE J INTEGER;
+		SET J = CARDINALITY(InputRoot.*[]);
+		WHILE I < J DO
+			SET OutputRoot.*[I] = InputRoot.*[I];
+			SET I = I + 1;
+		END WHILE;
+	END;
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		SET OutputRoot = InputRoot;
+	END;
+	
+	-- Walk the tree recursively starting at inRef. 
+	-- Replace all sequences of same-named elements with a JSON array.
+	-- A JSON array has a name and some child elements with values. 
+	-- The array element must have field type JSON.Array.
+	-- The child elements that hold the values can optionally have names. 
+	CREATE PROCEDURE createJSONArrays(IN root REFERENCE ) 
+	BEGIN
+		-- track the start and end of 'arrays' ( sequences of same-named siblings )
+		DECLARE firstArrayElementRef REFERENCE TO root;
+		DECLARE siblingRef REFERENCE TO root;
+		DECLARE arraySize INTEGER 0;
+
+
+		DECLARE SIBLI CHARACTER FIELDNAME(siblingRef);
+		DECLARE FIRST CHARACTER FIELDNAME(firstArrayElementRef);
+
+		WHILE LASTMOVE(siblingRef) DO
+			
+			-- Process any child elements first 
+			DECLARE firstChildRef REFERENCE TO siblingRef;
+			MOVE firstChildRef FIRSTCHILD;
+			IF LASTMOVE(firstChildRef) THEN
+				CALL createJSONArrays(firstChildRef);
+			END IF;
+			SET SIBLI = FIELDNAME(siblingRef);
+			SET FIRST = FIELDNAME(firstArrayElementRef);
+			-- IF this sibling's name is different from the previous one.
+			IF FIELDNAME(siblingRef) = FIELDNAME(firstArrayElementRef) THEN
+				SET arraySize = arraySize + 1;
+			ELSE
+				-- IF there was a sequence of two or more siblings with the same name
+				IF arraySize > 1 OR FIELDNAME(firstArrayElementRef) = 'values' THEN
+					CALL createJSONArray(firstArrayElementRef, arraySize);
+				END IF;				
+
+				-- start scanning for a new array
+				MOVE firstArrayElementRef TO siblingRef;
+				SET arraySize = 1;
+			END IF;
+			
+			MOVE siblingRef NEXTSIBLING;
+		END WHILE;
+		SET FIRST = FIELDNAME(firstArrayElementRef);
+		
+		IF arraySize > 1 OR FIELDNAME(firstArrayElementRef) = 'values' THEN
+			CALL createJSONArray(firstArrayElementRef, arraySize);
+		END IF;
+	END;
+
+	CREATE PROCEDURE createJSONArray(IN firstArrayElementRef REFERENCE, IN arraySize INTEGER) BEGIN
+		-- Create a parent element for the array
+		DECLARE arrayParentRef REFERENCE TO firstArrayElementRef;
+		CREATE PREVIOUSSIBLING OF firstArrayElementRef 
+			AS arrayParentRef 
+			TYPE JSON.Array 
+			NAMESPACE FIELDNAMESPACE(firstArrayElementRef) 
+			NAME FIELDNAME(firstArrayElementRef);
+			
+		-- Make the array members children of the new parent element
+		DECLARE pos INTEGER 1;
+		WHILE pos <= arraySize DO
+			DECLARE tempRef REFERENCE TO firstArrayElementRef;
+			-- advance the reference. This should never fail because we have
+			-- already walked all of these siblings to discover the array.
+			MOVE firstArrayElementRef NEXTSIBLING;
+
+			DETACH tempRef;
+			ATTACH tempRef TO arrayParentRef AS LASTCHILD;
+			
+			SET pos = pos + 1;
+		END WHILE;
+	END;
+
+	CREATE PROCEDURE compactJSONArray(IN firstArrayElementRef REFERENCE) BEGIN
+		-- Create a parent element for the array
+		DECLARE arrayParentRef REFERENCE TO firstArrayElementRef;
+		CREATE PREVIOUSSIBLING OF firstArrayElementRef 
+			AS arrayParentRef 
+			TYPE JSON.Array
+			NAMESPACE FIELDNAMESPACE(firstArrayElementRef) 
+			NAME FIELDNAME(firstArrayElementRef);
+			
+		-- Make the array members children of the new parent element
+		DECLARE pos INTEGER 1;
+		MOVE firstArrayElementRef FIRSTCHILD;
+		WHILE LASTMOVE(firstArrayElementRef) DO
+			DECLARE tempRef REFERENCE TO firstArrayElementRef;
+			-- advance the reference. This should never fail because we have
+			-- already walked all of these siblings to discover the array.
+			MOVE firstArrayElementRef NEXTSIBLING;
+
+			DETACH tempRef;
+			ATTACH tempRef TO arrayParentRef AS LASTCHILD;
+			
+			SET pos = pos + 1;
+		END WHILE;
+	END;
+	
+END MODULE;

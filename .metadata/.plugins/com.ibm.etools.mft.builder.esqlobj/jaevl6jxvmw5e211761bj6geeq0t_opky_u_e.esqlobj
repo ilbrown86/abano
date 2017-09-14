@@ -1,0 +1,6 @@
+CREATE PROCEDURE CreateModelFromMSA(IN refHL7 REFERENCE, INOUT xmlModel REFERENCE) BEGIN
+--	DECLARE xmlModel REFERENCE TO InputRoot.XMLNSC.ns:senderResponse.patientDetailsResponse;
+	DECLARE refSegment REFERENCE TO refHL7;
+	SET xmlModel.result = refHL7.ns6:"MSA.1.AcknowledgementCode" || ' ' || COALESCE(refHL7.ns6:"MSA.3.TextMessage",' ');
+
+END;

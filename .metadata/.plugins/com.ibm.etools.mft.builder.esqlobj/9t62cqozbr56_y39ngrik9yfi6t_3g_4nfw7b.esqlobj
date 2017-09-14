@@ -1,0 +1,97 @@
+/*EATE FUNCTION Main() RETURNS BOOLE*/
+		BEGIN
+		CALL CopyMessageHeaders();
+		--CALL CopyEntireMessage();
+		
+		--create Environment to save responses
+		DECLARE refResponse REFERENCE TO Environment;
+		CREATE FIRSTCHILD OF Environment.Variables.HL7Model AS refResponse NAME 'senderResponse';
+
+		--create Output message
+		DECLARE outputMessage, outRequest, outPatientKey,outParameters REFERENCE TO OutputRoot;
+		CREATE LASTCHILD OF OutputRoot AS outputMessage DOMAIN('XMLNSC') NAME 'XMLNSC';
+		CREATE FIRSTCHILD OF outputMessage as outputMessage NAMESPACE ns NAME 'senderRequest';
+		
+		--patient Key
+		CREATE LASTCHILD OF outputMessage AS outRequest NAME 'patientDetailsRequest';
+		CREATE LASTCHILD OF outRequest AS outPatientKey NAME 'patientKey';
+		CREATE LASTCHILD OF outPatientKey AS outPatientKey NAME 'logistic';
+		--lista parametri fisso a BED
+		CREATE FIRSTCHILD OF outRequest AS outParameters NAME 'paramsId';
+		SET outParameters = 'BED';
+				 
+		--loop over compartment, room, bed 
+		-- compartment loop
+		DECLARE refDivision REFERENCE TO InputRoot.JSON.Data;
+		MOVE refDivision FIRSTCHILD;
+		WHILE LASTMOVE(refDivision) DO
+			
+			--AREA loop
+			DECLARE refArea REFERENCE TO refDivision;
+			MOVE refArea FIRSTCHILD NAME 'areas';
+			MOVE refArea FIRSTCHILD;
+			WHILE LASTMOVE(refArea) DO
+				-- ROOM loop
+				DECLARE refRoom REFERENCE TO refArea;
+				MOVE refRoom FIRSTCHILD NAME 'rooms';
+				MOVE refRoom FIRSTCHILD;
+				
+				WHILE LASTMOVE(refRoom) DO
+					-- BED loop
+					DECLARE refBed REFERENCE TO refRoom;
+					MOVE refBed FIRSTCHILD NAME 'beds';
+					MOVE refBed FIRSTCHILD;
+					WHILE LASTMOVE(refBed) DO
+						DECLARE refPatientList REFERENCE TO refResponse;
+						CREATE LASTCHILD OF refResponse AS refPatientList NAME 'patientBedListResponse';
+						SET refPatientList.compartmentId = refDivision.id;
+						SET refPatientList.roomId = refRoom.code;
+						set refPatientList.bedId = refBed.code;
+						
+						--create HL7Model to call MEDArchiver services
+			
+						DECLARE msgId CHARACTER InputLocalEnvironment.Destination.HTTP.RequestIdentifier;
+						SET msgId = REPLACE(msgId,'''','');
+						SET msgId = 'I' || msgId || CAST(refBed.code AS CHARACTER);
+						SET outputMessage.messageId = msgId;
+				
+						SET outputMessage.action = InputLocalEnvironment.REST.Input.Operation;
+						--patient Key
+						SET outPatientKey.compartmentId = refDivision.id;
+						SET outPatientKey.roomId = refRoom.code;
+						SET outPatientKey.bedId = refBed.code;
+						--CHIAMATA A MEDARCHIVER.
+						PROPAGATE TO TERMINAL 'out' FINALIZE NONE DELETE NONE;
+						
+						--move pointer to next compartment
+						MOVE refBed NEXTSIBLING REPEAT NAME;
+					END WHILE;
+	
+					--move pointer to next compartment
+					MOVE refRoom NEXTSIBLING REPEAT NAME;
+				END WHILE;
+				MOVE refArea NEXTSIBLING REPEAT NAME;
+			END WHILE;		
+			--move pointer to next compartment
+			MOVE refDivision NEXTSIBLING REPEAT NAME;
+		END WHILE;
+		--fine
+		PROPAGATE TO TERMINAL 'out1' FINALIZE NONE;
+		
+		RETURN FALSE;
+
+	END;
+
+	CREATE PROCEDURE CopyMessageHeaders() BEGIN
+		DECLARE I INTEGER 1;
+		DECLARE J INTEGER;
+		SET J = CARDINALITY(InputRoot.*[]);
+		WHILE I < J DO
+			SET OutputRoot.*[I] = InputRoot.*[I];
+			SET I = I + 1;
+		END WHILE;
+	END;
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		SET OutputRoot = InputRoot;
+	END;

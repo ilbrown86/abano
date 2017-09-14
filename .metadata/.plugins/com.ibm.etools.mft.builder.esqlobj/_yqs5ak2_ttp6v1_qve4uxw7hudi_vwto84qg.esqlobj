@@ -1,0 +1,26 @@
+/*EATE FUNCTION Main() RETURNS BOOLE*/
+	BEGIN
+		CALL CopyMessageHeaders();
+		-- CALL CopyEntireMessage();
+
+		--SET OutputRoot.Properties.MessageType = '{urn:hl7-org:v2xml}:HL7';
+		DECLARE ack REFERENCE TO InputRoot.DFDL.ns6:ACK;
+
+		CREATE LASTCHILD OF OutputRoot Domain('XMLNSC');
+		SET OutputRoot.XMLNSC.ns:response = 'ciao';
+		RETURN TRUE;
+	END;
+
+	CREATE PROCEDURE CopyMessageHeaders() BEGIN
+		DECLARE I INTEGER 1;
+		DECLARE J INTEGER;
+		SET J = CARDINALITY(InputRoot.*[]);
+		WHILE I < J DO
+			SET OutputRoot.*[I] = InputRoot.*[I];
+			SET I = I + 1;
+		END WHILE;
+	END;
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		SET OutputRoot = InputRoot;
+	END;

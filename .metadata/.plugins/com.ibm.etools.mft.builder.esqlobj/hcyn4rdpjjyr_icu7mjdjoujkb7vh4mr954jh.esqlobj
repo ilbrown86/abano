@@ -1,0 +1,59 @@
+CREATE PROCEDURE CreateModelFromPV2(IN refHL7 REFERENCE, INOUT refPatient REFERENCE) BEGIN
+
+	DECLARE refAdmissionData REFERENCE TO refPatient;
+	MOVE refAdmissionData FIRSTCHILD NAME 'admission';
+	--CHECK IF PATIENT TAG ALREADY CREATED
+	IF NOT LASTMOVE(refAdmissionData) THEN 
+		CREATE LASTCHILD OF refPatient AS refAdmissionData NAME 'admission';		
+	END IF;
+	
+	IF refHL7.ns6:"PV2.33.ExpectedSurgeryDateandTime".ns6:"TS.1" IS NOT NULL THEN
+		IF(LENGTH(refHL7.ns6:"PV2.33.ExpectedSurgeryDateandTime".ns6:"TS.1" ) = 14 ) THEN
+			SET refAdmissionData.surgeryExpectedDate = CAST (CAST (refHL7.ns6:"PV2.33.ExpectedSurgeryDateandTime".ns6:"TS.1" AS TIMESTAMP FORMAT 'YYYYMMddHHmmss') AS CHARACTER FORMAT 'YYYY-MM-dd');
+			SET refAdmissionData.surgeryExpectedTime = CAST (CAST (refHL7.ns6:"PV2.33.ExpectedSurgeryDateandTime".ns6:"TS.1" AS TIMESTAMP FORMAT 'YYYYMMddHHmmss') AS CHARACTER FORMAT 'HH.mm');
+		ELSEIF (LENGTH(refHL7.ns6:"PV2.33.ExpectedSurgeryDateandTime".ns6:"TS.1" ) = 8 ) THEN
+			SET refAdmissionData.surgeryExpectedDate = CAST (CAST (refHL7.ns6:"PV2.33.ExpectedSurgeryDateandTime".ns6:"TS.1" AS TIMESTAMP FORMAT 'YYYYMMdd') AS CHARACTER FORMAT 'YYYY-MM-dd');
+		ELSEIF (LENGTH(refHL7.ns6:"PV2.33.ExpectedSurgeryDateandTime".ns6:"TS.1" ) = 12 ) THEN
+			SET refAdmissionData.surgeryExpectedDate = CAST (CAST (refHL7.ns6:"PV2.33.ExpectedSurgeryDateandTime".ns6:"TS.1" AS TIMESTAMP FORMAT 'YYYYMMddHHmm') AS CHARACTER FORMAT 'YYYY-MM-dd');
+			SET refAdmissionData.surgeryExpectedTime = CAST (CAST (refHL7.ns6:"PV2.33.ExpectedSurgeryDateandTime".ns6:"TS.1" AS TIMESTAMP FORMAT 'YYYYMMddHHmm') AS CHARACTER FORMAT 'HH.mm');
+		ELSEIF (LENGTH(refHL7.ns6:"PV2.33.ExpectedSurgeryDateandTime".ns6:"TS.1" ) = 13 ) THEN
+			SET refAdmissionData.surgeryExpectedDate = CAST (CAST (refHL7.ns6:"PV2.33.ExpectedSurgeryDateandTime".ns6:"TS.1" AS TIMESTAMP FORMAT 'YYYYMMddHHmms') AS CHARACTER FORMAT 'YYYY-MM-dd');
+			SET refAdmissionData.surgeryExpectedTime = CAST (CAST (refHL7.ns6:"PV2.33.ExpectedSurgeryDateandTime".ns6:"TS.1" AS TIMESTAMP FORMAT 'YYYYMMddHHmms') AS CHARACTER FORMAT 'HH.mm');
+		END IF;
+	END IF;
+	
+	IF refHL7.ns6:"PV2.33.ExpectedSurgeryDateandTime".ns6:"TS.1" IS NOT NULL THEN
+		IF(LENGTH(refHL7.ns6:"PV2.33.ExpectedSurgeryDateandTime".ns6:"TS.1" ) = 14 ) THEN
+			SET refAdmissionData.surgeryEndDate = CAST (CAST (refHL7.ns6:"PV2.33.ExpectedSurgeryDateandTime".ns6:"TS.1" AS TIMESTAMP FORMAT 'YYYYMMddHHmmss') AS CHARACTER FORMAT 'YYYY-MM-dd');
+			SET refAdmissionData.surgeryEndTime = CAST (CAST (refHL7.ns6:"PV2.33.ExpectedSurgeryDateandTime".ns6:"TS.1" AS TIMESTAMP FORMAT 'YYYYMMddHHmmss') AS CHARACTER FORMAT 'HH.mm');
+		ELSEIF (LENGTH(refHL7.ns6:"PV2.33.ExpectedSurgeryDateandTime".ns6:"TS.1" ) = 8 ) THEN
+			SET refAdmissionData.surgeryEndDate = CAST (CAST (refHL7.ns6:"PV2.33.ExpectedSurgeryDateandTime".ns6:"TS.1" AS TIMESTAMP FORMAT 'YYYYMMdd') AS CHARACTER FORMAT 'YYYY-MM-dd');
+		ELSEIF (LENGTH(refHL7.ns6:"PV2.33.ExpectedSurgeryDateandTime".ns6:"TS.1" ) = 12 ) THEN
+			SET refAdmissionData.surgeryEndDate = CAST (CAST (refHL7.ns6:"PV2.33.ExpectedSurgeryDateandTime".ns6:"TS.1" AS TIMESTAMP FORMAT 'YYYYMMddHHmm') AS CHARACTER FORMAT 'YYYY-MM-dd');
+			SET refAdmissionData.surgeryEndTime = CAST (CAST (refHL7.ns6:"PV2.33.ExpectedSurgeryDateandTime".ns6:"TS.1" AS TIMESTAMP FORMAT 'YYYYMMddHHmm') AS CHARACTER FORMAT 'HH.mm');
+		ELSEIF (LENGTH(refHL7.ns6:"PV2.33.ExpectedSurgeryDateandTime".ns6:"TS.1" ) = 13 ) THEN
+			SET refAdmissionData.surgeryEndDate = CAST (CAST (refHL7.ns6:"PV2.33.ExpectedSurgeryDateandTime".ns6:"TS.1" AS TIMESTAMP FORMAT 'YYYYMMddHHmms') AS CHARACTER FORMAT 'YYYY-MM-dd');
+			SET refAdmissionData.surgeryEndTime = CAST (CAST (refHL7.ns6:"PV2.33.ExpectedSurgeryDateandTime".ns6:"TS.1" AS TIMESTAMP FORMAT 'YYYYMMddHHmms') AS CHARACTER FORMAT 'HH.mm');
+		END IF;
+	END IF;
+--	IF NULLIF(refHL7.ns6:"PV2.33.ExpectedSurgeryDateandTime".ns6:"TS.1",'0') IS NOT NULL THEN
+--		SET refAdmissionData.surgeryDate = CAST (CAST (SUBSTRING(refHL7.ns6:"PV2.33.ExpectedSurgeryDateandTime".ns6:"TS.1" FROM 1 FOR 8) AS DATE FORMAT 'YYYYMMdd') AS CHARACTER FORMAT 'YYYY-MM-dd');
+--	END IF;
+	--SET refPatient.surgeryDate = refHL7.ns6:"PV2.46.PatientStatusEffectiveDate";
+	IF refHL7.ns6:"PV2.46.PatientStatusEffectiveDate" IS NOT NULL THEN
+		IF(LENGTH(refHL7.ns6:"PV2.46.PatientStatusEffectiveDate" ) = 14 ) THEN
+			SET refPatient.surgeryDate = CAST (CAST (refHL7.ns6:"PV2.46.PatientStatusEffectiveDate" AS TIMESTAMP FORMAT 'YYYYMMddHHmmss') AS CHARACTER FORMAT 'YYYY-MM-dd');
+			SET refPatient.surgeryTime = CAST (CAST (refHL7.ns6:"PV2.46.PatientStatusEffectiveDate" AS TIMESTAMP FORMAT 'YYYYMMddHHmmss') AS CHARACTER FORMAT 'HH.mm');
+		ELSEIF (LENGTH(refHL7.ns6:"PV2.46.PatientStatusEffectiveDate" ) = 8 ) THEN
+			SET refPatient.surgeryDate = CAST (CAST (refHL7.ns6:"PV2.46.PatientStatusEffectiveDate" AS TIMESTAMP FORMAT 'YYYYMMdd') AS CHARACTER FORMAT 'YYYY-MM-dd');
+		ELSEIF (LENGTH(refHL7.ns6:"PV2.46.PatientStatusEffectiveDate" ) = 12 ) THEN
+			SET refPatient.surgeryDate = CAST (CAST (refHL7.ns6:"PV2.46.PatientStatusEffectiveDate" AS TIMESTAMP FORMAT 'YYYYMMddHHmm') AS CHARACTER FORMAT 'YYYY-MM-dd');
+			SET refPatient.surgeryTime = CAST (CAST (refHL7.ns6:"PV2.46.PatientStatusEffectiveDate" AS TIMESTAMP FORMAT 'YYYYMMddHHmm') AS CHARACTER FORMAT 'HH.mm');
+		ELSEIF (LENGTH(refHL7.ns6:"PV2.46.PatientStatusEffectiveDate" ) = 13 ) THEN
+			SET refPatient.surgeryDate = CAST (CAST (refHL7.ns6:"PV2.46.PatientStatusEffectiveDate" AS TIMESTAMP FORMAT 'YYYYMMddHHmms') AS CHARACTER FORMAT 'YYYY-MM-dd');
+			SET refPatient.surgeryTime = CAST (CAST (refHL7.ns6:"PV2.46.PatientStatusEffectiveDate" AS TIMESTAMP FORMAT 'YYYYMMddHHmms') AS CHARACTER FORMAT 'HH.mm');
+		END IF;
+	END IF;
+	
+
+END;

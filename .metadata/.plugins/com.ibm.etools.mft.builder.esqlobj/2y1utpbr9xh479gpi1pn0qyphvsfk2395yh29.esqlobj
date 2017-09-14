@@ -1,0 +1,18 @@
+CREATE COMPUTE MODULE PrepareForSequence
+    CREATE FUNCTION Main() RETURNS BOOLEAN
+    BEGIN
+        DECLARE env REFERENCE TO Environment.PatternVariables;
+        SET OutputRoot = InputRoot;
+        -- For arrival based sequencing the sequence group is taken from the application 
+        -- field in the MSH header and sequence number is added by following Sequence node
+        SET OutputRoot.MQRFH2.usr.sequenceGroup = InputRoot.DFDL.hl7:HL7.hl7:MSH.hl7:"MSH.3.SendingApplication".hl7:"HD.1";
+
+        SET env.FlowMilestoneReached = 'SEQUENCE';
+        SET env.SendNACK = 'YES';
+        SET env.EndConnection = 'NO';
+        SET env.HL7RC = 'AR';
+        SET env.ErrorCondition = 'An internal failure in the sequence node';
+
+        RETURN TRUE;
+    END;
+END MODULE;

@@ -1,0 +1,68 @@
+/*EATE FUNCTION Main() RETURNS BOOLE*/
+	BEGIN
+		-- super mock
+--"TEST"                  "CORSO MEDARCHIVER"             131175600          "17/000004"
+--"TEST"                  "MEDARCHIVERX"                          105566120          "17/000003"
+--"TEST"                  "MEDARCHIVER"                             132315520          "17/000002"
+--"TEST"                  "MEDARCHIVER"                             132512070          "17/000001"
+--"BERTAN"           "GIOVANNA"                                   105253890          "17/900001"
+--"CECCATO"        "CUPSGPRICOVERO"                     133008380          "16/008823"
+--"GREGGIO"        "ROBERTO"                                       105039730          "16/008822"
+--"TURRIN"            "MARIO"                                            104866860          "16/008821"
+--"BRAGATO"       "DINA"                                                132507800          "16/008820"
+--"PREZIUSO"       "ANNIBALE"                                     132997550          "16/008819"
+--"BARDAZZI"       "PIERO"                                              132995500          "16/008818"
+--"TEST"                  "NUOVOMEDWORKLISTCHIRAMB"        133007180          "16/900834"
+--"TEST"                  "NUOVOMEDWORKLISTIGEA"  133006780          "16/002465"
+--"GAZZIN"            "GIACOMO"                                     132779960          "16/008817"
+--"CAMBRIA"        "ANDREA"                                         104452910          "16/008816"
+		-- CALL CopyMessageHeaders();
+		CALL CopyEntireMessage();
+		CASE OutputRoot.XMLNSC.ns:senderRequest.patientDetailsRequest.patientKey.patientId
+		WHEN '131175600' THEN 
+			SET OutputRoot.XMLNSC.ns:senderRequest.patientDetailsRequest.patientKey.nosologicId = '17/000004'; 
+		WHEN '105566120' THEN 
+			SET OutputRoot.XMLNSC.ns:senderRequest.patientDetailsRequest.patientKey.nosologicId = '17/000003'; 
+		WHEN '132315520' THEN 
+			SET OutputRoot.XMLNSC.ns:senderRequest.patientDetailsRequest.patientKey.nosologicId = '17/000002'; 
+		WHEN '132512070' THEN 
+			SET OutputRoot.XMLNSC.ns:senderRequest.patientDetailsRequest.patientKey.nosologicId = '17/000001'; 
+		WHEN '105253890' THEN 
+			SET OutputRoot.XMLNSC.ns:senderRequest.patientDetailsRequest.patientKey.nosologicId = '17/900001'; 
+		WHEN '133008380' THEN 
+			SET OutputRoot.XMLNSC.ns:senderRequest.patientDetailsRequest.patientKey.nosologicId = '16/008823'; 
+		WHEN '105039730' THEN 
+			SET OutputRoot.XMLNSC.ns:senderRequest.patientDetailsRequest.patientKey.nosologicId = '16/008822'; 
+		WHEN '104866860' THEN 
+			SET OutputRoot.XMLNSC.ns:senderRequest.patientDetailsRequest.patientKey.nosologicId = '16/008821'; 
+		WHEN '132507800' THEN 
+			SET OutputRoot.XMLNSC.ns:senderRequest.patientDetailsRequest.patientKey.nosologicId = '16/008820'; 
+		WHEN '132997550' THEN 
+			SET OutputRoot.XMLNSC.ns:senderRequest.patientDetailsRequest.patientKey.nosologicId = '16/008819'; 
+		WHEN '132995500' THEN 
+			SET OutputRoot.XMLNSC.ns:senderRequest.patientDetailsRequest.patientKey.nosologicId = '16/008818'; 
+		WHEN '133007180' THEN 
+			SET OutputRoot.XMLNSC.ns:senderRequest.patientDetailsRequest.patientKey.nosologicId = '16/900834'; 
+		WHEN '133006780' THEN 
+			SET OutputRoot.XMLNSC.ns:senderRequest.patientDetailsRequest.patientKey.nosologicId = '16/002465'; 
+		WHEN '132779960' THEN 
+			SET OutputRoot.XMLNSC.ns:senderRequest.patientDetailsRequest.patientKey.nosologicId = '16/008817'; 
+		WHEN '104452910' THEN 
+			SET OutputRoot.XMLNSC.ns:senderRequest.patientDetailsRequest.patientKey.nosologicId = '16/008816'; 
+		END CASE;  
+		RETURN TRUE;
+	END;
+
+	CREATE PROCEDURE CopyMessageHeaders() BEGIN
+		DECLARE I INTEGER 1;
+		DECLARE J INTEGER;
+		SET J = CARDINALITY(InputRoot.*[]);
+		WHILE I < J DO
+			SET OutputRoot.*[I] = InputRoot.*[I];
+			SET I = I + 1;
+		END WHILE;
+	END;
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		SET OutputRoot = InputRoot;
+	END;

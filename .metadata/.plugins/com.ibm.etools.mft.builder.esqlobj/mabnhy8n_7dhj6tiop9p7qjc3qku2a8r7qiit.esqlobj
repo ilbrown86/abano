@@ -1,0 +1,64 @@
+/*EATE FUNCTION Main() RETURNS BOOLE*/
+	BEGIN
+		 CALL CopyMessageHeaders();
+		-- CALL CopyEntireMessage();
+		SET OutputRoot.Properties = InputRoot.Properties;
+		IF (InputRoot.JSON.Data.eventADT='L') THEN --cambio letto (cpPatientTransfer)
+			SET OutputLocalEnvironment.Destination.HTTP.QueryString.action = 'start';
+			SET OutputLocalEnvironment.Destination.HTTP.QueryString.params = '{"maHospitalizationId":"' || InputRoot.JSON.Data.diagnosisID  || '", "maBed":"' || InputRoot.JSON.Data.bedNumber  || '", "maCompartment":"' || InputRoot.JSON.Data.division  || '"}';
+			SET OutputLocalEnvironment.Destination.HTTP.QueryString.createTask = 'false';
+			SET OutputLocalEnvironment.Destination.HTTP.QueryString.parts = 'all';
+			SET OutputLocalEnvironment.Destination.JSON.Data.patientId = InputRoot.JSON.Data.pid;
+			SET OutputLocalEnvironment.Destination.JSON.Data.nosologicId = InputRoot.JSON.Data.id;
+			PROPAGATE TO TERMINAL 'out' FINALIZE NONE DELETE NONE;
+		ELSEIF (InputRoot.JSON.Data.eventADT='I') THEN --inizio intervento (cpStartOperation)
+			SET OutputLocalEnvironment.Destination.HTTP.QueryString.action = 'start';
+			SET OutputLocalEnvironment.Destination.HTTP.QueryString.params = '{"maHospitalizationId":"' || InputRoot.JSON.Data.diagnosisID  || '"}';
+			SET OutputLocalEnvironment.Destination.HTTP.QueryString.createTask = 'false';
+			SET OutputLocalEnvironment.Destination.HTTP.QueryString.parts = 'all';
+			SET OutputLocalEnvironment.Destination.JSON.Data.patientId = InputRoot.JSON.Data.pid;
+			SET OutputLocalEnvironment.Destination.JSON.Data.nosologicId = InputRoot.JSON.Data.id;
+			PROPAGATE TO TERMINAL 'out1' FINALIZE NONE;
+		ELSEIF (InputRoot.JSON.Data.eventADT='F') THEN --fine intervento (cpEndOperation)
+			SET OutputLocalEnvironment.Destination.HTTP.QueryString.action = 'start';
+			SET OutputLocalEnvironment.Destination.HTTP.QueryString.params = '{"maHospitalizationId":"' || InputRoot.JSON.Data.diagnosisID  || '"}';
+			SET OutputLocalEnvironment.Destination.HTTP.QueryString.createTask = 'false';
+			SET OutputLocalEnvironment.Destination.HTTP.QueryString.parts = 'all';
+			SET OutputLocalEnvironment.Destination.JSON.Data.patientId = InputRoot.JSON.Data.pid;
+			SET OutputLocalEnvironment.Destination.JSON.Data.nosologicId = InputRoot.JSON.Data.id;
+			PROPAGATE TO TERMINAL 'out2' FINALIZE NONE;
+		ELSEIF (InputRoot.JSON.Data.eventADT='C') THEN --cambio clinicalpathway (cpUpdate)
+			SET OutputLocalEnvironment.Destination.HTTP.QueryString.action = 'start';
+			SET OutputLocalEnvironment.Destination.HTTP.QueryString.params = '{"maPatientId":"' || InputRoot.JSON.Data.pid  || '", "idNewClinicalPathway":"' || InputRoot.JSON.Data.diagnosis  || '", "maNewHospitalizationId":"' || InputRoot.JSON.Data.diagnosisID  || '", "maNewBed":"' || InputRoot.JSON.Data.bedNumber  || '", "maNosologicId":"' || InputRoot.JSON.Data.nosologicId  || '", "maNewCompartment":"' || InputRoot.JSON.Data.division  || '"}';
+			SET OutputLocalEnvironment.Destination.HTTP.QueryString.createTask = 'false';
+			SET OutputLocalEnvironment.Destination.HTTP.QueryString.parts = 'all';
+			SET OutputLocalEnvironment.Destination.JSON.Data.patientId = InputRoot.JSON.Data.pid;
+			SET OutputLocalEnvironment.Destination.JSON.Data.nosologicId = InputRoot.JSON.Data.id;
+			PROPAGATE TO TERMINAL 'out3' FINALIZE NONE;	
+		ELSE
+			PROPAGATE TO TERMINAL 'out4' FINALIZE NONE;
+		END IF;
+		
+
+		
+		-- loop over divisions array,
+		--		for each division propagate to out
+		-- end array propagate to out1
+		-- return false
+		
+		RETURN FALSE;
+	END;
+
+	CREATE PROCEDURE CopyMessageHeaders() BEGIN
+		DECLARE I INTEGER 1;
+		DECLARE J INTEGER;
+		SET J = CARDINALITY(InputRoot.*[]);
+		WHILE I < J DO
+			SET OutputRoot.*[I] = InputRoot.*[I];
+			SET I = I + 1;
+		END WHILE;
+	END;
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		SET OutputRoot = InputRoot;
+	END;

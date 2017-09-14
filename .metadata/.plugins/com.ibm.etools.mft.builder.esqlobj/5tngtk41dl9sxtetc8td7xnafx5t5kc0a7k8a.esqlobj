@@ -1,0 +1,86 @@
+CREATE COMPUTE MODULE GetListPostReassignCompute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		CALL CopyMessageHeaders();
+		-- CALL CopyEntireMessage();
+		DECLARE response REFERENCE TO InputRoot.JSON.Data;
+	    SET OutputRoot.Properties = InputRoot.Properties;
+	    SET OutputLocalEnvironment.Destination.HTTP.QueryString.params = '{';
+	    IF NULLIF (response.taskType, '') IS NOT NULL  THEN
+	    	SET OutputLocalEnvironment.Destination.HTTP.QueryString.params = OutputLocalEnvironment.Destination.HTTP.QueryString.params || '"idWT"';
+	    	SET OutputLocalEnvironment.Destination.HTTP.QueryString.params = OutputLocalEnvironment.Destination.HTTP.QueryString.params || ':' || '"' || response.taskType || '"';
+	    END IF;
+	    
+	    IF NULLIF (response.typology, '') IS NOT NULL  THEN
+	    	SET OutputLocalEnvironment.Destination.HTTP.QueryString.params = OutputLocalEnvironment.Destination.HTTP.QueryString.params || ', "maClinicalType"';
+	    	SET OutputLocalEnvironment.Destination.HTTP.QueryString.params = OutputLocalEnvironment.Destination.HTTP.QueryString.params || ':' || '"' || response.typology || '"';
+	    END IF;
+
+	    IF NULLIF (response.pathwayPhase, '') IS NOT NULL  THEN
+			SET OutputLocalEnvironment.Destination.HTTP.QueryString.params = OutputLocalEnvironment.Destination.HTTP.QueryString.params || ', "idClinicalPathwayPhase"';
+	    	SET OutputLocalEnvironment.Destination.HTTP.QueryString.params = OutputLocalEnvironment.Destination.HTTP.QueryString.params || ':' || '"' || response.pathwayPhase || '"';
+
+	    END IF;
+	    
+	    IF NULLIF (response.clinicalPathway, '') IS NOT NULL  THEN
+			SET OutputLocalEnvironment.Destination.HTTP.QueryString.params = OutputLocalEnvironment.Destination.HTTP.QueryString.params || ', "idClinicalPathway"';
+	    	SET OutputLocalEnvironment.Destination.HTTP.QueryString.params = OutputLocalEnvironment.Destination.HTTP.QueryString.params || ':' || '"' || response.clinicalPathway || '"';
+
+	    END IF;
+	    
+	    IF NULLIF (response.dateFrom, '') IS NOT NULL  THEN
+			SET OutputLocalEnvironment.Destination.HTTP.QueryString.params = OutputLocalEnvironment.Destination.HTTP.QueryString.params || ', "dateFrom"';
+	    	SET OutputLocalEnvironment.Destination.HTTP.QueryString.params = OutputLocalEnvironment.Destination.HTTP.QueryString.params || ':' || '"' || response.dateFrom || '"';
+
+	    END IF;
+	    
+	    IF NULLIF (response.dateTo, '') IS NOT NULL  THEN
+			SET OutputLocalEnvironment.Destination.HTTP.QueryString.params = OutputLocalEnvironment.Destination.HTTP.QueryString.params || ', "dateTo"';
+	    	SET OutputLocalEnvironment.Destination.HTTP.QueryString.params = OutputLocalEnvironment.Destination.HTTP.QueryString.params || ':' || '"' || response.dateTo || '"';
+
+	    END IF;
+	    
+	    IF NULLIF (response.nurseId, '') IS NOT NULL  THEN
+			SET OutputLocalEnvironment.Destination.HTTP.QueryString.params = OutputLocalEnvironment.Destination.HTTP.QueryString.params || ', "nurseId"';
+	    	SET OutputLocalEnvironment.Destination.HTTP.QueryString.params = OutputLocalEnvironment.Destination.HTTP.QueryString.params || ':' || '"' || response.nurseId || '"';
+
+	    END IF;
+	    
+	    IF NULLIF (response.patientId, '') IS NOT NULL  THEN
+			SET OutputLocalEnvironment.Destination.HTTP.QueryString.params = OutputLocalEnvironment.Destination.HTTP.QueryString.params || ', "patientId"';
+	    	SET OutputLocalEnvironment.Destination.HTTP.QueryString.params = OutputLocalEnvironment.Destination.HTTP.QueryString.params || ':' || '"' || response.patientId || '"';
+
+	    END IF;
+	    
+	    IF NULLIF (response.nosologicId, '') IS NOT NULL  THEN
+			SET OutputLocalEnvironment.Destination.HTTP.QueryString.params = OutputLocalEnvironment.Destination.HTTP.QueryString.params || ', "nosologicId"';
+	    	SET OutputLocalEnvironment.Destination.HTTP.QueryString.params = OutputLocalEnvironment.Destination.HTTP.QueryString.params || ':' || '"' || response.nosologicId || '"';
+
+	    END IF;
+	    SET OutputLocalEnvironment.Destination.HTTP.QueryString.params = OutputLocalEnvironment.Destination.HTTP.QueryString.params || '}';
+
+		SET OutputLocalEnvironment.Destination.HTTP.QueryString.action = 'start';
+		--SET OutputLocalEnvironment.Destination.HTTP.QueryString.params = '{"patientId":"' || '111'  || '"}';
+		--SET OutputLocalEnvironment.Destination.HTTP.QueryString.params = '{"idWT":"' || '3' ||'"}';
+		--SET OutputLocalEnvironment.Destination.HTTP.QueryString.params = '{"idWT":"' || response.taskType  || '", "maClinicalType":"' || response.typology  || '", "idClinicalPathwayPhase":"' || response.pathwayPhase  || '", "idClinicalPathway":"' || response.clinicalPathway  || '", "dateFrom":"' || response.dateFrom  || '", "dateTo":"' || response.dateTo  || '", "nurseId":"' || response.nurseId  || '", "patientId":"' || response.patientId  || '", "nosologicId":"' || response.nosologicId  || '"}';
+		SET OutputLocalEnvironment.Destination.HTTP.QueryString.createTask = 'false';
+		SET OutputLocalEnvironment.Destination.HTTP.QueryString.parts = 'all';
+		
+		
+		RETURN TRUE;
+	END;
+
+	CREATE PROCEDURE CopyMessageHeaders() BEGIN
+		DECLARE I INTEGER 1;
+		DECLARE J INTEGER;
+		SET J = CARDINALITY(InputRoot.*[]);
+		WHILE I < J DO
+			SET OutputRoot.*[I] = InputRoot.*[I];
+			SET I = I + 1;
+		END WHILE;
+	END;
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		SET OutputRoot = InputRoot;
+	END;
+END MODULE;

@@ -1,0 +1,249 @@
+/*EATE FUNCTION Main() RETURNS BOOLE*/
+	BEGIN
+
+		CALL CopyMessageHeaders();
+		--CALL CopyEntireMessage();
+		SET OutputRoot.Properties.MessageType = '{urn:hl7-org:v2xml}:HL7';
+		DECLARE patient REFERENCE TO InputRoot.XMLNSC.ns:patient;
+		DECLARE outputMessage REFERENCE TO OutputRoot;
+		DECLARE msh REFERENCE TO OutputRoot;
+		DECLARE evn REFERENCE TO OutputRoot;
+		DECLARE pid REFERENCE TO OutputRoot;
+		DECLARE pv1 REFERENCE TO OutputRoot;
+		DECLARE obr REFERENCE TO OutputRoot;
+		DECLARE obx REFERENCE TO OutputRoot;
+
+		CREATE LASTCHILD OF OutputRoot Domain('DFDL');
+
+		SET OutputRoot.DFDL.ns6:HL7.ns6:MSH.ns6:"MSH.1.FieldSeparator" = '|';
+		SET OutputRoot.DFDL.ns6:HL7.ns6:MSH.ns6:"MSH.2.ServiceString".ns6:ComponentSeparator = '^';
+		SET OutputRoot.DFDL.ns6:HL7.ns6:MSH.ns6:"MSH.2.ServiceString".ns6:RepeatSeparator = '~';
+		SET OutputRoot.DFDL.ns6:HL7.ns6:MSH.ns6:"MSH.2.ServiceString".ns6:EscapeCharacter = '\';
+		SET OutputRoot.DFDL.ns6:HL7.ns6:MSH.ns6:"MSH.2.ServiceString".ns6:SubComponentSeparator = '&';
+		SET OutputRoot.DFDL.ns6:HL7.ns6:MSH.ns6:"MSH.3.SendingApplication".ns6:"HD.1" = 'IBM_IIB';
+		SET OutputRoot.DFDL.ns6:HL7.ns6:MSH.ns6:"MSH.4.SendingFacility".ns6:"HD.1" = 'IBM';
+		SET OutputRoot.DFDL.ns6:HL7.ns6:MSH.ns6:"MSH.5.ReceivingApplication".ns6:"HD.1" = 'EHR_MEDARCHIVER';
+		SET OutputRoot.DFDL.ns6:HL7.ns6:MSH.ns6:"MSH.6.ReceivingFacility".ns6:"HD.1" = 'MEDARCHIVER';
+		SET OutputRoot.DFDL.ns6:HL7.ns6:MSH.ns6:"MSH.7.DateTimeOfMessage".ns6:"TS.1" = CAST (CURRENT_TIMESTAMP AS CHARACTER FORMAT 'YYYYMMddHHmmss');
+		--SET OutputRoot.DFDL.ns6:HL7.ns6:MSH.ns6:"MSH.8.Security". = ;
+		SET OutputRoot.DFDL.ns6:HL7.ns6:MSH.ns6:"MSH.9.MessageType".ns6:"MSG.1" = 'ORU';
+		SET OutputRoot.DFDL.ns6:HL7.ns6:MSH.ns6:"MSH.9.MessageType".ns6:"MSG.2" = 'R01';
+		SET OutputRoot.DFDL.ns6:HL7.ns6:MSH.ns6:"MSH.10.MessageControlID" = '333333333';
+		SET OutputRoot.DFDL.ns6:HL7.ns6:MSH.ns6:"MSH.11.ProcessingID".ns6:"PT.1" = 'P';
+		SET OutputRoot.DFDL.ns6:HL7.ns6:MSH.ns6:"MSH.12.VersionID".ns6:"VID.1" = '2.5.1';
+		
+		CREATE LASTCHILD OF OutputRoot.DFDL.ns6:HL7 NAMESPACE ns6 NAME 'anyHL7Segment'; 
+		--SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[1].ns6:EVN.ns6:"EVN.1.EventTypeCode" = '';
+		SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[1].ns6:EVN.ns6:"EVN.2.RecordedDateTime".ns6:"TS.1" = CAST (CURRENT_TIMESTAMP AS CHARACTER FORMAT 'YYYYMMddHHmmss');
+		--SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[1].ns6:EVN.ns6:"EVN.3.DateTimePlannedEvent" = '';
+		--SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[1].ns6:EVN.ns6:"EVN.4.EventReasonCode" = '';
+		--SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[1].ns6:EVN.ns6:"EVN.5.OperatorID" = '';
+		SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[1].ns6:EVN.ns6:"EVN.6.EventOccurred".ns6:"TS.1" = CAST (CURRENT_TIMESTAMP AS CHARACTER FORMAT 'YYYYMMddHHmmss');
+		--SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[1].ns6:EVN.ns6:"EVN.7.EventFacility" = '';
+		
+		CREATE LASTCHILD OF OutputRoot.DFDL.ns6:HL7 NAMESPACE ns6 NAME 'anyHL7Segment'; 
+		--SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[2].ns6:PID.ns6:"PID.1.SetIDPID" = ;
+		--SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[2].ns6:PID.ns6:"PID.2.PatientID" = ;
+		SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[2].ns6:PID.ns6:"PID.3.PatientIdentifierList".ns6:"CX.1" = patient.patientId;--'131175600';
+		--SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[2].ns6:PID.ns6:"PID.4.AlternatePatientIDPID" = ;
+		SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[2].ns6:PID.ns6:"PID.5.PatientName".ns6:"XPN.1".ns6:"FN.1" = 'TEST';
+		SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[2].ns6:PID.ns6:"PID.5.PatientName".ns6:"XPN.2" = 'CORSO MEDARCHIVER';
+		--SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[2].ns6:PID.ns6:"PID.6.MothersMaidenName" = ;
+		SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[2].ns6:PID.ns6:"PID.7.DateTimeOfBirth".ns6:"TS.1" = '19710101';
+		SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[2].ns6:PID.ns6:"PID.8.AdministrativeSex" = 'F';
+		--SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[2].ns6:PID.ns6:"PID.9.PatientAlias" = ;
+		--SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[2].ns6:PID.ns6:"PID.10.Race" = ;
+		SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[2].ns6:PID.ns6:"PID.11.PatientAddress".ns6:"XAD.1".ns6:"SAD.1" = 'via maggini 200';
+		SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[2].ns6:PID.ns6:"PID.11.PatientAddress".ns6:"XAD.5" = '30100';
+		SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[2].ns6:PID.ns6:"PID.11.PatientAddress".ns6:"XAD.8" = '027042';
+		--SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[2].ns6:PID.ns6:"PID.12.CountyCode" = ;
+		--SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[2].ns6:PID.ns6:"PID.13.PhoneNumberHome" = ;
+		--SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[2].ns6:PID.ns6:"PID.14.PhoneNumberBusiness" = ;
+		--SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[2].ns6:PID.ns6:"PID.15.PrimaryLanguage" = ;
+		--SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[2].ns6:PID.ns6:"PID.16.MaritalStatus" = ;
+		--SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[2].ns6:PID.ns6:"PID.17.Religion" = ;
+		SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[2].ns6:PID.ns6:"PID.18.PatientAccountNumber".ns6:"CX.1" = 'TSTCSM71A41H360M';
+		--SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[2].ns6:PID.ns6:"PID.19.SSNNumberPatient" = ;
+		--SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[2].ns6:PID.ns6:"PID.20.DriversLicenseNumberPatient" = ;
+		--SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[2].ns6:PID.ns6:"PID.21.MothersIdentifier" = ;
+		--SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[2].ns6:PID.ns6:"PID.22.EthnicGroup" = ;
+		--SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[2].ns6:PID.ns6:"PID.23.BirthPlace" = ;
+		--SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[2].ns6:PID.ns6:"PID.24.MultipleBirthIndicator" = ;
+		--SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[2].ns6:PID.ns6:"PID.25.BirthOrder" = ;
+		--SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[2].ns6:PID.ns6:"PID.26.Citizenship" = ;
+		--SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[2].ns6:PID.ns6:"PID.27.VeteransMilitaryStatus" = ;
+		--SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[2].ns6:PID.ns6:"PID.28.Nationality" = ;
+		--SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[2].ns6:PID.ns6:"PID.29.PatientDeathDateandTime" = ;
+		--SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[2].ns6:PID.ns6:"PID.30.PatientDeathIndicator" = ;
+		--SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[2].ns6:PID.ns6:"PID.31.IdentityUnknownIndicator" = ;
+		--SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[2].ns6:PID.ns6:"PID.32.IdentityReliabilityCode" = ;
+		--SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[2].ns6:PID.ns6:"PID.33.LastUpdateDateTime" = ;
+		--SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[2].ns6:PID.ns6:"PID.34.LastUpdateFacility" = ;
+		--SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[2].ns6:PID.ns6:"PID.35.SpeciesCode" = ;
+		--SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[2].ns6:PID.ns6:"PID.36.BreedCode" = ;
+		--SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[2].ns6:PID.ns6:"PID.37.Strain" = ;
+		--SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[2].ns6:PID.ns6:"PID.38.ProductionClassCode" = ;
+		--SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[2].ns6:PID.ns6:"PID.39.TribalCitizenship" = ;
+
+		CREATE LASTCHILD OF OutputRoot.DFDL.ns6:HL7 NAMESPACE ns6 NAME 'anyHL7Segment'; 
+		--SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[3].ns6:PV1.ns6:"PV1.1.SetIDPV1"
+		SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[3].ns6:PV1.ns6:"PV1.2.PatientClass" = 'I';
+		--SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[3].ns6:PV1.ns6:"PV1.3.AssignedPatientLocation"
+		--SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[3].ns6:PV1.ns6:"PV1.4.AdmissionType"
+		--SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[3].ns6:PV1.ns6:"PV1.5.PreadmitNumber"
+		--SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[3].ns6:PV1.ns6:"PV1.6.PriorPatientLocation"
+		--SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[3].ns6:PV1.ns6:"PV1.7.AttendingDoctor"
+		--SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[3].ns6:PV1.ns6:"PV1.8.ReferringDoctor"
+		--SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[3].ns6:PV1.ns6:"PV1.9.ConsultingDoctor"
+		--SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[3].ns6:PV1.ns6:"PV1.10.HospitalService"
+		--SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[3].ns6:PV1.ns6:"PV1.11.TemporaryLocation"
+		--SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[3].ns6:PV1.ns6:"PV1.12.PreadmitTestIndicator"
+		--SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[3].ns6:PV1.ns6:"PV1.13.ReadmissionIndicator"
+		--SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[3].ns6:PV1.ns6:"PV1.14.AdmitSource"
+		SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[3].ns6:PV1.ns6:"PV1.15.AmbulatoryStatus" VALUE = NULL;
+		--SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[3].ns6:PV1.ns6:"PV1.16.VIPIndicator"
+		--SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[3].ns6:PV1.ns6:"PV1.17.AdmittingDoctor"
+		--SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[3].ns6:PV1.ns6:"PV1.18.PatientType"
+		SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[3].ns6:PV1.ns6:"PV1.19.VisitNumber".ns6:"CX.1" = patient.nosologicId;--'17/000004';
+		--SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[3].ns6:PV1.ns6:"PV1.20.FinancialClass"
+		--SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[3].ns6:PV1.ns6:"PV1.21.ChargePriceIndicator"
+		--SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[3].ns6:PV1.ns6:"PV1.22.CourtesyCode"
+		--SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[3].ns6:PV1.ns6:"PV1.23.CreditRating"
+		SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[3].ns6:PV1.ns6:"PV1.24.ContractCode" VALUE = NULL;
+		SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[3].ns6:PV1.ns6:"PV1.25.ContractEffectiveDate" VALUE = NULL;
+		SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[3].ns6:PV1.ns6:"PV1.26.ContractAmount" VALUE = NULL;
+		SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[3].ns6:PV1.ns6:"PV1.27.ContractPeriod" VALUE = NULL;
+		--SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[3].ns6:PV1.ns6:"PV1.28.InterestCode"
+		--SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[3].ns6:PV1.ns6:"PV1.29.TransfertoBadDebtCode"
+		--SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[3].ns6:PV1.ns6:"PV1.30.TransfertoBadDebtDate"
+		--SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[3].ns6:PV1.ns6:"PV1.31.BadDebtAgencyCode"
+		--SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[3].ns6:PV1.ns6:"PV1.32.BadDebtTransferAmount"
+		--SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[3].ns6:PV1.ns6:"PV1.33.BadDebtRecoveryAmount"
+		--SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[3].ns6:PV1.ns6:"PV1.34.DeleteAccountIndicator"
+		--SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[3].ns6:PV1.ns6:"PV1.35.DeleteAccountDate"
+		--SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[3].ns6:PV1.ns6:"PV1.36.DischargeDisposition"
+		--SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[3].ns6:PV1.ns6:"PV1.37.DischargedtoLocation"
+		--SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[3].ns6:PV1.ns6:"PV1.38.DietType"
+		--SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[3].ns6:PV1.ns6:"PV1.39.ServicingFacility"
+		--SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[3].ns6:PV1.ns6:"PV1.40.BedStatus"
+		--SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[3].ns6:PV1.ns6:"PV1.41.AccountStatus"
+		--SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[3].ns6:PV1.ns6:"PV1.42.PendingLocation"
+		--SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[3].ns6:PV1.ns6:"PV1.43.PriorTemporaryLocation"
+		SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[3].ns6:PV1.ns6:"PV1.44.AdmitDateTime".ns6:"TS.1" = '20170308153035';
+		--SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[3].ns6:PV1.ns6:"PV1.45.DischargeDateTime"
+		--SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[3].ns6:PV1.ns6:"PV1.46.CurrentPatientBalance"
+		--SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[3].ns6:PV1.ns6:"PV1.47.TotalCharges"
+		--SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[3].ns6:PV1.ns6:"PV1.48.TotalAdjustments"
+		--SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[3].ns6:PV1.ns6:"PV1.49.TotalPayments"
+		--SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[3].ns6:PV1.ns6:"PV1.50.AlternateVisitID"
+		--SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[3].ns6:PV1.ns6:"PV1.51.VisitIndicator"
+		--SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[3].ns6:PV1.ns6:"PV1.52.OtherHealthcareProvider"
+		
+		--SET OutputRoot.DFDL.ns6:ORU_R01.ns6:"ORU_R01.PATIENT_RESULT".ns6:"ORU_R01.PATIENT".ns6:"ORU_R01.VISIT".ns6:PV1.ns6:"PV1.2.PatientClass" = 'I';
+		--SET OutputRoot.DFDL.ns6:ORU_R01.ns6:"ORU_R01.PATIENT_RESULT".ns6:"ORU_R01.PATIENT".ns6:"ORU_R01.VISIT".ns6:PV1.ns6:"PV1.19.VisitNumber" = '17/000004';
+		--SET OutputRoot.DFDL.ns6:ORU_R01.ns6:"ORU_R01.PATIENT_RESULT".ns6:"ORU_R01.PATIENT".ns6:"ORU_R01.VISIT".ns6:PV1.ns6:"PV1.44.AdmitDateTime" = '20170308153035';
+
+		CREATE LASTCHILD OF OutputRoot.DFDL.ns6:HL7 NAMESPACE ns6 NAME 'anyHL7Segment'; 
+		SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[4].ns6:OBR.ns6:"OBR.1.SetIDOBR"  = '1';
+		--SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[4].ns6:OBR.ns6:"OBR.2.PlacerOrderNumber".  = ;
+		SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[4].ns6:OBR.ns6:"OBR.3.FillerOrderNumber".ns6:"EI.1"  = '12345';
+		SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[4].ns6:OBR.ns6:"OBR.4.UniversalServiceIdentifier".ns6:"CE.1" = 'IBMAPPLE';
+		--SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[4].ns6:OBR.ns6:"OBR.5.Priority".;
+		--SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[4].ns6:OBR.ns6:"OBR.6.RequestedDateTime".  = ;
+		SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[4].ns6:OBR.ns6:"OBR.7.ObservationDateTime".ns6:"TS.1" = CAST (CURRENT_TIMESTAMP AS CHARACTER FORMAT 'YYYYMMddHHmmss');
+		--SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[4].ns6:OBR.ns6:"OBR.8.ObservationEndDateTime";
+		--SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[4].ns6:OBR.ns6:"OBR.9.CollectionVolume".  = ;
+		--SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[4].ns6:OBR.ns6:"OBR.10.CollectorIdentifier".;
+		--SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[4].ns6:OBR.ns6:"OBR.11.SpecimenActionCode".  = ;
+		--SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[4].ns6:OBR.ns6:"OBR.12.DangerCode".  = ;
+		--SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[4].ns6:OBR.ns6:"OBR.13.RelevantClinicalInfo".  = ;
+		--SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[4].ns6:OBR.ns6:"OBR.14.SpecimenReceivedDateTime".  = ;
+		--SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[4].ns6:OBR.ns6:"OBR.15.SpecimenSource".  = ;
+		--SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[4].ns6:OBR.ns6:"OBR.16.OrderingProvider".  = ;
+		--SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[4].ns6:OBR.ns6:"OBR.17.OrderCallbackPhoneNumber".  = ;
+		--SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[4].ns6:OBR.ns6:"OBR.18.PlacerField1".  = ;
+		--SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[4].ns6:OBR.ns6:"OBR.19.PlacerField2".  = ;
+		--SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[4].ns6:OBR.ns6:"OBR.20.FillerField1".  = ;
+		--SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[4].ns6:OBR.ns6:"OBR.21.FillerField2".  = ;
+		--SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[4].ns6:OBR.ns6:"OBR.22.ResultsRptStatusChngDateTime".  = ;
+		--SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[4].ns6:OBR.ns6:"OBR.23.ChargetoPractice".  = ;
+		--SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[4].ns6:OBR.ns6:"OBR.24.DiagnosticServSectID".  = ;
+		--SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[4].ns6:OBR.ns6:"OBR.25.ResultStatus".  = ;
+		--SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[4].ns6:OBR.ns6:"OBR.26.ParentResult".  = ;
+		--SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[4].ns6:OBR.ns6:"OBR.27.QuantityTiming".  = ;
+		--SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[4].ns6:OBR.ns6:"OBR.28.ResultCopiesTo".  = ;
+		--SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[4].ns6:OBR.ns6:"OBR.29.Parent".  = ;
+		--SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[4].ns6:OBR.ns6:"OBR.30.TransportationMode".  = ;
+		--SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[4].ns6:OBR.ns6:"OBR.31.ReasonforStudy".  = ;
+		--SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[4].ns6:OBR.ns6:"OBR.32.PrincipalResultInterpreter".  = ;
+		--SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[4].ns6:OBR.ns6:"OBR.33.AssistantResultInterpreter".  = ;
+		SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[4].ns6:OBR.ns6:"OBR.34.Technician".ns6:"NDL.1".ns6:"CNN.1" = 'CPORTELLI';
+		--SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[4].ns6:OBR.ns6:"OBR.35.Transcriptionist".  = ;
+		--SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[4].ns6:OBR.ns6:"OBR.36.ScheduledDateTime".  = ;
+		--SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[4].ns6:OBR.ns6:"OBR.37.NumberofSampleContainers".  = ;
+		--SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[4].ns6:OBR.ns6:"OBR.38.TransportLogisticsofCollectedSample".  = ;
+		--SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[4].ns6:OBR.ns6:"OBR.39.CollectorsComment".  = ;
+		--SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[4].ns6:OBR.ns6:"OBR.40.TransportArrangementResponsibility".  = ;
+		--SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[4].ns6:OBR.ns6:"OBR.41.TransportArranged".  = ;
+		--SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[4].ns6:OBR.ns6:"OBR.42.EscortRequired".  = ;
+		--SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[4].ns6:OBR.ns6:"OBR.43.PlannedPatientTransportComment".  = ;
+		--SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[4].ns6:OBR.ns6:"OBR.44.ProcedureCode".  = ;
+		--SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[4].ns6:OBR.ns6:"OBR.45.ProcedureCodeModifier".  = ;
+		--SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[4].ns6:OBR.ns6:"OBR.46.PlacerSupplementalServiceInformation".  = ;
+		--SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[4].ns6:OBR.ns6:"OBR.47.FillerSupplementalServiceInformation".  = ;
+		--SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[4].ns6:OBR.ns6:"OBR.48.MedicallyNecessaryDuplicateProcedureReason".  = ;
+		--SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[4].ns6:OBR.ns6:"OBR.49.ResultHandling".  = ;
+		--SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[4].ns6:OBR.ns6:"OBR.50.ParentUniversalServiceIdentifier".  = ;
+
+		DECLARE SEQUENCE INTEGER 1;
+		DECLARE refParameter REFERENCE TO patient.parameters;
+		MOVE refParameter FIRSTCHILD;
+		
+		WHILE LASTMOVE(refParameter) DO
+		
+			CREATE LASTCHILD OF OutputRoot.DFDL.ns6:HL7 NAMESPACE ns6 NAME 'anyHL7Segment'; 
+			SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[SEQUENCE + 4].ns6:OBX.ns6:"OBX.1.SetIDOBX" = SEQUENCE;
+			SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[SEQUENCE + 4].ns6:OBX.ns6:"OBX.2.ValueType" = 'NM';
+			SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[SEQUENCE + 4].ns6:OBX.ns6:"OBX.3.ObservationIdentifier".ns6:"CE.1"  = refParameter.id;
+			SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[SEQUENCE + 4].ns6:OBX.ns6:"OBX.3.ObservationIdentifier".ns6:"CE.2"  = refParameter.name;
+			SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[SEQUENCE + 4].ns6:OBX.ns6:"OBX.3.ObservationIdentifier".ns6:"CE.3"  = 'SRT';
+			--SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[SEQUENCE + 4].ns6:OBX.ns6:"OBX.4.ObservationSubId".  = ;
+			SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[SEQUENCE + 4].ns6:OBX.ns6:"OBX.5.ObservationValue" = refParameter.value;
+			--SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[SEQUENCE + 4].ns6:OBX.ns6:"OBX.6.Units".  = ;
+			--SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[SEQUENCE + 4].ns6:OBX.ns6:"OBX.7.ReferencesRange".  = ;
+			SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[SEQUENCE + 4].ns6:OBX.ns6:"OBX.8.AbnormalFlags" VALUE = NULL;
+			--SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[SEQUENCE + 4].ns6:OBX.ns6:"OBX.9.Probability".  = ;
+			SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[SEQUENCE + 4].ns6:OBX.ns6:"OBX.10.NatureofAbnormalTest" VALUE = NULL;
+			SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[SEQUENCE + 4].ns6:OBX.ns6:"OBX.11.ObservationResultStatus"  = 'F';
+			--SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[SEQUENCE + 4].ns6:OBX.ns6:"OBX.12.DateLastObservationNormalValue".  = ;
+			--SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[SEQUENCE + 4].ns6:OBX.ns6:"OBX.13.UserDefinedAccessChecks".  = ;
+			--SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[SEQUENCE + 4].ns6:OBX.ns6:"OBX.14.DateTimeoftheObservation".  = ;
+			--SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[SEQUENCE + 4].ns6:OBX.ns6:"OBX.15.ProducersID".  = ;
+			--SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[SEQUENCE + 4].ns6:OBX.ns6:"OBX.16.ResponsibleObserver".  = ;
+			--SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[SEQUENCE + 4].ns6:OBX.ns6:"OBX.17.ObservationMethod".  = ;
+			--SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[SEQUENCE + 4].ns6:OBX.ns6:"OBX.18.EquipmentInstanceIdentifier".  = ;
+			--SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[SEQUENCE + 4].ns6:OBX.ns6:"OBX.19.DateTimeoftheAnalysis".  = ;
+			--SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[SEQUENCE + 4].ns6:OBX.ns6:"OBX.23.PerformingOrganizationName".  = ;
+			--SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[SEQUENCE + 4].ns6:OBX.ns6:"OBX.24.PerformingOrganizationAddress".  = ;
+			--SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[SEQUENCE + 4].ns6:OBX.ns6:"OBX.25.PerformingOrganizationMedicalDirector".  = ;
+			SET SEQUENCE = SEQUENCE + 1;
+			
+			MOVE refParameter NEXTSIBLING;
+		END WHILE;
+
+		RETURN TRUE;
+	END;
+
+	CREATE PROCEDURE CopyMessageHeaders() BEGIN
+		DECLARE I INTEGER 1;
+		DECLARE J INTEGER;
+		SET J = CARDINALITY(InputRoot.*[]);
+		WHILE I < J DO
+			SET OutputRoot.*[I] = InputRoot.*[I];
+			SET I = I + 1;
+		END WHILE;
+	END;
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		SET OutputRoot = InputRoot;
+	END;

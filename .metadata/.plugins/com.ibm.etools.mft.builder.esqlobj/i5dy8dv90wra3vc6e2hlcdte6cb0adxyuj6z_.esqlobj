@@ -1,0 +1,26 @@
+CREATE PROCEDURE CreateModelFromMSH(IN refHL7 REFERENCE, INOUT xmlModel REFERENCE) BEGIN
+--	DECLARE xmlModel REFERENCE TO InputRoot.XMLNSC.ns:senderResponse.patientDetailsResponse;
+--NIENTE DA MAPPARE	
+	DECLARE refSegment REFERENCE TO refHL7;
+--	CREATE LASTCHILD OF refSegment AS refSegment NAMESPACE ns6 NAME 'MSH';
+--	SET refSegment.ns6:"MSH.1.FieldSeparator" = '|';
+--	SET refSegment.ns6:"MSH.2.ServiceString".ns6:ComponentSeparator = '^';
+--	SET refSegment.ns6:"MSH.2.ServiceString".ns6:RepeatSeparator = '~';
+--	SET refSegment.ns6:"MSH.2.ServiceString".ns6:EscapeCharacter = '\';
+--	SET refSegment.ns6:"MSH.2.ServiceString".ns6:SubComponentSeparator = '&';
+--	SET refSegment.ns6:"MSH.3.SendingApplication".ns6:"HD.1" = 'IBM_IIB';
+--	SET refSegment.ns6:"MSH.4.SendingFacility".ns6:"HD.1" = 'IBM';
+--	SET refSegment.ns6:"MSH.5.ReceivingApplication".ns6:"HD.1" = 'EHR_MEDARCHIVER';
+--	SET refSegment.ns6:"MSH.6.ReceivingFacility".ns6:"HD.1" = 'MEDARCHIVER';
+--	SET refSegment.ns6:"MSH.7.DateTimeOfMessage".ns6:"TS.1" = CAST (CURRENT_TIMESTAMP AS CHARACTER FORMAT 'YYYYMMddHHmmss');
+--	--SET refSegment.ns6:"MSH.8.Security". = ;
+--	SET refSegment.ns6:"MSH.9.MessageType".ns6:"MSG.1" = msg01;
+--	SET refSegment.ns6:"MSH.9.MessageType".ns6:"MSG.2" = msg02;
+--	SET refSegment.ns6:"MSH.10.MessageControlID" = msgId;
+--	-- SET refSegment.ns6:"MSH.9.MessageType".ns6:"MSG.1" = 'ORU';
+--	-- SET refSegment.ns6:"MSH.9.MessageType".ns6:"MSG.2" = 'R01';
+--	--SET refSegment.ns6:"MSH.10.MessageControlID" = '25233631';
+--	SET refSegment.ns6:"MSH.11.ProcessingID".ns6:"PT.1" = 'P';
+--	SET refSegment.ns6:"MSH.12.VersionID".ns6:"VID.1" = '2.5.1';
+
+END;

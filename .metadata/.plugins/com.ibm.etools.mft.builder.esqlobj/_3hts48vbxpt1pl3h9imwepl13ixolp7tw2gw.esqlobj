@@ -1,0 +1,12 @@
+/*EATE FUNCTION Main() RETURNS BOOLE*/
+    BEGIN
+        DECLARE env REFERENCE TO Environment.PatternVariables;
+        SET OutputLocalEnvironment = InputLocalEnvironment;
+        SET env.FlowMilestoneReached = 'TOPROCESSING';
+        SET env.SendNACK = 'YES';
+        SET env.EndConnection = 'NO';
+        SET env.HL7RC = 'AR';
+        SET env.ErrorCondition = 'Error while committing a message into processor queue';
+
+        RETURN TRUE;
+    END;

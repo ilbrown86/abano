@@ -1,0 +1,10 @@
+CREATE PROCEDURE ModelToQRY02(IN xmlModel REFERENCE, INOUT outputMessage REFERENCE) BEGIN
+
+		--CREA TESTATA MSH
+		CALL CreateMSH('QRY', 'R02', '25233631', outputMessage);
+		--CREA QRD
+		CALL CreateQRD(xmlModel, outputMessage);
+		--CREA QRF
+		CALL CreateQRF(xmlModel, outputMessage);
+
+	END;

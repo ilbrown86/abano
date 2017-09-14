@@ -1,0 +1,51 @@
+CREATE COMPUTE MODULE ADT02_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		CALL CopyMessageHeaders();
+		-- CALL CopyEntireMessage();
+	    SET OutputRoot.Properties = InputRoot.Properties;
+		--impostare la choice con terapia intensiva e cambio reparto
+		IF (InputRoot.JSON.Data.eventADT='T') THEN --terapia intensiva, cpStartTipo
+			SET OutputLocalEnvironment.Destination.HTTP.QueryString.action = 'start';
+			SET OutputLocalEnvironment.Destination.HTTP.QueryString.params = '{"maNewHospitalizationId":"' || InputRoot.JSON.Data.diagnosisID  || '", "maPatientId":"' || InputRoot.JSON.Data.pid  || '", "maBed":"' || InputRoot.JSON.Data.bedNumber  || '", "idClinicalPathwayToStart":"' || InputRoot.JSON.Data.division  || '"}';
+			SET OutputLocalEnvironment.Destination.HTTP.QueryString.createTask = 'false';
+			SET OutputLocalEnvironment.Destination.HTTP.QueryString.parts = 'all';
+			SET OutputLocalEnvironment.Destination.JSON.Data.patientId = InputRoot.JSON.Data.pid;
+			SET OutputLocalEnvironment.Destination.JSON.Data.nosologicId = InputRoot.JSON.Data.id;
+			PROPAGATE TO TERMINAL 'out' FINALIZE NONE DELETE NONE;
+		ELSEIF (InputRoot.JSON.Data.eventADT='FT') THEN --fine terapia intensiva, patientDischarge
+			SET OutputLocalEnvironment.Destination.HTTP.QueryString.action = 'start';
+			SET OutputLocalEnvironment.Destination.HTTP.QueryString.params = '{"maHospitalizationId":"' || InputRoot.JSON.Data.diagnosisID  || '"}';
+			SET OutputLocalEnvironment.Destination.HTTP.QueryString.createTask = 'false';
+			SET OutputLocalEnvironment.Destination.HTTP.QueryString.parts = 'all';
+			SET OutputLocalEnvironment.Destination.JSON.Data.patientId = InputRoot.JSON.Data.pid;
+			SET OutputLocalEnvironment.Destination.JSON.Data.nosologicId = InputRoot.JSON.Data.id;
+			PROPAGATE TO TERMINAL 'out1' FINALIZE NONE DELETE NONE;
+		ELSE -- cambio reparto
+			SET OutputLocalEnvironment.Destination.HTTP.QueryString.action = 'start';
+			SET OutputLocalEnvironment.Destination.HTTP.QueryString.params = '{"maHospitalizationId":"' || InputRoot.JSON.Data.diagnosisID  || '", "maBed":"' || InputRoot.JSON.Data.bedNumber  || '"}';
+			SET OutputLocalEnvironment.Destination.HTTP.QueryString.createTask = 'false';
+			SET OutputLocalEnvironment.Destination.HTTP.QueryString.parts = 'all';
+			SET OutputLocalEnvironment.Destination.JSON.Data.patientId = InputRoot.JSON.Data.pid;
+			SET OutputLocalEnvironment.Destination.JSON.Data.nosologicId = InputRoot.JSON.Data.id;
+			PROPAGATE TO TERMINAL 'out2' FINALIZE NONE DELETE NONE;
+		END IF;
+		
+		
+		
+	END;
+
+	CREATE PROCEDURE CopyMessageHeaders() BEGIN
+		DECLARE I INTEGER 1;
+		DECLARE J INTEGER;
+		SET J = CARDINALITY(InputRoot.*[]);
+		WHILE I < J DO
+			SET OutputRoot.*[I] = InputRoot.*[I];
+			SET I = I + 1;
+		END WHILE;
+	END;
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		SET OutputRoot = InputRoot;
+	END;
+END MODULE;

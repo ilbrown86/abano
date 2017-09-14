@@ -1,0 +1,98 @@
+CREATE COMPUTE MODULE issueList_MapToJSONModel
+CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		CALL CopyMessageHeaders();
+		--CALL CopyEntireMessage();
+		DECLARE risposta REFERENCE TO Environment.Variables.HL7RestAPI.patientRef;
+		
+		--DECLARE errore REFERENCE TO Environment.Variables.HL7RestAPI.patientRef;
+		
+
+		DECLARE refOutJSON REFERENCE TO OutputRoot;
+		DECLARE refMeasures REFERENCE TO OutputRoot;
+		CREATE FIELD OutputRoot.JSON.Data AS refOutJSON IDENTITY (JSON.Array)Data;
+
+		--loop over patients
+		MOVE risposta FIRSTCHILD;
+		WHILE LASTMOVE(risposta) DO
+
+			CREATE LASTCHILD OF refOutJSON AS refMeasures NAME 'Item';
+
+
+			DECLARE risposta2 REFERENCE TO risposta;
+			MOVE risposta2 FIRSTCHILD NAME 'issues';
+			--move into issues to ,
+			MOVE risposta2 FIRSTCHILD;
+			DECLARE errorResponse REFERENCE TO risposta2;
+			MOVE errorResponse FIRSTCHILD NAME 'error';
+			IF LASTMOVE(errorResponse) THEN
+				SET OutputLocalEnvironment.Destination.HTTP.ReplyStatusCode = 400;
+				
+				SET refMeasures.errorCode = errorResponse.errorCode;
+				SET refMeasures.errorMessage = errorResponse.errorMessage;
+				RETURN TRUE;
+			END IF; 
+			MOVE risposta2 FIRSTCHILD;
+			DECLARE patientId CHARACTER;
+			SET patientId = risposta.patientId;
+			DECLARE nosologicId CHARACTER;
+			SET nosologicId = risposta.nosologicId;
+
+			--CREATE LASTCHILD OF refOutJSON AS refMeasures NAME 'Item';
+ 			CREATE LASTCHILD OF refMeasures TYPE NameValue NAME 'patientId' VALUE patientId;
+ 			CREATE LASTCHILD OF refMeasures TYPE NameValue NAME 'nosologicId' VALUE nosologicId;
+			CREATE LASTCHILD OF refMeasures AS refMeasures IDENTITY (JSON.Array)values;	
+			
+			
+			IF LASTMOVE(risposta2) THEN
+				MOVE risposta2 FIRSTCHILD NAMESPACE ns NAME 'parameter';	
+
+				--array di misurazioni
+	 			WHILE LASTMOVE(risposta2) DO
+					DECLARE refValues REFERENCE TO risposta2;
+					MOVE refValues FIRSTCHILD NAMESPACE ns NAME 'values';
+					DECLARE refOutValues REFERENCE TO OutputRoot;
+		 			WHILE LASTMOVE(refValues) DO
+		 				IF refValues.value IS NOT NULL THEN
+		 				CREATE LASTCHILD OF refMeasures AS refOutValues NAME 'Item';
+		 								
+						CREATE LASTCHILD OF refOutValues TYPE NameValue NAME 'id' VALUE risposta2.id;
+						CREATE LASTCHILD OF refOutValues TYPE NameValue NAME 'taskId' VALUE risposta2.taskId;
+						CREATE LASTCHILD OF refOutValues TYPE NameValue NAME 'userId' VALUE risposta2.userId;
+						CREATE LASTCHILD OF refOutValues TYPE NameValue NAME 'date' VALUE risposta2.date;
+						CREATE LASTCHILD OF refOutValues TYPE NameValue NAME 'description' VALUE refValues.value;
+		 					
+		 				END IF;
+						
+						MOVE refValues NEXTSIBLING REPEAT NAME;
+		 			END WHILE;
+					MOVE risposta2 NEXTSIBLING;
+		 		END WHILE;
+				--RETURN TRUE;
+			END IF;
+						
+			--move to other patient
+			MOVE risposta NEXTSIBLING REPEAT NAME;
+		END WHILE;
+
+	
+
+		SET OutputLocalEnvironment.Destination.HTTP.ReplyStatusCode = 200;
+		
+		RETURN TRUE;
+	END;
+
+	CREATE PROCEDURE CopyMessageHeaders() BEGIN
+		DECLARE I INTEGER 1;
+		DECLARE J INTEGER;
+		SET J = CARDINALITY(InputRoot.*[]);
+		WHILE I < J DO
+			SET OutputRoot.*[I] = InputRoot.*[I];
+			SET I = I + 1;
+		END WHILE;
+	END;
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		SET OutputRoot = InputRoot;
+	END;
+END MODULE;

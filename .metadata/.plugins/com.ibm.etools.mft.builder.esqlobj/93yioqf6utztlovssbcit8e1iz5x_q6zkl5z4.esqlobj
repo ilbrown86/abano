@@ -1,0 +1,39 @@
+CREATE COMPUTE MODULE ADT01_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		CALL CopyMessageHeaders();
+		-- CALL CopyEntireMessage();
+	    SET OutputRoot.Properties = InputRoot.Properties;
+	    
+--	    SET OutputRoot.Properties.IdentitySourceType = 'usernameAndPassword';
+--		SET OutputRoot.Properties.IdentitySourceToken = 'ibm.rnezha';
+--		SET OutputRoot.Properties.IdentitySourcePassword = 'Sviluppo0=';
+--		 
+--		SET OutputRoot.Properties.IdentityMappedToken = 'ibm.rnezha';
+--		SET OutputRoot.Properties.IdentityMappedPassword = 'Sviluppo0=';
+--		SET OutputRoot.Properties.IdentityMappedType = 'usernameAndPassword';
+				
+		SET OutputLocalEnvironment.Destination.HTTP.QueryString.action = 'start';
+		SET OutputLocalEnvironment.Destination.HTTP.QueryString.bpdId = '25.e97ae3d8-c4b1-42cf-9569-9e9d9a26c39e';
+		SET OutputLocalEnvironment.Destination.HTTP.QueryString.processAppId = '2066.83484880-fb6e-4066-bd0e-34f737c1cd58';
+		SET OutputLocalEnvironment.Destination.HTTP.QueryString.params = '{"maPatientId":"' || InputRoot.JSON.Data.pid  || '", "maPatientName":"' || InputRoot.JSON.Data.name || InputRoot.JSON.Data.surname  || '", "maHospitalizationId":"' || InputRoot.JSON.Data.diagnosisID  || '", "maBed":"' || InputRoot.JSON.Data.bedNumber  || '", "maClinicalType":"'|| InputRoot.JSON.Data.type || '", "idClinicalPathway":"'|| InputRoot.JSON.Data.diagnosis ||'", "maNosologicId":"'|| InputRoot.JSON.Data.nosologicId ||'"}';
+		SET OutputLocalEnvironment.Destination.HTTP.QueryString.parts = 'all';
+		
+		
+		RETURN TRUE;
+	END;
+
+	CREATE PROCEDURE CopyMessageHeaders() BEGIN
+		DECLARE I INTEGER 1;
+		DECLARE J INTEGER;
+		SET J = CARDINALITY(InputRoot.*[]);
+		WHILE I < J DO
+			SET OutputRoot.*[I] = InputRoot.*[I];
+			SET I = I + 1;
+		END WHILE;
+	END;
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		SET OutputRoot = InputRoot;
+	END;
+END MODULE;

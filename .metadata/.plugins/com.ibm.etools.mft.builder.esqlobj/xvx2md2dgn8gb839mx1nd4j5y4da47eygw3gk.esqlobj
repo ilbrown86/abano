@@ -1,0 +1,14 @@
+CREATE PROCEDURE CreateModelFromEVN(IN refHL7 REFERENCE, INOUT refPatient REFERENCE) BEGIN
+	--NIENTE DA MAPPARE
+	--DECLARE refSegment REFERENCE TO refHL7;
+--	CREATE LASTCHILD OF refSegment AS refSegment NAMESPACE ns6 NAME 'anyHL7Segment';
+--	CREATE LASTCHILD OF refSegment AS refSegment NAMESPACE ns6 NAME 'EVN';
+--	--SET refSegment.ns6:"EVN.1.EventTypeCode" = '';
+--	SET refSegment.ns6:"EVN.2.RecordedDateTime".ns6:"TS.1" = CAST (CURRENT_TIMESTAMP AS CHARACTER FORMAT 'YYYYMMddHHmmss');
+--	--SET refSegment.ns6:"EVN.3.DateTimePlannedEvent" = '';
+--	--SET refSegment.ns6:"EVN.4.EventReasonCode" = '';
+--	--SET refSegment.ns6:"EVN.5.OperatorID" = '';
+--	SET refSegment.ns6:"EVN.6.EventOccurred".ns6:"TS.1" = CAST (CURRENT_TIMESTAMP AS CHARACTER FORMAT 'YYYYMMddHHmmss');
+	--SET refSegment.ns6:"EVN.7.EventFacility" = '';
+	SET refPatient.eventADT = refHL7.ns6:"EVN.4.EventReasonCode";
+END;

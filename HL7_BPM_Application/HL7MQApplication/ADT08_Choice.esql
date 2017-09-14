@@ -7,7 +7,7 @@ CREATE COMPUTE MODULE ADT08_Choice
 		 CALL CopyMessageHeaders();
 		-- CALL CopyEntireMessage();
 		SET OutputRoot.Properties = InputRoot.Properties;
-		IF (InputRoot.JSON.Data.eventADT='L') THEN --cambio letto (cpPatientTransfer)
+		IF (InputRoot.JSON.Data.eventADT='L') THEN --cambio letto (cpPatientTransfer) -  change bed
 			SET OutputLocalEnvironment.Destination.HTTP.QueryString.action = 'start';
 			SET OutputLocalEnvironment.Destination.HTTP.QueryString.params = '{"maHospitalizationId":"' || InputRoot.JSON.Data.diagnosisID  || '", "maBed":"' || InputRoot.JSON.Data.bedNumber  || '", "maCompartment":"' || InputRoot.JSON.Data.division  || '"}';
 			SET OutputLocalEnvironment.Destination.HTTP.QueryString.createTask = 'false';
@@ -31,7 +31,7 @@ CREATE COMPUTE MODULE ADT08_Choice
 			SET OutputLocalEnvironment.Destination.JSON.Data.patientId = InputRoot.JSON.Data.pid;
 			SET OutputLocalEnvironment.Destination.JSON.Data.nosologicId = InputRoot.JSON.Data.id;
 			PROPAGATE TO TERMINAL 'out2' FINALIZE NONE;
-		ELSEIF (InputRoot.JSON.Data.eventADT='C') THEN --cambio clinicalpathway (cpUpdate)
+		ELSEIF (InputRoot.JSON.Data.eventADT='C') THEN --cambio clinicalpathway (cpUpdate) - change clinical pathway
 			SET OutputLocalEnvironment.Destination.HTTP.QueryString.action = 'start';
 			SET OutputLocalEnvironment.Destination.HTTP.QueryString.params = '{"maPatientId":"' || InputRoot.JSON.Data.pid  || '", "idNewClinicalPathway":"' || InputRoot.JSON.Data.diagnosis  || '", "maNewHospitalizationId":"' || InputRoot.JSON.Data.diagnosisID  || '", "maNewBed":"' || InputRoot.JSON.Data.bedNumber  || '", "maNosologicId":"' || InputRoot.JSON.Data.nosologicId  || '", "maNewCompartment":"' || InputRoot.JSON.Data.division  || '"}';
 			SET OutputLocalEnvironment.Destination.HTTP.QueryString.createTask = 'false';

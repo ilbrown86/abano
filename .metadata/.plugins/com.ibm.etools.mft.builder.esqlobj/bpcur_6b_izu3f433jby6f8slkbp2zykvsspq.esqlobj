@@ -1,0 +1,30 @@
+CREATE PROCEDURE CreateOBX(IN sequence INTEGER, IN refParameter REFERENCE, INOUT refHL7 REFERENCE) BEGIN
+		DECLARE refSegment REFERENCE TO refHL7;
+		CREATE LASTCHILD OF refSegment AS refSegment NAMESPACE ns6 NAME 'OBX';
+
+		SET refSegment.ns6:"OBX.1.SetIDOBX" = sequence;
+		SET refSegment.ns6:"OBX.2.ValueType" = 'NM';
+		SET refSegment.ns6:"OBX.3.ObservationIdentifier".ns6:"CE.1"  = refParameter.id;
+		SET refSegment.ns6:"OBX.3.ObservationIdentifier".ns6:"CE.2"  = refParameter.name;
+		SET refSegment.ns6:"OBX.3.ObservationIdentifier".ns6:"CE.3"  = 'SRT';
+		--SET refSegment.ns6:"OBX.4.ObservationSubId".  = ;
+		SET refSegment.ns6:"OBX.5.ObservationValue" = refParameter.value;
+		--SET refSegment.ns6:"OBX.6.Units".  = ;
+		--SET refSegment.ns6:"OBX.7.ReferencesRange".  = ;
+		SET refSegment.ns6:"OBX.8.AbnormalFlags" VALUE = NULL;
+		--SET refSegment.ns6:"OBX.9.Probability".  = ;
+		SET refSegment.ns6:"OBX.10.NatureofAbnormalTest" VALUE = NULL;
+		SET refSegment.ns6:"OBX.11.ObservationResultStatus"  = 'F';
+		--SET refSegment.ns6:"OBX.12.DateLastObservationNormalValue".  = ;
+		--SET refSegment.ns6:"OBX.13.UserDefinedAccessChecks".  = ;
+		--SET refSegment.ns6:"OBX.14.DateTimeoftheObservation".  = ;
+		--SET refSegment.ns6:"OBX.15.ProducersID".  = ;
+		--SET refSegment.ns6:"OBX.16.ResponsibleObserver".  = ;
+		--SET refSegment.ns6:"OBX.17.ObservationMethod".  = ;
+		--SET refSegment.ns6:"OBX.18.EquipmentInstanceIdentifier".  = ;
+		--SET refSegment.ns6:"OBX.19.DateTimeoftheAnalysis".  = ;
+		--SET refSegment.ns6:"OBX.23.PerformingOrganizationName".  = ;
+		--SET refSegment.ns6:"OBX.24.PerformingOrganizationAddress".  = ;
+		--SET refSegment.ns6:"OBX.25.PerformingOrganizationMedicalDirector".  = ;
+
+	END;

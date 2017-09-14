@@ -1,0 +1,26 @@
+CREATE PROCEDURE ModelToORU01(IN xmlModel REFERENCE, INOUT outputMessage REFERENCE) BEGIN
+
+		--CREA TESTATA MSH
+		CALL CreateMSH('ORU', 'R01', '25233631', outputMessage);
+		--CREA EVN
+		CALL CreateEVN(outputMessage);
+		--CREA PID
+		CALL CreatePID(xmlModel, outputMessage);
+		--CREA PV1
+		CALL CreatePV1(xmlModel, outputMessage);
+		--CREA OBR
+		CALL CreateOBR(xmlModel, outputMessage);
+		--CREA SEQUENZA OSSERVAZIONI OBX
+		DECLARE SEQUENCE INTEGER 1;
+		DECLARE refParameter REFERENCE TO xmlModel.parameters;
+		MOVE refParameter FIRSTCHILD;
+		
+		WHILE LASTMOVE(refParameter) DO
+			--CREA OBX
+			CALL CreateOBX(SEQUENCE, refParameter, outputMessage);
+
+			SET SEQUENCE = SEQUENCE + 1;
+			MOVE refParameter NEXTSIBLING;
+		END WHILE;
+
+	END;

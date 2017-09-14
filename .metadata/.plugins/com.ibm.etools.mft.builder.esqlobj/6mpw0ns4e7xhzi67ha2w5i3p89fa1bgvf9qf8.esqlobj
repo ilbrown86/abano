@@ -1,0 +1,52 @@
+/*EATE FUNCTION Main() RETURNS BOOLE*/
+	BEGIN
+		CALL CopyMessageHeaders();
+		--CALL CopyEntireMessage();
+
+		DECLARE patientId CHARACTER;
+		
+		SET patientId = InputLocalEnvironment.REST.Input.Parameters.patientId;
+
+		SET OutputRoot.JSON.Data.id = patientId;
+		SET OutputRoot.JSON.Data.name = 'string';
+		SET OutputRoot.JSON.Data.surname = 'string';
+		SET OutputRoot.JSON.Data.dischargeDate = '2017-03-16';
+		SET OutputRoot.JSON.Data.diagnosis = 'string';
+		SET OutputRoot.JSON.Data.bedNumber = 'string';
+		SET OutputRoot.JSON.Data.division = 'string';
+		SET OutputRoot.JSON.Data.class = 'string';
+		SET OutputRoot.JSON.Data.birthdate = 'string';
+		SET OutputRoot.JSON.Data.sex = 'string';
+		SET OutputRoot.JSON.Data.race = 'string';
+		SET OutputRoot.JSON.Data.address = 'string';
+		SET OutputRoot.JSON.Data.fiscalcode = 'string';
+		SET OutputRoot.JSON.Data.admissionDate = '2017-03-16';
+		SET OutputRoot.JSON.Data.surgeryDate = '2017-03-16';
+		SET OutputRoot.JSON.Data.pid = 'string';
+		SET OutputRoot.JSON.Data.notes[1].id = 'string';
+		SET OutputRoot.JSON.Data.notes[1].title = 'string';
+		SET OutputRoot.JSON.Data.notes[1].description = 'string';
+		SET OutputRoot.JSON.Data.notes[1].userId = 'string';
+		SET OutputRoot.JSON.Data.notes[1].date = '2017-03-16';
+		SET OutputRoot.JSON.Data.notes[1].important = false;
+		SET OutputRoot.JSON.Data.type = 'string';
+
+		SET OutputLocalEnvironment.Destination.HTTP.ReplyStatusCode = 200;
+		--CREATE LASTCHILD OF OutputRoot Domain('JSON');
+		--SET OutputRoot.JSON.Data.ns:senderResponse.error.errorCode = 1;
+		RETURN TRUE;
+	END;
+
+	CREATE PROCEDURE CopyMessageHeaders() BEGIN
+		DECLARE I INTEGER 1;
+		DECLARE J INTEGER;
+		SET J = CARDINALITY(InputRoot.*[]);
+		WHILE I < J DO
+			SET OutputRoot.*[I] = InputRoot.*[I];
+			SET I = I + 1;
+		END WHILE;
+	END;
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		SET OutputRoot = InputRoot;
+	END;

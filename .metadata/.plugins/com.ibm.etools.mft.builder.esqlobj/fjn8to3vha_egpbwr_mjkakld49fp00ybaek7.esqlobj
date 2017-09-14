@@ -1,0 +1,26 @@
+CREATE PROCEDURE CreateORU_R01(/*ID UNIVOCO Messaggio*/IN msgId CHARACTER, /*Modello XML Input*/IN xmlModel REFERENCE, INOUT hl7OutRef REFERENCE) BEGIN
+
+	--decomment to enable autocomplete: COMMENT BEFORE DEPLOYMENT!
+	--DECLARE xmlModel REFERENCE TO InputRoot.XMLNSC.ns:senderRequest.writeParametersRequest.measurement;
+	
+	--CREA MESSAGGIO ORU01
+	--CALL ModelToORU01(patient, outputMessage);
+	--CREA TESTATA MSH
+	CALL CreateMSH('ORU', 'R01', msgId, hl7OutRef);
+	--CREA PID
+	CALL CreatePID(xmlModel, hl7OutRef);
+	--CREA PV1
+	CALL CreatePV1(xmlModel, hl7OutRef);
+	--loop over parameter
+	DECLARE paramSequence INTEGER 0;
+	DECLARE refParameter REFERENCE TO xmlModel;
+	MOVE refParameter FIRSTCHILD NAME 'parameter';
+	WHILE LASTMOVE(refParameter) DO
+		SET paramSequence = paramSequence + 1;
+		--CREA OBR
+		CALL CreateOBR(refParameter, hl7OutRef,paramSequence);
+		--CREA OBX
+		CALL CreateOBX(refParameter, hl7OutRef);
+		MOVE refParameter NEXTSIBLING REPEAT NAME;
+	END WHILE;
+END;

@@ -1,0 +1,56 @@
+/*EATE FUNCTION Main() RETURNS BOOLE*/
+    BEGIN
+        DECLARE env REFERENCE TO Environment.PatternVariables;
+
+        SET OutputLocalEnvironment= InputLocalEnvironment;
+        SET env.FlowMilestoneReached = 'BUILDACK';
+        SET env.SendNACK = 'YES';
+        SET env.EndConnection = 'NO';
+        SET env.HL7RC = 'AR';
+        SET env.ErrorCondition = 'Error while building ACK message';
+
+        -- Create MSH and MSA segment under OutputRoot.DFDL
+        CREATE FIELD OutputRoot.DFDL.hl7:HL7.hl7:MSH;
+        CREATE FIELD OutputRoot.DFDL.hl7:HL7.hl7:anyHL7Segment.hl7:MSA;
+
+        -- Build MSH Segment
+        CALL BuildACKMSH(env.InputMSH, OutputRoot.DFDL.hl7:HL7.hl7:MSH);
+        -- Build MSA Segment with ACK Code AA. No error text in this case.
+        CALL BuildACKMSA(env.InputMSH, OutputRoot.DFDL.hl7:HL7.hl7:anyHL7Segment.hl7:MSA, 'AA', ' ');
+
+        SET env.FlowMilestoneReached = 'SENDACK';
+        SET env.SendNACK = 'YES';
+        SET env.EndConnection = 'NO';
+        SET env.HL7RC = 'AR';
+        SET env.ErrorCondition = 'Error while sending ACK message';
+
+        -- Serialize the message
+        DECLARE hl7BitStream BLOB
+            ASBITSTREAM(OutputRoot.DFDL
+                ENCODING InputRoot.Properties.Encoding
+                CCSID InputRoot.Properties.CodedCharSetId
+                SET ReceiverMessageSet
+                TYPE ReceiverMessageType
+                FORMAT ReceiverMessageFormat);
+
+        -- Leading MLLP byte is set as a pattern parameter
+        DECLARE LeadingMLLPBytes  BLOB  X'0B';
+        SET OutputRoot.BLOB.BLOB = LeadingMLLPBytes || hl7BitStream;
+        SET OutputRoot.DFDL = NULL;
+
+        -- Send the acknowledgement message to the sending application
+        -- Any failure in delivering the message, the exception will be thrown by the 
+        -- TCPIPServerOutput node which will be caught by the TCPIPServerInput node's catch terminal
+        PROPAGATE TO TERMINAL 'out' MESSAGE OutputRoot;
+
+        -- Reset the flow milestone as it is successful case
+        SET env.FlowMilestoneReached = ' ';
+        SET env.SendNACK = ' ';
+        SET env.EndConnection = ' ';
+        SET env.HL7RC = ' ';
+        SET env.ErrorCondition = ' ';
+        SET FailureCount = 0;
+
+        RETURN FALSE;
+    END;
+

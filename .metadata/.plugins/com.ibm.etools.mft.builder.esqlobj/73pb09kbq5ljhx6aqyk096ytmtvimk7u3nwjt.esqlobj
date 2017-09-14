@@ -1,0 +1,226 @@
+CREATE COMPUTE MODULE patientDetails_MapToJSONModel
+CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		CALL CopyMessageHeaders();
+		--CALL CopyEntireMessage();
+
+		DECLARE response REFERENCE TO InputRoot.XMLNSC.ns:senderResponse;
+		DECLARE parameter REFERENCE TO InputRoot.XMLNSC.ns:senderResponse;
+		DECLARE errorResponse REFERENCE TO InputRoot.XMLNSC.ns:senderResponse;
+		--GESTIONE ERRORE
+		MOVE errorResponse FIRSTCHILD NAME 'error';
+		IF LASTMOVE(errorResponse) THEN
+			SET OutputLocalEnvironment.Destination.HTTP.ReplyStatusCode = 400;
+			SET OutputRoot.JSON.Data.errorCode = errorResponse.errorCode;
+			SET OutputRoot.JSON.Data.errorMessage = errorResponse.errorMessage;
+			RETURN TRUE;
+		END IF; 
+
+		SET OutputLocalEnvironment.Destination.HTTP.ReplyStatusCode = 200;
+
+		--MAP MODEL TO JSON
+		MOVE response FIRSTCHILD;
+		
+		IF LASTMOVE(response) THEN
+			--MOVE response FIRSTCHILD NAMESPACE ns NAME 'parameter';	
+				
+			--MOVE response FIRSTCHILD;		
+			DECLARE refAdmission REFERENCE TO response;
+			MOVE refAdmission FIRSTCHILD NAME 'admission';
+			SET OutputRoot.JSON.Data.id = refAdmission.nosologicId;
+			IF NULLIF(response.name,'') IS NOT NULL THEN
+				SET OutputRoot.JSON.Data.name = response.name;
+			ELSE
+				SET OutputRoot.JSON.Data.name = '';
+			END IF;
+			
+			IF NULLIF(response.surname,'') IS NOT NULL THEN
+				SET OutputRoot.JSON.Data.surname = response.surname;
+			ELSE
+				SET OutputRoot.JSON.Data.surname = '';
+			END IF;
+			IF NULLIF(refAdmission.dischargeDate,'') IS NOT NULL THEN
+				SET OutputRoot.JSON.Data.dischargeDate = refAdmission.dischargeDate;
+			ELSE
+				SET OutputRoot.JSON.Data.dischargeDate = '';
+			END IF;
+--			IF NULLIF(response.diagnosis,'') IS NOT NULL THEN
+--				SET OutputRoot.JSON.Data.diagnosis = response.diagnosis;
+--			ELSE
+--				SET OutputRoot.JSON.Data.diagnosis = '';
+--			END IF;
+			SET OutputRoot.JSON.Data.diagnosis = '';
+			IF NULLIF(response.diagnosis,'') IS NOT NULL THEN
+				SET OutputRoot.JSON.Data.pathway = response.diagnosis;
+			ELSE
+				SET OutputRoot.JSON.Data.pathway = '';
+			END IF;
+			
+			IF NULLIF(refAdmission.bedNumber,'') IS NOT NULL THEN
+				SET OutputRoot.JSON.Data.bedNumber = refAdmission.bedNumber;
+			ELSE
+				SET OutputRoot.JSON.Data.bedNumber = '';
+			END IF;
+			
+			IF NULLIF(refAdmission.division,'') IS NOT NULL THEN
+				SET OutputRoot.JSON.Data.division = refAdmission.division;
+			ELSE
+				SET OutputRoot.JSON.Data.division = '';
+			END IF;
+			
+			IF NULLIF(refAdmission.class,'') IS NOT NULL THEN
+				SET OutputRoot.JSON.Data.class = refAdmission.class;
+			ELSE
+				SET OutputRoot.JSON.Data.class = '';
+			END IF;
+			
+			IF NULLIF(response.birthdate,'') IS NOT NULL THEN
+				SET OutputRoot.JSON.Data.birthdate = response.birthdate;
+			ELSE
+				SET OutputRoot.JSON.Data.birthdate = '';
+			END IF;
+			
+			IF NULLIF(response.sex,'') IS NOT NULL THEN
+				SET OutputRoot.JSON.Data.sex = response.sex;
+			ELSE
+				SET OutputRoot.JSON.Data.sex = '';
+			END IF;
+			
+			IF NULLIF(response.race,'') IS NOT NULL THEN
+				SET OutputRoot.JSON.Data.race = response.race;
+			ELSE
+				SET OutputRoot.JSON.Data.race = '';
+			END IF;			
+			
+			IF NULLIF(response.address,'') IS NOT NULL THEN
+				SET OutputRoot.JSON.Data.address = response.address;
+			ELSE
+				SET OutputRoot.JSON.Data.address = '';
+			END IF;
+			
+			IF NULLIF(response.fiscalcode,'') IS NOT NULL THEN
+				SET OutputRoot.JSON.Data.fiscalcode = response.fiscalcode;
+			ELSE
+				SET OutputRoot.JSON.Data.fiscalcode = '';
+			END IF;
+			
+			IF NULLIF(refAdmission.admissionDate,'') IS NOT NULL THEN
+				SET OutputRoot.JSON.Data.admissionDate = refAdmission.admissionDate;
+			ELSE
+				SET OutputRoot.JSON.Data.admissionDate = '';
+			END IF;
+			
+			IF NULLIF(refAdmission.admissionTime,'') IS NOT NULL THEN
+				SET OutputRoot.JSON.Data.admissionTime = refAdmission.admissionTime;
+			ELSE
+				SET OutputRoot.JSON.Data.admissionTime = '';
+			END IF;
+			
+			IF NULLIF(refAdmission.surgeryExpectedDate,'') IS NOT NULL THEN
+				SET OutputRoot.JSON.Data.surgeryExpectedDate = refAdmission.surgeryExpectedDate;
+			ELSE
+				SET OutputRoot.JSON.Data.surgeryExpectedDate = '';
+			END IF;
+			
+			IF NULLIF(refAdmission.surgeryExpectedTime,'') IS NOT NULL THEN
+				SET OutputRoot.JSON.Data.surgeryExpectedTime = refAdmission.surgeryExpectedTime;
+			ELSE
+				SET OutputRoot.JSON.Data.surgeryExpectedTime = '';
+			END IF;
+			
+			IF NULLIF(refAdmission.surgeryEndDate,'') IS NOT NULL THEN
+				SET OutputRoot.JSON.Data.surgeryEndDate = refAdmission.surgeryEndDate;
+			ELSE
+				SET OutputRoot.JSON.Data.surgeryEndDate = '';
+			END IF;
+			
+			IF NULLIF(refAdmission.surgeryEndTime,'') IS NOT NULL THEN
+				SET OutputRoot.JSON.Data.surgeryEndTime = refAdmission.surgeryEndTime;
+			ELSE
+				SET OutputRoot.JSON.Data.surgeryEndTime = '';
+			END IF;
+			
+			IF NULLIF(response.patientIdentifierList,'') IS NOT NULL THEN
+				SET OutputRoot.JSON.Data.pid = response.patientIdentifierList;
+			ELSE
+				SET OutputRoot.JSON.Data.pid = '';
+			END IF;
+			
+			IF NULLIF(refAdmission.type,'') IS NOT NULL THEN
+				SET OutputRoot.JSON.Data.type = refAdmission.type;
+			ELSE
+				SET OutputRoot.JSON.Data.type = '';
+			END IF;
+			
+			MOVE response FIRSTCHILD NAMESPACE ns NAME 'parameter';
+			DECLARE refOutJSON REFERENCE TO OutputRoot;
+			DECLARE refMeasures REFERENCE TO OutputRoot;
+--			CREATE FIELD OutputRoot.JSON.Data.notes AS refOutJSON IDENTITY (JSON.Array)notes;
+--			DECLARE ind INTEGER 1;
+--	
+--			WHILE LASTMOVE(response) DO
+-- 				
+-- 				IF NULLIF(response.taskId,'') IS NOT NULL THEN
+--	 				DECLARE refValues REFERENCE TO response;
+--					MOVE refValues FIRSTCHILD NAMESPACE ns NAME 'values';
+--					DECLARE ind2 INTEGER 1;
+--					DECLARE refOutValues REFERENCE TO OutputRoot;
+--	 				CREATE LASTCHILD OF refOutJSON AS refMeasures NAME 'Item';
+--	 				CREATE LASTCHILD OF refMeasures TYPE NameValue NAME 'id' VALUE response.taskId;
+--	 				CREATE LASTCHILD OF refMeasures TYPE NameValue NAME 'title' VALUE refValues.measureName;
+--	 				CREATE LASTCHILD OF refMeasures TYPE NameValue NAME 'description' VALUE refValues.value;
+--	 				CREATE LASTCHILD OF refMeasures TYPE NameValue NAME 'userId' VALUE response.userId;
+--	 				CREATE LASTCHILD OF refMeasures TYPE NameValue NAME 'date' VALUE response.date;
+--	 				
+--	 				IF (refValues.measureId = 'NINF001') THEN
+--	 					CREATE LASTCHILD OF refMeasures TYPE NameValue NAME 'important' VALUE 'false';
+--	 				ELSEIF (refValues.measureId = 'NINF101') THEN
+--	 					CREATE LASTCHILD OF refMeasures TYPE NameValue NAME 'important' VALUE 'true';
+--	 				END IF;
+--
+--					CREATE LASTCHILD OF refMeasures AS refMeasures IDENTITY (JSON.Array)attachment;	
+--	--	 			WHILE LASTMOVE(refValues) DO
+--	--	 				CREATE LASTCHILD OF refMeasures AS refOutValues NAME 'Item';
+--	--	 								
+--	--					CREATE LASTCHILD OF refOutValues TYPE NameValue NAME 'measureId' VALUE refValues.measureId;
+--	--					CREATE LASTCHILD OF refOutValues TYPE NameValue NAME 'measureName' VALUE refValues.measureName;
+--	--					CREATE LASTCHILD OF refOutValues TYPE NameValue NAME 'value' VALUE refValues.value;
+--	--					IF (refValues.type IS NOT NULL) THEN
+--	--						CREATE LASTCHILD OF refOutValues TYPE NameValue NAME 'type' VALUE refValues.type;
+--	--					END IF;
+--	--					
+--	--					
+--	--					SET ind2 = ind2 + 1;
+--	--					MOVE refValues NEXTSIBLING;
+--	--	 			END WHILE;
+--				END IF;
+--				SET ind = ind + 1;
+--				MOVE response NEXTSIBLING;
+-- 				
+--	 		END WHILE;
+			--new
+			RETURN TRUE;
+		END IF;
+		
+
+
+		SET OutputLocalEnvironment.Destination.HTTP.ReplyStatusCode = 200;
+		--CREATE LASTCHILD OF OutputRoot Domain('JSON');
+		--SET OutputRoot.JSON.Data.ns:senderResponse.error.errorCode = 1;
+		RETURN TRUE;
+	END;
+
+	CREATE PROCEDURE CopyMessageHeaders() BEGIN
+		DECLARE I INTEGER 1;
+		DECLARE J INTEGER;
+		SET J = CARDINALITY(InputRoot.*[]);
+		WHILE I < J DO
+			SET OutputRoot.*[I] = InputRoot.*[I];
+			SET I = I + 1;
+		END WHILE;
+	END;
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		SET OutputRoot = InputRoot;
+	END;
+END MODULE;

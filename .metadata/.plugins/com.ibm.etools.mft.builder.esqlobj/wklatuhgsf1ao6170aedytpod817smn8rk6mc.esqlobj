@@ -1,0 +1,6 @@
+/*EATE FUNCTION Main() RETURNS BOOLE*/
+    BEGIN
+        SET OutputRoot = InputRoot;
+        SET OutputRoot.Properties.Topic  = 'MedArchiver2/Receiver/Source';
+        RETURN TRUE;
+    END;

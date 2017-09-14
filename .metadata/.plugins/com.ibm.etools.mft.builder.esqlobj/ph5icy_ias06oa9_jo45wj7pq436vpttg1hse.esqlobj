@@ -1,0 +1,61 @@
+/*EATE FUNCTION Main() RETURNS BOOLE*/
+	BEGIN
+		CALL CopyMessageHeaders();
+		--CALL CopyEntireMessage();
+
+		DECLARE patientId CHARACTER;
+		
+		SET patientId = InputLocalEnvironment.REST.Input.Parameters.patientId;
+
+		SET OutputRoot.JSON.Data TYPE = JSON.Array;
+
+ 		DECLARE refData REFERENCE TO OutputRoot.JSON.Data;
+ 		DECLARE refOut REFERENCE TO OutputRoot.JSON.Data;
+ 		
+ 		--ciclo
+ 		DECLARE ind INTEGER 1;
+ 		WHILE ind < 10 DO
+			CREATE LASTCHILD OF OutputRoot.JSON.Data.Item[ind] TYPE NameValue NAME 'id' VALUE 'uniqueID??';
+			CREATE LASTCHILD OF OutputRoot.JSON.Data.Item[ind] TYPE NameValue NAME 'userId' VALUE 'infermiere??';
+			CREATE LASTCHILD OF OutputRoot.JSON.Data.Item[ind] TYPE NameValue NAME 'patientId' VALUE patientId;
+			CREATE LASTCHILD OF OutputRoot.JSON.Data.Item[ind] TYPE NameValue NAME 'date' VALUE '2017-03-16';
+			--metere il nome values come root dell'array
+			CREATE LASTCHILD OF OutputRoot.JSON.Data.Item[ind].values[1] TYPE NameValue NAME 'measureId' VALUE 'measure001';
+			CREATE LASTCHILD OF OutputRoot.JSON.Data.Item[ind].values[1] TYPE NameValue NAME 'measureName' VALUE 'Mname001';
+			CREATE LASTCHILD OF OutputRoot.JSON.Data.Item[ind].values[1] TYPE NameValue NAME 'value' VALUE 'value01';
+			CREATE LASTCHILD OF OutputRoot.JSON.Data.Item[ind].values[1] TYPE NameValue NAME 'units' VALUE 'unit001';
+			CREATE LASTCHILD OF OutputRoot.JSON.Data.Item[ind].values[1] TYPE NameValue NAME 'type' VALUE 'type001';
+			CREATE LASTCHILD OF OutputRoot.JSON.Data.Item[ind].values[2] TYPE NameValue NAME 'measureId' VALUE 'measure002';
+			CREATE LASTCHILD OF OutputRoot.JSON.Data.Item[ind].values[2] TYPE NameValue NAME 'measureName' VALUE 'Mname002';
+			CREATE LASTCHILD OF OutputRoot.JSON.Data.Item[ind].values[2] TYPE NameValue NAME 'value' VALUE 'value02';
+			CREATE LASTCHILD OF OutputRoot.JSON.Data.Item[ind].values[2] TYPE NameValue NAME 'units' VALUE 'unit002';
+			CREATE LASTCHILD OF OutputRoot.JSON.Data.Item[ind].values[2] TYPE NameValue NAME 'type' VALUE 'type002';
+			CREATE LASTCHILD OF OutputRoot.JSON.Data.Item[ind].values[3] TYPE NameValue NAME 'measureId' VALUE 'measure003';
+			CREATE LASTCHILD OF OutputRoot.JSON.Data.Item[ind].values[3] TYPE NameValue NAME 'measureName' VALUE 'Mname003';
+			CREATE LASTCHILD OF OutputRoot.JSON.Data.Item[ind].values[3] TYPE NameValue NAME 'value' VALUE 'value03';
+			CREATE LASTCHILD OF OutputRoot.JSON.Data.Item[ind].values[3] TYPE NameValue NAME 'units' VALUE 'unit003';
+			CREATE LASTCHILD OF OutputRoot.JSON.Data.Item[ind].values[3] TYPE NameValue NAME 'type' VALUE 'type003';
+			
+					
+		SET ind = ind + 1;
+ 		END WHILE;
+
+		SET OutputLocalEnvironment.Destination.HTTP.ReplyStatusCode = 200;
+		--CREATE LASTCHILD OF OutputRoot Domain('JSON');
+		--SET OutputRoot.JSON.Data.ns:senderResponse.error.errorCode = 1;
+		RETURN TRUE;
+	END;
+
+	CREATE PROCEDURE CopyMessageHeaders() BEGIN
+		DECLARE I INTEGER 1;
+		DECLARE J INTEGER;
+		SET J = CARDINALITY(InputRoot.*[]);
+		WHILE I < J DO
+			SET OutputRoot.*[I] = InputRoot.*[I];
+			SET I = I + 1;
+		END WHILE;
+	END;
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		SET OutputRoot = InputRoot;
+	END;

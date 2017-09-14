@@ -1,0 +1,52 @@
+CREATE PROCEDURE CreateModelFromOBX(IN refHL7 REFERENCE, INOUT refParameters REFERENCE) BEGIN
+
+	
+	--IF NULLIF(refHL7.ns6:"OBX.5.ObservationValue",'') IS NOT NULL THEN
+		DECLARE refValues REFERENCE TO refParameters;
+		CREATE LASTCHILD OF refParameters AS refValues NAMESPACE ns NAME 'values';	
+	--	SET refSegment.ns6:"OBX.1.SetIDOBX" = sequence;
+	--	SET refSegment.ns6:"OBX.2.ValueType" = 'NM';
+		SET refValues.measureId = refHL7.ns6:"OBX.3.ObservationIdentifier".ns6:"CE.1";
+		SET refValues.measureName = refHL7.ns6:"OBX.3.ObservationIdentifier".ns6:"CE.2";
+		IF (refValues.measureId = 'DN999') THEN
+			SET refParameters.detPoint = refHL7.ns6:"OBX.5.ObservationValue";
+		END IF;
+	--	SET refSegment.ns6:"OBX.3.ObservationIdentifier".ns6:"CE.3" = 'SRT';
+	--	--SET refSegment.ns6:"OBX.4.ObservationSubId". = ;
+		IF CONTAINS(refHL7.ns6:"OBX.5.ObservationValue",'^') THEN
+			DECLARE refAttach REFERENCE TO refValues;
+			DECLARE intParts INTEGER POSITION('^' IN refHL7.ns6:"OBX.5.ObservationValue"); 
+			SET refValues.value = SUBSTRING(refHL7.ns6:"OBX.5.ObservationValue" FROM 1 FOR intParts-1);
+			--GET BASE64
+			CREATE LASTCHILD OF refValues AS refAttach NAME 'attachment';
+			SET refAttach.base64 = SUBSTRING(refHL7.ns6:"OBX.5.ObservationValue" AFTER '^mime^^^');
+			IF NULLIF (refAttach.base64,'') IS NOT NULL	THEN
+				SET refAttach.id = refHL7.ns6:"OBX.1.SetIDOBX";
+			END IF;
+			SET refAttach.type = refHL7.ns6:"OBX.17.ObservationMethod".ns6:"CE.1";
+		ELSE 
+			SET refValues.value = refHL7.ns6:"OBX.5.ObservationValue";
+		END IF;		
+	--TODO cosa è??
+	--	IF (xmlModel.units IS NOT NULL) THEN
+	--		--SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[SEQUENCE + 4].ns6:OBX.ns6:"OBX.6.Units".ns6:"CE.1"  = xmlModel.units;
+	--		SET refSegment.ns6:"OBX.6.Units".ns6:"CE.1"  = xmlModel.units;
+	--	END IF;
+	--	--SET refSegment.ns6:"OBX.7.ReferencesRange". = ;
+	--	SET refSegment.ns6:"OBX.8.AbnormalFlags" VALUE = NULL;
+	--	--SET refSegment.ns6:"OBX.9.Probability". = ;
+	--	SET refSegment.ns6:"OBX.10.NatureofAbnormalTest" VALUE = NULL;
+	--	SET refSegment.ns6:"OBX.11.ObservationResultStatus" = 'F';
+	--	--SET refSegment.ns6:"OBX.12.DateLastObservationNormalValue". = ;
+	--	--SET refSegment.ns6:"OBX.13.UserDefinedAccessChecks". = ;
+	--	--SET refSegment.ns6:"OBX.14.DateTimeoftheObservation". = ;
+	--	--SET refSegment.ns6:"OBX.15.ProducersID". = ;
+	--	--SET refSegment.ns6:"OBX.16.ResponsibleObserver". = ;
+	--	--SET refSegment.ns6:"OBX.17.ObservationMethod". = ;
+	--	--SET refSegment.ns6:"OBX.18.EquipmentInstanceIdentifier". = ;
+	--	--SET refSegment.ns6:"OBX.19.DateTimeoftheAnalysis". = ;
+	--	--SET refSegment.ns6:"OBX.23.PerformingOrganizationName". = ;
+	--	--SET refSegment.ns6:"OBX.24.PerformingOrganizationAddress". = ;
+	--	--SET refSegment.ns6:"OBX.25.PerformingOrganizationMedicalDirector". = ;
+	--END IF;
+END;

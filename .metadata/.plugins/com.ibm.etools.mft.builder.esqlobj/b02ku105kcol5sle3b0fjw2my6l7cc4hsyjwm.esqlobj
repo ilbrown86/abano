@@ -1,0 +1,15 @@
+CREATE PROCEDURE GetLastExceptionDetail(IN InputTree REFERENCE, OUT MessageNumber INTEGER, OUT MessageText CHARACTER)
+    BEGIN
+        -- Create a reference to the first child of the exception list
+        DECLARE PtrException reference to InputTree.*[1];
+        -- Keep looping while the moves to the child of exception list work
+        WHILE LASTMOVE(PtrException) DO
+            -- Store the current values for the error number and text
+            IF PtrException.Number IS NOT NULL THEN
+                SET MessageNumber = PtrException.Number;
+                SET MessageText = PtrException.Text;
+            END IF;
+            -- Now move to the last child which should be the next exception list
+            MOVE PtrException LASTCHILD;
+        END WHILE;
+    END;
