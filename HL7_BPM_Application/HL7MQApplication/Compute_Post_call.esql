@@ -1,0 +1,37 @@
+BROKER SCHEMA HL7MQApplication
+
+
+CREATE COMPUTE MODULE Compute_Post_call
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		CALL CopyMessageHeaders();
+		-- CALL CopyEntireMessage();
+		DECLARE inCCSID INT InputProperties.CodedCharSetId;
+		DECLARE inEncoding INT InputProperties.Encoding;
+		DECLARE inBitStream BLOB ASBITSTREAM(InputRoot.BLOB, inEncoding, inCCSID);
+		IF NULLIF(inBitStream,'') IS NOT NULL THEN  --new
+			PROPAGATE TO TERMINAL 'out' FINALIZE NONE;
+			RETURN FALSE;
+		ELSE 
+			CREATE LASTCHILD OF OutputRoot DOMAIN('DFDL') NAME 'DFDL';
+			SET OutputRoot.DFDL.ns1:ACK.ns1:MSA.ns1:"MSA.2.MessageControlID" = 'KO';
+			PROPAGATE TO TERMINAL 'out1' FINALIZE NONE DELETE NONE;
+			RETURN FALSE;
+		END IF; 
+		RETURN FALSE;
+	END;
+
+	CREATE PROCEDURE CopyMessageHeaders() BEGIN
+		DECLARE I INTEGER 1;
+		DECLARE J INTEGER;
+		SET J = CARDINALITY(InputRoot.*[]);
+		WHILE I < J DO
+			SET OutputRoot.*[I] = InputRoot.*[I];
+			SET I = I + 1;
+		END WHILE;
+	END;
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		SET OutputRoot = InputRoot;
+	END;
+END MODULE;

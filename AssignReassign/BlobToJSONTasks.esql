@@ -14,71 +14,94 @@ CREATE COMPUTE MODULE BlobToJSONTasks
 		DECLARE inEncoding INT InputProperties.Encoding;
 		DECLARE inBitStream BLOB ASBITSTREAM(InputRoot.BLOB, inEncoding, inCCSID);
 		
-		CREATE LASTCHILD OF OutputRoot DOMAIN('JSON') PARSE(inBitStream, inEncoding, inCCSID,'BLOB', 'JSON');
-		DECLARE response REFERENCE TO OutputRoot.JSON.Data.data.data.taskList.items;
-		IF LASTMOVE(response) THEN
-			MOVE response FIRSTCHILD NAME 'Item';	
-			--array di misurazioni
-			DECLARE refOutJSON REFERENCE TO OutputRoot;
-			DECLARE refMeasures REFERENCE TO OutputRoot;
-			DECLARE measure ROW;
-			CREATE FIELD OutputRoot.JSON.Data AS refOutJSON IDENTITY (JSON.Array)Data;
-			
-			DECLARE ind INTEGER 1;
- 			WHILE LASTMOVE(response) DO
- 				DECLARE refValues REFERENCE TO response;
-				DECLARE refMeasureId REFERENCE TO measure;
- 				
-				CREATE LASTCHILD OF measure AS refMeasureId NAME 'item';
-				CREATE LASTCHILD OF refMeasureId TYPE NameValue NAME 'taskId' VALUE refValues.taskId;
-				CREATE LASTCHILD OF refMeasureId TYPE NameValue NAME 'taskIdSchedulation' VALUE refValues.taskIdSchedulation;
-				CREATE LASTCHILD OF refMeasureId TYPE NameValue NAME 'creationDate' VALUE refValues.creationDate;
-				CREATE LASTCHILD OF refMeasureId TYPE NameValue NAME 'dueDate' VALUE refValues.dueDate;
-				CREATE LASTCHILD OF refMeasureId TYPE NameValue NAME 'patientId' VALUE refValues.patientId;
-				CREATE LASTCHILD OF refMeasureId TYPE NameValue NAME 'nosologicId' VALUE refValues.nosologicId;
-				CREATE LASTCHILD OF refMeasureId TYPE NameValue NAME 'bed' VALUE refValues.bed;
-				CREATE LASTCHILD OF refMeasureId TYPE NameValue NAME 'compartment' VALUE refValues.compartment;
-				--luca
-				--CREATE LASTCHILD OF refMeasureId AS refMeasureId NAME 'owners';
-				--CREATE LASTCHILD OF refMeasureId AS refMeasureId IDENTITY (JSON.Array)owners;
+		
+		IF NULLIF(inBitStream,'') IS NOT NULL THEN  --new
+			CREATE LASTCHILD OF OutputRoot DOMAIN('JSON') PARSE(inBitStream, inEncoding, inCCSID,'BLOB', 'JSON');
+			DECLARE response REFERENCE TO OutputRoot.JSON.Data.data.data.taskList.items;
+			IF LASTMOVE(response) THEN
+				MOVE response FIRSTCHILD NAME 'Item';	
+				--array di misurazioni
+				DECLARE refOutJSON REFERENCE TO OutputRoot;
+				DECLARE refMeasures REFERENCE TO OutputRoot;
+				DECLARE measure ROW;
+				CREATE FIELD OutputRoot.JSON.Data AS refOutJSON IDENTITY (JSON.Array)Data;
 				
-				DECLARE i INTEGER 1;
-				FOR source AS refValues.users.items.Item[]  DO
-					--CREATE LASTCHILD OF refMeasureId TYPE NameValue NAME 'owner'  VALUE refValues.users.items.Item[i];
-					IF NULLIF(refMeasureId.owner,'') IS NOT NULL THEN
-						SET refMeasureId.owner = refMeasureId.owner || ', '|| refValues.users.items.Item[i];
-					ELSE
-						SET refMeasureId.owner = refValues.users.items.Item[i];
-					END IF;
+				DECLARE ind INTEGER 1;
+	 			WHILE LASTMOVE(response) DO
+	 				DECLARE refValues REFERENCE TO response;
+					DECLARE refMeasureId REFERENCE TO measure;
+	 				
+					CREATE LASTCHILD OF measure AS refMeasureId NAME 'item';
+					CREATE LASTCHILD OF refMeasureId TYPE NameValue NAME 'taskId' VALUE refValues.taskId;
+					CREATE LASTCHILD OF refMeasureId TYPE NameValue NAME 'taskIdSchedulation' VALUE refValues.idTaskSchedulation;
+					CREATE LASTCHILD OF refMeasureId TYPE NameValue NAME 'creationDate' VALUE refValues.creationDate;
+					CREATE LASTCHILD OF refMeasureId TYPE NameValue NAME 'dueDate' VALUE refValues.dueDate;
+					CREATE LASTCHILD OF refMeasureId TYPE NameValue NAME 'patientId' VALUE refValues.patientId;
+					CREATE LASTCHILD OF refMeasureId TYPE NameValue NAME 'nosologicId' VALUE refValues.nosologicId;
+					CREATE LASTCHILD OF refMeasureId TYPE NameValue NAME 'bed' VALUE refValues.bed;
+					CREATE LASTCHILD OF refMeasureId TYPE NameValue NAME 'compartment' VALUE refValues.compartment;
+					CREATE LASTCHILD OF refMeasureId TYPE NameValue NAME 'instanceId' VALUE refValues.pathWayInstanceId;
+					CREATE LASTCHILD OF refMeasureId TYPE NameValue NAME 'taskType' VALUE refValues.taskType;
+					CREATE LASTCHILD OF refMeasureId TYPE NameValue NAME 'patientType' VALUE refValues.patientType;
+					CREATE LASTCHILD OF refMeasureId TYPE NameValue NAME 'idPathway' VALUE refValues.idPathway;
+					CREATE LASTCHILD OF refMeasureId TYPE NameValue NAME 'pathWayPhaseId' VALUE refValues.pathWayPhaseId;
 					
-					SET i = i + 1;
-				END FOR;
-				--luca
---				CREATE LASTCHILD OF refMeasureId AS refMeasureId IDENTITY (JSON.Array)owner;
---				WHILE LASTMOVE(refValues) DO
---					DECLARE refOwner REFERENCE TO refValues;
---					DECLARE refOutOwner REFERENCE TO refMeasures;
---					MOVE refAttach FIRSTCHILD NAME 'owner';
---				
---					WHILE LASTMOVE(refOwner) DO
---						CREATE LASTCHILD OF refMeasures AS refOutOwner NAME 'Item';
---						SET refOutOwner.nurseId = refOwner.Item;
---	 					
---	 					MOVE refOwner NEXTSIBLING REPEAT NAME;
---					END WHILE;	
---				
---					MOVE refValues NEXTSIBLING REPEAT NAME;
---				END WHILE;
-
-				
-				SET ind = ind + 1;
-				MOVE response NEXTSIBLING;
-	 		END WHILE;
-	 		DECLARE a CHARACTER;
-	 		SET a = 1;
-	 		SET refOutJSON = measure;
- 		END IF;
-		RETURN TRUE;
+					--luca
+					--CREATE LASTCHILD OF refMeasureId AS refMeasureId NAME 'owners';
+					--CREATE LASTCHILD OF refMeasureId AS refMeasureId IDENTITY (JSON.Array)owners;
+					
+					DECLARE i INTEGER 1;
+					FOR source AS refValues.users.items.Item[]  DO
+						--CREATE LASTCHILD OF refMeasureId TYPE NameValue NAME 'owner'  VALUE refValues.users.items.Item[i];
+						IF NULLIF(refMeasureId.owner,'') IS NOT NULL THEN
+							SET refMeasureId.owner = refMeasureId.owner || ', '|| refValues.users.items.Item[i];
+						ELSE
+							SET refMeasureId.owner = refValues.users.items.Item[i];
+						END IF;
+						
+						SET i = i + 1;
+					END FOR;
+					--luca
+	--				CREATE LASTCHILD OF refMeasureId AS refMeasureId IDENTITY (JSON.Array)owner;
+	--				WHILE LASTMOVE(refValues) DO
+	--					DECLARE refOwner REFERENCE TO refValues;
+	--					DECLARE refOutOwner REFERENCE TO refMeasures;
+	--					MOVE refAttach FIRSTCHILD NAME 'owner';
+	--				
+	--					WHILE LASTMOVE(refOwner) DO
+	--						CREATE LASTCHILD OF refMeasures AS refOutOwner NAME 'Item';
+	--						SET refOutOwner.nurseId = refOwner.Item;
+	--	 					
+	--	 					MOVE refOwner NEXTSIBLING REPEAT NAME;
+	--					END WHILE;	
+	--				
+	--					MOVE refValues NEXTSIBLING REPEAT NAME;
+	--				END WHILE;
+	
+					
+					SET ind = ind + 1;
+					MOVE response NEXTSIBLING;
+				--SET measure.errorMessage = '';
+				--SET measure.errorCode = '';
+		 		END WHILE;
+		 		DECLARE a CHARACTER;
+		 		SET a = 1;
+		 		--CREATE LASTCHILD OF measure TYPE NameValue NAME 'errorMessage' VALUE '';
+		 		
+		 		SET refOutJSON = measure;
+		 		PROPAGATE TO TERMINAL 'out' FINALIZE NONE DELETE NONE;
+		 		--RETURN FALSE;
+	 		END IF;
+		ELSE --new
+			SET OutputLocalEnvironment.Destination.HTTP.ReplyStatusCode = 400;
+			SET OutputRoot.JSON.Data.response = '';
+			SET OutputRoot.JSON.Data.errorCode = '400';
+			SET OutputRoot.JSON.Data.errorMessage = 'Errore di comunicazione con il BPM';
+			PROPAGATE TO TERMINAL 'out1' FINALIZE NONE;
+			--RETURN FALSE;
+		END IF; --new
+		--RETURN TRUE;
+		RETURN FALSE;
 	END;
 
 	CREATE PROCEDURE CopyMessageHeaders() BEGIN

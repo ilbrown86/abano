@@ -2,7 +2,7 @@ BROKER SCHEMA HL7CoreApplication
 
 
 
-CREATE PROCEDURE CreateModelFromMSH(IN refHL7 REFERENCE, INOUT xmlModel REFERENCE) BEGIN
+CREATE PROCEDURE CreateModelFromMSH(IN refHL7 REFERENCE, INOUT xmlModel REFERENCE) BEGIN  -- In this case the code is comment because we don't have any data to take by MedArchiver in this segment.
 --	DECLARE xmlModel REFERENCE TO InputRoot.XMLNSC.ns:senderResponse.patientDetailsResponse;
 --NIENTE DA MAPPARE	
 	DECLARE refSegment REFERENCE TO refHL7;
@@ -29,7 +29,7 @@ CREATE PROCEDURE CreateModelFromMSH(IN refHL7 REFERENCE, INOUT xmlModel REFERENC
 
 END;
 
-CREATE PROCEDURE CreateModelFromEVN(IN refHL7 REFERENCE, INOUT refPatient REFERENCE) BEGIN
+CREATE PROCEDURE CreateModelFromEVN(IN refHL7 REFERENCE, INOUT refPatient REFERENCE) BEGIN  -- We have only one data to take by MedArchiver, the event of ADT for ADT02 and ADT08 to choise while is the call to BPM to do.
 	--NIENTE DA MAPPARE
 	--DECLARE refSegment REFERENCE TO refHL7;
 --	CREATE LASTCHILD OF refSegment AS refSegment NAMESPACE ns6 NAME 'anyHL7Segment';
@@ -44,7 +44,7 @@ CREATE PROCEDURE CreateModelFromEVN(IN refHL7 REFERENCE, INOUT refPatient REFERE
 	SET refPatient.eventADT = refHL7.ns6:"EVN.4.EventReasonCode";--nuovo
 END;
 
-CREATE PROCEDURE CreateModelFromPID(IN refHL7 REFERENCE, INOUT refPatient REFERENCE) BEGIN
+CREATE PROCEDURE CreateModelFromPID(IN refHL7 REFERENCE, INOUT refPatient REFERENCE) BEGIN  -- We take pid, name, surname, date of birth, sex, race and address of patient
 	
 	--DECLARE refPatient REFERENCE TO xmlModel;
 	--TODO
@@ -103,7 +103,7 @@ CREATE PROCEDURE CreateModelFromPID(IN refHL7 REFERENCE, INOUT refPatient REFERE
 --	END IF;
 END;
 
-CREATE PROCEDURE CreateModelFromPV1(IN refHL7 REFERENCE, INOUT refPatient REFERENCE) BEGIN
+CREATE PROCEDURE CreateModelFromPV1(IN refHL7 REFERENCE, INOUT refPatient REFERENCE) BEGIN  --We take class, type, bed, division, nosologicId, admit date and discharge date of patient in the hospital.
 
 	DECLARE refAdmissionData REFERENCE TO refPatient;
 	CREATE LASTCHILD OF refPatient AS refAdmissionData NAME 'admission';
@@ -194,7 +194,7 @@ CREATE PROCEDURE CreateModelFromPV1(IN refHL7 REFERENCE, INOUT refPatient REFERE
 
 END;
 
-CREATE PROCEDURE CreateModelFromPV2(IN refHL7 REFERENCE, INOUT refPatient REFERENCE) BEGIN
+CREATE PROCEDURE CreateModelFromPV2(IN refHL7 REFERENCE, INOUT refPatient REFERENCE) BEGIN   -- We take expected surgery date and the real surgery date. We take the same data because MedArchiver don't have the second date in this moment.
 
 	DECLARE refAdmissionData REFERENCE TO refPatient;
 	MOVE refAdmissionData FIRSTCHILD NAME 'admission';
@@ -255,7 +255,7 @@ CREATE PROCEDURE CreateModelFromPV2(IN refHL7 REFERENCE, INOUT refPatient REFERE
 
 END;
 
-CREATE PROCEDURE CreateModelFromDG1(IN refHL7 REFERENCE, INOUT refPatient REFERENCE) BEGIN
+CREATE PROCEDURE CreateModelFromDG1(IN refHL7 REFERENCE, INOUT refPatient REFERENCE) BEGIN  -- DG1 is the segment that have the pathway data. 
 	--decomment to enable autocomplete: COMMENT BEFORE DEPLOYMENT!
 
 	DECLARE a CHARACTER;
@@ -293,7 +293,7 @@ CREATE PROCEDURE CreateModelFromDG1(IN refHL7 REFERENCE, INOUT refPatient REFERE
 	
 END;
 	
-CREATE PROCEDURE CreateModelFromOBR(IN refHL7 REFERENCE, INOUT refParameters REFERENCE) BEGIN
+CREATE PROCEDURE CreateModelFromOBR(IN refHL7 REFERENCE, INOUT refParameters REFERENCE) BEGIN  -- We have a data of task id of bpm
 
 --	SET refSegment.ns6:"OBR.1.SetIDOBR" = '1';
 --	--SET refSegment.ns6:"OBR.2.PlacerOrderNumber". = ;
@@ -375,7 +375,7 @@ CREATE PROCEDURE CreateModelFromOBR(IN refHL7 REFERENCE, INOUT refParameters REF
 
 END;
 
-CREATE PROCEDURE CreateModelFromOBX(IN refHL7 REFERENCE, INOUT refParameters REFERENCE) BEGIN
+CREATE PROCEDURE CreateModelFromOBX(IN refHL7 REFERENCE, INOUT refParameters REFERENCE) BEGIN  -- Here we have a data of measument of any Task id. We have some measure id because only these measurements are required by the app.
 
 	
 	--IF NULLIF(refHL7.ns6:"OBX.5.ObservationValue",'') IS NOT NULL THEN
@@ -391,13 +391,18 @@ CREATE PROCEDURE CreateModelFromOBX(IN refHL7 REFERENCE, INOUT refParameters REF
 		IF (refValues.measureId = 'DN007') THEN
 			SET refParameters.detPointDesc = refHL7.ns6:"OBX.5.ObservationValue";
 		END IF;
-		
+		IF (refValues.measureId = 'DN002') THEN
+			SET refParameters.isDel = SUBSTRING(refHL7.ns6:"OBX.5.ObservationValue" BEFORE '^');
+		END IF;		
 		IF (refValues.measureId = 'AS999') THEN
 			SET refParameters.detPoint = refHL7.ns6:"OBX.5.ObservationValue";
 		END IF;
 		IF (refValues.measureId = 'AS004') THEN
 			SET refParameters.detPointDesc = SUBSTRING(refHL7.ns6:"OBX.5.ObservationValue" AFTER '^');--refHL7.ns6:"OBX.5.ObservationValue";
 		END IF;
+		IF (refValues.measureId = 'AS003') THEN
+			SET refParameters.isDel = SUBSTRING(refHL7.ns6:"OBX.5.ObservationValue" BEFORE '^');
+		END IF;		
 		
 		IF (refValues.measureId = 'DIU999') THEN
 			SET refParameters.detPoint = refHL7.ns6:"OBX.5.ObservationValue";
@@ -405,6 +410,10 @@ CREATE PROCEDURE CreateModelFromOBX(IN refHL7 REFERENCE, INOUT refParameters REF
 		IF (refValues.measureId = 'DIU007') THEN
 			SET refParameters.detPointDesc = SUBSTRING(refHL7.ns6:"OBX.5.ObservationValue" AFTER '^');--refHL7.ns6:"OBX.5.ObservationValue";
 		END IF;
+		IF (refValues.measureId = 'DIU006') THEN
+			SET refParameters.isDel = SUBSTRING(refHL7.ns6:"OBX.5.ObservationValue" BEFORE '^');
+		END IF;		
+		
 		IF (refValues.measureId = 'TMP001') THEN
 			SET refParameters.detPointDesc = 'Celsius';
 		END IF;
@@ -476,7 +485,7 @@ CREATE PROCEDURE CreateModelFromOBX(IN refHL7 REFERENCE, INOUT refParameters REF
 	--END IF;
 END;
 
-CREATE PROCEDURE CreateModelFromMSA(IN refHL7 REFERENCE, INOUT xmlModel REFERENCE) BEGIN
+CREATE PROCEDURE CreateModelFromMSA(IN refHL7 REFERENCE, INOUT xmlModel REFERENCE) BEGIN -- We take only a result of the query from MedArchiver, if we have an error or not.
 --	DECLARE xmlModel REFERENCE TO InputRoot.XMLNSC.ns:senderResponse.patientDetailsResponse;
 	DECLARE refSegment REFERENCE TO refHL7;
 	SET xmlModel.result = refHL7.ns6:"MSA.1.AcknowledgementCode" || ' ' || COALESCE(refHL7.ns6:"MSA.3.TextMessage",' ');

@@ -13,7 +13,7 @@ CREATE FUNCTION Main() RETURNS BOOLEAN
 
 		--MAP MODEL TO JSON
 		MOVE request FIRSTCHILD;
-		--test commet
+		
 		IF LASTMOVE(request) THEN
 			--MOVE request FIRSTCHILD;		
 			SET OutputRoot.JSON.Data.id = request.nosologicId;

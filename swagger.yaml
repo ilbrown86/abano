@@ -1,0 +1,67 @@
+swagger: '2.0'
+info:
+  description: BOTcall
+  version: 1.0.0
+  title: BOTcall
+  termsOfService: 'http://swagger.io/terms/'
+  contact:
+    email: afioritto@casacurait
+  license:
+    name: Apache 2.0
+    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
+host: petstore.swagger.io
+basePath: /v2
+tags:
+  - name: iibbpm
+    description: iibbpm
+schemes:
+  - http
+paths:
+  /iibbpm:
+    put:
+      tags:
+        - iibbpm
+      consumes:
+        - application/json
+        - application/xml
+      produces:
+        - application/json
+        - application/xml
+      responses:
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Pet not found
+        '405':
+          description: Validation exception
+securityDefinitions:
+  petstore_auth:
+    type: oauth2
+    authorizationUrl: 'http://petstore.swagger.io/oauth/dialog'
+    flow: implicit
+    scopes:
+      'write:pets': modify pets in your account
+      'read:pets': read your pets
+  api_key:
+    type: apiKey
+    name: api_key
+    in: header
+definitions:
+  iibbpm:
+    type: object
+    properties:
+      from:
+        type: string
+      to:
+        type: string
+      status:
+        type: string
+      msg:
+        type: string
+      type:
+        type: string
+      token:
+        type: string
+externalDocs:
+  description: Find out more about Swagger
+  url: 'http://swagger.io'

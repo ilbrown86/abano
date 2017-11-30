@@ -1,1 +1,18 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?><ns2:restapiDescriptor xmlns="http://com.ibm.etools.mft.descriptor.base" xmlns:ns2="http://com.ibm.etools.mft.descriptor.restapi" definitionType="swagger_20" definitionFile="HL7Rest_IBMIntegrationservices.json" implementation="gen/HL7RestAPI.msgflow" https="true"><references><sharedLibraryReference><libraryName>IAMServices</libraryName></sharedLibraryReference></references><ns2:operations><ns2:operation name="getPatientDetails" implementation="getPatientDetails.subflow"/><ns2:operation name="getPatientMeasurementHistory" implementation="getPatientMeasurementHistory.subflow"/><ns2:operation name="getPatientMeasurementHistoryMultiline" implementation="getPatientMeasurementHistoryMultiline.subflow"/><ns2:operation name="getPatientMeasurementLast" implementation="getPatientMeasurementLast.subflow"/><ns2:operation name="getPatientMeasurementLastMultiline" implementation="getPatientMeasurementLastMultiline.subflow"/><ns2:operation name="getPatientNotes" implementation="getPatientNotes.subflow"/><ns2:operation name="issueList" implementation="issueList.subflow"/><ns2:operation name="patientList" implementation="patientList.subflow"/><ns2:operation name="patientListFromKeys" implementation="patientListFromKeys.subflow"/><ns2:operation name="putPatientIssue" implementation="putPatientIssue.subflow"/><ns2:operation name="putPatientNote" implementation="putPatientNote.subflow"/></ns2:operations><ns2:errorHandlers/></ns2:restapiDescriptor>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns2:restapiDescriptor xmlns="http://com.ibm.etools.mft.descriptor.base" xmlns:ns2="http://com.ibm.etools.mft.descriptor.restapi" definitionType="swagger_20" definitionFile="HL7Rest_IBMIntegrationservices.json" implementation="gen/HL7RestAPI.msgflow" https="true">
+    <references/>
+    <ns2:operations>
+        <ns2:operation name="getPatientDetails" implementation="getPatientDetails.subflow"/>
+        <ns2:operation name="getPatientMeasurementHistory" implementation="getPatientMeasurementHistory.subflow"/>
+        <ns2:operation name="getPatientMeasurementHistoryMultiline" implementation="getPatientMeasurementHistoryMultiline.subflow"/>
+        <ns2:operation name="getPatientMeasurementLast" implementation="getPatientMeasurementLast.subflow"/>
+        <ns2:operation name="getPatientMeasurementLastMultiline" implementation="getPatientMeasurementLastMultiline.subflow"/>
+        <ns2:operation name="getPatientNotes" implementation="getPatientNotes.subflow"/>
+        <ns2:operation name="issueList" implementation="issueList.subflow"/>
+        <ns2:operation name="patientList" implementation="patientList.subflow"/>
+        <ns2:operation name="patientListFromKeys" implementation="patientListFromKeys.subflow"/>
+        <ns2:operation name="putPatientIssue" implementation="putPatientIssue.subflow"/>
+        <ns2:operation name="putPatientNote" implementation="putPatientNote.subflow"/>
+    </ns2:operations>
+    <ns2:errorHandlers/>
+</ns2:restapiDescriptor>

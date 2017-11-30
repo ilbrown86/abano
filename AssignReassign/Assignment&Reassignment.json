@@ -117,6 +117,14 @@
           "type" : "string",
           "description" : "clinicalPathway"
         },
+        "taskId" : {
+          "type" : "string",
+          "description" : "taskId"
+        },
+        "taskIdSchedulation" : {
+          "type" : "string",
+          "description" : "taskIdSchedulation"
+        },
         "nurseList" : {
           "type" : "array",
           "items" : {

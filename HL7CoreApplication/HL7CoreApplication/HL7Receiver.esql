@@ -146,17 +146,34 @@ CREATE COMPUTE MODULE BuildACK
         -- Create MSH and MSA segment under OutputRoot.DFDL
         CREATE FIELD OutputRoot.DFDL.hl7:HL7.hl7:MSH;
         CREATE FIELD OutputRoot.DFDL.hl7:HL7.hl7:anyHL7Segment.hl7:MSA;
-
+		--new
+		DECLARE errore CHARACTER;
+		IF (InputRoot.DFDL.hl7:ACK.hl7:MSA.hl7:"MSA.2.MessageControlID" = 'KO') THEN
+			SET errore = 'Errore comunicazione BPM';
+		ELSE
+			SET errore = ' ';
+		END IF;
+		
+		--new
         -- Build MSH Segment
         CALL BuildACKMSH(env.InputMSH, OutputRoot.DFDL.hl7:HL7.hl7:MSH);
         -- Build MSA Segment with ACK Code AA. No error text in this case.
-        CALL BuildACKMSA(env.InputMSH, OutputRoot.DFDL.hl7:HL7.hl7:anyHL7Segment.hl7:MSA, 'AA', ' ');
+        --CALL BuildACKMSA(env.InputMSH, OutputRoot.DFDL.hl7:HL7.hl7:anyHL7Segment.hl7:MSA, 'AA', ' ');
+        DECLARE msa1 CHARACTER;
+        IF (InputRoot.DFDL.hl7:ACK.hl7:MSA.hl7:"MSA.2.MessageControlID" = 'KO') THEN
+			SET msa1 = 'AE';
+		ELSE
+			SET msa1 = 'AA';
+		END IF;
+		
+        CALL BuildACKMSA(env.InputMSH, OutputRoot.DFDL.hl7:HL7.hl7:anyHL7Segment.hl7:MSA, msa1, errore);
 
         SET env.FlowMilestoneReached = 'SENDACK';
         SET env.SendNACK = 'YES';
         SET env.EndConnection = 'NO';
         SET env.HL7RC = 'AR';
         SET env.ErrorCondition = 'Error while sending ACK message';
+        SET env.error = errore;
 
         -- Serialize the message
         DECLARE hl7BitStream BLOB

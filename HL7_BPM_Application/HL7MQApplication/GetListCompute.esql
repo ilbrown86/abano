@@ -121,6 +121,30 @@ CREATE COMPUTE MODULE GetListCompute
 
 	    END IF;
 	    
+	    IF NULLIF (response.taskId, '') IS NOT NULL  THEN
+	    	IF (count = 0) THEN
+				SET OutputLocalEnvironment.Destination.HTTP.QueryString.params = OutputLocalEnvironment.Destination.HTTP.QueryString.params || '"taskId"';	    	
+			ELSE
+				SET OutputLocalEnvironment.Destination.HTTP.QueryString.params = OutputLocalEnvironment.Destination.HTTP.QueryString.params || ', "taskId"';
+	    	END IF;
+			
+	    	SET OutputLocalEnvironment.Destination.HTTP.QueryString.params = OutputLocalEnvironment.Destination.HTTP.QueryString.params || ':' || '"' || response.taskId || '"';
+	    	SET count = count + 1;
+
+	    END IF;
+	    
+	    IF NULLIF (response.taskIdSchedulation, '') IS NOT NULL  THEN
+	    	IF (count = 0) THEN
+				SET OutputLocalEnvironment.Destination.HTTP.QueryString.params = OutputLocalEnvironment.Destination.HTTP.QueryString.params || '"taskIdSchedulation"';	    	
+			ELSE
+				SET OutputLocalEnvironment.Destination.HTTP.QueryString.params = OutputLocalEnvironment.Destination.HTTP.QueryString.params || ', "taskIdSchedulation"';
+	    	END IF;
+			
+	    	SET OutputLocalEnvironment.Destination.HTTP.QueryString.params = OutputLocalEnvironment.Destination.HTTP.QueryString.params || ':' || '"' || response.taskIdSchedulation || '"';
+	    	SET count = count + 1;
+
+	    END IF;
+	    
 	    SET OutputLocalEnvironment.Destination.HTTP.QueryString.params = OutputLocalEnvironment.Destination.HTTP.QueryString.params || '}';
 
 		SET OutputLocalEnvironment.Destination.HTTP.QueryString.action = 'start';

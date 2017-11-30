@@ -1,10 +1,17 @@
-BROKER SCHEMA HL7MQApplication
+BROKER SCHEMA HL7MQApplicationDECLARE ns1 NAMESPACE 'urn:hl7-org:v2xml';
+
 
 
 CREATE COMPUTE MODULE GetListComputePostA02
 	CREATE FUNCTION Main() RETURNS BOOLEAN
 	BEGIN
 		CALL CopyMessageHeaders();
+		
+		--new
+		DECLARE inCCSID INT InputProperties.CodedCharSetId;
+		DECLARE inEncoding INT InputProperties.Encoding;
+		DECLARE inBitStream BLOB ASBITSTREAM(InputRoot.BLOB, inEncoding, inCCSID);
+		--new
 		-- CALL CopyEntireMessage();
 		DECLARE response REFERENCE TO InputRoot.XMLNSC.reassignRequest;
 		
@@ -31,10 +38,9 @@ CREATE COMPUTE MODULE GetListComputePostA02
 		--SET OutputLocalEnvironment.Destination.HTTP.QueryString.params = '{"idWT":"' || '3' ||'"}';
 		--SET OutputLocalEnvironment.Destination.HTTP.QueryString.params = '{"idWT":"' || response.taskType  || '", "maClinicalType":"' || response.typology  || '", "idClinicalPathwayPhase":"' || response.pathwayPhase  || '", "idClinicalPathway":"' || response.clinicalPathway  || '", "dateFrom":"' || response.dateFrom  || '", "dateTo":"' || response.dateTo  || '", "nurseId":"' || response.nurseId  || '", "patientId":"' || response.patientId  || '", "nosologicId":"' || response.nosologicId  || '"}';
 		SET OutputLocalEnvironment.Destination.HTTP.QueryString.createTask = 'false';
-		SET OutputLocalEnvironment.Destination.HTTP.QueryString.parts = 'all';
+		SET OutputLocalEnvironment.Destination.HTTP.QueryString.parts = 'all';		SET OutputLocalEnvironment.Destination.JSON.Data.patientId = InputLocalEnvironment.Destination.JSON.Data.patientId;		
 		
-		
-		RETURN TRUE;
+		RETURN TRUE;		
 	END;
 
 	CREATE PROCEDURE CopyMessageHeaders() BEGIN

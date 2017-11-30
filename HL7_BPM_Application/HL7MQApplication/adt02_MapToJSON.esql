@@ -21,7 +21,12 @@ CREATE FUNCTION Main() RETURNS BOOLEAN
 			SET OutputRoot.JSON.Data.surname = request.surname;
 			SET OutputRoot.JSON.Data.dischargeDate = request.dischargeDate;
 			SET OutputRoot.JSON.Data.diagnosis = SUBSTRING(request.diagnosis BEFORE '-');
-			SET OutputRoot.JSON.Data.diagnosisID = request.diagnosisID;
+			IF NULLIF(request.diagnosisID, '') IS NOT NULL THEN
+				SET OutputRoot.JSON.Data.diagnosisID = request.diagnosisID;
+			ELSE
+				SET OutputRoot.JSON.Data.diagnosisID = '';
+			END IF;
+			--SET OutputRoot.JSON.Data.diagnosisID = request.diagnosisID;
 			IF NULLIF(request.admission.bedNumber, '') IS NOT NULL THEN
 				SET OutputRoot.JSON.Data.bedNumber = request.admission.bedNumber;
 			ELSE

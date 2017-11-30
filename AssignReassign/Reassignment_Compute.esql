@@ -23,7 +23,8 @@ CREATE FUNCTION Main() RETURNS BOOLEAN
 		SET outputMessage.typology = InputRoot.JSON.Data.typology;
 		SET outputMessage.clinicalPathway = InputRoot.JSON.Data.clinicalPathway;
 		SET outputMessage.compartment = InputRoot.JSON.Data.compartment;
-
+		SET outputMessage.taskId = InputRoot.JSON.Data.taskId;
+		SET outputMessage.taskIdSchedulation = InputRoot.JSON.Data.taskIdSchedulation;
 
 	
 		RETURN TRUE;

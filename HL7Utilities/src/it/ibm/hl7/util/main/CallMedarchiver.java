@@ -19,19 +19,55 @@ public class CallMedarchiver
 		//Socket s = new Socket("localhost", 1111);
 
 		//call HL7Receiver PROD
-		Socket s = new Socket("10.4.2.213", 8889);
+		//Socket s = new Socket("10.4.2.213", 8889); // PROD address
+		
+		Socket s = new Socket("10.4.2.212", 8889); // TEST address
 
 		OutputStream os = s.getOutputStream();
 
 		os.write(0x0B);
-
 		
 		//dimission
-		os.write(("MSH|^~\\&|EHR_MEDARCHIVER|MEDARCHIVER|IBM_IIB|IBM|||ADT^A03|20170828161500|P|2.5.1"+LF).getBytes());
-		os.write(("EVN||20170828161502||||20170828161504"+LF).getBytes());
-		os.write(("PID|||132419600||TEST^PROVA||19800517|F|||VIA DELLE ROSE^^^^10^^^028060|||||||PRTRJH80H57Z604E"+LF).getBytes());
-		os.write(("PV1||I|Chirurgia Maggiore^01^008A^1||||||||||||||||17/008606|||||||||||||||||||||||||20170828161506"+LF).getBytes());
-		os.write(("DG1|1||01^Chirurgia Maggiore|||A||||||||||||||112402796"+LF).getBytes());
+		
+		os.write(("MSH|^~\\&|EHR_MEDARCHIVER|MEDARCHIVER|IBM_IIB|IBM|||ADT^A08|20170920105100|P|2.5.1"+LF).getBytes());
+		os.write(("EVN||20170920105102||F||20170920105104"+LF).getBytes());
+		os.write(("PID|||104452910||CAMBRIA^ANDREA||19800517|F|||VIA DELLE ROSE^^^^10^^^028060|||||||PRTRJH80H57Z604E"+LF).getBytes());
+		os.write(("PV1||I|Chirurgia Minore^6^201B^1||||||||||||||||16/008816|||||||||||||||||||||||||20170920105106"+LF).getBytes());
+		os.write(("DG1|1||06^Chirurgia Minore|||A||||||||||||||03"+LF).getBytes());
+		
+		/*os.write(("MSH|^~\\&|EHR_MEDARCHIVER|MEDARCHIVER|IBM_IIB|IBM|||ADT^A03|20170920105100|P|2.5.1"+LF).getBytes());
+		os.write(("EVN||20170920105102||||20170920105104"+LF).getBytes());
+		os.write(("PID|||132592220||PINCO^PALLINO||19800517|F|||VIA DELLE ROSE^^^^10^^^028060|||||||PRTRJH80H57Z604E"+LF).getBytes());
+		os.write(("PV1||I|Ortopedia Maggiore^19^001A^6||||||||||||||||17/012760|||||||||||||||||||||||||20170920105106"+LF).getBytes());
+		os.write(("DG1|1||07^Ortopedia Maggiore|||A||||||||||||||113164235"+LF).getBytes());*/
+		
+		/*os.write(("MSH|^~\\&|EHR_MEDARCHIVER|MEDARCHIVER|IBM_IIB|IBM|||ADT^A02|20170920105100|P|2.5.1"+LF).getBytes());
+		os.write(("EVN||20170920105102||FT||20170920105104"+LF).getBytes());
+		os.write(("PID|||104842620||BA'^CINZIA||19800517|F|||VIA DELLE ROSE^^^^10^^^028060|||||||PRTRJH80H57Z604E"+LF).getBytes());
+		os.write(("PV1||I|TERAPIA INTESIVA^90^90B^1||||||||||||||||17/000071|||||||||||||||||||||||||20170920105106"+LF).getBytes());*/
+		//os.write(("DG1|1||12^Terapia Intensiva 1|||A||||||||||||||02"+LF).getBytes());
+		
+		
+/*//		os.write(("MSH|^~\\&|EHR_MEDARCHIVER|MEDARCHIVER|IBM_IIB|IBM|||ADT^A03|4423362|P|2.5.1"+LF).getBytes());
+//		os.write(("EVN||20171123101625||||201709210944"+LF).getBytes());
+//		os.write(("PID|||113311220||PROVA^ADUE||19450801|M|||VIA SAN P.MONTAGNON  ^^^^35038^^^028092|||||||PRVDAU45M01G224E"+LF).getBytes());
+//		os.write(("PV1||I|RIABILITAZIONE NUTRIZIONALE^005^005A^6||||||||||||||||17/009865|||||||||||||||||||||||||201709210944|201711231015"+LF).getBytes());
+//		os.write(("DG1|1||1^Chirurgia maggiore|||A||||||||||||||112653510"+LF).getBytes());
+*/		
+		
+		
+		/*os.write(("MSH|^~\\&|EHR_MEDARCHIVER|MEDARCHIVER|IBM_IIB|IBM|||ADT^A02|20170920105100|P|2.5.1"+LF).getBytes());
+		os.write(("EVN||20170920105102||FT||20170920105104"+LF).getBytes());
+		os.write(("PID|||133006780||TEST^NUOVOMEDWORKLISTIGEA||19800517|F|||VIA DELLE ROSE^^^^10^^^028060|||||||PRTRJH80H57Z604E"+LF).getBytes());
+		os.write(("PV1||I|TERAPIA INTENSIVA^90^90B^1||||||||||||||||16/002465|||||||||||||||||||||||||20170920105106"+LF).getBytes());
+		//os.write(("DG1|1||12^Terapia Intensiva 1|||A||||||||||||||606"+LF).getBytes());
+*/		
+		
+	/*	os.write(("MSH|^~\\&|EHR_MEDARCHIVER|MEDARCHIVER|IBM_IIB|IBM|||ADT^A13|20170920105100|P|2.5.1"+LF).getBytes());
+		os.write(("EVN||20170920105102||||20170920105104"+LF).getBytes());
+		os.write(("PID|||114599570||ZAAR^THEO||19400930|F|||VIA DELLE ROSE^^^^10^^^028060|||||||PRTRJH80H57Z604E"+LF).getBytes());
+		os.write(("PV1||I|30794||||||||||||||||17/000062|||||||||||||||||||||||||20170920105106"+LF).getBytes());
+		os.write(("DG1|1||1^Chirurgia maggiore|||A||||||||||||||109972162"+LF).getBytes());*/
 		//admission
 		/*
 		os.write(("MSH|^~\\&|EHR_MEDARCHIVER|MEDARCHIVER|IBM_IIB|IBM|||ADT^A01|20170724124300|P|2.5.1"+LF).getBytes());
@@ -48,13 +84,20 @@ public class CallMedarchiver
 		os.write(("DG1|1||1^Chirurgia maggiore|||A||||||||||||||109961490"+LF).getBytes());
 		*/
 		//dimissione
+		
 		/*
 		os.write(("MSH|^~\\&|EHR_MEDARCHIVER|MEDARCHIVER|IBM_IIB|IBM|||ADT^A02|20170719122010|P|2.5.1"+LF).getBytes());
-		os.write(("EVN||20170719122012||T||20170719122014"+LF).getBytes());
-		os.write(("PID|||104452910||Cambria^Andrea||19800517|F|||VIA DELLE ROSE^^^^10^^^028060|||||||PRTRJH80H57Z604E"+LF).getBytes());
-		os.write(("PV1||I|TERAPIA INTENSIVA^10^50F^10||||||||||||||||16/008816|||||||||||||||||||||||||20170719122016"+LF).getBytes());
-		os.write(("DG1|1||12^Terapia Intensiva|||A||||||||||||||112258965"+LF).getBytes());
+		os.write(("EVN||20170719122012||FT||20170719122014"+LF).getBytes());
+		os.write(("PID|||105253890||Cambria^Andrea||19800517|F|||VIA DELLE ROSE^^^^10^^^028060|||||||PRTRJH80H57Z604E"+LF).getBytes());
+		os.write(("PV1||I|TERAPIA INTENSIVA^10^50F^10||||||||||||||||17/900001|||||||||||||||||||||||||20170719122016"+LF).getBytes());
+		os.write(("DG1|1||12^Terapia Intensiva|||A||||||||||||||400"+LF).getBytes());
 		*/
+		/*os.write(("MSH|^~\\&|EHR_MEDARCHIVER|MEDARCHIVER|IBM_IIB|IBM|||ADT^A08|20170719122010|P|2.5.1"+LF).getBytes());
+		os.write(("EVN||20170719122012||C||20170719122014"+LF).getBytes());
+		os.write(("PID|||105253890||Cambria^Andrea||19800517|F|||VIA DELLE ROSE^^^^10^^^028060|||||||PRTRJH80H57Z604E"+LF).getBytes());
+		os.write(("PV1||I|Urologia^04^002A^1||||||||||||||||17/900001|||||||||||||||||||||||||20170719122016"+LF).getBytes());
+		os.write(("DG1|1||04^Urologia|||A||||||||||||||300"+LF).getBytes());*/
+		
 		/*
 		os.write(("MSH|^~\\&|EHR_MEDARCHIVER|MEDARCHIVER|IBM_IIB|IBM|||ADT^A02|20170724153400|P|2.5.1"+LF).getBytes());
 		os.write(("EVN||20170724153402||T||20170724153404"+LF).getBytes());
@@ -101,7 +144,7 @@ public class CallMedarchiver
 		
 /*		os.write(("MSH|^~\\&|EHR_MEDARCHIVER|MEDARCHIVER|IBM_IIB|IBM|||ADT^A03|5035273|P|2.5.1"+LF).getBytes());
 		os.write(("EVN||20170511124500||||20170511124530"+LF).getBytes());
-		os.write(("PID|||104866860||TURRIN^MARIO||19450801|F|||VIA SAN PIETRO MONTAGNON^^^^35038^^^028092|||||||PRVCNU45M01G224W"+LF).getBytes());
+		os.write(("PID|||104866860||GREGGIO^ROBERTO||19450801|F|||VIA SAN PIETRO MONTAGNON^^^^35038^^^028092|||||||PRVCNU45M01G224W"+LF).getBytes());
 		os.write(("PV1||I|610C||||||||||||||||16/008821|||||||||||||||||||||||||20170511124530"+LF).getBytes());
 		os.write(("DG1|1||01^Chirurgia Maggiore|||A"+LF).getBytes());*/
 		

@@ -63,6 +63,8 @@ CREATE FUNCTION Main() RETURNS BOOLEAN
 		SET outParameters = 'DN007';
 		CREATE LASTCHILD OF outputMessage AS outParameters NAME 'paramsId';
 		SET outParameters = 'DN999';
+		CREATE LASTCHILD OF outputMessage AS outParameters NAME 'paramsId';
+		SET outParameters = 'DN002';
 		
 		CREATE LASTCHILD OF outputMessage AS outParameters NAME 'paramsId';
 		SET outParameters = 'AS009';
@@ -70,11 +72,15 @@ CREATE FUNCTION Main() RETURNS BOOLEAN
 		SET outParameters = 'AS004';
 		CREATE LASTCHILD OF outputMessage AS outParameters NAME 'paramsId';
 		SET outParameters = 'AS999';
+		CREATE LASTCHILD OF outputMessage AS outParameters NAME 'paramsId';
+		SET outParameters = 'AS003';
 		
 		CREATE LASTCHILD OF outputMessage AS outParameters NAME 'paramsId';
 		SET outParameters = 'DIU010';
 		CREATE LASTCHILD OF outputMessage AS outParameters NAME 'paramsId';
 		SET outParameters = 'DIU007';
+		CREATE LASTCHILD OF outputMessage AS outParameters NAME 'paramsId';
+		SET outParameters = 'DIU006';
 		CREATE LASTCHILD OF outputMessage AS outParameters NAME 'paramsId';
 		SET outParameters = 'DIU999';
 		
@@ -145,11 +151,17 @@ CREATE FUNCTION Main() RETURNS BOOLEAN
  				DECLARE refValues REFERENCE TO response;
  				DECLARE detPointResponse CHARACTER;
  				DECLARE detPointDescResponse CHARACTER;
+ 				DECLARE isDel CHARACTER;
  				IF NULLIF(response.detPoint,'') IS NOT NULL THEN
  					SET detPointResponse = response.detPoint;
  				END IF;
  				IF NULLIF(response.detPointDesc,'') IS NOT NULL THEN
  					SET detPointDescResponse = response.detPointDesc;
+ 				END IF;
+ 				IF NULLIF(response.isDel,'') IS NOT NULL THEN
+ 					SET isDel = response.isDel;
+ 				ELSE 
+ 					SET isDel = 0;
  				END IF;
 				MOVE refValues FIRSTCHILD NAMESPACE ns NAME 'values';
 				DECLARE responseDate TIMESTAMP CAST(response.date AS TIMESTAMP FORMAT 'YYYY-MM-dd HH.mm.ss');
@@ -179,8 +191,8 @@ CREATE FUNCTION Main() RETURNS BOOLEAN
 			 						SET detectionPointDescription = '';
 			 					END IF;
 			 					
-			 					IF ((refValues.measureId = 'DN012') OR (refValues.measureId = 'DIU010') OR (refValues.measureId = 'AS009')) AND NULLIF(detectionPointID,'') IS NOT NULL THEN
-										
+			 					IF (((refValues.measureId = 'DN012') OR (refValues.measureId = 'DIU010') OR (refValues.measureId = 'AS009')) AND (isDel = 0)) AND NULLIF(detectionPointID,'')  IS NOT NULL THEN
+								--IF ((refValues.measureId = 'DN012') OR (refValues.measureId = 'DIU010') OR (refValues.measureId = 'AS009')) AND NULLIF(detectionPointID,'')  IS NOT NULL THEN		
 			 							
 										CREATE FIRSTCHILD OF refValues NAME detectionPointID VALUE detectionPointID;
 										SET refValues.detectionPointID = detectionPointID;

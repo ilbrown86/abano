@@ -9,7 +9,7 @@ CREATE COMPUTE MODULE ADT13_Compute
 	    SET OutputRoot.Properties = InputRoot.Properties;
 	    
 		SET OutputLocalEnvironment.Destination.HTTP.QueryString.action = 'start';
-		SET OutputLocalEnvironment.Destination.HTTP.QueryString.params = '{"maHospitalizationId":"' || InputRoot.JSON.Data.id  || '"}';
+		SET OutputLocalEnvironment.Destination.HTTP.QueryString.params = '{"maHospitalizationId":"' || InputRoot.JSON.Data.diagnosisID  || '"}';
 		SET OutputLocalEnvironment.Destination.HTTP.QueryString.createTask = 'false';
 		SET OutputLocalEnvironment.Destination.HTTP.QueryString.parts = 'all';
 		

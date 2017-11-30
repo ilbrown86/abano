@@ -33,6 +33,8 @@ CREATE FUNCTION Main() RETURNS BOOLEAN
 		CREATE LASTCHILD OF outputMessage AS outPatientKey NAME 'patientKey';
 		SET outPatientKey.patientId = patientId;
 		SET outPatientKey.nosologicId = nosologicId;
+		--SET outPatientKey.maxResult = 19;
+		
 		
 		CREATE LASTCHILD OF outputMessage AS outParameters NAME 'paramsId';
 		SET outParameters = 'TMP001';

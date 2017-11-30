@@ -254,88 +254,105 @@ CREATE PROCEDURE CreateOBX(IN refParameter REFERENCE, INOUT refHL7 REFERENCE) BE
 	DECLARE sequence INTEGER 1;
 	MOVE refParameter FIRSTCHILD NAME 'values';
 	WHILE LASTMOVE(refParameter) DO
-		IF NULLIF(refParameter.value,'') IS NOT NULL AND NULLIF(refParameter.value,'null') IS NOT NULL THEN
+		IF NULLIF(refParameter.value,'') IS NOT NULL AND NULLIF(refParameter.value,'null') IS NOT NULL AND NULLIF(refParameter.value,'null^null') IS NOT NULL THEN
 			--CREA OBX
-			DECLARE refSegment REFERENCE TO refHL7;
-			CREATE LASTCHILD OF refSegment AS refSegment NAMESPACE ns6 NAME 'anyHL7Segment';
-			CREATE LASTCHILD OF refSegment AS refSegment NAMESPACE ns6 NAME 'OBX';
-			--aggiungo alla sequenza anche l'ID del task
-					
-			SET refSegment.ns6:"OBX.1.SetIDOBX" = sequence;
-			SET refSegment.ns6:"OBX.2.ValueType" = 'NM';
-			SET refSegment.ns6:"OBX.3.ObservationIdentifier".ns6:"CE.1" = refParameter.measureId;
-			SET refSegment.ns6:"OBX.3.ObservationIdentifier".ns6:"CE.2" = refParameter.measureName;
-			SET refSegment.ns6:"OBX.3.ObservationIdentifier".ns6:"CE.3" = 'SRT';
-			--SET refSegment.ns6:"OBX.4.ObservationSubId". = ;
-			
-			
-			--INIZIO MODIFICA PER MEDARCHIVER, CODIFICA DEI CAMPI SI/NO CHE VIENE DA BPM
-			
-			IF (refParameter.measureId = 'SC001') OR (refParameter.measureId = 'SPO2001') OR (refParameter.measureId = 'AS001')
-				OR (refParameter.measureId = 'AS002') OR (refParameter.measureId = 'AS003') OR (refParameter.measureId = 'AS006') OR (refParameter.measureId = 'AS010')
-				OR (refParameter.measureId = 'AS011') OR (refParameter.measureId = 'DIU001') OR (refParameter.measureId = 'DIU002') OR (refParameter.measureId = 'DIU003') 
-				OR (refParameter.measureId = 'DIU005') OR (refParameter.measureId = 'DIU006') OR (refParameter.measureId = 'DIU009') OR (refParameter.measureId = 'DIU013')
-				OR (refParameter.measureId = 'DIU014') OR (refParameter.measureId = 'SNG001') OR (refParameter.measureId = 'SNG008') OR (refParameter.measureId = 'DN001')
-				OR (refParameter.measureId = 'DN002') OR (refParameter.measureId = 'DN008') OR (refParameter.measureId = 'DN009') OR (refParameter.measureId = 'DN013')
-				OR (refParameter.measureId = 'DN015') OR (refParameter.measureId = 'DN016') OR (refParameter.measureId = 'DN019') OR (refParameter.measureId = 'DN020')
-				OR (refParameter.measureId = 'DN021') OR (refParameter.measureId = 'DN022') OR (refParameter.measureId = 'MC001') OR (refParameter.measureId = 'MC002')
-				OR (refParameter.measureId = 'MC007') OR (refParameter.measureId = 'VAS001') OR (refParameter.measureId = 'VAS005') OR (refParameter.measureId = 'AV001') 
-				OR (refParameter.measureId = 'AV002') OR (refParameter.measureId = 'AV005') OR (refParameter.measureId = 'AV006') OR (refParameter.measureId = 'AV008') 
-				OR (refParameter.measureId = 'RPV001') OR (refParameter.measureId = 'RPM001') OR (refParameter.measureId = 'RPM002') OR (refParameter.measureId = 'RMAI001')
-				OR (refParameter.measureId = 'RMAI002') OR (refParameter.measureId = 'RMAI003') OR (refParameter.measureId = 'RFR001') OR (refParameter.measureId = 'RFR002')
-				OR (refParameter.measureId = 'RFR003') OR (refParameter.measureId = 'RFR004') OR (refParameter.measureId = 'CG001') THEN
+			IF NOT CONTAINS (refParameter.value,'null') THEN
+				DECLARE refSegment REFERENCE TO refHL7;
+				CREATE LASTCHILD OF refSegment AS refSegment NAMESPACE ns6 NAME 'anyHL7Segment';
+				CREATE LASTCHILD OF refSegment AS refSegment NAMESPACE ns6 NAME 'OBX';
+				--aggiungo alla sequenza anche l'ID del task
+						
+				SET refSegment.ns6:"OBX.1.SetIDOBX" = sequence;
+				SET refSegment.ns6:"OBX.2.ValueType" = 'NM';
+				SET refSegment.ns6:"OBX.3.ObservationIdentifier".ns6:"CE.1" = refParameter.measureId;
+				SET refSegment.ns6:"OBX.3.ObservationIdentifier".ns6:"CE.2" = refParameter.measureName;
+				SET refSegment.ns6:"OBX.3.ObservationIdentifier".ns6:"CE.3" = 'SRT';
+				--SET refSegment.ns6:"OBX.4.ObservationSubId". = ;
 				
-				IF (refParameter.value = 0) THEN
-					SET refSegment.ns6:"OBX.5.ObservationValue" = refParameter.value || '^NO';
-				ELSEIF (refParameter.value = 1) THEN
-					SET refSegment.ns6:"OBX.5.ObservationValue" = refParameter.value || '^SI';
+				
+				--INIZIO MODIFICA PER MEDARCHIVER, CODIFICA DEI CAMPI SI/NO CHE VIENE DA BPM
+				
+				IF (refParameter.measureId = 'SC001') OR (refParameter.measureId = 'SPO2001') OR (refParameter.measureId = 'AS001')
+					OR (refParameter.measureId = 'AS002') OR (refParameter.measureId = 'AS003') OR (refParameter.measureId = 'AS006') OR (refParameter.measureId = 'AS010')
+					OR (refParameter.measureId = 'AS011') OR (refParameter.measureId = 'DIU001') OR (refParameter.measureId = 'DIU002') OR (refParameter.measureId = 'DIU003') 
+					OR (refParameter.measureId = 'DIU005') OR (refParameter.measureId = 'DIU006') OR (refParameter.measureId = 'DIU009') OR (refParameter.measureId = 'DIU013')
+					OR (refParameter.measureId = 'DIU014') OR (refParameter.measureId = 'SNG001') OR (refParameter.measureId = 'SNG008') OR (refParameter.measureId = 'DN001')
+					OR (refParameter.measureId = 'DN002') OR (refParameter.measureId = 'DN008') OR (refParameter.measureId = 'DN009') OR (refParameter.measureId = 'DN013')
+					OR (refParameter.measureId = 'DN015') OR (refParameter.measureId = 'DN016') OR (refParameter.measureId = 'DN019') OR (refParameter.measureId = 'DN020')
+					OR (refParameter.measureId = 'DN021') OR (refParameter.measureId = 'DN022') OR (refParameter.measureId = 'MC001') OR (refParameter.measureId = 'MC002')
+					OR (refParameter.measureId = 'MC007') OR (refParameter.measureId = 'VAS001') OR (refParameter.measureId = 'VAS005') OR (refParameter.measureId = 'AV001') 
+					OR (refParameter.measureId = 'AV002') OR (refParameter.measureId = 'AV005') OR (refParameter.measureId = 'AV006') OR (refParameter.measureId = 'AV008') 
+					OR (refParameter.measureId = 'RPV001') OR (refParameter.measureId = 'RPM001') OR (refParameter.measureId = 'RPM002') OR (refParameter.measureId = 'RMAI001')
+					OR (refParameter.measureId = 'RMAI002') OR (refParameter.measureId = 'RMAI003') OR (refParameter.measureId = 'RFR001') OR (refParameter.measureId = 'RFR002')
+					OR (refParameter.measureId = 'RFR003') OR (refParameter.measureId = 'RFR004') OR (refParameter.measureId = 'CG001') THEN
+					
+					IF (refParameter.value = 0) THEN
+						SET refSegment.ns6:"OBX.5.ObservationValue" = refParameter.value || '^NO';
+					ELSEIF (refParameter.value = 1) THEN
+						SET refSegment.ns6:"OBX.5.ObservationValue" = refParameter.value || '^SI';
+					END IF;
+				ELSE
+					SET refSegment.ns6:"OBX.5.ObservationValue" = refParameter.value;
 				END IF;
-			ELSE
-				SET refSegment.ns6:"OBX.5.ObservationValue" = refParameter.value;
-			END IF;
-			
---			IF (refParameter.measureId = 'SC001') AND (refParameter.value = 0) THEN
---				SET refSegment.ns6:"OBX.5.ObservationValue" = refParameter.value || '^NO';
---			ELSEIF (refParameter.measureId = 'SC001') AND (refParameter.value = 1) THEN
---				SET refSegment.ns6:"OBX.5.ObservationValue" = refParameter.value || '^SI';
---			ELSE
---				SET refSegment.ns6:"OBX.5.ObservationValue" = refParameter.value;
---			END IF;
-			--FINE MODIFICA
-			
-			IF (refParameter.units IS NOT NULL) THEN
-				--SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[SEQUENCE + 4].ns6:OBX.ns6:"OBX.6.Units".ns6:"CE.1"  = xmlModel.units;
-				SET refSegment.ns6:"OBX.6.Units".ns6:"CE.1"  = refParameter.units;
-			END IF;
-			--SET refSegment.ns6:"OBX.7.ReferencesRange". = ;
-			SET refSegment.ns6:"OBX.8.AbnormalFlags" = '';
-			--SET refSegment.ns6:"OBX.9.Probability". = ;
-			SET refSegment.ns6:"OBX.10.NatureofAbnormalTest" = '';
-			SET refSegment.ns6:"OBX.11.ObservationResultStatus" = 'F';
-			--SET refSegment.ns6:"OBX.12.DateLastObservationNormalValue". = ;
-			--SET refSegment.ns6:"OBX.13.UserDefinedAccessChecks". = ;
-			--SET refSegment.ns6:"OBX.14.DateTimeoftheObservation". = ;
-			--SET refSegment.ns6:"OBX.15.ProducersID". = ;
-			--SET refSegment.ns6:"OBX.16.ResponsibleObserver". = ;
-			--SET refSegment.ns6:"OBX.17.ObservationMethod". = ;
-			--SET refSegment.ns6:"OBX.18.EquipmentInstanceIdentifier". = ;
-			--SET refSegment.ns6:"OBX.19.DateTimeoftheAnalysis". = ;
-			--SET refSegment.ns6:"OBX.23.PerformingOrganizationName". = ;
-			--SET refSegment.ns6:"OBX.24.PerformingOrganizationAddress". = ;
-			--SET refSegment.ns6:"OBX.25.PerformingOrganizationMedicalDirector". = ;
-			--ATTACHMENT
-			DECLARE refAttach REFERENCE TO refParameter;
-			MOVE refAttach FIRSTCHILD NAME 'attachment';
-			WHILE LASTMOVE(refAttach) DO
-				IF refAttach.base64 IS NOT NULL THEN
-					SET refSegment.ns6:"OBX.5.ObservationValue" = refParameter.value || '^mime^octet-stream^Base64^' || refAttach.base64;
-					SET refSegment.ns6:"OBX.17.ObservationMethod".ns6:"CE.1" = refAttach.type;
+				
+--				DECLARE prima CHARACTER;
+--				DECLARE dopo CHARACTER;
+--				DECLARE replace CHARACTER;
+--				SET replace = REPLACE (refParameter.value, '\n', 'pippo');
+--				SET prima = SUBSTRING(refParameter.value BEFORE '\n');
+--				IF NULLIF(prima, '') IS NOT NULL THEN
+--					SET dopo = SUBSTRING(refParameter.value AFTER '\n');
+--					SET refParameter.value = prima || '\\n' || dopo;
+--				ELSE
+--					DECLARE niente CHARACTER;
+--				END IF;
+--				Declare TEMP CHARACTER;
+--				Declare DeleteChar CHARACTER;
+--				SET DeleteChar=CAST('0D' AS CHARACTER CCSID refParameter.value);
+--				SET TEMP=REPLACE(TEMP, DeleteChar , '');
+	--			IF (refParameter.measureId = 'SC001') AND (refParameter.value = 0) THEN
+	--				SET refSegment.ns6:"OBX.5.ObservationValue" = refParameter.value || '^NO';
+	--			ELSEIF (refParameter.measureId = 'SC001') AND (refParameter.value = 1) THEN
+	--				SET refSegment.ns6:"OBX.5.ObservationValue" = refParameter.value || '^SI';
+	--			ELSE
+	--				SET refSegment.ns6:"OBX.5.ObservationValue" = refParameter.value;
+	--			END IF;
+				--FINE MODIFICA
+				
+				IF (refParameter.units IS NOT NULL) THEN
+					--SET OutputRoot.DFDL.ns6:HL7.ns6:anyHL7Segment[SEQUENCE + 4].ns6:OBX.ns6:"OBX.6.Units".ns6:"CE.1"  = xmlModel.units;
+					SET refSegment.ns6:"OBX.6.Units".ns6:"CE.1"  = refParameter.units;
 				END IF;
-				MOVE refAttach NEXTSIBLING REPEAT NAME;
-			END WHILE;
-	
-			----------
-			SET sequence = sequence + 1;
+				--SET refSegment.ns6:"OBX.7.ReferencesRange". = ;
+				SET refSegment.ns6:"OBX.8.AbnormalFlags" = '';
+				--SET refSegment.ns6:"OBX.9.Probability". = ;
+				SET refSegment.ns6:"OBX.10.NatureofAbnormalTest" = '';
+				SET refSegment.ns6:"OBX.11.ObservationResultStatus" = 'F';
+				--SET refSegment.ns6:"OBX.12.DateLastObservationNormalValue". = ;
+				--SET refSegment.ns6:"OBX.13.UserDefinedAccessChecks". = ;
+				--SET refSegment.ns6:"OBX.14.DateTimeoftheObservation". = ;
+				--SET refSegment.ns6:"OBX.15.ProducersID". = ;
+				--SET refSegment.ns6:"OBX.16.ResponsibleObserver". = ;
+				--SET refSegment.ns6:"OBX.17.ObservationMethod". = ;
+				--SET refSegment.ns6:"OBX.18.EquipmentInstanceIdentifier". = ;
+				--SET refSegment.ns6:"OBX.19.DateTimeoftheAnalysis". = ;
+				--SET refSegment.ns6:"OBX.23.PerformingOrganizationName". = ;
+				--SET refSegment.ns6:"OBX.24.PerformingOrganizationAddress". = ;
+				--SET refSegment.ns6:"OBX.25.PerformingOrganizationMedicalDirector". = ;
+				--ATTACHMENT
+				DECLARE refAttach REFERENCE TO refParameter;
+				MOVE refAttach FIRSTCHILD NAME 'attachment';
+				WHILE LASTMOVE(refAttach) DO
+					IF refAttach.base64 IS NOT NULL THEN
+						SET refSegment.ns6:"OBX.5.ObservationValue" = refParameter.value || '^mime^octet-stream^Base64^' || refAttach.base64;
+						SET refSegment.ns6:"OBX.17.ObservationMethod".ns6:"CE.1" = refAttach.type;
+					END IF;
+					MOVE refAttach NEXTSIBLING REPEAT NAME;
+				END WHILE;
+		
+				----------
+				SET sequence = sequence + 1;
+			END IF;
 		END IF;
 		MOVE refParameter NEXTSIBLING;
 	END WHILE;

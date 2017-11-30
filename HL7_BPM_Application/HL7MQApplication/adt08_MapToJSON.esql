@@ -26,7 +26,7 @@ CREATE FUNCTION Main() RETURNS BOOLEAN
 			SET OutputRoot.JSON.Data.dischargeDate = request.dischargeDate;
 			--SET OutputRoot.JSON.Data.diagnosis = request.diagnosis;
 			IF NULLIF(request.diagnosis, '') IS NOT NULL THEN
-				SET OutputRoot.JSON.Data.diagnosis = request.diagnosis;
+				SET OutputRoot.JSON.Data.diagnosis = SUBSTRING(request.diagnosis BEFORE '-');
 			ELSE
 				SET OutputRoot.JSON.Data.diagnosis = '';
 			END IF;

@@ -4,6 +4,8 @@
 	<comment></comment>
 	<projects>
 		<project>HL7CommonLibrary</project>
+		<project>HL7v251DFDLLibrary</project>
+		<project>SAGestioneErrori</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

@@ -1,0 +1,83 @@
+BROKER SCHEMA HL7MQApplication
+
+
+CREATE COMPUTE MODULE InputSACompute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		CALL CopyMessageHeaders();
+		--CALL CopyEntireMessage();
+		DECLARE response REFERENCE TO InputRoot.XMLNSC.reassignRequest;
+		DECLARE count INTEGER 0;
+	    SET OutputRoot.Properties = InputRoot.Properties;
+	    --SET OutputLocalEnvironment.Destination.HTTP.QueryString.params = '{';
+	    --SET OutputLocalEnvironment.Destination.HTTP.QueryString.params = OutputLocalEnvironment.Destination.HTTP.QueryString.params || '}';
+		DECLARE varFrom CHARACTER;
+		SET varFrom = 'IIB';
+		DECLARE varTo CHARACTER;
+		SET varTo = 'SA';
+		DECLARE varMsg CHARACTER;
+		SET varMsg = 'Errore di comunicazione tra IIB e BPM per la getTasks';
+		DECLARE varStatus CHARACTER;
+		--SET varStatus = '%F0%9F%92%A5';
+		SET varStatus = '%F0%9F%92%A5';
+		DECLARE varType CHARACTER;
+		SET varType = '';
+		DECLARE varToken CHARACTER;
+		SET varToken = 'ODVI9iw6e54BpXtA0VjxHYAr2mRUOMsU';
+
+		--SET OutputLocalEnvironment.Destination.HTTP.QueryString.action = 'start';
+		--SET OutputLocalEnvironment.Destination.HTTP.QueryString.params = '{"' || 'from' ||'": "' || 'IIB' ||'"}'; -- , "to":"' || 'S&A' ||'", "msg":"' || 'Errore di comunicazione tra IIB e BPM' ||'", "status":"", "type":"", "token":"' || 'ODVI9iw6e54BpXtA0VjxHYAr2mRUOMsU' ||'"}';
+		--SET OutputLocalEnvironment.Destination.HTTP.QueryString.body = '{"from":"' || varFrom || '", "to":"' || varTo || '", "msg":"' || varMsg  || '", "status":"' || varStatus  || '", "type":"'|| varType || '", "token":"'|| varToken ||'"}';
+		--SET OutputLocalEnvironment.Destination.HTTP.QueryString.createTask = 'false';
+		--SET OutputLocalEnvironment.Destination.HTTP.QueryString.parts = 'all';
+		--SET OutputLocalEnvironment.Destination.REST.Input.Parameters = '{"from":"' || varFrom || '", "to":"' || varTo || '", "msg":"' || varMsg  || '", "status":"' || varStatus  || '", "type":"'|| varType || '", "token":"'|| varToken ||'"}';
+		--SET OutputLocalEnvironment.Destination.HTTP.QueryString.body = '{"from":"' || varFrom || '", "to":"' || varTo || '", "msg":"' || varMsg  || '", "status":"' || varStatus  || '", "type":"'|| varType || '", "token":"'|| varToken ||'"}';
+		SET OutputLocalEnvironment.Destination.HTTP.QueryString.params = '{"from":"' || varFrom || '", "to":"' || varTo || '", "msg":"' || varMsg  || '", "status":"' || varStatus  || '", "type":"'|| varType || '", "token":"'|| varToken ||'"}';
+		--SET OutputLocalEnvironment.Destination.HTTP.RequestLine.Method = 'GET';
+		--SET OutputRoot.JSON.Data.body = '{"from:"IIB""}';
+--		SET OutputLocalEnvironment.Destination.JSON.Data.from = varFrom;
+--		SET OutputLocalEnvironment.Destination.JSON.Data.to = varTo;
+--		SET OutputLocalEnvironment.Destination.JSON.Data.msg = varMsg;
+--		SET OutputLocalEnvironment.Destination.JSON.Data.status = varStatus;
+--		SET OutputLocalEnvironment.Destination.JSON.Data.type = varType;
+--		SET OutputLocalEnvironment.Destination.JSON.Data.token = varToken;
+		
+--		SET OutputLocalEnvironment.Destination.REST.Request.Parameters.from = varFrom;
+--		SET OutputLocalEnvironment.Destination.REST.Request.Parameters.to = varTo;
+--		SET OutputLocalEnvironment.Destination.REST.Request.Parameters.msg = varMsg;
+--		SET OutputLocalEnvironment.Destination.REST.Request.Parameters.status = varStatus;
+--		SET OutputLocalEnvironment.Destination.REST.Request.Parameters.type = varType;
+--		SET OutputLocalEnvironment.Destination.REST.Request.Parameters.token = varToken;
+--		
+--		SET InputLocalEnvironment.Destination.REST.Request.Parameters.from = varFrom;
+--		SET InputLocalEnvironment.Destination.REST.Request.Parameters.to = varTo;
+--		SET InputLocalEnvironment.Destination.REST.Request.Parameters.msg = varMsg;
+--		SET InputLocalEnvironment.Destination.REST.Request.Parameters.status = varStatus;
+--		SET InputLocalEnvironment.Destination.REST.Request.Parameters.type = varType;
+--		SET InputLocalEnvironment.Destination.REST.Request.Parameters.token = varToken;
+--		
+--		SET OutputRoot.JSON.Data.from = varFrom;
+--		SET OutputRoot.JSON.Data.to = varTo;
+--		SET OutputRoot.JSON.Data.msg = varMsg;
+--		SET OutputRoot.JSON.Data.status = varStatus;
+--		SET OutputRoot.JSON.Data.type = varType;
+--		SET OutputRoot.JSON.Data.token = varToken;
+--		
+		
+		RETURN TRUE;
+	END;
+
+	CREATE PROCEDURE CopyMessageHeaders() BEGIN
+		DECLARE I INTEGER 1;
+		DECLARE J INTEGER;
+		SET J = CARDINALITY(InputRoot.*[]);
+		WHILE I < J DO
+			SET OutputRoot.*[I] = InputRoot.*[I];
+			SET I = I + 1;
+		END WHILE;
+	END;
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		SET OutputRoot = InputRoot;
+	END;
+END MODULE;

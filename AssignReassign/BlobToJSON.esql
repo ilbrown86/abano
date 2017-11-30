@@ -25,20 +25,33 @@ CREATE COMPUTE MODULE BlobToJSON
 		--MOVE response LASTCHILD;
 --		CREATE FIELD refOutJSON AS response IDENTITY (JSON.Object)Prova;
 		--prova
+		
 		DECLARE inCCSID INT InputProperties.CodedCharSetId;
 		DECLARE inEncoding INT InputProperties.Encoding;
 		DECLARE inBitStream BLOB ASBITSTREAM(InputRoot.BLOB, inEncoding, inCCSID);		
-		CREATE LASTCHILD OF OutputRoot DOMAIN('JSON') PARSE(inBitStream, inEncoding, inCCSID,'BLOB', 'JSON');
-		DECLARE risposta REFERENCE TO OutputRoot.JSON.Data.data.data;
-		DECLARE refOutJSON REFERENCE TO OutputRoot;
-		DECLARE measure ROW;
-		CREATE FIELD OutputRoot.JSON.Data AS refOutJSON IDENTITY (JSON.Object)Data;
-		SET measure.response = risposta.response;
-		SET measure.errorMessage = risposta.errorMessage;
-		SET measure.errorCode = risposta.errorCode;
-		
-		SET refOutJSON = measure;
-		RETURN TRUE;
+		IF NULLIF(inBitStream,'') IS NOT NULL THEN  --new
+			CREATE LASTCHILD OF OutputRoot DOMAIN('JSON') PARSE(inBitStream, inEncoding, inCCSID,'BLOB', 'JSON');
+			DECLARE risposta REFERENCE TO OutputRoot.JSON.Data.data.data;
+			DECLARE refOutJSON REFERENCE TO OutputRoot;
+			DECLARE measure ROW;
+			CREATE FIELD OutputRoot.JSON.Data AS refOutJSON IDENTITY (JSON.Object)Data;
+			SET measure.response = risposta.response;
+			SET measure.errorMessage = '';--risposta.errorMessage;
+			SET measure.errorCode = risposta.errorCode;
+			IF (measure.errorCode = 0) THEN
+				SET measure.errorCode = '';
+			END IF;
+			SET refOutJSON = measure;
+			PROPAGATE TO TERMINAL 'out' FINALIZE NONE DELETE NONE;
+		ELSE --new
+			SET OutputLocalEnvironment.Destination.HTTP.ReplyStatusCode = 400;
+			SET OutputRoot.JSON.Data.response = '';
+			SET OutputRoot.JSON.Data.errorCode = '400';
+			SET OutputRoot.JSON.Data.errorMessage = 'Errore di comunicazione con il BPM';
+			PROPAGATE TO TERMINAL 'out1' FINALIZE NONE;
+		END IF; --new
+		--RETURN TRUE;
+		RETURN FALSE;
 	END;
 
 	CREATE PROCEDURE CopyMessageHeaders() BEGIN

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ComIbmCallableFlowInput.msgnode="ComIbmCallableFlowInput.msgnode" xmlns:ComIbmCallableFlowReply.msgnode="ComIbmCallableFlowReply.msgnode" xmlns:ComIbmCompute.msgnode="ComIbmCompute.msgnode" xmlns:ComIbmHTTPHeader.msgnode="ComIbmHTTPHeader.msgnode" xmlns:ComIbmTrace.msgnode="ComIbmTrace.msgnode" xmlns:ComIbmWSRequest.msgnode="ComIbmWSRequest.msgnode" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:eflow="http://www.ibm.com/wbi/2005/eflow"
-    xmlns:utility="http://www.ibm.com/wbi/2005/eflow_utility" nsURI="HL7MQApplication/ADT08All.msgflow" nsPrefix="HL7MQApplication_ADT08All.msgflow">
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ComIbmCallableFlowInput.msgnode="ComIbmCallableFlowInput.msgnode" xmlns:ComIbmCallableFlowInvoke.msgnode="ComIbmCallableFlowInvoke.msgnode" xmlns:ComIbmCallableFlowReply.msgnode="ComIbmCallableFlowReply.msgnode" xmlns:ComIbmCompute.msgnode="ComIbmCompute.msgnode" xmlns:ComIbmHTTPHeader.msgnode="ComIbmHTTPHeader.msgnode" xmlns:ComIbmTrace.msgnode="ComIbmTrace.msgnode" xmlns:ComIbmWSRequest.msgnode="ComIbmWSRequest.msgnode" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:eflow="http://www.ibm.com/wbi/2005/eflow" xmlns:utility="http://www.ibm.com/wbi/2005/eflow_utility" nsURI="HL7MQApplication/ADT08All.msgflow" nsPrefix="HL7MQApplication_ADT08All.msgflow">
   <eClassifiers xmi:type="eflow:FCMComposite" name="FCMComposite_1">
     <eSuperTypes href="http://www.ibm.com/wbi/2005/eflow#//FCMBlock"/>
     <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.Reassign" name="Reassign" lowerBound="1" defaultValueLiteral="https://10.4.2.204:443/rest/bpm/wle/v1/service/ABANO@getTasks">
@@ -34,6 +34,12 @@
     <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.timeoutForServer" name="timeoutForServer" lowerBound="1" defaultValueLiteral="120">
       <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     </eStructuralFeatures>
+    <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.Reassign1" name="Reassign1" lowerBound="1" defaultValueLiteral="https://10.4.2.204:443/rest/bpm/wle/v1/service/ABANO@getTasks">
+      <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.StartTipo" name="StartTipo" lowerBound="1" defaultValueLiteral="https://10.4.2.204:443/rest/bpm/wle/v1/service/ABANO@cpStartTipo">
+      <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
     <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.callableInputEndpoint" name="callableInputEndpoint" lowerBound="1" defaultValueLiteral="ADT08All">
       <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eStructuralFeatures>
@@ -57,13 +63,13 @@
       <nodes xmi:type="ComIbmWSRequest.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_5" location="541,137" URLSpecifier="https://10.4.2.204:443/rest/bpm/wle/v1/service/ABANO@cpPatientTransfer" httpVersion="1.1" protocol="TLSv1.2" keyAlias="bpmtestwas" useWholeInputMsgAsRequest="false" requestMsgLocationInTree="InputLocalEnvironment">
         <translation xmi:type="utility:ConstantString" string="HTTP Request Change Bed"/>
       </nodes>
-      <nodes xmi:type="ComIbmCallableFlowReply.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_6" location="954,85">
+      <nodes xmi:type="ComIbmCallableFlowReply.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_6" location="1444,69">
         <translation xmi:type="utility:ConstantString" string="CallableReply"/>
       </nodes>
-      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_7" location="734,169" computeExpression="esql://routine/HL7MQApplication#GetListComputePostA02.Main" computeMode="all">
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_7" location="880,153" computeExpression="esql://routine/HL7MQApplication#ComputeReassignFirstCall.Main" computeMode="all">
         <translation xmi:type="utility:ConstantString" string="Compute2"/>
       </nodes>
-      <nodes xmi:type="ComIbmWSRequest.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_8" location="841,169" URLSpecifier="https://10.4.2.204:443/rest/bpm/wle/v1/service/ABANO@getTasks" httpVersion="1.1" protocol="TLSv1.2" keyAlias="bpmtestwas" useWholeInputMsgAsRequest="false" requestMsgLocationInTree="InputLocalEnvironment">
+      <nodes xmi:type="ComIbmWSRequest.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_8" location="987,183" URLSpecifier="https://10.4.2.204:443/rest/bpm/wle/v1/service/ABANO@getTasks" httpVersion="1.1" protocol="TLSv1.2" keyAlias="bpmtestwas" useWholeInputMsgAsRequest="false" requestMsgLocationInTree="InputLocalEnvironment">
         <translation xmi:type="utility:ConstantString" string="HTTP Request Reassign"/>
       </nodes>
       <nodes xmi:type="ComIbmWSRequest.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_9" location="540,219" URLSpecifier="https://10.4.2.204:443/rest/bpm/wle/v1/service/ABANO@cpStartOperation" httpVersion="1.1" protocol="TLSv1.2" keyAlias="bpmtestwas" useWholeInputMsgAsRequest="false" requestMsgLocationInTree="InputLocalEnvironment">
@@ -78,21 +84,62 @@
       <nodes xmi:type="ComIbmTrace.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_12" location="88,151" destination="file" filePath="/var/mqsi/components/IIB10ABANO_PROD/stdout" pattern="${Root}">
         <translation xmi:type="utility:ConstantString" string="Trace"/>
       </nodes>
+      <nodes xmi:type="ComIbmTrace.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_13" location="775,161" destination="file" filePath="/var/mqsi/components/IIB10ABANO_PROD/stdout" pattern="${Root}">
+        <translation xmi:type="utility:ConstantString" string="Trace1"/>
+      </nodes>
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_23" location="1157,219" computeExpression="esql://routine/HL7MQApplication#GetListComputePostA02.Main" computeMode="all">
+        <translation xmi:type="utility:ConstantString" string="Compute1"/>
+      </nodes>
+      <nodes xmi:type="ComIbmWSRequest.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_24" location="1292,205" URLSpecifier="https://10.4.2.204:443/rest/bpm/wle/v1/service/ABANO@getTasks" timeoutForServer="30" httpVersion="1.1" protocol="TLSv1.2" keyAlias="bpmtestwas" useWholeInputMsgAsRequest="false" requestMsgLocationInTree="InputLocalEnvironment">
+        <translation xmi:type="utility:ConstantString" string="HTTP Request Reassign1"/>
+      </nodes>
+      <nodes xmi:type="ComIbmCallableFlowInvoke.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_14" location="1050,105" targetApplication="HL7_BPM_Application" targetEndpointName="SendMessageSAADT08" requestTimeout="20">
+        <translation xmi:type="utility:ConstantString" string="CallableFlowInvoke"/>
+      </nodes>
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_15" location="1258,117" computeExpression="esql://routine/HL7MQApplication#Compute_Post_callError.Main">
+        <translation xmi:type="utility:ConstantString" string="Compute3"/>
+      </nodes>
+      <nodes xmi:type="ComIbmWSRequest.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_16" location="562,525" URLSpecifier="https://10.4.2.204:443/rest/bpm/wle/v1/service/ABANO@cpStartTipo" timeoutForServer="30" httpVersion="1.1" protocol="TLS">
+        <translation xmi:type="utility:ConstantString" string="HTTP Request cpStartTipo"/>
+      </nodes>
       <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_2" targetNode="FCMComposite_1_3" sourceNode="FCMComposite_1_2" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
       <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_3" targetNode="FCMComposite_1_4" sourceNode="FCMComposite_1_3" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
       <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_4" targetNode="FCMComposite_1_5" sourceNode="FCMComposite_1_4" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
-      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_5" targetNode="FCMComposite_1_7" sourceNode="FCMComposite_1_5" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
-      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_6" targetNode="FCMComposite_1_8" sourceNode="FCMComposite_1_7" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
-      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_7" targetNode="FCMComposite_1_6" sourceNode="FCMComposite_1_8" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
       <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_8" targetNode="FCMComposite_1_9" sourceNode="FCMComposite_1_4" sourceTerminalName="OutTerminal.out1" targetTerminalName="InTerminal.in"/>
       <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_9" targetNode="FCMComposite_1_10" sourceNode="FCMComposite_1_4" sourceTerminalName="OutTerminal.out2" targetTerminalName="InTerminal.in"/>
-      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_10" targetNode="FCMComposite_1_11" sourceNode="FCMComposite_1_4" sourceTerminalName="OutTerminal.out3" targetTerminalName="InTerminal.in"/>
-      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_11" targetNode="FCMComposite_1_6" sourceNode="FCMComposite_1_4" sourceTerminalName="OutTerminal.out4" targetTerminalName="InTerminal.in"/>
-      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_12" targetNode="FCMComposite_1_7" sourceNode="FCMComposite_1_11" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
-      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_13" targetNode="FCMComposite_1_7" sourceNode="FCMComposite_1_9" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
-      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_14" targetNode="FCMComposite_1_7" sourceNode="FCMComposite_1_10" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
       <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_1" targetNode="FCMComposite_1_12" sourceNode="FCMComposite_1_1" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
       <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_15" targetNode="FCMComposite_1_2" sourceNode="FCMComposite_1_12" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_5" targetNode="FCMComposite_1_13" sourceNode="FCMComposite_1_5" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_17" targetNode="FCMComposite_1_13" sourceNode="FCMComposite_1_9" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_18" targetNode="FCMComposite_1_13" sourceNode="FCMComposite_1_10" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_19" targetNode="FCMComposite_1_13" sourceNode="FCMComposite_1_11" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_20" targetNode="FCMComposite_1_13" sourceNode="FCMComposite_1_5" sourceTerminalName="OutTerminal.failure" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_21" targetNode="FCMComposite_1_13" sourceNode="FCMComposite_1_5" sourceTerminalName="OutTerminal.error" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_29" targetNode="FCMComposite_1_7" sourceNode="FCMComposite_1_13" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_32" targetNode="FCMComposite_1_23" sourceNode="FCMComposite_1_8" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_36" targetNode="FCMComposite_1_24" sourceNode="FCMComposite_1_23" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_37" targetNode="FCMComposite_1_6" sourceNode="FCMComposite_1_24" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_38" targetNode="FCMComposite_1_6" sourceNode="FCMComposite_1_24" sourceTerminalName="OutTerminal.error" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_39" targetNode="FCMComposite_1_6" sourceNode="FCMComposite_1_24" sourceTerminalName="OutTerminal.failure" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_13" targetNode="FCMComposite_1_13" sourceNode="FCMComposite_1_9" sourceTerminalName="OutTerminal.failure" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_14" targetNode="FCMComposite_1_13" sourceNode="FCMComposite_1_9" sourceTerminalName="OutTerminal.error" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_16" targetNode="FCMComposite_1_13" sourceNode="FCMComposite_1_10" sourceTerminalName="OutTerminal.failure" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_22" targetNode="FCMComposite_1_13" sourceNode="FCMComposite_1_10" sourceTerminalName="OutTerminal.error" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_23" targetNode="FCMComposite_1_13" sourceNode="FCMComposite_1_11" sourceTerminalName="OutTerminal.failure" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_24" targetNode="FCMComposite_1_13" sourceNode="FCMComposite_1_11" sourceTerminalName="OutTerminal.error" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_25" targetNode="FCMComposite_1_23" sourceNode="FCMComposite_1_8" sourceTerminalName="OutTerminal.failure" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_26" targetNode="FCMComposite_1_23" sourceNode="FCMComposite_1_8" sourceTerminalName="OutTerminal.error" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_27" targetNode="FCMComposite_1_15" sourceNode="FCMComposite_1_14" sourceTerminalName="OutTerminal.failure" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_28" targetNode="FCMComposite_1_15" sourceNode="FCMComposite_1_14" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_30" targetNode="FCMComposite_1_15" sourceNode="FCMComposite_1_14" sourceTerminalName="OutTerminal.error" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_33" targetNode="FCMComposite_1_6" sourceNode="FCMComposite_1_15" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_34" targetNode="FCMComposite_1_14" sourceNode="FCMComposite_1_7" sourceTerminalName="OutTerminal.out1" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_7" targetNode="FCMComposite_1_13" sourceNode="FCMComposite_1_16" sourceTerminalName="OutTerminal.failure" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_11" targetNode="FCMComposite_1_13" sourceNode="FCMComposite_1_16" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_12" targetNode="FCMComposite_1_13" sourceNode="FCMComposite_1_16" sourceTerminalName="OutTerminal.error" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_10" targetNode="FCMComposite_1_16" sourceNode="FCMComposite_1_4" sourceTerminalName="OutTerminal.out3" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_35" targetNode="FCMComposite_1_11" sourceNode="FCMComposite_1_4" sourceTerminalName="OutTerminal.out4" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_40" targetNode="FCMComposite_1_8" sourceNode="FCMComposite_1_7" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
     </composition>
     <propertyOrganizer>
       <propertyDescriptor groupName="Group.BPM" propertyEditor="com.ibm.etools.mft.ibmnodes.editors.URLPropertyEditor" configurable="true" describedAttribute="Property.Reassign">
@@ -117,8 +164,14 @@
                           <propertyName xmi:type="utility:TranslatableString" key="Property.keyAlias" bundleName="ComIbmWSRequest" pluginId="com.ibm.etools.mft.ibmnodes.definitions"/>
                           <propertyDescriptor groupName="Group.BPM" propertyEditor="com.ibm.etools.mft.ibmnodes.editors.PositiveIntegerPropertyEditor" configurable="true" describedAttribute="Property.timeoutForServer">
                             <propertyName xmi:type="utility:TranslatableString" key="Property.timeoutForServer" bundleName="ComIbmWSRequest" pluginId="com.ibm.etools.mft.ibmnodes.definitions"/>
-                            <propertyDescriptor groupName="Group.Basic" propertyEditor="com.ibm.etools.mft.flow.properties.StringPropertyEditor" configurable="true" describedAttribute="Property.callableInputEndpoint">
-                              <propertyName xmi:type="utility:TranslatableString" key="Property.callableInputEndpoint" bundleName="ComIbmCallableFlowInput" pluginId="com.ibm.etools.mft.ibmnodes.definitions"/>
+                            <propertyDescriptor groupName="Group.BPM" propertyEditor="com.ibm.etools.mft.ibmnodes.editors.URLPropertyEditor" configurable="true" describedAttribute="Property.Reassign1">
+                              <propertyName xmi:type="utility:TranslatableString" key="Property.Reassign1" bundleName="HL7MQApplication/ADT08All" pluginId="HL7_BPM_Application"/>
+                              <propertyDescriptor groupName="Group.BPM" propertyEditor="com.ibm.etools.mft.ibmnodes.editors.URLPropertyEditor" configurable="true" describedAttribute="Property.StartTipo">
+                                <propertyName xmi:type="utility:TranslatableString" key="Property.StartTipo" bundleName="HL7MQApplication/ADT08All" pluginId="HL7_BPM_Application"/>
+                                <propertyDescriptor groupName="Group.Basic" propertyEditor="com.ibm.etools.mft.flow.properties.StringPropertyEditor" configurable="true" describedAttribute="Property.callableInputEndpoint">
+                                  <propertyName xmi:type="utility:TranslatableString" key="Property.callableInputEndpoint" bundleName="ComIbmCallableFlowInput" pluginId="com.ibm.etools.mft.ibmnodes.definitions"/>
+                                </propertyDescriptor>
+                              </propertyDescriptor>
                             </propertyDescriptor>
                           </propertyDescriptor>
                         </propertyDescriptor>
@@ -147,23 +200,29 @@
     <attributeLinks promotedAttribute="Property.ChangeBed" overriddenNodes="FCMComposite_1_5">
       <overriddenAttribute href="ComIbmWSRequest.msgnode#Property.URLSpecifier"/>
     </attributeLinks>
-    <attributeLinks promotedAttribute="Property.allowedCiphers" overriddenNodes="FCMComposite_1_5 FCMComposite_1_8 FCMComposite_1_9 FCMComposite_1_10 FCMComposite_1_11">
+    <attributeLinks promotedAttribute="Property.allowedCiphers" overriddenNodes="FCMComposite_1_5 FCMComposite_1_8 FCMComposite_1_9 FCMComposite_1_10 FCMComposite_1_11 FCMComposite_1_24 FCMComposite_1_16">
       <overriddenAttribute href="ComIbmWSRequest.msgnode#Property.allowedCiphers"/>
     </attributeLinks>
-    <attributeLinks promotedAttribute="Property.enableCRLCheck" overriddenNodes="FCMComposite_1_5 FCMComposite_1_8 FCMComposite_1_9 FCMComposite_1_10 FCMComposite_1_11">
+    <attributeLinks promotedAttribute="Property.enableCRLCheck" overriddenNodes="FCMComposite_1_5 FCMComposite_1_8 FCMComposite_1_9 FCMComposite_1_10 FCMComposite_1_11 FCMComposite_1_24 FCMComposite_1_16">
       <overriddenAttribute href="ComIbmWSRequest.msgnode#Property.enableCRLCheck"/>
     </attributeLinks>
-    <attributeLinks promotedAttribute="Property.hostnameChecking" overriddenNodes="FCMComposite_1_5 FCMComposite_1_8 FCMComposite_1_9 FCMComposite_1_10 FCMComposite_1_11">
+    <attributeLinks promotedAttribute="Property.hostnameChecking" overriddenNodes="FCMComposite_1_5 FCMComposite_1_8 FCMComposite_1_9 FCMComposite_1_10 FCMComposite_1_11 FCMComposite_1_24 FCMComposite_1_16">
       <overriddenAttribute href="ComIbmWSRequest.msgnode#Property.hostnameChecking"/>
     </attributeLinks>
-    <attributeLinks promotedAttribute="Property.protocol" overriddenNodes="FCMComposite_1_5 FCMComposite_1_8 FCMComposite_1_9 FCMComposite_1_10 FCMComposite_1_11">
+    <attributeLinks promotedAttribute="Property.protocol" overriddenNodes="FCMComposite_1_5 FCMComposite_1_8 FCMComposite_1_9 FCMComposite_1_10 FCMComposite_1_11 FCMComposite_1_24 FCMComposite_1_16">
       <overriddenAttribute href="ComIbmWSRequest.msgnode#Property.protocol"/>
     </attributeLinks>
-    <attributeLinks promotedAttribute="Property.keyAlias" overriddenNodes="FCMComposite_1_5 FCMComposite_1_8 FCMComposite_1_9 FCMComposite_1_10 FCMComposite_1_11">
+    <attributeLinks promotedAttribute="Property.keyAlias" overriddenNodes="FCMComposite_1_5 FCMComposite_1_8 FCMComposite_1_9 FCMComposite_1_10 FCMComposite_1_11 FCMComposite_1_24 FCMComposite_1_16">
       <overriddenAttribute href="ComIbmWSRequest.msgnode#Property.keyAlias"/>
     </attributeLinks>
-    <attributeLinks promotedAttribute="Property.timeoutForServer" overriddenNodes="FCMComposite_1_8 FCMComposite_1_9 FCMComposite_1_10 FCMComposite_1_11 FCMComposite_1_5">
+    <attributeLinks promotedAttribute="Property.timeoutForServer" overriddenNodes="FCMComposite_1_8 FCMComposite_1_9 FCMComposite_1_10 FCMComposite_1_11 FCMComposite_1_5 FCMComposite_1_24 FCMComposite_1_16">
       <overriddenAttribute href="ComIbmWSRequest.msgnode#Property.timeoutForServer"/>
+    </attributeLinks>
+    <attributeLinks promotedAttribute="Property.Reassign1" overriddenNodes="FCMComposite_1_24">
+      <overriddenAttribute href="ComIbmWSRequest.msgnode#Property.URLSpecifier"/>
+    </attributeLinks>
+    <attributeLinks promotedAttribute="Property.StartTipo" overriddenNodes="FCMComposite_1_16">
+      <overriddenAttribute href="ComIbmWSRequest.msgnode#Property.URLSpecifier"/>
     </attributeLinks>
     <attributeLinks promotedAttribute="Property.callableInputEndpoint" overriddenNodes="FCMComposite_1_1">
       <overriddenAttribute href="ComIbmCallableFlowInput.msgnode#Property.callableInputEndpoint"/>
